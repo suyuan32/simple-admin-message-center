@@ -8,12 +8,15 @@ import (
 	"fmt"
 	"log"
 
+	uuid "github.com/gofrs/uuid/v5"
 	"github.com/suyuan32/simple-admin-message-center/ent/migrate"
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect"
 	"entgo.io/ent/dialect/sql"
-	"github.com/suyuan32/simple-admin-message-center/ent/mcms"
+	"github.com/suyuan32/simple-admin-message-center/ent/emaillog"
+
+	stdsql "database/sql"
 )
 
 // Client is the client that holds all ent builders.
@@ -21,8 +24,8 @@ type Client struct {
 	config
 	// Schema is the client for creating, migrating and dropping schema.
 	Schema *migrate.Schema
-	// Mcms is the client for interacting with the Mcms builders.
-	Mcms *McmsClient
+	// EmailLog is the client for interacting with the EmailLog builders.
+	EmailLog *EmailLogClient
 }
 
 // NewClient creates a new client configured with the given options.
@@ -36,7 +39,7 @@ func NewClient(opts ...Option) *Client {
 
 func (c *Client) init() {
 	c.Schema = migrate.NewSchema(c.driver)
-	c.Mcms = NewMcmsClient(c.config)
+	c.EmailLog = NewEmailLogClient(c.config)
 }
 
 type (
@@ -117,9 +120,9 @@ func (c *Client) Tx(ctx context.Context) (*Tx, error) {
 	cfg := c.config
 	cfg.driver = tx
 	return &Tx{
-		ctx:    ctx,
-		config: cfg,
-		Mcms:   NewMcmsClient(cfg),
+		ctx:      ctx,
+		config:   cfg,
+		EmailLog: NewEmailLogClient(cfg),
 	}, nil
 }
 
@@ -137,16 +140,16 @@ func (c *Client) BeginTx(ctx context.Context, opts *sql.TxOptions) (*Tx, error) 
 	cfg := c.config
 	cfg.driver = &txDriver{tx: tx, drv: c.driver}
 	return &Tx{
-		ctx:    ctx,
-		config: cfg,
-		Mcms:   NewMcmsClient(cfg),
+		ctx:      ctx,
+		config:   cfg,
+		EmailLog: NewEmailLogClient(cfg),
 	}, nil
 }
 
 // Debug returns a new debug-client. It's used to get verbose logging on specific operations.
 //
 //	client.Debug().
-//		Mcms.
+//		EmailLog.
 //		Query().
 //		Count(ctx)
 func (c *Client) Debug() *Client {
@@ -168,111 +171,111 @@ func (c *Client) Close() error {
 // Use adds the mutation hooks to all the entity clients.
 // In order to add hooks to a specific client, call: `client.Node.Use(...)`.
 func (c *Client) Use(hooks ...Hook) {
-	c.Mcms.Use(hooks...)
+	c.EmailLog.Use(hooks...)
 }
 
 // Intercept adds the query interceptors to all the entity clients.
 // In order to add interceptors to a specific client, call: `client.Node.Intercept(...)`.
 func (c *Client) Intercept(interceptors ...Interceptor) {
-	c.Mcms.Intercept(interceptors...)
+	c.EmailLog.Intercept(interceptors...)
 }
 
 // Mutate implements the ent.Mutator interface.
 func (c *Client) Mutate(ctx context.Context, m Mutation) (Value, error) {
 	switch m := m.(type) {
-	case *McmsMutation:
-		return c.Mcms.mutate(ctx, m)
+	case *EmailLogMutation:
+		return c.EmailLog.mutate(ctx, m)
 	default:
 		return nil, fmt.Errorf("ent: unknown mutation type %T", m)
 	}
 }
 
-// McmsClient is a client for the Mcms schema.
-type McmsClient struct {
+// EmailLogClient is a client for the EmailLog schema.
+type EmailLogClient struct {
 	config
 }
 
-// NewMcmsClient returns a client for the Mcms from the given config.
-func NewMcmsClient(c config) *McmsClient {
-	return &McmsClient{config: c}
+// NewEmailLogClient returns a client for the EmailLog from the given config.
+func NewEmailLogClient(c config) *EmailLogClient {
+	return &EmailLogClient{config: c}
 }
 
 // Use adds a list of mutation hooks to the hooks stack.
-// A call to `Use(f, g, h)` equals to `mcms.Hooks(f(g(h())))`.
-func (c *McmsClient) Use(hooks ...Hook) {
-	c.hooks.Mcms = append(c.hooks.Mcms, hooks...)
+// A call to `Use(f, g, h)` equals to `emaillog.Hooks(f(g(h())))`.
+func (c *EmailLogClient) Use(hooks ...Hook) {
+	c.hooks.EmailLog = append(c.hooks.EmailLog, hooks...)
 }
 
 // Intercept adds a list of query interceptors to the interceptors stack.
-// A call to `Intercept(f, g, h)` equals to `mcms.Intercept(f(g(h())))`.
-func (c *McmsClient) Intercept(interceptors ...Interceptor) {
-	c.inters.Mcms = append(c.inters.Mcms, interceptors...)
+// A call to `Intercept(f, g, h)` equals to `emaillog.Intercept(f(g(h())))`.
+func (c *EmailLogClient) Intercept(interceptors ...Interceptor) {
+	c.inters.EmailLog = append(c.inters.EmailLog, interceptors...)
 }
 
-// Create returns a builder for creating a Mcms entity.
-func (c *McmsClient) Create() *McmsCreate {
-	mutation := newMcmsMutation(c.config, OpCreate)
-	return &McmsCreate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+// Create returns a builder for creating a EmailLog entity.
+func (c *EmailLogClient) Create() *EmailLogCreate {
+	mutation := newEmailLogMutation(c.config, OpCreate)
+	return &EmailLogCreate{config: c.config, hooks: c.Hooks(), mutation: mutation}
 }
 
-// CreateBulk returns a builder for creating a bulk of Mcms entities.
-func (c *McmsClient) CreateBulk(builders ...*McmsCreate) *McmsCreateBulk {
-	return &McmsCreateBulk{config: c.config, builders: builders}
+// CreateBulk returns a builder for creating a bulk of EmailLog entities.
+func (c *EmailLogClient) CreateBulk(builders ...*EmailLogCreate) *EmailLogCreateBulk {
+	return &EmailLogCreateBulk{config: c.config, builders: builders}
 }
 
-// Update returns an update builder for Mcms.
-func (c *McmsClient) Update() *McmsUpdate {
-	mutation := newMcmsMutation(c.config, OpUpdate)
-	return &McmsUpdate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+// Update returns an update builder for EmailLog.
+func (c *EmailLogClient) Update() *EmailLogUpdate {
+	mutation := newEmailLogMutation(c.config, OpUpdate)
+	return &EmailLogUpdate{config: c.config, hooks: c.Hooks(), mutation: mutation}
 }
 
 // UpdateOne returns an update builder for the given entity.
-func (c *McmsClient) UpdateOne(m *Mcms) *McmsUpdateOne {
-	mutation := newMcmsMutation(c.config, OpUpdateOne, withMcms(m))
-	return &McmsUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+func (c *EmailLogClient) UpdateOne(el *EmailLog) *EmailLogUpdateOne {
+	mutation := newEmailLogMutation(c.config, OpUpdateOne, withEmailLog(el))
+	return &EmailLogUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
 }
 
 // UpdateOneID returns an update builder for the given id.
-func (c *McmsClient) UpdateOneID(id int) *McmsUpdateOne {
-	mutation := newMcmsMutation(c.config, OpUpdateOne, withMcmsID(id))
-	return &McmsUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+func (c *EmailLogClient) UpdateOneID(id uuid.UUID) *EmailLogUpdateOne {
+	mutation := newEmailLogMutation(c.config, OpUpdateOne, withEmailLogID(id))
+	return &EmailLogUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
 }
 
-// Delete returns a delete builder for Mcms.
-func (c *McmsClient) Delete() *McmsDelete {
-	mutation := newMcmsMutation(c.config, OpDelete)
-	return &McmsDelete{config: c.config, hooks: c.Hooks(), mutation: mutation}
+// Delete returns a delete builder for EmailLog.
+func (c *EmailLogClient) Delete() *EmailLogDelete {
+	mutation := newEmailLogMutation(c.config, OpDelete)
+	return &EmailLogDelete{config: c.config, hooks: c.Hooks(), mutation: mutation}
 }
 
 // DeleteOne returns a builder for deleting the given entity.
-func (c *McmsClient) DeleteOne(m *Mcms) *McmsDeleteOne {
-	return c.DeleteOneID(m.ID)
+func (c *EmailLogClient) DeleteOne(el *EmailLog) *EmailLogDeleteOne {
+	return c.DeleteOneID(el.ID)
 }
 
 // DeleteOneID returns a builder for deleting the given entity by its id.
-func (c *McmsClient) DeleteOneID(id int) *McmsDeleteOne {
-	builder := c.Delete().Where(mcms.ID(id))
+func (c *EmailLogClient) DeleteOneID(id uuid.UUID) *EmailLogDeleteOne {
+	builder := c.Delete().Where(emaillog.ID(id))
 	builder.mutation.id = &id
 	builder.mutation.op = OpDeleteOne
-	return &McmsDeleteOne{builder}
+	return &EmailLogDeleteOne{builder}
 }
 
-// Query returns a query builder for Mcms.
-func (c *McmsClient) Query() *McmsQuery {
-	return &McmsQuery{
+// Query returns a query builder for EmailLog.
+func (c *EmailLogClient) Query() *EmailLogQuery {
+	return &EmailLogQuery{
 		config: c.config,
-		ctx:    &QueryContext{Type: TypeMcms},
+		ctx:    &QueryContext{Type: TypeEmailLog},
 		inters: c.Interceptors(),
 	}
 }
 
-// Get returns a Mcms entity by its id.
-func (c *McmsClient) Get(ctx context.Context, id int) (*Mcms, error) {
-	return c.Query().Where(mcms.ID(id)).Only(ctx)
+// Get returns a EmailLog entity by its id.
+func (c *EmailLogClient) Get(ctx context.Context, id uuid.UUID) (*EmailLog, error) {
+	return c.Query().Where(emaillog.ID(id)).Only(ctx)
 }
 
 // GetX is like Get, but panics if an error occurs.
-func (c *McmsClient) GetX(ctx context.Context, id int) *Mcms {
+func (c *EmailLogClient) GetX(ctx context.Context, id uuid.UUID) *EmailLog {
 	obj, err := c.Get(ctx, id)
 	if err != nil {
 		panic(err)
@@ -281,36 +284,60 @@ func (c *McmsClient) GetX(ctx context.Context, id int) *Mcms {
 }
 
 // Hooks returns the client hooks.
-func (c *McmsClient) Hooks() []Hook {
-	return c.hooks.Mcms
+func (c *EmailLogClient) Hooks() []Hook {
+	return c.hooks.EmailLog
 }
 
 // Interceptors returns the client interceptors.
-func (c *McmsClient) Interceptors() []Interceptor {
-	return c.inters.Mcms
+func (c *EmailLogClient) Interceptors() []Interceptor {
+	return c.inters.EmailLog
 }
 
-func (c *McmsClient) mutate(ctx context.Context, m *McmsMutation) (Value, error) {
+func (c *EmailLogClient) mutate(ctx context.Context, m *EmailLogMutation) (Value, error) {
 	switch m.Op() {
 	case OpCreate:
-		return (&McmsCreate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+		return (&EmailLogCreate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
 	case OpUpdate:
-		return (&McmsUpdate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+		return (&EmailLogUpdate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
 	case OpUpdateOne:
-		return (&McmsUpdateOne{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+		return (&EmailLogUpdateOne{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
 	case OpDelete, OpDeleteOne:
-		return (&McmsDelete{config: c.config, hooks: c.Hooks(), mutation: m}).Exec(ctx)
+		return (&EmailLogDelete{config: c.config, hooks: c.Hooks(), mutation: m}).Exec(ctx)
 	default:
-		return nil, fmt.Errorf("ent: unknown Mcms mutation op: %q", m.Op())
+		return nil, fmt.Errorf("ent: unknown EmailLog mutation op: %q", m.Op())
 	}
 }
 
 // hooks and interceptors per client, for fast access.
 type (
 	hooks struct {
-		Mcms []ent.Hook
+		EmailLog []ent.Hook
 	}
 	inters struct {
-		Mcms []ent.Interceptor
+		EmailLog []ent.Interceptor
 	}
 )
+
+// ExecContext allows calling the underlying ExecContext method of the driver if it is supported by it.
+// See, database/sql#DB.ExecContext for more information.
+func (c *config) ExecContext(ctx context.Context, query string, args ...any) (stdsql.Result, error) {
+	ex, ok := c.driver.(interface {
+		ExecContext(context.Context, string, ...any) (stdsql.Result, error)
+	})
+	if !ok {
+		return nil, fmt.Errorf("Driver.ExecContext is not supported")
+	}
+	return ex.ExecContext(ctx, query, args...)
+}
+
+// QueryContext allows calling the underlying QueryContext method of the driver if it is supported by it.
+// See, database/sql#DB.QueryContext for more information.
+func (c *config) QueryContext(ctx context.Context, query string, args ...any) (*stdsql.Rows, error) {
+	q, ok := c.driver.(interface {
+		QueryContext(context.Context, string, ...any) (*stdsql.Rows, error)
+	})
+	if !ok {
+		return nil, fmt.Errorf("Driver.QueryContext is not supported")
+	}
+	return q.QueryContext(ctx, query, args...)
+}

@@ -7,6 +7,7 @@ import (
 	"context"
 
 	"github.com/suyuan32/simple-admin-message-center/internal/logic/base"
+	"github.com/suyuan32/simple-admin-message-center/internal/logic/emaillog"
 	"github.com/suyuan32/simple-admin-message-center/internal/svc"
 	"github.com/suyuan32/simple-admin-message-center/types/mcms"
 )
@@ -25,4 +26,30 @@ func NewMcmsServer(svcCtx *svc.ServiceContext) *McmsServer {
 func (s *McmsServer) InitDatabase(ctx context.Context, in *mcms.Empty) (*mcms.BaseResp, error) {
 	l := base.NewInitDatabaseLogic(ctx, s.svcCtx)
 	return l.InitDatabase(in)
+}
+
+// EmailLog management
+func (s *McmsServer) CreateEmailLog(ctx context.Context, in *mcms.EmailLogInfo) (*mcms.BaseUUIDResp, error) {
+	l := emaillog.NewCreateEmailLogLogic(ctx, s.svcCtx)
+	return l.CreateEmailLog(in)
+}
+
+func (s *McmsServer) UpdateEmailLog(ctx context.Context, in *mcms.EmailLogInfo) (*mcms.BaseResp, error) {
+	l := emaillog.NewUpdateEmailLogLogic(ctx, s.svcCtx)
+	return l.UpdateEmailLog(in)
+}
+
+func (s *McmsServer) GetEmailLogList(ctx context.Context, in *mcms.EmailLogListReq) (*mcms.EmailLogListResp, error) {
+	l := emaillog.NewGetEmailLogListLogic(ctx, s.svcCtx)
+	return l.GetEmailLogList(in)
+}
+
+func (s *McmsServer) GetEmailLogById(ctx context.Context, in *mcms.UUIDReq) (*mcms.EmailLogInfo, error) {
+	l := emaillog.NewGetEmailLogByIdLogic(ctx, s.svcCtx)
+	return l.GetEmailLogById(in)
+}
+
+func (s *McmsServer) DeleteEmailLog(ctx context.Context, in *mcms.UUIDsReq) (*mcms.BaseResp, error) {
+	l := emaillog.NewDeleteEmailLogLogic(ctx, s.svcCtx)
+	return l.DeleteEmailLog(in)
 }

@@ -19,7 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Mcms_InitDatabase_FullMethodName = "/mcms.Mcms/initDatabase"
+	Mcms_InitDatabase_FullMethodName    = "/mcms.Mcms/initDatabase"
+	Mcms_CreateEmailLog_FullMethodName  = "/mcms.Mcms/createEmailLog"
+	Mcms_UpdateEmailLog_FullMethodName  = "/mcms.Mcms/updateEmailLog"
+	Mcms_GetEmailLogList_FullMethodName = "/mcms.Mcms/getEmailLogList"
+	Mcms_GetEmailLogById_FullMethodName = "/mcms.Mcms/getEmailLogById"
+	Mcms_DeleteEmailLog_FullMethodName  = "/mcms.Mcms/deleteEmailLog"
 )
 
 // McmsClient is the client API for Mcms service.
@@ -28,6 +33,17 @@ const (
 type McmsClient interface {
 	// group: base
 	InitDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error)
+	// EmailLog management
+	// group: emaillog
+	CreateEmailLog(ctx context.Context, in *EmailLogInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error)
+	// group: emaillog
+	UpdateEmailLog(ctx context.Context, in *EmailLogInfo, opts ...grpc.CallOption) (*BaseResp, error)
+	// group: emaillog
+	GetEmailLogList(ctx context.Context, in *EmailLogListReq, opts ...grpc.CallOption) (*EmailLogListResp, error)
+	// group: emaillog
+	GetEmailLogById(ctx context.Context, in *UUIDReq, opts ...grpc.CallOption) (*EmailLogInfo, error)
+	// group: emaillog
+	DeleteEmailLog(ctx context.Context, in *UUIDsReq, opts ...grpc.CallOption) (*BaseResp, error)
 }
 
 type mcmsClient struct {
@@ -47,12 +63,68 @@ func (c *mcmsClient) InitDatabase(ctx context.Context, in *Empty, opts ...grpc.C
 	return out, nil
 }
 
+func (c *mcmsClient) CreateEmailLog(ctx context.Context, in *EmailLogInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error) {
+	out := new(BaseUUIDResp)
+	err := c.cc.Invoke(ctx, Mcms_CreateEmailLog_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) UpdateEmailLog(ctx context.Context, in *EmailLogInfo, opts ...grpc.CallOption) (*BaseResp, error) {
+	out := new(BaseResp)
+	err := c.cc.Invoke(ctx, Mcms_UpdateEmailLog_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) GetEmailLogList(ctx context.Context, in *EmailLogListReq, opts ...grpc.CallOption) (*EmailLogListResp, error) {
+	out := new(EmailLogListResp)
+	err := c.cc.Invoke(ctx, Mcms_GetEmailLogList_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) GetEmailLogById(ctx context.Context, in *UUIDReq, opts ...grpc.CallOption) (*EmailLogInfo, error) {
+	out := new(EmailLogInfo)
+	err := c.cc.Invoke(ctx, Mcms_GetEmailLogById_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) DeleteEmailLog(ctx context.Context, in *UUIDsReq, opts ...grpc.CallOption) (*BaseResp, error) {
+	out := new(BaseResp)
+	err := c.cc.Invoke(ctx, Mcms_DeleteEmailLog_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // McmsServer is the server API for Mcms service.
 // All implementations must embed UnimplementedMcmsServer
 // for forward compatibility
 type McmsServer interface {
 	// group: base
 	InitDatabase(context.Context, *Empty) (*BaseResp, error)
+	// EmailLog management
+	// group: emaillog
+	CreateEmailLog(context.Context, *EmailLogInfo) (*BaseUUIDResp, error)
+	// group: emaillog
+	UpdateEmailLog(context.Context, *EmailLogInfo) (*BaseResp, error)
+	// group: emaillog
+	GetEmailLogList(context.Context, *EmailLogListReq) (*EmailLogListResp, error)
+	// group: emaillog
+	GetEmailLogById(context.Context, *UUIDReq) (*EmailLogInfo, error)
+	// group: emaillog
+	DeleteEmailLog(context.Context, *UUIDsReq) (*BaseResp, error)
 	mustEmbedUnimplementedMcmsServer()
 }
 
@@ -62,6 +134,21 @@ type UnimplementedMcmsServer struct {
 
 func (UnimplementedMcmsServer) InitDatabase(context.Context, *Empty) (*BaseResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InitDatabase not implemented")
+}
+func (UnimplementedMcmsServer) CreateEmailLog(context.Context, *EmailLogInfo) (*BaseUUIDResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateEmailLog not implemented")
+}
+func (UnimplementedMcmsServer) UpdateEmailLog(context.Context, *EmailLogInfo) (*BaseResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateEmailLog not implemented")
+}
+func (UnimplementedMcmsServer) GetEmailLogList(context.Context, *EmailLogListReq) (*EmailLogListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetEmailLogList not implemented")
+}
+func (UnimplementedMcmsServer) GetEmailLogById(context.Context, *UUIDReq) (*EmailLogInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetEmailLogById not implemented")
+}
+func (UnimplementedMcmsServer) DeleteEmailLog(context.Context, *UUIDsReq) (*BaseResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteEmailLog not implemented")
 }
 func (UnimplementedMcmsServer) mustEmbedUnimplementedMcmsServer() {}
 
@@ -94,6 +181,96 @@ func _Mcms_InitDatabase_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Mcms_CreateEmailLog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailLogInfo)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).CreateEmailLog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_CreateEmailLog_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).CreateEmailLog(ctx, req.(*EmailLogInfo))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_UpdateEmailLog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailLogInfo)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).UpdateEmailLog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_UpdateEmailLog_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).UpdateEmailLog(ctx, req.(*EmailLogInfo))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_GetEmailLogList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailLogListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).GetEmailLogList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_GetEmailLogList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).GetEmailLogList(ctx, req.(*EmailLogListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_GetEmailLogById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UUIDReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).GetEmailLogById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_GetEmailLogById_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).GetEmailLogById(ctx, req.(*UUIDReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_DeleteEmailLog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UUIDsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).DeleteEmailLog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_DeleteEmailLog_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).DeleteEmailLog(ctx, req.(*UUIDsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Mcms_ServiceDesc is the grpc.ServiceDesc for Mcms service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -104,6 +281,26 @@ var Mcms_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "initDatabase",
 			Handler:    _Mcms_InitDatabase_Handler,
+		},
+		{
+			MethodName: "createEmailLog",
+			Handler:    _Mcms_CreateEmailLog_Handler,
+		},
+		{
+			MethodName: "updateEmailLog",
+			Handler:    _Mcms_UpdateEmailLog_Handler,
+		},
+		{
+			MethodName: "getEmailLogList",
+			Handler:    _Mcms_GetEmailLogList_Handler,
+		},
+		{
+			MethodName: "getEmailLogById",
+			Handler:    _Mcms_GetEmailLogById_Handler,
+		},
+		{
+			MethodName: "deleteEmailLog",
+			Handler:    _Mcms_DeleteEmailLog_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

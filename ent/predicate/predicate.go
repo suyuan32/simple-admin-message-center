@@ -6,5 +6,5 @@ import (
 	"entgo.io/ent/dialect/sql"
 )
 
-// Mcms is the predicate function for mcms builders.
-type Mcms func(*sql.Selector)
+// EmailLog is the predicate function for emaillog builders.
+type EmailLog func(*sql.Selector)

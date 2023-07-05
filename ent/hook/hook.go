@@ -9,16 +9,16 @@ import (
 	"github.com/suyuan32/simple-admin-message-center/ent"
 )
 
-// The McmsFunc type is an adapter to allow the use of ordinary
-// function as Mcms mutator.
-type McmsFunc func(context.Context, *ent.McmsMutation) (ent.Value, error)
+// The EmailLogFunc type is an adapter to allow the use of ordinary
+// function as EmailLog mutator.
+type EmailLogFunc func(context.Context, *ent.EmailLogMutation) (ent.Value, error)
 
 // Mutate calls f(ctx, m).
-func (f McmsFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.Value, error) {
-	if mv, ok := m.(*ent.McmsMutation); ok {
+func (f EmailLogFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.Value, error) {
+	if mv, ok := m.(*ent.EmailLogMutation); ok {
 		return f(ctx, mv)
 	}
-	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.McmsMutation", m)
+	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.EmailLogMutation", m)
 }
 
 // Condition is a hook condition function.

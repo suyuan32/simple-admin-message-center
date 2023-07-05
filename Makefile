@@ -22,9 +22,8 @@ PROJECT_I18N=true
 # The suffix after build or compile | 构建后缀
 PROJECT_BUILD_SUFFIX=rpc
 
-
 # Ent enabled features | Ent 启用的官方特性
-ENT_FEATURE :=
+ENT_FEATURE := sql/execquery
 
 # ---- You may not need to modify the codes below | 下面的代码大概率不需要更改 ----
 

@@ -13,18 +13,27 @@ import (
 )
 
 type (
-	BaseIDResp   = mcms.BaseIDResp
-	BaseResp     = mcms.BaseResp
-	BaseUUIDResp = mcms.BaseUUIDResp
-	Empty        = mcms.Empty
-	IDReq        = mcms.IDReq
-	IDsReq       = mcms.IDsReq
-	PageInfoReq  = mcms.PageInfoReq
-	UUIDReq      = mcms.UUIDReq
-	UUIDsReq     = mcms.UUIDsReq
+	BaseIDResp       = mcms.BaseIDResp
+	BaseResp         = mcms.BaseResp
+	BaseUUIDResp     = mcms.BaseUUIDResp
+	EmailLogInfo     = mcms.EmailLogInfo
+	EmailLogListReq  = mcms.EmailLogListReq
+	EmailLogListResp = mcms.EmailLogListResp
+	Empty            = mcms.Empty
+	IDReq            = mcms.IDReq
+	IDsReq           = mcms.IDsReq
+	PageInfoReq      = mcms.PageInfoReq
+	UUIDReq          = mcms.UUIDReq
+	UUIDsReq         = mcms.UUIDsReq
 
 	Mcms interface {
 		InitDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error)
+		// EmailLog management
+		CreateEmailLog(ctx context.Context, in *EmailLogInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error)
+		UpdateEmailLog(ctx context.Context, in *EmailLogInfo, opts ...grpc.CallOption) (*BaseResp, error)
+		GetEmailLogList(ctx context.Context, in *EmailLogListReq, opts ...grpc.CallOption) (*EmailLogListResp, error)
+		GetEmailLogById(ctx context.Context, in *UUIDReq, opts ...grpc.CallOption) (*EmailLogInfo, error)
+		DeleteEmailLog(ctx context.Context, in *UUIDsReq, opts ...grpc.CallOption) (*BaseResp, error)
 	}
 
 	defaultMcms struct {
@@ -41,4 +50,30 @@ func NewMcms(cli zrpc.Client) Mcms {
 func (m *defaultMcms) InitDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error) {
 	client := mcms.NewMcmsClient(m.cli.Conn())
 	return client.InitDatabase(ctx, in, opts...)
+}
+
+// EmailLog management
+func (m *defaultMcms) CreateEmailLog(ctx context.Context, in *EmailLogInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error) {
+	client := mcms.NewMcmsClient(m.cli.Conn())
+	return client.CreateEmailLog(ctx, in, opts...)
+}
+
+func (m *defaultMcms) UpdateEmailLog(ctx context.Context, in *EmailLogInfo, opts ...grpc.CallOption) (*BaseResp, error) {
+	client := mcms.NewMcmsClient(m.cli.Conn())
+	return client.UpdateEmailLog(ctx, in, opts...)
+}
+
+func (m *defaultMcms) GetEmailLogList(ctx context.Context, in *EmailLogListReq, opts ...grpc.CallOption) (*EmailLogListResp, error) {
+	client := mcms.NewMcmsClient(m.cli.Conn())
+	return client.GetEmailLogList(ctx, in, opts...)
+}
+
+func (m *defaultMcms) GetEmailLogById(ctx context.Context, in *UUIDReq, opts ...grpc.CallOption) (*EmailLogInfo, error) {
+	client := mcms.NewMcmsClient(m.cli.Conn())
+	return client.GetEmailLogById(ctx, in, opts...)
+}
+
+func (m *defaultMcms) DeleteEmailLog(ctx context.Context, in *UUIDsReq, opts ...grpc.CallOption) (*BaseResp, error) {
+	client := mcms.NewMcmsClient(m.cli.Conn())
+	return client.DeleteEmailLog(ctx, in, opts...)
 }

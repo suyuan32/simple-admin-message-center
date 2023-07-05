@@ -1,5 +1,5 @@
 Name: mcms.rpc
-ListenOn: 0.0.0.0:9105
+ListenOn: 0.0.0.0:9106
 
 DatabaseConf:
   Type: mysql
@@ -28,5 +28,5 @@ Log:
 
 Prometheus:
   Host: 0.0.0.0
-  Port: 4001
+  Port: 4006
   Path: /metrics

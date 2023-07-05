@@ -2,8 +2,35 @@
 
 package ent
 
+import (
+	"time"
+
+	uuid "github.com/gofrs/uuid/v5"
+	"github.com/suyuan32/simple-admin-message-center/ent/emaillog"
+	"github.com/suyuan32/simple-admin-message-center/ent/schema"
+)
+
 // The init function reads all schema descriptors with runtime code
 // (default values, validators, hooks and policies) and stitches it
 // to their package variables.
 func init() {
+	emaillogMixin := schema.EmailLog{}.Mixin()
+	emaillogMixinFields0 := emaillogMixin[0].Fields()
+	_ = emaillogMixinFields0
+	emaillogFields := schema.EmailLog{}.Fields()
+	_ = emaillogFields
+	// emaillogDescCreatedAt is the schema descriptor for created_at field.
+	emaillogDescCreatedAt := emaillogMixinFields0[1].Descriptor()
+	// emaillog.DefaultCreatedAt holds the default value on creation for the created_at field.
+	emaillog.DefaultCreatedAt = emaillogDescCreatedAt.Default.(func() time.Time)
+	// emaillogDescUpdatedAt is the schema descriptor for updated_at field.
+	emaillogDescUpdatedAt := emaillogMixinFields0[2].Descriptor()
+	// emaillog.DefaultUpdatedAt holds the default value on creation for the updated_at field.
+	emaillog.DefaultUpdatedAt = emaillogDescUpdatedAt.Default.(func() time.Time)
+	// emaillog.UpdateDefaultUpdatedAt holds the default value on update for the updated_at field.
+	emaillog.UpdateDefaultUpdatedAt = emaillogDescUpdatedAt.UpdateDefault.(func() time.Time)
+	// emaillogDescID is the schema descriptor for id field.
+	emaillogDescID := emaillogMixinFields0[0].Descriptor()
+	// emaillog.DefaultID holds the default value on creation for the id field.
+	emaillog.DefaultID = emaillogDescID.Default.(func() uuid.UUID)
 }
