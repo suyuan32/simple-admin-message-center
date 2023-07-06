@@ -20,6 +20,8 @@ const (
 	FieldUpdatedAt = "updated_at"
 	// FieldTarget holds the string denoting the target field in the database.
 	FieldTarget = "target"
+	// FieldSubject holds the string denoting the subject field in the database.
+	FieldSubject = "subject"
 	// FieldContent holds the string denoting the content field in the database.
 	FieldContent = "content"
 	// FieldSendStatus holds the string denoting the send_status field in the database.
@@ -34,6 +36,7 @@ var Columns = []string{
 	FieldCreatedAt,
 	FieldUpdatedAt,
 	FieldTarget,
+	FieldSubject,
 	FieldContent,
 	FieldSendStatus,
 }
@@ -80,6 +83,11 @@ func ByUpdatedAt(opts ...sql.OrderTermOption) OrderOption {
 // ByTarget orders the results by the target field.
 func ByTarget(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldTarget, opts...).ToFunc()
+}
+
+// BySubject orders the results by the subject field.
+func BySubject(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldSubject, opts...).ToFunc()
 }
 
 // ByContent orders the results by the content field.

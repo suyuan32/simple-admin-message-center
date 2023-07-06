@@ -15,6 +15,7 @@ var (
 		{Name: "created_at", Type: field.TypeTime},
 		{Name: "updated_at", Type: field.TypeTime},
 		{Name: "target", Type: field.TypeString, Comment: "The target email address | 目标邮箱地址"},
+		{Name: "subject", Type: field.TypeString, Comment: "The subject | 发送的标题"},
 		{Name: "content", Type: field.TypeString, Comment: "The content | 发送的内容"},
 		{Name: "send_status", Type: field.TypeUint8, Comment: "The send status, 0 unknown 1 success 2 failed | 发送的状态, 0 未知， 1 成功， 2 失败"},
 	}

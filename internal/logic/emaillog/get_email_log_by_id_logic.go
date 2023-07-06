@@ -37,6 +37,7 @@ func (l *GetEmailLogByIdLogic) GetEmailLogById(in *mcms.UUIDReq) (*mcms.EmailLog
 		CreatedAt:  pointy.GetPointer(result.CreatedAt.Unix()),
 		UpdatedAt:  pointy.GetPointer(result.UpdatedAt.Unix()),
 		Target:     &result.Target,
+		Subject:    &result.Subject,
 		Content:    &result.Content,
 		SendStatus: pointy.GetPointer(uint32(result.SendStatus)),
 	}, nil

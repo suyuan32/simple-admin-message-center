@@ -3,8 +3,12 @@ syntax = "proto3";
 package mcms;
 option go_package="./mcms";
 
-message UUIDsReq {
-  repeated string ids = 1;
+message IDReq {
+  uint64 id = 1;
+}
+
+message IDsReq {
+  repeated uint64 ids = 1;
 }
 
 message BaseResp {
@@ -14,6 +18,27 @@ message BaseResp {
 message PageInfoReq {
   uint64 page = 1;
   uint64 page_size = 2;
+}
+
+message EmailLogInfo {
+  optional string id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional string target = 4;
+  optional string content = 5;
+  optional uint32 send_status = 6;
+  optional string subject = 7;
+}
+
+//  base message
+message Empty {}
+
+message UUIDsReq {
+  repeated string ids = 1;
+}
+
+message UUIDReq {
+  string id = 1;
 }
 
 message BaseIDResp {
@@ -26,30 +51,15 @@ message BaseUUIDResp {
   string msg = 2;
 }
 
+message EmailInfo {
+  repeated string target = 1;
+  string subject = 2;
+  string content = 3;
+}
+
 message EmailLogListResp {
   uint64 total = 1;
   repeated EmailLogInfo data = 2;
-}
-
-message IDsReq {
-  repeated uint64 ids = 1;
-}
-
-message IDReq {
-  uint64 id = 1;
-}
-
-message UUIDReq {
-  string id = 1;
-}
-
-message EmailLogInfo {
-  optional string id = 1;
-  optional int64 created_at = 2;
-  optional int64 updated_at = 3;
-  optional string target = 4;
-  optional string content = 5;
-  optional uint32 send_status = 6;
 }
 
 message EmailLogListReq {
@@ -57,14 +67,14 @@ message EmailLogListReq {
   uint64 page_size = 2;
   optional string target = 3;
   optional string content = 4;
+  optional string subject = 5;
 }
-
-//  base message
-message Empty {}
 
 service Mcms {
   //  group: base
   rpc initDatabase(Empty) returns (BaseResp);
+  //  group: email
+  rpc sendEmail(EmailInfo) returns (BaseUUIDResp);
   //  EmailLog management
   //  group: emaillog
   rpc createEmailLog(EmailLogInfo) returns (BaseUUIDResp);

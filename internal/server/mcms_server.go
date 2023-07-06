@@ -7,6 +7,7 @@ import (
 	"context"
 
 	"github.com/suyuan32/simple-admin-message-center/internal/logic/base"
+	"github.com/suyuan32/simple-admin-message-center/internal/logic/email"
 	"github.com/suyuan32/simple-admin-message-center/internal/logic/emaillog"
 	"github.com/suyuan32/simple-admin-message-center/internal/svc"
 	"github.com/suyuan32/simple-admin-message-center/types/mcms"
@@ -26,6 +27,11 @@ func NewMcmsServer(svcCtx *svc.ServiceContext) *McmsServer {
 func (s *McmsServer) InitDatabase(ctx context.Context, in *mcms.Empty) (*mcms.BaseResp, error) {
 	l := base.NewInitDatabaseLogic(ctx, s.svcCtx)
 	return l.InitDatabase(in)
+}
+
+func (s *McmsServer) SendEmail(ctx context.Context, in *mcms.EmailInfo) (*mcms.BaseUUIDResp, error) {
+	l := email.NewSendEmailLogic(ctx, s.svcCtx)
+	return l.SendEmail(in)
 }
 
 // EmailLog management

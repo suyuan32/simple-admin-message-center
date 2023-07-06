@@ -18,6 +18,8 @@ func (EmailLog) Fields() []ent.Field {
 	return []ent.Field{
 		field.String("target").Comment("The target email address | 目标邮箱地址").
 			Annotations(entsql.WithComments(true)),
+		field.String("subject").Comment("The subject | 发送的标题").
+			Annotations(entsql.WithComments(true)),
 		field.String("content").Comment("The content | 发送的内容").
 			Annotations(entsql.WithComments(true)),
 		field.Uint8("send_status").Comment("The send status, 0 unknown 1 success 2 failed | 发送的状态, 0 未知， 1 成功， 2 失败").

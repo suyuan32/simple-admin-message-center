@@ -53,6 +53,30 @@ func (el *EmailLogCreate) SetNotNilTarget(value *string) *EmailLogCreate {
 }
 
 // set field if value's pointer is not nil.
+func (el *EmailLogUpdate) SetNotNilSubject(value *string) *EmailLogUpdate {
+	if value != nil {
+		return el.SetSubject(*value)
+	}
+	return el
+}
+
+// set field if value's pointer is not nil.
+func (el *EmailLogUpdateOne) SetNotNilSubject(value *string) *EmailLogUpdateOne {
+	if value != nil {
+		return el.SetSubject(*value)
+	}
+	return el
+}
+
+// set field if value's pointer is not nil.
+func (el *EmailLogCreate) SetNotNilSubject(value *string) *EmailLogCreate {
+	if value != nil {
+		return el.SetSubject(*value)
+	}
+	return el
+}
+
+// set field if value's pointer is not nil.
 func (el *EmailLogUpdate) SetNotNilContent(value *string) *EmailLogUpdate {
 	if value != nil {
 		return el.SetContent(*value)

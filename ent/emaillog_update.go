@@ -40,6 +40,12 @@ func (elu *EmailLogUpdate) SetTarget(s string) *EmailLogUpdate {
 	return elu
 }
 
+// SetSubject sets the "subject" field.
+func (elu *EmailLogUpdate) SetSubject(s string) *EmailLogUpdate {
+	elu.mutation.SetSubject(s)
+	return elu
+}
+
 // SetContent sets the "content" field.
 func (elu *EmailLogUpdate) SetContent(s string) *EmailLogUpdate {
 	elu.mutation.SetContent(s)
@@ -115,6 +121,9 @@ func (elu *EmailLogUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if value, ok := elu.mutation.Target(); ok {
 		_spec.SetField(emaillog.FieldTarget, field.TypeString, value)
 	}
+	if value, ok := elu.mutation.Subject(); ok {
+		_spec.SetField(emaillog.FieldSubject, field.TypeString, value)
+	}
 	if value, ok := elu.mutation.Content(); ok {
 		_spec.SetField(emaillog.FieldContent, field.TypeString, value)
 	}
@@ -153,6 +162,12 @@ func (eluo *EmailLogUpdateOne) SetUpdatedAt(t time.Time) *EmailLogUpdateOne {
 // SetTarget sets the "target" field.
 func (eluo *EmailLogUpdateOne) SetTarget(s string) *EmailLogUpdateOne {
 	eluo.mutation.SetTarget(s)
+	return eluo
+}
+
+// SetSubject sets the "subject" field.
+func (eluo *EmailLogUpdateOne) SetSubject(s string) *EmailLogUpdateOne {
+	eluo.mutation.SetSubject(s)
 	return eluo
 }
 
@@ -260,6 +275,9 @@ func (eluo *EmailLogUpdateOne) sqlSave(ctx context.Context) (_node *EmailLog, er
 	}
 	if value, ok := eluo.mutation.Target(); ok {
 		_spec.SetField(emaillog.FieldTarget, field.TypeString, value)
+	}
+	if value, ok := eluo.mutation.Subject(); ok {
+		_spec.SetField(emaillog.FieldSubject, field.TypeString, value)
 	}
 	if value, ok := eluo.mutation.Content(); ok {
 		_spec.SetField(emaillog.FieldContent, field.TypeString, value)

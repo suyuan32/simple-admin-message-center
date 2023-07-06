@@ -25,6 +25,8 @@ type EmailLog struct {
 	UpdatedAt time.Time `json:"updated_at,omitempty"`
 	// The target email address | 目标邮箱地址
 	Target string `json:"target,omitempty"`
+	// The subject | 发送的标题
+	Subject string `json:"subject,omitempty"`
 	// The content | 发送的内容
 	Content string `json:"content,omitempty"`
 	// The send status, 0 unknown 1 success 2 failed | 发送的状态, 0 未知， 1 成功， 2 失败
@@ -39,7 +41,7 @@ func (*EmailLog) scanValues(columns []string) ([]any, error) {
 		switch columns[i] {
 		case emaillog.FieldSendStatus:
 			values[i] = new(sql.NullInt64)
-		case emaillog.FieldTarget, emaillog.FieldContent:
+		case emaillog.FieldTarget, emaillog.FieldSubject, emaillog.FieldContent:
 			values[i] = new(sql.NullString)
 		case emaillog.FieldCreatedAt, emaillog.FieldUpdatedAt:
 			values[i] = new(sql.NullTime)
@@ -83,6 +85,12 @@ func (el *EmailLog) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field target", values[i])
 			} else if value.Valid {
 				el.Target = value.String
+			}
+		case emaillog.FieldSubject:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field subject", values[i])
+			} else if value.Valid {
+				el.Subject = value.String
 			}
 		case emaillog.FieldContent:
 			if value, ok := values[i].(*sql.NullString); !ok {
@@ -140,6 +148,9 @@ func (el *EmailLog) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("target=")
 	builder.WriteString(el.Target)
+	builder.WriteString(", ")
+	builder.WriteString("subject=")
+	builder.WriteString(el.Subject)
 	builder.WriteString(", ")
 	builder.WriteString("content=")
 	builder.WriteString(el.Content)

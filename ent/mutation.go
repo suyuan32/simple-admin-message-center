@@ -37,6 +37,7 @@ type EmailLogMutation struct {
 	created_at     *time.Time
 	updated_at     *time.Time
 	target         *string
+	subject        *string
 	content        *string
 	send_status    *uint8
 	addsend_status *int8
@@ -258,6 +259,42 @@ func (m *EmailLogMutation) ResetTarget() {
 	m.target = nil
 }
 
+// SetSubject sets the "subject" field.
+func (m *EmailLogMutation) SetSubject(s string) {
+	m.subject = &s
+}
+
+// Subject returns the value of the "subject" field in the mutation.
+func (m *EmailLogMutation) Subject() (r string, exists bool) {
+	v := m.subject
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldSubject returns the old "subject" field's value of the EmailLog entity.
+// If the EmailLog object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *EmailLogMutation) OldSubject(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldSubject is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldSubject requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldSubject: %w", err)
+	}
+	return oldValue.Subject, nil
+}
+
+// ResetSubject resets all changes to the "subject" field.
+func (m *EmailLogMutation) ResetSubject() {
+	m.subject = nil
+}
+
 // SetContent sets the "content" field.
 func (m *EmailLogMutation) SetContent(s string) {
 	m.content = &s
@@ -384,7 +421,7 @@ func (m *EmailLogMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *EmailLogMutation) Fields() []string {
-	fields := make([]string, 0, 5)
+	fields := make([]string, 0, 6)
 	if m.created_at != nil {
 		fields = append(fields, emaillog.FieldCreatedAt)
 	}
@@ -393,6 +430,9 @@ func (m *EmailLogMutation) Fields() []string {
 	}
 	if m.target != nil {
 		fields = append(fields, emaillog.FieldTarget)
+	}
+	if m.subject != nil {
+		fields = append(fields, emaillog.FieldSubject)
 	}
 	if m.content != nil {
 		fields = append(fields, emaillog.FieldContent)
@@ -414,6 +454,8 @@ func (m *EmailLogMutation) Field(name string) (ent.Value, bool) {
 		return m.UpdatedAt()
 	case emaillog.FieldTarget:
 		return m.Target()
+	case emaillog.FieldSubject:
+		return m.Subject()
 	case emaillog.FieldContent:
 		return m.Content()
 	case emaillog.FieldSendStatus:
@@ -433,6 +475,8 @@ func (m *EmailLogMutation) OldField(ctx context.Context, name string) (ent.Value
 		return m.OldUpdatedAt(ctx)
 	case emaillog.FieldTarget:
 		return m.OldTarget(ctx)
+	case emaillog.FieldSubject:
+		return m.OldSubject(ctx)
 	case emaillog.FieldContent:
 		return m.OldContent(ctx)
 	case emaillog.FieldSendStatus:
@@ -466,6 +510,13 @@ func (m *EmailLogMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetTarget(v)
+		return nil
+	case emaillog.FieldSubject:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetSubject(v)
 		return nil
 	case emaillog.FieldContent:
 		v, ok := value.(string)
@@ -553,6 +604,9 @@ func (m *EmailLogMutation) ResetField(name string) error {
 		return nil
 	case emaillog.FieldTarget:
 		m.ResetTarget()
+		return nil
+	case emaillog.FieldSubject:
+		m.ResetSubject()
 		return nil
 	case emaillog.FieldContent:
 		m.ResetContent()

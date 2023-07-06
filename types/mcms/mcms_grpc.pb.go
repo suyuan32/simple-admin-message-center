@@ -20,6 +20,7 @@ const _ = grpc.SupportPackageIsVersion7
 
 const (
 	Mcms_InitDatabase_FullMethodName    = "/mcms.Mcms/initDatabase"
+	Mcms_SendEmail_FullMethodName       = "/mcms.Mcms/sendEmail"
 	Mcms_CreateEmailLog_FullMethodName  = "/mcms.Mcms/createEmailLog"
 	Mcms_UpdateEmailLog_FullMethodName  = "/mcms.Mcms/updateEmailLog"
 	Mcms_GetEmailLogList_FullMethodName = "/mcms.Mcms/getEmailLogList"
@@ -33,6 +34,8 @@ const (
 type McmsClient interface {
 	// group: base
 	InitDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error)
+	// group: email
+	SendEmail(ctx context.Context, in *EmailInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error)
 	// EmailLog management
 	// group: emaillog
 	CreateEmailLog(ctx context.Context, in *EmailLogInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error)
@@ -57,6 +60,15 @@ func NewMcmsClient(cc grpc.ClientConnInterface) McmsClient {
 func (c *mcmsClient) InitDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error) {
 	out := new(BaseResp)
 	err := c.cc.Invoke(ctx, Mcms_InitDatabase_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) SendEmail(ctx context.Context, in *EmailInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error) {
+	out := new(BaseUUIDResp)
+	err := c.cc.Invoke(ctx, Mcms_SendEmail_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -114,6 +126,8 @@ func (c *mcmsClient) DeleteEmailLog(ctx context.Context, in *UUIDsReq, opts ...g
 type McmsServer interface {
 	// group: base
 	InitDatabase(context.Context, *Empty) (*BaseResp, error)
+	// group: email
+	SendEmail(context.Context, *EmailInfo) (*BaseUUIDResp, error)
 	// EmailLog management
 	// group: emaillog
 	CreateEmailLog(context.Context, *EmailLogInfo) (*BaseUUIDResp, error)
@@ -134,6 +148,9 @@ type UnimplementedMcmsServer struct {
 
 func (UnimplementedMcmsServer) InitDatabase(context.Context, *Empty) (*BaseResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InitDatabase not implemented")
+}
+func (UnimplementedMcmsServer) SendEmail(context.Context, *EmailInfo) (*BaseUUIDResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendEmail not implemented")
 }
 func (UnimplementedMcmsServer) CreateEmailLog(context.Context, *EmailLogInfo) (*BaseUUIDResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateEmailLog not implemented")
@@ -177,6 +194,24 @@ func _Mcms_InitDatabase_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(McmsServer).InitDatabase(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_SendEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailInfo)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).SendEmail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_SendEmail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).SendEmail(ctx, req.(*EmailInfo))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -281,6 +316,10 @@ var Mcms_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "initDatabase",
 			Handler:    _Mcms_InitDatabase_Handler,
+		},
+		{
+			MethodName: "sendEmail",
+			Handler:    _Mcms_SendEmail_Handler,
 		},
 		{
 			MethodName: "createEmailLog",

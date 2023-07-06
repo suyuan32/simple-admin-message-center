@@ -11,4 +11,5 @@ type Config struct {
 	zrpc.RpcServerConf
 	DatabaseConf config.DatabaseConf
 	RedisConf    redis.RedisConf
+	EmailConf    EmailConf
 }

@@ -30,3 +30,11 @@ Prometheus:
   Host: 0.0.0.0
   Port: 4006
   Path: /metrics
+
+EmailConf:
+  AuthType: plain   # support plain,
+  EmailAddr: xxx@xxx.com  # your email address
+  Password: xxx
+  Port: 25 # default is 25
+  HostName: smtp.xxxx.com # the host address
+  TLS: true  # whether to use tls

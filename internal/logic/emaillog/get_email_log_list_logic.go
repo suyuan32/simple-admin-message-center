@@ -32,6 +32,9 @@ func (l *GetEmailLogListLogic) GetEmailLogList(in *mcms.EmailLogListReq) (*mcms.
 	if in.Target != nil {
 		predicates = append(predicates, emaillog.TargetContains(*in.Target))
 	}
+	if in.Subject != nil {
+		predicates = append(predicates, emaillog.SubjectContains(*in.Subject))
+	}
 	if in.Content != nil {
 		predicates = append(predicates, emaillog.ContentContains(*in.Content))
 	}
@@ -50,6 +53,7 @@ func (l *GetEmailLogListLogic) GetEmailLogList(in *mcms.EmailLogListReq) (*mcms.
 			CreatedAt:  pointy.GetPointer(v.CreatedAt.UnixMilli()),
 			UpdatedAt:  pointy.GetPointer(v.UpdatedAt.UnixMilli()),
 			Target:     &v.Target,
+			Subject:    &v.Subject,
 			Content:    &v.Content,
 			SendStatus: pointy.GetPointer(uint32(v.SendStatus)),
 		})

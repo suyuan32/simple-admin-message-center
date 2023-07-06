@@ -30,6 +30,7 @@ func NewCreateEmailLogLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Cr
 func (l *CreateEmailLogLogic) CreateEmailLog(in *mcms.EmailLogInfo) (*mcms.BaseUUIDResp, error) {
 	query := l.svcCtx.DB.EmailLog.Create().
 		SetNotNilTarget(in.Target).
+		SetNotNilSubject(in.Subject).
 		SetNotNilContent(in.Content)
 
 	if in.SendStatus != nil {

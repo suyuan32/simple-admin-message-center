@@ -30,6 +30,7 @@ func NewUpdateEmailLogLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Up
 func (l *UpdateEmailLogLogic) UpdateEmailLog(in *mcms.EmailLogInfo) (*mcms.BaseResp, error) {
 	query := l.svcCtx.DB.EmailLog.UpdateOneID(uuidx.ParseUUIDString(*in.Id)).
 		SetNotNilTarget(in.Target).
+		SetNotNilSubject(in.Subject).
 		SetNotNilContent(in.Content)
 
 	if in.SendStatus != nil {

@@ -16,6 +16,7 @@ type (
 	BaseIDResp       = mcms.BaseIDResp
 	BaseResp         = mcms.BaseResp
 	BaseUUIDResp     = mcms.BaseUUIDResp
+	EmailInfo        = mcms.EmailInfo
 	EmailLogInfo     = mcms.EmailLogInfo
 	EmailLogListReq  = mcms.EmailLogListReq
 	EmailLogListResp = mcms.EmailLogListResp
@@ -28,6 +29,7 @@ type (
 
 	Mcms interface {
 		InitDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error)
+		SendEmail(ctx context.Context, in *EmailInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error)
 		// EmailLog management
 		CreateEmailLog(ctx context.Context, in *EmailLogInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error)
 		UpdateEmailLog(ctx context.Context, in *EmailLogInfo, opts ...grpc.CallOption) (*BaseResp, error)
@@ -50,6 +52,11 @@ func NewMcms(cli zrpc.Client) Mcms {
 func (m *defaultMcms) InitDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error) {
 	client := mcms.NewMcmsClient(m.cli.Conn())
 	return client.InitDatabase(ctx, in, opts...)
+}
+
+func (m *defaultMcms) SendEmail(ctx context.Context, in *EmailInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error) {
+	client := mcms.NewMcmsClient(m.cli.Conn())
+	return client.SendEmail(ctx, in, opts...)
 }
 
 // EmailLog management

@@ -55,6 +55,12 @@ func (elc *EmailLogCreate) SetTarget(s string) *EmailLogCreate {
 	return elc
 }
 
+// SetSubject sets the "subject" field.
+func (elc *EmailLogCreate) SetSubject(s string) *EmailLogCreate {
+	elc.mutation.SetSubject(s)
+	return elc
+}
+
 // SetContent sets the "content" field.
 func (elc *EmailLogCreate) SetContent(s string) *EmailLogCreate {
 	elc.mutation.SetContent(s)
@@ -141,6 +147,9 @@ func (elc *EmailLogCreate) check() error {
 	if _, ok := elc.mutation.Target(); !ok {
 		return &ValidationError{Name: "target", err: errors.New(`ent: missing required field "EmailLog.target"`)}
 	}
+	if _, ok := elc.mutation.Subject(); !ok {
+		return &ValidationError{Name: "subject", err: errors.New(`ent: missing required field "EmailLog.subject"`)}
+	}
 	if _, ok := elc.mutation.Content(); !ok {
 		return &ValidationError{Name: "content", err: errors.New(`ent: missing required field "EmailLog.content"`)}
 	}
@@ -193,6 +202,10 @@ func (elc *EmailLogCreate) createSpec() (*EmailLog, *sqlgraph.CreateSpec) {
 	if value, ok := elc.mutation.Target(); ok {
 		_spec.SetField(emaillog.FieldTarget, field.TypeString, value)
 		_node.Target = value
+	}
+	if value, ok := elc.mutation.Subject(); ok {
+		_spec.SetField(emaillog.FieldSubject, field.TypeString, value)
+		_node.Subject = value
 	}
 	if value, ok := elc.mutation.Content(); ok {
 		_spec.SetField(emaillog.FieldContent, field.TypeString, value)
