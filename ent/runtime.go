@@ -8,6 +8,7 @@ import (
 	uuid "github.com/gofrs/uuid/v5"
 	"github.com/suyuan32/simple-admin-message-center/ent/emaillog"
 	"github.com/suyuan32/simple-admin-message-center/ent/schema"
+	"github.com/suyuan32/simple-admin-message-center/ent/smslog"
 )
 
 // The init function reads all schema descriptors with runtime code
@@ -33,4 +34,23 @@ func init() {
 	emaillogDescID := emaillogMixinFields0[0].Descriptor()
 	// emaillog.DefaultID holds the default value on creation for the id field.
 	emaillog.DefaultID = emaillogDescID.Default.(func() uuid.UUID)
+	smslogMixin := schema.SmsLog{}.Mixin()
+	smslogMixinFields0 := smslogMixin[0].Fields()
+	_ = smslogMixinFields0
+	smslogFields := schema.SmsLog{}.Fields()
+	_ = smslogFields
+	// smslogDescCreatedAt is the schema descriptor for created_at field.
+	smslogDescCreatedAt := smslogMixinFields0[1].Descriptor()
+	// smslog.DefaultCreatedAt holds the default value on creation for the created_at field.
+	smslog.DefaultCreatedAt = smslogDescCreatedAt.Default.(func() time.Time)
+	// smslogDescUpdatedAt is the schema descriptor for updated_at field.
+	smslogDescUpdatedAt := smslogMixinFields0[2].Descriptor()
+	// smslog.DefaultUpdatedAt holds the default value on creation for the updated_at field.
+	smslog.DefaultUpdatedAt = smslogDescUpdatedAt.Default.(func() time.Time)
+	// smslog.UpdateDefaultUpdatedAt holds the default value on update for the updated_at field.
+	smslog.UpdateDefaultUpdatedAt = smslogDescUpdatedAt.UpdateDefault.(func() time.Time)
+	// smslogDescID is the schema descriptor for id field.
+	smslogDescID := smslogMixinFields0[0].Descriptor()
+	// smslog.DefaultID holds the default value on creation for the id field.
+	smslog.DefaultID = smslogDescID.Default.(func() uuid.UUID)
 }

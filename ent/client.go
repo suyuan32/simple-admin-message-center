@@ -15,6 +15,7 @@ import (
 	"entgo.io/ent/dialect"
 	"entgo.io/ent/dialect/sql"
 	"github.com/suyuan32/simple-admin-message-center/ent/emaillog"
+	"github.com/suyuan32/simple-admin-message-center/ent/smslog"
 
 	stdsql "database/sql"
 )
@@ -26,6 +27,8 @@ type Client struct {
 	Schema *migrate.Schema
 	// EmailLog is the client for interacting with the EmailLog builders.
 	EmailLog *EmailLogClient
+	// SmsLog is the client for interacting with the SmsLog builders.
+	SmsLog *SmsLogClient
 }
 
 // NewClient creates a new client configured with the given options.
@@ -40,6 +43,7 @@ func NewClient(opts ...Option) *Client {
 func (c *Client) init() {
 	c.Schema = migrate.NewSchema(c.driver)
 	c.EmailLog = NewEmailLogClient(c.config)
+	c.SmsLog = NewSmsLogClient(c.config)
 }
 
 type (
@@ -123,6 +127,7 @@ func (c *Client) Tx(ctx context.Context) (*Tx, error) {
 		ctx:      ctx,
 		config:   cfg,
 		EmailLog: NewEmailLogClient(cfg),
+		SmsLog:   NewSmsLogClient(cfg),
 	}, nil
 }
 
@@ -143,6 +148,7 @@ func (c *Client) BeginTx(ctx context.Context, opts *sql.TxOptions) (*Tx, error) 
 		ctx:      ctx,
 		config:   cfg,
 		EmailLog: NewEmailLogClient(cfg),
+		SmsLog:   NewSmsLogClient(cfg),
 	}, nil
 }
 
@@ -172,12 +178,14 @@ func (c *Client) Close() error {
 // In order to add hooks to a specific client, call: `client.Node.Use(...)`.
 func (c *Client) Use(hooks ...Hook) {
 	c.EmailLog.Use(hooks...)
+	c.SmsLog.Use(hooks...)
 }
 
 // Intercept adds the query interceptors to all the entity clients.
 // In order to add interceptors to a specific client, call: `client.Node.Intercept(...)`.
 func (c *Client) Intercept(interceptors ...Interceptor) {
 	c.EmailLog.Intercept(interceptors...)
+	c.SmsLog.Intercept(interceptors...)
 }
 
 // Mutate implements the ent.Mutator interface.
@@ -185,6 +193,8 @@ func (c *Client) Mutate(ctx context.Context, m Mutation) (Value, error) {
 	switch m := m.(type) {
 	case *EmailLogMutation:
 		return c.EmailLog.mutate(ctx, m)
+	case *SmsLogMutation:
+		return c.SmsLog.mutate(ctx, m)
 	default:
 		return nil, fmt.Errorf("ent: unknown mutation type %T", m)
 	}
@@ -308,13 +318,131 @@ func (c *EmailLogClient) mutate(ctx context.Context, m *EmailLogMutation) (Value
 	}
 }
 
+// SmsLogClient is a client for the SmsLog schema.
+type SmsLogClient struct {
+	config
+}
+
+// NewSmsLogClient returns a client for the SmsLog from the given config.
+func NewSmsLogClient(c config) *SmsLogClient {
+	return &SmsLogClient{config: c}
+}
+
+// Use adds a list of mutation hooks to the hooks stack.
+// A call to `Use(f, g, h)` equals to `smslog.Hooks(f(g(h())))`.
+func (c *SmsLogClient) Use(hooks ...Hook) {
+	c.hooks.SmsLog = append(c.hooks.SmsLog, hooks...)
+}
+
+// Intercept adds a list of query interceptors to the interceptors stack.
+// A call to `Intercept(f, g, h)` equals to `smslog.Intercept(f(g(h())))`.
+func (c *SmsLogClient) Intercept(interceptors ...Interceptor) {
+	c.inters.SmsLog = append(c.inters.SmsLog, interceptors...)
+}
+
+// Create returns a builder for creating a SmsLog entity.
+func (c *SmsLogClient) Create() *SmsLogCreate {
+	mutation := newSmsLogMutation(c.config, OpCreate)
+	return &SmsLogCreate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// CreateBulk returns a builder for creating a bulk of SmsLog entities.
+func (c *SmsLogClient) CreateBulk(builders ...*SmsLogCreate) *SmsLogCreateBulk {
+	return &SmsLogCreateBulk{config: c.config, builders: builders}
+}
+
+// Update returns an update builder for SmsLog.
+func (c *SmsLogClient) Update() *SmsLogUpdate {
+	mutation := newSmsLogMutation(c.config, OpUpdate)
+	return &SmsLogUpdate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOne returns an update builder for the given entity.
+func (c *SmsLogClient) UpdateOne(sl *SmsLog) *SmsLogUpdateOne {
+	mutation := newSmsLogMutation(c.config, OpUpdateOne, withSmsLog(sl))
+	return &SmsLogUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOneID returns an update builder for the given id.
+func (c *SmsLogClient) UpdateOneID(id uuid.UUID) *SmsLogUpdateOne {
+	mutation := newSmsLogMutation(c.config, OpUpdateOne, withSmsLogID(id))
+	return &SmsLogUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// Delete returns a delete builder for SmsLog.
+func (c *SmsLogClient) Delete() *SmsLogDelete {
+	mutation := newSmsLogMutation(c.config, OpDelete)
+	return &SmsLogDelete{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// DeleteOne returns a builder for deleting the given entity.
+func (c *SmsLogClient) DeleteOne(sl *SmsLog) *SmsLogDeleteOne {
+	return c.DeleteOneID(sl.ID)
+}
+
+// DeleteOneID returns a builder for deleting the given entity by its id.
+func (c *SmsLogClient) DeleteOneID(id uuid.UUID) *SmsLogDeleteOne {
+	builder := c.Delete().Where(smslog.ID(id))
+	builder.mutation.id = &id
+	builder.mutation.op = OpDeleteOne
+	return &SmsLogDeleteOne{builder}
+}
+
+// Query returns a query builder for SmsLog.
+func (c *SmsLogClient) Query() *SmsLogQuery {
+	return &SmsLogQuery{
+		config: c.config,
+		ctx:    &QueryContext{Type: TypeSmsLog},
+		inters: c.Interceptors(),
+	}
+}
+
+// Get returns a SmsLog entity by its id.
+func (c *SmsLogClient) Get(ctx context.Context, id uuid.UUID) (*SmsLog, error) {
+	return c.Query().Where(smslog.ID(id)).Only(ctx)
+}
+
+// GetX is like Get, but panics if an error occurs.
+func (c *SmsLogClient) GetX(ctx context.Context, id uuid.UUID) *SmsLog {
+	obj, err := c.Get(ctx, id)
+	if err != nil {
+		panic(err)
+	}
+	return obj
+}
+
+// Hooks returns the client hooks.
+func (c *SmsLogClient) Hooks() []Hook {
+	return c.hooks.SmsLog
+}
+
+// Interceptors returns the client interceptors.
+func (c *SmsLogClient) Interceptors() []Interceptor {
+	return c.inters.SmsLog
+}
+
+func (c *SmsLogClient) mutate(ctx context.Context, m *SmsLogMutation) (Value, error) {
+	switch m.Op() {
+	case OpCreate:
+		return (&SmsLogCreate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdate:
+		return (&SmsLogUpdate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdateOne:
+		return (&SmsLogUpdateOne{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpDelete, OpDeleteOne:
+		return (&SmsLogDelete{config: c.config, hooks: c.Hooks(), mutation: m}).Exec(ctx)
+	default:
+		return nil, fmt.Errorf("ent: unknown SmsLog mutation op: %q", m.Op())
+	}
+}
+
 // hooks and interceptors per client, for fast access.
 type (
 	hooks struct {
-		EmailLog []ent.Hook
+		EmailLog, SmsLog []ent.Hook
 	}
 	inters struct {
-		EmailLog []ent.Interceptor
+		EmailLog, SmsLog []ent.Interceptor
 	}
 )
 

@@ -6,7 +6,11 @@ replace github.com/zeromicro/go-zero v1.5.3 => github.com/suyuan32/simple-admin-
 
 require (
 	entgo.io/ent v0.12.3
-	github.com/suyuan32/simple-admin-common v1.0.12
+	github.com/gofrs/uuid/v5 v5.0.0
+	github.com/pkg/errors v0.9.1
+	github.com/suyuan32/simple-admin-common v1.0.13-beta
+	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.695
+	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/sms v1.0.695
 	github.com/zeromicro/go-zero v1.5.3
 	google.golang.org/grpc v1.56.1
 	google.golang.org/protobuf v1.31.0
@@ -22,7 +26,7 @@ require (
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/coreos/go-semver v0.3.1 // indirect
 	github.com/coreos/go-systemd/v22 v22.5.0 // indirect
-	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/emicklei/go-restful/v3 v3.9.0 // indirect
 	github.com/fatih/color v1.15.0 // indirect
@@ -34,7 +38,6 @@ require (
 	github.com/go-openapi/swag v0.22.3 // indirect
 	github.com/go-redis/redis/v8 v8.11.5 // indirect
 	github.com/go-sql-driver/mysql v1.7.1 // indirect
-	github.com/gofrs/uuid/v5 v5.0.0 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/mock v1.6.0 // indirect
@@ -61,7 +64,6 @@ require (
 	github.com/nicksnyder/go-i18n/v2 v2.2.1 // indirect
 	github.com/openzipkin/zipkin-go v0.4.1 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.8 // indirect
-	github.com/pkg/errors v0.9.1 // indirect
 	github.com/prometheus/client_golang v1.15.1 // indirect
 	github.com/prometheus/client_model v0.3.0 // indirect
 	github.com/prometheus/common v0.42.0 // indirect

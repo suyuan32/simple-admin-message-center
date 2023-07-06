@@ -26,6 +26,12 @@ const (
 	Mcms_GetEmailLogList_FullMethodName = "/mcms.Mcms/getEmailLogList"
 	Mcms_GetEmailLogById_FullMethodName = "/mcms.Mcms/getEmailLogById"
 	Mcms_DeleteEmailLog_FullMethodName  = "/mcms.Mcms/deleteEmailLog"
+	Mcms_SendSms_FullMethodName         = "/mcms.Mcms/sendSms"
+	Mcms_CreateSmsLog_FullMethodName    = "/mcms.Mcms/createSmsLog"
+	Mcms_UpdateSmsLog_FullMethodName    = "/mcms.Mcms/updateSmsLog"
+	Mcms_GetSmsLogList_FullMethodName   = "/mcms.Mcms/getSmsLogList"
+	Mcms_GetSmsLogById_FullMethodName   = "/mcms.Mcms/getSmsLogById"
+	Mcms_DeleteSmsLog_FullMethodName    = "/mcms.Mcms/deleteSmsLog"
 )
 
 // McmsClient is the client API for Mcms service.
@@ -47,6 +53,19 @@ type McmsClient interface {
 	GetEmailLogById(ctx context.Context, in *UUIDReq, opts ...grpc.CallOption) (*EmailLogInfo, error)
 	// group: emaillog
 	DeleteEmailLog(ctx context.Context, in *UUIDsReq, opts ...grpc.CallOption) (*BaseResp, error)
+	// group: sms
+	SendSms(ctx context.Context, in *SmsInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error)
+	// SmsLog management
+	// group: smslog
+	CreateSmsLog(ctx context.Context, in *SmsLogInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error)
+	// group: smslog
+	UpdateSmsLog(ctx context.Context, in *SmsLogInfo, opts ...grpc.CallOption) (*BaseResp, error)
+	// group: smslog
+	GetSmsLogList(ctx context.Context, in *SmsLogListReq, opts ...grpc.CallOption) (*SmsLogListResp, error)
+	// group: smslog
+	GetSmsLogById(ctx context.Context, in *UUIDReq, opts ...grpc.CallOption) (*SmsLogInfo, error)
+	// group: smslog
+	DeleteSmsLog(ctx context.Context, in *UUIDsReq, opts ...grpc.CallOption) (*BaseResp, error)
 }
 
 type mcmsClient struct {
@@ -120,6 +139,60 @@ func (c *mcmsClient) DeleteEmailLog(ctx context.Context, in *UUIDsReq, opts ...g
 	return out, nil
 }
 
+func (c *mcmsClient) SendSms(ctx context.Context, in *SmsInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error) {
+	out := new(BaseUUIDResp)
+	err := c.cc.Invoke(ctx, Mcms_SendSms_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) CreateSmsLog(ctx context.Context, in *SmsLogInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error) {
+	out := new(BaseUUIDResp)
+	err := c.cc.Invoke(ctx, Mcms_CreateSmsLog_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) UpdateSmsLog(ctx context.Context, in *SmsLogInfo, opts ...grpc.CallOption) (*BaseResp, error) {
+	out := new(BaseResp)
+	err := c.cc.Invoke(ctx, Mcms_UpdateSmsLog_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) GetSmsLogList(ctx context.Context, in *SmsLogListReq, opts ...grpc.CallOption) (*SmsLogListResp, error) {
+	out := new(SmsLogListResp)
+	err := c.cc.Invoke(ctx, Mcms_GetSmsLogList_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) GetSmsLogById(ctx context.Context, in *UUIDReq, opts ...grpc.CallOption) (*SmsLogInfo, error) {
+	out := new(SmsLogInfo)
+	err := c.cc.Invoke(ctx, Mcms_GetSmsLogById_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) DeleteSmsLog(ctx context.Context, in *UUIDsReq, opts ...grpc.CallOption) (*BaseResp, error) {
+	out := new(BaseResp)
+	err := c.cc.Invoke(ctx, Mcms_DeleteSmsLog_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // McmsServer is the server API for Mcms service.
 // All implementations must embed UnimplementedMcmsServer
 // for forward compatibility
@@ -139,6 +212,19 @@ type McmsServer interface {
 	GetEmailLogById(context.Context, *UUIDReq) (*EmailLogInfo, error)
 	// group: emaillog
 	DeleteEmailLog(context.Context, *UUIDsReq) (*BaseResp, error)
+	// group: sms
+	SendSms(context.Context, *SmsInfo) (*BaseUUIDResp, error)
+	// SmsLog management
+	// group: smslog
+	CreateSmsLog(context.Context, *SmsLogInfo) (*BaseUUIDResp, error)
+	// group: smslog
+	UpdateSmsLog(context.Context, *SmsLogInfo) (*BaseResp, error)
+	// group: smslog
+	GetSmsLogList(context.Context, *SmsLogListReq) (*SmsLogListResp, error)
+	// group: smslog
+	GetSmsLogById(context.Context, *UUIDReq) (*SmsLogInfo, error)
+	// group: smslog
+	DeleteSmsLog(context.Context, *UUIDsReq) (*BaseResp, error)
 	mustEmbedUnimplementedMcmsServer()
 }
 
@@ -166,6 +252,24 @@ func (UnimplementedMcmsServer) GetEmailLogById(context.Context, *UUIDReq) (*Emai
 }
 func (UnimplementedMcmsServer) DeleteEmailLog(context.Context, *UUIDsReq) (*BaseResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteEmailLog not implemented")
+}
+func (UnimplementedMcmsServer) SendSms(context.Context, *SmsInfo) (*BaseUUIDResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendSms not implemented")
+}
+func (UnimplementedMcmsServer) CreateSmsLog(context.Context, *SmsLogInfo) (*BaseUUIDResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateSmsLog not implemented")
+}
+func (UnimplementedMcmsServer) UpdateSmsLog(context.Context, *SmsLogInfo) (*BaseResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateSmsLog not implemented")
+}
+func (UnimplementedMcmsServer) GetSmsLogList(context.Context, *SmsLogListReq) (*SmsLogListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSmsLogList not implemented")
+}
+func (UnimplementedMcmsServer) GetSmsLogById(context.Context, *UUIDReq) (*SmsLogInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSmsLogById not implemented")
+}
+func (UnimplementedMcmsServer) DeleteSmsLog(context.Context, *UUIDsReq) (*BaseResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteSmsLog not implemented")
 }
 func (UnimplementedMcmsServer) mustEmbedUnimplementedMcmsServer() {}
 
@@ -306,6 +410,114 @@ func _Mcms_DeleteEmailLog_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Mcms_SendSms_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SmsInfo)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).SendSms(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_SendSms_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).SendSms(ctx, req.(*SmsInfo))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_CreateSmsLog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SmsLogInfo)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).CreateSmsLog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_CreateSmsLog_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).CreateSmsLog(ctx, req.(*SmsLogInfo))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_UpdateSmsLog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SmsLogInfo)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).UpdateSmsLog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_UpdateSmsLog_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).UpdateSmsLog(ctx, req.(*SmsLogInfo))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_GetSmsLogList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SmsLogListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).GetSmsLogList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_GetSmsLogList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).GetSmsLogList(ctx, req.(*SmsLogListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_GetSmsLogById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UUIDReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).GetSmsLogById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_GetSmsLogById_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).GetSmsLogById(ctx, req.(*UUIDReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_DeleteSmsLog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UUIDsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).DeleteSmsLog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_DeleteSmsLog_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).DeleteSmsLog(ctx, req.(*UUIDsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Mcms_ServiceDesc is the grpc.ServiceDesc for Mcms service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -340,6 +552,30 @@ var Mcms_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "deleteEmailLog",
 			Handler:    _Mcms_DeleteEmailLog_Handler,
+		},
+		{
+			MethodName: "sendSms",
+			Handler:    _Mcms_SendSms_Handler,
+		},
+		{
+			MethodName: "createSmsLog",
+			Handler:    _Mcms_CreateSmsLog_Handler,
+		},
+		{
+			MethodName: "updateSmsLog",
+			Handler:    _Mcms_UpdateSmsLog_Handler,
+		},
+		{
+			MethodName: "getSmsLogList",
+			Handler:    _Mcms_GetSmsLogList_Handler,
+		},
+		{
+			MethodName: "getSmsLogById",
+			Handler:    _Mcms_GetSmsLogById_Handler,
+		},
+		{
+			MethodName: "deleteSmsLog",
+			Handler:    _Mcms_DeleteSmsLog_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

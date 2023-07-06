@@ -8,3 +8,6 @@ import (
 
 // EmailLog is the predicate function for emaillog builders.
 type EmailLog func(*sql.Selector)
+
+// SmsLog is the predicate function for smslog builders.
+type SmsLog func(*sql.Selector)

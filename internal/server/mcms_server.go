@@ -9,6 +9,8 @@ import (
 	"github.com/suyuan32/simple-admin-message-center/internal/logic/base"
 	"github.com/suyuan32/simple-admin-message-center/internal/logic/email"
 	"github.com/suyuan32/simple-admin-message-center/internal/logic/emaillog"
+	"github.com/suyuan32/simple-admin-message-center/internal/logic/sms"
+	"github.com/suyuan32/simple-admin-message-center/internal/logic/smslog"
 	"github.com/suyuan32/simple-admin-message-center/internal/svc"
 	"github.com/suyuan32/simple-admin-message-center/types/mcms"
 )
@@ -58,4 +60,35 @@ func (s *McmsServer) GetEmailLogById(ctx context.Context, in *mcms.UUIDReq) (*mc
 func (s *McmsServer) DeleteEmailLog(ctx context.Context, in *mcms.UUIDsReq) (*mcms.BaseResp, error) {
 	l := emaillog.NewDeleteEmailLogLogic(ctx, s.svcCtx)
 	return l.DeleteEmailLog(in)
+}
+
+func (s *McmsServer) SendSms(ctx context.Context, in *mcms.SmsInfo) (*mcms.BaseUUIDResp, error) {
+	l := sms.NewSendSmsLogic(ctx, s.svcCtx)
+	return l.SendSms(in)
+}
+
+// SmsLog management
+func (s *McmsServer) CreateSmsLog(ctx context.Context, in *mcms.SmsLogInfo) (*mcms.BaseUUIDResp, error) {
+	l := smslog.NewCreateSmsLogLogic(ctx, s.svcCtx)
+	return l.CreateSmsLog(in)
+}
+
+func (s *McmsServer) UpdateSmsLog(ctx context.Context, in *mcms.SmsLogInfo) (*mcms.BaseResp, error) {
+	l := smslog.NewUpdateSmsLogLogic(ctx, s.svcCtx)
+	return l.UpdateSmsLog(in)
+}
+
+func (s *McmsServer) GetSmsLogList(ctx context.Context, in *mcms.SmsLogListReq) (*mcms.SmsLogListResp, error) {
+	l := smslog.NewGetSmsLogListLogic(ctx, s.svcCtx)
+	return l.GetSmsLogList(in)
+}
+
+func (s *McmsServer) GetSmsLogById(ctx context.Context, in *mcms.UUIDReq) (*mcms.SmsLogInfo, error) {
+	l := smslog.NewGetSmsLogByIdLogic(ctx, s.svcCtx)
+	return l.GetSmsLogById(in)
+}
+
+func (s *McmsServer) DeleteSmsLog(ctx context.Context, in *mcms.UUIDsReq) (*mcms.BaseResp, error) {
+	l := smslog.NewDeleteSmsLogLogic(ctx, s.svcCtx)
+	return l.DeleteSmsLog(in)
 }

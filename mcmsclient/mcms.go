@@ -24,6 +24,10 @@ type (
 	IDReq            = mcms.IDReq
 	IDsReq           = mcms.IDsReq
 	PageInfoReq      = mcms.PageInfoReq
+	SmsInfo          = mcms.SmsInfo
+	SmsLogInfo       = mcms.SmsLogInfo
+	SmsLogListReq    = mcms.SmsLogListReq
+	SmsLogListResp   = mcms.SmsLogListResp
 	UUIDReq          = mcms.UUIDReq
 	UUIDsReq         = mcms.UUIDsReq
 
@@ -36,6 +40,13 @@ type (
 		GetEmailLogList(ctx context.Context, in *EmailLogListReq, opts ...grpc.CallOption) (*EmailLogListResp, error)
 		GetEmailLogById(ctx context.Context, in *UUIDReq, opts ...grpc.CallOption) (*EmailLogInfo, error)
 		DeleteEmailLog(ctx context.Context, in *UUIDsReq, opts ...grpc.CallOption) (*BaseResp, error)
+		SendSms(ctx context.Context, in *SmsInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error)
+		// SmsLog management
+		CreateSmsLog(ctx context.Context, in *SmsLogInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error)
+		UpdateSmsLog(ctx context.Context, in *SmsLogInfo, opts ...grpc.CallOption) (*BaseResp, error)
+		GetSmsLogList(ctx context.Context, in *SmsLogListReq, opts ...grpc.CallOption) (*SmsLogListResp, error)
+		GetSmsLogById(ctx context.Context, in *UUIDReq, opts ...grpc.CallOption) (*SmsLogInfo, error)
+		DeleteSmsLog(ctx context.Context, in *UUIDsReq, opts ...grpc.CallOption) (*BaseResp, error)
 	}
 
 	defaultMcms struct {
@@ -83,4 +94,35 @@ func (m *defaultMcms) GetEmailLogById(ctx context.Context, in *UUIDReq, opts ...
 func (m *defaultMcms) DeleteEmailLog(ctx context.Context, in *UUIDsReq, opts ...grpc.CallOption) (*BaseResp, error) {
 	client := mcms.NewMcmsClient(m.cli.Conn())
 	return client.DeleteEmailLog(ctx, in, opts...)
+}
+
+func (m *defaultMcms) SendSms(ctx context.Context, in *SmsInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error) {
+	client := mcms.NewMcmsClient(m.cli.Conn())
+	return client.SendSms(ctx, in, opts...)
+}
+
+// SmsLog management
+func (m *defaultMcms) CreateSmsLog(ctx context.Context, in *SmsLogInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error) {
+	client := mcms.NewMcmsClient(m.cli.Conn())
+	return client.CreateSmsLog(ctx, in, opts...)
+}
+
+func (m *defaultMcms) UpdateSmsLog(ctx context.Context, in *SmsLogInfo, opts ...grpc.CallOption) (*BaseResp, error) {
+	client := mcms.NewMcmsClient(m.cli.Conn())
+	return client.UpdateSmsLog(ctx, in, opts...)
+}
+
+func (m *defaultMcms) GetSmsLogList(ctx context.Context, in *SmsLogListReq, opts ...grpc.CallOption) (*SmsLogListResp, error) {
+	client := mcms.NewMcmsClient(m.cli.Conn())
+	return client.GetSmsLogList(ctx, in, opts...)
+}
+
+func (m *defaultMcms) GetSmsLogById(ctx context.Context, in *UUIDReq, opts ...grpc.CallOption) (*SmsLogInfo, error) {
+	client := mcms.NewMcmsClient(m.cli.Conn())
+	return client.GetSmsLogById(ctx, in, opts...)
+}
+
+func (m *defaultMcms) DeleteSmsLog(ctx context.Context, in *UUIDsReq, opts ...grpc.CallOption) (*BaseResp, error) {
+	client := mcms.NewMcmsClient(m.cli.Conn())
+	return client.DeleteSmsLog(ctx, in, opts...)
 }

@@ -25,14 +25,34 @@ var (
 		Columns:    McmsEmailLogColumns,
 		PrimaryKey: []*schema.Column{McmsEmailLogColumns[0]},
 	}
+	// McmsSmsLogColumns holds the columns for the "mcms_sms_log" table.
+	McmsSmsLogColumns = []*schema.Column{
+		{Name: "id", Type: field.TypeUUID},
+		{Name: "created_at", Type: field.TypeTime},
+		{Name: "updated_at", Type: field.TypeTime},
+		{Name: "phone_number", Type: field.TypeString, Comment: "The target phone number | 目标电话"},
+		{Name: "content", Type: field.TypeString, Comment: "The content | 发送的内容"},
+		{Name: "send_status", Type: field.TypeUint8, Comment: "The send status, 0 unknown 1 success 2 failed | 发送的状态, 0 未知， 1 成功， 2 失败"},
+		{Name: "provider", Type: field.TypeString, Comment: "The sms service provider | 短信服务提供商"},
+	}
+	// McmsSmsLogTable holds the schema information for the "mcms_sms_log" table.
+	McmsSmsLogTable = &schema.Table{
+		Name:       "mcms_sms_log",
+		Columns:    McmsSmsLogColumns,
+		PrimaryKey: []*schema.Column{McmsSmsLogColumns[0]},
+	}
 	// Tables holds all the tables in the schema.
 	Tables = []*schema.Table{
 		McmsEmailLogTable,
+		McmsSmsLogTable,
 	}
 )
 
 func init() {
 	McmsEmailLogTable.Annotation = &entsql.Annotation{
 		Table: "mcms_email_log",
+	}
+	McmsSmsLogTable.Annotation = &entsql.Annotation{
+		Table: "mcms_sms_log",
 	}
 }

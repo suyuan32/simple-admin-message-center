@@ -38,3 +38,9 @@ EmailConf:
   Port: 25 # default is 25
   HostName: smtp.xxxx.com # the host address
   TLS: true  # whether to use tls
+
+SmsConf:
+  SecretId: xxxx
+  SecretKey: xxx
+  Provider: tencent
+  Region: ap-nanjing

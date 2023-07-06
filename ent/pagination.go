@@ -7,6 +7,7 @@ import (
 	"fmt"
 
 	"github.com/suyuan32/simple-admin-message-center/ent/emaillog"
+	"github.com/suyuan32/simple-admin-message-center/ent/smslog"
 )
 
 const errInvalidPage = "INVALID_PAGE"
@@ -126,6 +127,85 @@ func (el *EmailLogQuery) Page(
 
 	el = el.Offset(int((pageNum - 1) * pageSize)).Limit(int(pageSize))
 	list, err := el.All(ctx)
+	if err != nil {
+		return nil, err
+	}
+	ret.List = list
+
+	return ret, nil
+}
+
+type SmsLogPager struct {
+	Order  smslog.OrderOption
+	Filter func(*SmsLogQuery) (*SmsLogQuery, error)
+}
+
+// SmsLogPaginateOption enables pagination customization.
+type SmsLogPaginateOption func(*SmsLogPager)
+
+// DefaultSmsLogOrder is the default ordering of SmsLog.
+var DefaultSmsLogOrder = Desc(smslog.FieldID)
+
+func newSmsLogPager(opts []SmsLogPaginateOption) (*SmsLogPager, error) {
+	pager := &SmsLogPager{}
+	for _, opt := range opts {
+		opt(pager)
+	}
+	if pager.Order == nil {
+		pager.Order = DefaultSmsLogOrder
+	}
+	return pager, nil
+}
+
+func (p *SmsLogPager) ApplyFilter(query *SmsLogQuery) (*SmsLogQuery, error) {
+	if p.Filter != nil {
+		return p.Filter(query)
+	}
+	return query, nil
+}
+
+// SmsLogPageList is SmsLog PageList result.
+type SmsLogPageList struct {
+	List        []*SmsLog    `json:"list"`
+	PageDetails *PageDetails `json:"pageDetails"`
+}
+
+func (sl *SmsLogQuery) Page(
+	ctx context.Context, pageNum uint64, pageSize uint64, opts ...SmsLogPaginateOption,
+) (*SmsLogPageList, error) {
+
+	pager, err := newSmsLogPager(opts)
+	if err != nil {
+		return nil, err
+	}
+
+	if sl, err = pager.ApplyFilter(sl); err != nil {
+		return nil, err
+	}
+
+	ret := &SmsLogPageList{}
+
+	ret.PageDetails = &PageDetails{
+		Page: pageNum,
+		Size: pageSize,
+	}
+
+	count, err := sl.Clone().Count(ctx)
+
+	if err != nil {
+		return nil, err
+	}
+
+	ret.PageDetails.Total = uint64(count)
+
+	if pager.Order != nil {
+		sl = sl.Order(pager.Order)
+	} else {
+		sl = sl.Order(DefaultSmsLogOrder)
+	}
+
+	sl = sl.Offset(int((pageNum - 1) * pageSize)).Limit(int(pageSize))
+	list, err := sl.All(ctx)
 	if err != nil {
 		return nil, err
 	}

@@ -34,7 +34,7 @@ func (l *SendEmailLogic) SendEmail(in *mcms.EmailInfo) (*mcms.BaseUUIDResp, erro
 
 	// error handler
 	emailErrHandler := func(err error) (*mcms.BaseUUIDResp, error) {
-		l.Logger.Errorw("failed to send email", logx.Field("content", err.Error()), logx.Field("data", in))
+		l.Logger.Errorw("failed to send email", logx.Field("detail", err.Error()), logx.Field("data", in))
 
 		dberr := l.svcCtx.DB.EmailLog.Create().
 			SetTarget(strings.Join(in.Target, ",")).
@@ -64,33 +64,33 @@ func (l *SendEmailLogic) SendEmail(in *mcms.EmailInfo) (*mcms.BaseUUIDResp, erro
 
 	err := client.Mail(l.svcCtx.Config.EmailConf.EmailAddr)
 	if err != nil {
-		l.Logger.Errorw("failed to set the from address in email", logx.Field("content", err), logx.Field("data", in))
+		l.Logger.Errorw("failed to set the from address in email", logx.Field("detail", err), logx.Field("data", in))
 		return emailErrHandler(errors.Wrap(err, "failed to set the from address in email"))
 	}
 
 	for _, v := range in.Target {
 		err := client.Rcpt(v)
 		if err != nil {
-			l.Logger.Errorw("failed to set the to address in email", logx.Field("content", err), logx.Field("data", in))
+			l.Logger.Errorw("failed to set the to address in email", logx.Field("detail", err), logx.Field("data", in))
 			return emailErrHandler(errors.Wrap(err, "failed to set the from address in email"))
 		}
 	}
 
 	w, err := client.Data()
 	if err != nil {
-		l.Logger.Errorw("failed to create the writer for email", logx.Field("content", err), logx.Field("data", in))
+		l.Logger.Errorw("failed to create the writer for email", logx.Field("detail", err), logx.Field("data", in))
 		return emailErrHandler(errors.Wrap(err, "failed to create the writer for email"))
 	}
 
 	_, err = w.Write([]byte(message))
 	if err != nil {
-		l.Logger.Errorw("failed to write the data to writer for email", logx.Field("content", err), logx.Field("data", in))
+		l.Logger.Errorw("failed to write the data to writer for email", logx.Field("detail", err), logx.Field("data", in))
 		return emailErrHandler(errors.Wrap(err, "failed to write the data to writer for email"))
 	}
 
 	err = w.Close()
 	if err != nil {
-		l.Logger.Errorw("failed to close the writer for email", logx.Field("content", err), logx.Field("data", in))
+		l.Logger.Errorw("failed to close the writer for email", logx.Field("detail", err), logx.Field("data", in))
 		return emailErrHandler(errors.Wrap(err, "failed to close the writer for email"))
 	}
 

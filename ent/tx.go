@@ -16,6 +16,8 @@ type Tx struct {
 	config
 	// EmailLog is the client for interacting with the EmailLog builders.
 	EmailLog *EmailLogClient
+	// SmsLog is the client for interacting with the SmsLog builders.
+	SmsLog *SmsLogClient
 
 	// lazily loaded.
 	client     *Client
@@ -148,6 +150,7 @@ func (tx *Tx) Client() *Client {
 
 func (tx *Tx) init() {
 	tx.EmailLog = NewEmailLogClient(tx.config)
+	tx.SmsLog = NewSmsLogClient(tx.config)
 }
 
 // txDriver wraps the given dialect.Tx with a nop dialect.Driver implementation.

@@ -123,3 +123,123 @@ func (el *EmailLogCreate) SetNotNilSendStatus(value *uint8) *EmailLogCreate {
 	}
 	return el
 }
+
+// set field if value's pointer is not nil.
+func (sl *SmsLogUpdate) SetNotNilUpdatedAt(value *time.Time) *SmsLogUpdate {
+	if value != nil {
+		return sl.SetUpdatedAt(*value)
+	}
+	return sl
+}
+
+// set field if value's pointer is not nil.
+func (sl *SmsLogUpdateOne) SetNotNilUpdatedAt(value *time.Time) *SmsLogUpdateOne {
+	if value != nil {
+		return sl.SetUpdatedAt(*value)
+	}
+	return sl
+}
+
+// set field if value's pointer is not nil.
+func (sl *SmsLogCreate) SetNotNilUpdatedAt(value *time.Time) *SmsLogCreate {
+	if value != nil {
+		return sl.SetUpdatedAt(*value)
+	}
+	return sl
+}
+
+// set field if value's pointer is not nil.
+func (sl *SmsLogUpdate) SetNotNilPhoneNumber(value *string) *SmsLogUpdate {
+	if value != nil {
+		return sl.SetPhoneNumber(*value)
+	}
+	return sl
+}
+
+// set field if value's pointer is not nil.
+func (sl *SmsLogUpdateOne) SetNotNilPhoneNumber(value *string) *SmsLogUpdateOne {
+	if value != nil {
+		return sl.SetPhoneNumber(*value)
+	}
+	return sl
+}
+
+// set field if value's pointer is not nil.
+func (sl *SmsLogCreate) SetNotNilPhoneNumber(value *string) *SmsLogCreate {
+	if value != nil {
+		return sl.SetPhoneNumber(*value)
+	}
+	return sl
+}
+
+// set field if value's pointer is not nil.
+func (sl *SmsLogUpdate) SetNotNilContent(value *string) *SmsLogUpdate {
+	if value != nil {
+		return sl.SetContent(*value)
+	}
+	return sl
+}
+
+// set field if value's pointer is not nil.
+func (sl *SmsLogUpdateOne) SetNotNilContent(value *string) *SmsLogUpdateOne {
+	if value != nil {
+		return sl.SetContent(*value)
+	}
+	return sl
+}
+
+// set field if value's pointer is not nil.
+func (sl *SmsLogCreate) SetNotNilContent(value *string) *SmsLogCreate {
+	if value != nil {
+		return sl.SetContent(*value)
+	}
+	return sl
+}
+
+// set field if value's pointer is not nil.
+func (sl *SmsLogUpdate) SetNotNilSendStatus(value *uint8) *SmsLogUpdate {
+	if value != nil {
+		return sl.SetSendStatus(*value)
+	}
+	return sl
+}
+
+// set field if value's pointer is not nil.
+func (sl *SmsLogUpdateOne) SetNotNilSendStatus(value *uint8) *SmsLogUpdateOne {
+	if value != nil {
+		return sl.SetSendStatus(*value)
+	}
+	return sl
+}
+
+// set field if value's pointer is not nil.
+func (sl *SmsLogCreate) SetNotNilSendStatus(value *uint8) *SmsLogCreate {
+	if value != nil {
+		return sl.SetSendStatus(*value)
+	}
+	return sl
+}
+
+// set field if value's pointer is not nil.
+func (sl *SmsLogUpdate) SetNotNilProvider(value *string) *SmsLogUpdate {
+	if value != nil {
+		return sl.SetProvider(*value)
+	}
+	return sl
+}
+
+// set field if value's pointer is not nil.
+func (sl *SmsLogUpdateOne) SetNotNilProvider(value *string) *SmsLogUpdateOne {
+	if value != nil {
+		return sl.SetProvider(*value)
+	}
+	return sl
+}
+
+// set field if value's pointer is not nil.
+func (sl *SmsLogCreate) SetNotNilProvider(value *string) *SmsLogCreate {
+	if value != nil {
+		return sl.SetProvider(*value)
+	}
+	return sl
+}
