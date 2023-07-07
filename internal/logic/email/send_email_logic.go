@@ -46,7 +46,7 @@ func (l *SendEmailLogic) SendEmail(in *mcms.EmailInfo) (*mcms.BaseUUIDResp, erro
 			return nil, dberrorhandler.DefaultEntError(l.Logger, dberr, in)
 		}
 
-		return nil, errorx.NewInternalError(err.Error())
+		return nil, errorx.NewInternalError(i18n.Failed)
 	}
 
 	// Setup headers

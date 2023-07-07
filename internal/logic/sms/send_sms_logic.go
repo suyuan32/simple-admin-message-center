@@ -54,7 +54,7 @@ func (l *SendSmsLogic) SendSms(in *mcms.SmsInfo) (*mcms.BaseUUIDResp, error) {
 				return nil, dberrorhandler.DefaultEntError(l.Logger, err, in)
 			}
 
-			return nil, errorx.NewInternalError("failed to send sms")
+			return nil, errorx.NewInternalError(i18n.Failed)
 		}
 		logx.Infow("send sms by tencent", logx.Field("response", resp), logx.Field("phoneNumber", in.PhoneNumber))
 	}
