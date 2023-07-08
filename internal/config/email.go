@@ -8,14 +8,14 @@ import (
 )
 
 type EmailConf struct {
-	AuthType  string `json:",default=plain,options=[plain,CRAMMD5]"`
-	EmailAddr string
-	Password  string `json:",optional"`
-	HostName  string
-	Identify  string `json:",optional"`
-	Secret    string `json:",optional"`
-	Port      int    `json:",optional,default=25"`
-	TLS       bool   `json:",default=false"`
+	AuthType  string `json:",default=plain,options=[plain,CRAMMD5],env=EMAIL_AUTH_TYPE"`
+	EmailAddr string `json:",env=EMAIL_ADDR"`
+	Password  string `json:",optional,env=EMAIL_PASSWORD"`
+	HostName  string `json:",env=EMAIL_HOST_NAME"`
+	Identify  string `json:",optional,env=EMAIL_IDENTIFY"`
+	Secret    string `json:",optional,env=EMAIL_SECRET"`
+	Port      int    `json:",optional,default=25,env=EMAIL_PORT"`
+	TLS       bool   `json:",default=false,env=EMAIL_TLS"`
 }
 
 // NewAuth creates the auth from config

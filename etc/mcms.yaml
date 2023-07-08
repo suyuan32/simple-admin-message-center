@@ -1,5 +1,6 @@
 Name: mcms.rpc
 ListenOn: 0.0.0.0:9106
+Timeout: 5000
 
 DatabaseConf:
   Type: mysql
