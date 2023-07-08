@@ -40,7 +40,7 @@ func (l *SendEmailLogic) SendEmail(in *mcms.EmailInfo) (*mcms.BaseUUIDResp, erro
 			SetTarget(strings.Join(in.Target, ",")).
 			SetContent(in.Content).
 			SetSubject(in.Subject).
-			SetSendStatus(2).Exec(l.ctx)
+			SetSendStatus(2).Exec(context.Background())
 
 		if dberr != nil {
 			return nil, dberrorhandler.DefaultEntError(l.Logger, dberr, in)
@@ -98,7 +98,7 @@ func (l *SendEmailLogic) SendEmail(in *mcms.EmailInfo) (*mcms.BaseUUIDResp, erro
 		SetTarget(strings.Join(in.Target, ",")).
 		SetContent(in.Content).
 		SetSubject(in.Subject).
-		SetSendStatus(1).Save(l.ctx)
+		SetSendStatus(1).Save(context.Background())
 
 	if dberr != nil {
 		return nil, dberrorhandler.DefaultEntError(l.Logger, dberr, in)

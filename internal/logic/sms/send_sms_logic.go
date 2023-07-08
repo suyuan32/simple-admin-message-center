@@ -48,7 +48,7 @@ func (l *SendSmsLogic) SendSms(in *mcms.SmsInfo) (*mcms.BaseUUIDResp, error) {
 				SetContent(strings.Join(in.Params, ",")).
 				SetPhoneNumber(strings.Join(in.PhoneNumber, ",")).
 				SetProvider(l.svcCtx.Config.SmsConf.Provider).
-				Exec(l.ctx)
+				Exec(context.Background())
 
 			if err != nil {
 				return nil, dberrorhandler.DefaultEntError(l.Logger, err, in)
@@ -64,7 +64,7 @@ func (l *SendSmsLogic) SendSms(in *mcms.SmsInfo) (*mcms.BaseUUIDResp, error) {
 		SetContent(strings.Join(in.Params, ",")).
 		SetPhoneNumber(strings.Join(in.PhoneNumber, ",")).
 		SetProvider(l.svcCtx.Config.SmsConf.Provider).
-		Save(l.ctx)
+		Save(context.Background())
 
 	if err != nil {
 		return nil, dberrorhandler.DefaultEntError(l.Logger, err, in)
