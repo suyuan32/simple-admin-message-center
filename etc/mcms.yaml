@@ -3,18 +3,18 @@ ListenOn: 0.0.0.0:9106
 Timeout: 5000
 
 DatabaseConf:
-  Type: mysql
-  Host: 127.0.0.1
-  Port: 3306
+  Type: postgres
+  Host: 10.5.0.2
+  Port: 5432
   DBName: simple_admin
-  Username: # set your username
-  Password: # set your password
+  Username: postgres # set your username
+  Password: simple-admin. # set your password
   MaxOpenConn: 100
   SSLMode: disable
   CacheTime: 5
 
 RedisConf:
-  Host: 127.0.0.1:6379
+  Host: 10.5.0.3:6379
   Type: node
 
 Log:
