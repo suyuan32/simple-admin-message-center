@@ -85,6 +85,11 @@ func SendStatus(v uint8) predicate.EmailLog {
 	return predicate.EmailLog(sql.FieldEQ(FieldSendStatus, v))
 }
 
+// Provider applies equality check predicate on the "provider" field. It's identical to ProviderEQ.
+func Provider(v string) predicate.EmailLog {
+	return predicate.EmailLog(sql.FieldEQ(FieldProvider, v))
+}
+
 // CreatedAtEQ applies the EQ predicate on the "created_at" field.
 func CreatedAtEQ(v time.Time) predicate.EmailLog {
 	return predicate.EmailLog(sql.FieldEQ(FieldCreatedAt, v))
@@ -398,6 +403,71 @@ func SendStatusLT(v uint8) predicate.EmailLog {
 // SendStatusLTE applies the LTE predicate on the "send_status" field.
 func SendStatusLTE(v uint8) predicate.EmailLog {
 	return predicate.EmailLog(sql.FieldLTE(FieldSendStatus, v))
+}
+
+// ProviderEQ applies the EQ predicate on the "provider" field.
+func ProviderEQ(v string) predicate.EmailLog {
+	return predicate.EmailLog(sql.FieldEQ(FieldProvider, v))
+}
+
+// ProviderNEQ applies the NEQ predicate on the "provider" field.
+func ProviderNEQ(v string) predicate.EmailLog {
+	return predicate.EmailLog(sql.FieldNEQ(FieldProvider, v))
+}
+
+// ProviderIn applies the In predicate on the "provider" field.
+func ProviderIn(vs ...string) predicate.EmailLog {
+	return predicate.EmailLog(sql.FieldIn(FieldProvider, vs...))
+}
+
+// ProviderNotIn applies the NotIn predicate on the "provider" field.
+func ProviderNotIn(vs ...string) predicate.EmailLog {
+	return predicate.EmailLog(sql.FieldNotIn(FieldProvider, vs...))
+}
+
+// ProviderGT applies the GT predicate on the "provider" field.
+func ProviderGT(v string) predicate.EmailLog {
+	return predicate.EmailLog(sql.FieldGT(FieldProvider, v))
+}
+
+// ProviderGTE applies the GTE predicate on the "provider" field.
+func ProviderGTE(v string) predicate.EmailLog {
+	return predicate.EmailLog(sql.FieldGTE(FieldProvider, v))
+}
+
+// ProviderLT applies the LT predicate on the "provider" field.
+func ProviderLT(v string) predicate.EmailLog {
+	return predicate.EmailLog(sql.FieldLT(FieldProvider, v))
+}
+
+// ProviderLTE applies the LTE predicate on the "provider" field.
+func ProviderLTE(v string) predicate.EmailLog {
+	return predicate.EmailLog(sql.FieldLTE(FieldProvider, v))
+}
+
+// ProviderContains applies the Contains predicate on the "provider" field.
+func ProviderContains(v string) predicate.EmailLog {
+	return predicate.EmailLog(sql.FieldContains(FieldProvider, v))
+}
+
+// ProviderHasPrefix applies the HasPrefix predicate on the "provider" field.
+func ProviderHasPrefix(v string) predicate.EmailLog {
+	return predicate.EmailLog(sql.FieldHasPrefix(FieldProvider, v))
+}
+
+// ProviderHasSuffix applies the HasSuffix predicate on the "provider" field.
+func ProviderHasSuffix(v string) predicate.EmailLog {
+	return predicate.EmailLog(sql.FieldHasSuffix(FieldProvider, v))
+}
+
+// ProviderEqualFold applies the EqualFold predicate on the "provider" field.
+func ProviderEqualFold(v string) predicate.EmailLog {
+	return predicate.EmailLog(sql.FieldEqualFold(FieldProvider, v))
+}
+
+// ProviderContainsFold applies the ContainsFold predicate on the "provider" field.
+func ProviderContainsFold(v string) predicate.EmailLog {
+	return predicate.EmailLog(sql.FieldContainsFold(FieldProvider, v))
 }
 
 // And groups predicates with the AND operator between them.

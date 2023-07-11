@@ -7,7 +7,9 @@ import (
 	"fmt"
 
 	"github.com/suyuan32/simple-admin-message-center/ent/emaillog"
+	"github.com/suyuan32/simple-admin-message-center/ent/emailprovider"
 	"github.com/suyuan32/simple-admin-message-center/ent/smslog"
+	"github.com/suyuan32/simple-admin-message-center/ent/smsprovider"
 )
 
 const errInvalidPage = "INVALID_PAGE"
@@ -135,6 +137,85 @@ func (el *EmailLogQuery) Page(
 	return ret, nil
 }
 
+type EmailProviderPager struct {
+	Order  emailprovider.OrderOption
+	Filter func(*EmailProviderQuery) (*EmailProviderQuery, error)
+}
+
+// EmailProviderPaginateOption enables pagination customization.
+type EmailProviderPaginateOption func(*EmailProviderPager)
+
+// DefaultEmailProviderOrder is the default ordering of EmailProvider.
+var DefaultEmailProviderOrder = Desc(emailprovider.FieldID)
+
+func newEmailProviderPager(opts []EmailProviderPaginateOption) (*EmailProviderPager, error) {
+	pager := &EmailProviderPager{}
+	for _, opt := range opts {
+		opt(pager)
+	}
+	if pager.Order == nil {
+		pager.Order = DefaultEmailProviderOrder
+	}
+	return pager, nil
+}
+
+func (p *EmailProviderPager) ApplyFilter(query *EmailProviderQuery) (*EmailProviderQuery, error) {
+	if p.Filter != nil {
+		return p.Filter(query)
+	}
+	return query, nil
+}
+
+// EmailProviderPageList is EmailProvider PageList result.
+type EmailProviderPageList struct {
+	List        []*EmailProvider `json:"list"`
+	PageDetails *PageDetails     `json:"pageDetails"`
+}
+
+func (ep *EmailProviderQuery) Page(
+	ctx context.Context, pageNum uint64, pageSize uint64, opts ...EmailProviderPaginateOption,
+) (*EmailProviderPageList, error) {
+
+	pager, err := newEmailProviderPager(opts)
+	if err != nil {
+		return nil, err
+	}
+
+	if ep, err = pager.ApplyFilter(ep); err != nil {
+		return nil, err
+	}
+
+	ret := &EmailProviderPageList{}
+
+	ret.PageDetails = &PageDetails{
+		Page: pageNum,
+		Size: pageSize,
+	}
+
+	count, err := ep.Clone().Count(ctx)
+
+	if err != nil {
+		return nil, err
+	}
+
+	ret.PageDetails.Total = uint64(count)
+
+	if pager.Order != nil {
+		ep = ep.Order(pager.Order)
+	} else {
+		ep = ep.Order(DefaultEmailProviderOrder)
+	}
+
+	ep = ep.Offset(int((pageNum - 1) * pageSize)).Limit(int(pageSize))
+	list, err := ep.All(ctx)
+	if err != nil {
+		return nil, err
+	}
+	ret.List = list
+
+	return ret, nil
+}
+
 type SmsLogPager struct {
 	Order  smslog.OrderOption
 	Filter func(*SmsLogQuery) (*SmsLogQuery, error)
@@ -206,6 +287,85 @@ func (sl *SmsLogQuery) Page(
 
 	sl = sl.Offset(int((pageNum - 1) * pageSize)).Limit(int(pageSize))
 	list, err := sl.All(ctx)
+	if err != nil {
+		return nil, err
+	}
+	ret.List = list
+
+	return ret, nil
+}
+
+type SmsProviderPager struct {
+	Order  smsprovider.OrderOption
+	Filter func(*SmsProviderQuery) (*SmsProviderQuery, error)
+}
+
+// SmsProviderPaginateOption enables pagination customization.
+type SmsProviderPaginateOption func(*SmsProviderPager)
+
+// DefaultSmsProviderOrder is the default ordering of SmsProvider.
+var DefaultSmsProviderOrder = Desc(smsprovider.FieldID)
+
+func newSmsProviderPager(opts []SmsProviderPaginateOption) (*SmsProviderPager, error) {
+	pager := &SmsProviderPager{}
+	for _, opt := range opts {
+		opt(pager)
+	}
+	if pager.Order == nil {
+		pager.Order = DefaultSmsProviderOrder
+	}
+	return pager, nil
+}
+
+func (p *SmsProviderPager) ApplyFilter(query *SmsProviderQuery) (*SmsProviderQuery, error) {
+	if p.Filter != nil {
+		return p.Filter(query)
+	}
+	return query, nil
+}
+
+// SmsProviderPageList is SmsProvider PageList result.
+type SmsProviderPageList struct {
+	List        []*SmsProvider `json:"list"`
+	PageDetails *PageDetails   `json:"pageDetails"`
+}
+
+func (sp *SmsProviderQuery) Page(
+	ctx context.Context, pageNum uint64, pageSize uint64, opts ...SmsProviderPaginateOption,
+) (*SmsProviderPageList, error) {
+
+	pager, err := newSmsProviderPager(opts)
+	if err != nil {
+		return nil, err
+	}
+
+	if sp, err = pager.ApplyFilter(sp); err != nil {
+		return nil, err
+	}
+
+	ret := &SmsProviderPageList{}
+
+	ret.PageDetails = &PageDetails{
+		Page: pageNum,
+		Size: pageSize,
+	}
+
+	count, err := sp.Clone().Count(ctx)
+
+	if err != nil {
+		return nil, err
+	}
+
+	ret.PageDetails.Total = uint64(count)
+
+	if pager.Order != nil {
+		sp = sp.Order(pager.Order)
+	} else {
+		sp = sp.Order(DefaultSmsProviderOrder)
+	}
+
+	sp = sp.Offset(int((pageNum - 1) * pageSize)).Limit(int(pageSize))
+	list, err := sp.All(ctx)
 	if err != nil {
 		return nil, err
 	}

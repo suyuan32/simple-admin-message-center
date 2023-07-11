@@ -26,8 +26,10 @@ const (
 	FieldContent = "content"
 	// FieldSendStatus holds the string denoting the send_status field in the database.
 	FieldSendStatus = "send_status"
+	// FieldProvider holds the string denoting the provider field in the database.
+	FieldProvider = "provider"
 	// Table holds the table name of the emaillog in the database.
-	Table = "mcms_email_log"
+	Table = "mcms_email_logs"
 )
 
 // Columns holds all SQL columns for emaillog fields.
@@ -39,6 +41,7 @@ var Columns = []string{
 	FieldSubject,
 	FieldContent,
 	FieldSendStatus,
+	FieldProvider,
 }
 
 // ValidColumn reports if the column name is valid (part of the table columns).
@@ -98,4 +101,9 @@ func ByContent(opts ...sql.OrderTermOption) OrderOption {
 // BySendStatus orders the results by the send_status field.
 func BySendStatus(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldSendStatus, opts...).ToFunc()
+}
+
+// ByProvider orders the results by the provider field.
+func ByProvider(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldProvider, opts...).ToFunc()
 }

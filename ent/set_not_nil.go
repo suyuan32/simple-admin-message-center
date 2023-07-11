@@ -125,6 +125,294 @@ func (el *EmailLogCreate) SetNotNilSendStatus(value *uint8) *EmailLogCreate {
 }
 
 // set field if value's pointer is not nil.
+func (el *EmailLogUpdate) SetNotNilProvider(value *string) *EmailLogUpdate {
+	if value != nil {
+		return el.SetProvider(*value)
+	}
+	return el
+}
+
+// set field if value's pointer is not nil.
+func (el *EmailLogUpdateOne) SetNotNilProvider(value *string) *EmailLogUpdateOne {
+	if value != nil {
+		return el.SetProvider(*value)
+	}
+	return el
+}
+
+// set field if value's pointer is not nil.
+func (el *EmailLogCreate) SetNotNilProvider(value *string) *EmailLogCreate {
+	if value != nil {
+		return el.SetProvider(*value)
+	}
+	return el
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderUpdate) SetNotNilUpdatedAt(value *time.Time) *EmailProviderUpdate {
+	if value != nil {
+		return ep.SetUpdatedAt(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderUpdateOne) SetNotNilUpdatedAt(value *time.Time) *EmailProviderUpdateOne {
+	if value != nil {
+		return ep.SetUpdatedAt(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderCreate) SetNotNilUpdatedAt(value *time.Time) *EmailProviderCreate {
+	if value != nil {
+		return ep.SetUpdatedAt(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderUpdate) SetNotNilName(value *string) *EmailProviderUpdate {
+	if value != nil {
+		return ep.SetName(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderUpdateOne) SetNotNilName(value *string) *EmailProviderUpdateOne {
+	if value != nil {
+		return ep.SetName(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderCreate) SetNotNilName(value *string) *EmailProviderCreate {
+	if value != nil {
+		return ep.SetName(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderUpdate) SetNotNilAuthType(value *uint8) *EmailProviderUpdate {
+	if value != nil {
+		return ep.SetAuthType(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderUpdateOne) SetNotNilAuthType(value *uint8) *EmailProviderUpdateOne {
+	if value != nil {
+		return ep.SetAuthType(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderCreate) SetNotNilAuthType(value *uint8) *EmailProviderCreate {
+	if value != nil {
+		return ep.SetAuthType(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderUpdate) SetNotNilEmailAddr(value *string) *EmailProviderUpdate {
+	if value != nil {
+		return ep.SetEmailAddr(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderUpdateOne) SetNotNilEmailAddr(value *string) *EmailProviderUpdateOne {
+	if value != nil {
+		return ep.SetEmailAddr(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderCreate) SetNotNilEmailAddr(value *string) *EmailProviderCreate {
+	if value != nil {
+		return ep.SetEmailAddr(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderUpdate) SetNotNilPassword(value *string) *EmailProviderUpdate {
+	if value != nil {
+		return ep.SetPassword(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderUpdateOne) SetNotNilPassword(value *string) *EmailProviderUpdateOne {
+	if value != nil {
+		return ep.SetPassword(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderCreate) SetNotNilPassword(value *string) *EmailProviderCreate {
+	if value != nil {
+		return ep.SetPassword(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderUpdate) SetNotNilHostName(value *string) *EmailProviderUpdate {
+	if value != nil {
+		return ep.SetHostName(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderUpdateOne) SetNotNilHostName(value *string) *EmailProviderUpdateOne {
+	if value != nil {
+		return ep.SetHostName(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderCreate) SetNotNilHostName(value *string) *EmailProviderCreate {
+	if value != nil {
+		return ep.SetHostName(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderUpdate) SetNotNilIdentify(value *string) *EmailProviderUpdate {
+	if value != nil {
+		return ep.SetIdentify(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderUpdateOne) SetNotNilIdentify(value *string) *EmailProviderUpdateOne {
+	if value != nil {
+		return ep.SetIdentify(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderCreate) SetNotNilIdentify(value *string) *EmailProviderCreate {
+	if value != nil {
+		return ep.SetIdentify(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderUpdate) SetNotNilSecret(value *string) *EmailProviderUpdate {
+	if value != nil {
+		return ep.SetSecret(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderUpdateOne) SetNotNilSecret(value *string) *EmailProviderUpdateOne {
+	if value != nil {
+		return ep.SetSecret(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderCreate) SetNotNilSecret(value *string) *EmailProviderCreate {
+	if value != nil {
+		return ep.SetSecret(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderUpdate) SetNotNilPort(value *uint32) *EmailProviderUpdate {
+	if value != nil {
+		return ep.SetPort(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderUpdateOne) SetNotNilPort(value *uint32) *EmailProviderUpdateOne {
+	if value != nil {
+		return ep.SetPort(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderCreate) SetNotNilPort(value *uint32) *EmailProviderCreate {
+	if value != nil {
+		return ep.SetPort(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderUpdate) SetNotNilTLS(value *bool) *EmailProviderUpdate {
+	if value != nil {
+		return ep.SetTLS(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderUpdateOne) SetNotNilTLS(value *bool) *EmailProviderUpdateOne {
+	if value != nil {
+		return ep.SetTLS(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderCreate) SetNotNilTLS(value *bool) *EmailProviderCreate {
+	if value != nil {
+		return ep.SetTLS(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderUpdate) SetNotNilIsDefault(value *bool) *EmailProviderUpdate {
+	if value != nil {
+		return ep.SetIsDefault(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderUpdateOne) SetNotNilIsDefault(value *bool) *EmailProviderUpdateOne {
+	if value != nil {
+		return ep.SetIsDefault(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
+func (ep *EmailProviderCreate) SetNotNilIsDefault(value *bool) *EmailProviderCreate {
+	if value != nil {
+		return ep.SetIsDefault(*value)
+	}
+	return ep
+}
+
+// set field if value's pointer is not nil.
 func (sl *SmsLogUpdate) SetNotNilUpdatedAt(value *time.Time) *SmsLogUpdate {
 	if value != nil {
 		return sl.SetUpdatedAt(*value)
@@ -242,4 +530,148 @@ func (sl *SmsLogCreate) SetNotNilProvider(value *string) *SmsLogCreate {
 		return sl.SetProvider(*value)
 	}
 	return sl
+}
+
+// set field if value's pointer is not nil.
+func (sp *SmsProviderUpdate) SetNotNilUpdatedAt(value *time.Time) *SmsProviderUpdate {
+	if value != nil {
+		return sp.SetUpdatedAt(*value)
+	}
+	return sp
+}
+
+// set field if value's pointer is not nil.
+func (sp *SmsProviderUpdateOne) SetNotNilUpdatedAt(value *time.Time) *SmsProviderUpdateOne {
+	if value != nil {
+		return sp.SetUpdatedAt(*value)
+	}
+	return sp
+}
+
+// set field if value's pointer is not nil.
+func (sp *SmsProviderCreate) SetNotNilUpdatedAt(value *time.Time) *SmsProviderCreate {
+	if value != nil {
+		return sp.SetUpdatedAt(*value)
+	}
+	return sp
+}
+
+// set field if value's pointer is not nil.
+func (sp *SmsProviderUpdate) SetNotNilName(value *string) *SmsProviderUpdate {
+	if value != nil {
+		return sp.SetName(*value)
+	}
+	return sp
+}
+
+// set field if value's pointer is not nil.
+func (sp *SmsProviderUpdateOne) SetNotNilName(value *string) *SmsProviderUpdateOne {
+	if value != nil {
+		return sp.SetName(*value)
+	}
+	return sp
+}
+
+// set field if value's pointer is not nil.
+func (sp *SmsProviderCreate) SetNotNilName(value *string) *SmsProviderCreate {
+	if value != nil {
+		return sp.SetName(*value)
+	}
+	return sp
+}
+
+// set field if value's pointer is not nil.
+func (sp *SmsProviderUpdate) SetNotNilSecretID(value *string) *SmsProviderUpdate {
+	if value != nil {
+		return sp.SetSecretID(*value)
+	}
+	return sp
+}
+
+// set field if value's pointer is not nil.
+func (sp *SmsProviderUpdateOne) SetNotNilSecretID(value *string) *SmsProviderUpdateOne {
+	if value != nil {
+		return sp.SetSecretID(*value)
+	}
+	return sp
+}
+
+// set field if value's pointer is not nil.
+func (sp *SmsProviderCreate) SetNotNilSecretID(value *string) *SmsProviderCreate {
+	if value != nil {
+		return sp.SetSecretID(*value)
+	}
+	return sp
+}
+
+// set field if value's pointer is not nil.
+func (sp *SmsProviderUpdate) SetNotNilSecretKey(value *string) *SmsProviderUpdate {
+	if value != nil {
+		return sp.SetSecretKey(*value)
+	}
+	return sp
+}
+
+// set field if value's pointer is not nil.
+func (sp *SmsProviderUpdateOne) SetNotNilSecretKey(value *string) *SmsProviderUpdateOne {
+	if value != nil {
+		return sp.SetSecretKey(*value)
+	}
+	return sp
+}
+
+// set field if value's pointer is not nil.
+func (sp *SmsProviderCreate) SetNotNilSecretKey(value *string) *SmsProviderCreate {
+	if value != nil {
+		return sp.SetSecretKey(*value)
+	}
+	return sp
+}
+
+// set field if value's pointer is not nil.
+func (sp *SmsProviderUpdate) SetNotNilRegion(value *string) *SmsProviderUpdate {
+	if value != nil {
+		return sp.SetRegion(*value)
+	}
+	return sp
+}
+
+// set field if value's pointer is not nil.
+func (sp *SmsProviderUpdateOne) SetNotNilRegion(value *string) *SmsProviderUpdateOne {
+	if value != nil {
+		return sp.SetRegion(*value)
+	}
+	return sp
+}
+
+// set field if value's pointer is not nil.
+func (sp *SmsProviderCreate) SetNotNilRegion(value *string) *SmsProviderCreate {
+	if value != nil {
+		return sp.SetRegion(*value)
+	}
+	return sp
+}
+
+// set field if value's pointer is not nil.
+func (sp *SmsProviderUpdate) SetNotNilIsDefault(value *bool) *SmsProviderUpdate {
+	if value != nil {
+		return sp.SetIsDefault(*value)
+	}
+	return sp
+}
+
+// set field if value's pointer is not nil.
+func (sp *SmsProviderUpdateOne) SetNotNilIsDefault(value *bool) *SmsProviderUpdateOne {
+	if value != nil {
+		return sp.SetIsDefault(*value)
+	}
+	return sp
+}
+
+// set field if value's pointer is not nil.
+func (sp *SmsProviderCreate) SetNotNilIsDefault(value *bool) *SmsProviderCreate {
+	if value != nil {
+		return sp.SetIsDefault(*value)
+	}
+	return sp
 }

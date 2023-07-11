@@ -40,6 +40,6 @@ func (SmsLog) Edges() []ent.Edge {
 
 func (SmsLog) Annotations() []schema.Annotation {
 	return []schema.Annotation{
-		entsql.Annotation{Table: "mcms_sms_log"},
+		entsql.Annotation{Table: "mcms_sms_logs"},
 	}
 }

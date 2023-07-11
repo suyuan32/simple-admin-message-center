@@ -35,8 +35,8 @@ func (l *GetEmailLogListLogic) GetEmailLogList(in *mcms.EmailLogListReq) (*mcms.
 	if in.Subject != nil {
 		predicates = append(predicates, emaillog.SubjectContains(*in.Subject))
 	}
-	if in.Content != nil {
-		predicates = append(predicates, emaillog.ContentContains(*in.Content))
+	if in.Provider != nil {
+		predicates = append(predicates, emaillog.ContentContains(*in.Provider))
 	}
 	result, err := l.svcCtx.DB.EmailLog.Query().Where(predicates...).Page(l.ctx, in.Page, in.PageSize)
 

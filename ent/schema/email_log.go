@@ -24,6 +24,8 @@ func (EmailLog) Fields() []ent.Field {
 			Annotations(entsql.WithComments(true)),
 		field.Uint8("send_status").Comment("The send status, 0 unknown 1 success 2 failed | 发送的状态, 0 未知， 1 成功， 2 失败").
 			Annotations(entsql.WithComments(true)),
+		field.String("provider").Comment("The sms service provider | 短信服务提供商").
+			Annotations(entsql.WithComments(true)),
 	}
 }
 
@@ -40,6 +42,6 @@ func (EmailLog) Edges() []ent.Edge {
 
 func (EmailLog) Annotations() []schema.Annotation {
 	return []schema.Annotation{
-		entsql.Annotation{Table: "mcms_email_log"},
+		entsql.Annotation{Table: "mcms_email_logs"},
 	}
 }

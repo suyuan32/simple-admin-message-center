@@ -43,5 +43,5 @@ func (l *UpdateSmsLogLogic) UpdateSmsLog(in *mcms.SmsLogInfo) (*mcms.BaseResp, e
 		return nil, dberrorhandler.DefaultEntError(l.Logger, err, in)
 	}
 
-	return &mcms.BaseResp{Msg: i18n.CreateSuccess}, nil
+	return &mcms.BaseResp{Msg: i18n.UpdateSuccess}, nil
 }
