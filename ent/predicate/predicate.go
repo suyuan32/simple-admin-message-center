@@ -9,5 +9,11 @@ import (
 // EmailLog is the predicate function for emaillog builders.
 type EmailLog func(*sql.Selector)
 
+// EmailProvider is the predicate function for emailprovider builders.
+type EmailProvider func(*sql.Selector)
+
 // SmsLog is the predicate function for smslog builders.
 type SmsLog func(*sql.Selector)
+
+// SmsProvider is the predicate function for smsprovider builders.
+type SmsProvider func(*sql.Selector)

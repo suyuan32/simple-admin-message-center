@@ -15,7 +15,9 @@ import (
 	"entgo.io/ent/dialect"
 	"entgo.io/ent/dialect/sql"
 	"github.com/suyuan32/simple-admin-message-center/ent/emaillog"
+	"github.com/suyuan32/simple-admin-message-center/ent/emailprovider"
 	"github.com/suyuan32/simple-admin-message-center/ent/smslog"
+	"github.com/suyuan32/simple-admin-message-center/ent/smsprovider"
 
 	stdsql "database/sql"
 )
@@ -27,8 +29,12 @@ type Client struct {
 	Schema *migrate.Schema
 	// EmailLog is the client for interacting with the EmailLog builders.
 	EmailLog *EmailLogClient
+	// EmailProvider is the client for interacting with the EmailProvider builders.
+	EmailProvider *EmailProviderClient
 	// SmsLog is the client for interacting with the SmsLog builders.
 	SmsLog *SmsLogClient
+	// SmsProvider is the client for interacting with the SmsProvider builders.
+	SmsProvider *SmsProviderClient
 }
 
 // NewClient creates a new client configured with the given options.
@@ -43,7 +49,9 @@ func NewClient(opts ...Option) *Client {
 func (c *Client) init() {
 	c.Schema = migrate.NewSchema(c.driver)
 	c.EmailLog = NewEmailLogClient(c.config)
+	c.EmailProvider = NewEmailProviderClient(c.config)
 	c.SmsLog = NewSmsLogClient(c.config)
+	c.SmsProvider = NewSmsProviderClient(c.config)
 }
 
 type (
@@ -124,10 +132,12 @@ func (c *Client) Tx(ctx context.Context) (*Tx, error) {
 	cfg := c.config
 	cfg.driver = tx
 	return &Tx{
-		ctx:      ctx,
-		config:   cfg,
-		EmailLog: NewEmailLogClient(cfg),
-		SmsLog:   NewSmsLogClient(cfg),
+		ctx:           ctx,
+		config:        cfg,
+		EmailLog:      NewEmailLogClient(cfg),
+		EmailProvider: NewEmailProviderClient(cfg),
+		SmsLog:        NewSmsLogClient(cfg),
+		SmsProvider:   NewSmsProviderClient(cfg),
 	}, nil
 }
 
@@ -145,10 +155,12 @@ func (c *Client) BeginTx(ctx context.Context, opts *sql.TxOptions) (*Tx, error) 
 	cfg := c.config
 	cfg.driver = &txDriver{tx: tx, drv: c.driver}
 	return &Tx{
-		ctx:      ctx,
-		config:   cfg,
-		EmailLog: NewEmailLogClient(cfg),
-		SmsLog:   NewSmsLogClient(cfg),
+		ctx:           ctx,
+		config:        cfg,
+		EmailLog:      NewEmailLogClient(cfg),
+		EmailProvider: NewEmailProviderClient(cfg),
+		SmsLog:        NewSmsLogClient(cfg),
+		SmsProvider:   NewSmsProviderClient(cfg),
 	}, nil
 }
 
@@ -178,14 +190,18 @@ func (c *Client) Close() error {
 // In order to add hooks to a specific client, call: `client.Node.Use(...)`.
 func (c *Client) Use(hooks ...Hook) {
 	c.EmailLog.Use(hooks...)
+	c.EmailProvider.Use(hooks...)
 	c.SmsLog.Use(hooks...)
+	c.SmsProvider.Use(hooks...)
 }
 
 // Intercept adds the query interceptors to all the entity clients.
 // In order to add interceptors to a specific client, call: `client.Node.Intercept(...)`.
 func (c *Client) Intercept(interceptors ...Interceptor) {
 	c.EmailLog.Intercept(interceptors...)
+	c.EmailProvider.Intercept(interceptors...)
 	c.SmsLog.Intercept(interceptors...)
+	c.SmsProvider.Intercept(interceptors...)
 }
 
 // Mutate implements the ent.Mutator interface.
@@ -193,8 +209,12 @@ func (c *Client) Mutate(ctx context.Context, m Mutation) (Value, error) {
 	switch m := m.(type) {
 	case *EmailLogMutation:
 		return c.EmailLog.mutate(ctx, m)
+	case *EmailProviderMutation:
+		return c.EmailProvider.mutate(ctx, m)
 	case *SmsLogMutation:
 		return c.SmsLog.mutate(ctx, m)
+	case *SmsProviderMutation:
+		return c.SmsProvider.mutate(ctx, m)
 	default:
 		return nil, fmt.Errorf("ent: unknown mutation type %T", m)
 	}
@@ -318,6 +338,124 @@ func (c *EmailLogClient) mutate(ctx context.Context, m *EmailLogMutation) (Value
 	}
 }
 
+// EmailProviderClient is a client for the EmailProvider schema.
+type EmailProviderClient struct {
+	config
+}
+
+// NewEmailProviderClient returns a client for the EmailProvider from the given config.
+func NewEmailProviderClient(c config) *EmailProviderClient {
+	return &EmailProviderClient{config: c}
+}
+
+// Use adds a list of mutation hooks to the hooks stack.
+// A call to `Use(f, g, h)` equals to `emailprovider.Hooks(f(g(h())))`.
+func (c *EmailProviderClient) Use(hooks ...Hook) {
+	c.hooks.EmailProvider = append(c.hooks.EmailProvider, hooks...)
+}
+
+// Intercept adds a list of query interceptors to the interceptors stack.
+// A call to `Intercept(f, g, h)` equals to `emailprovider.Intercept(f(g(h())))`.
+func (c *EmailProviderClient) Intercept(interceptors ...Interceptor) {
+	c.inters.EmailProvider = append(c.inters.EmailProvider, interceptors...)
+}
+
+// Create returns a builder for creating a EmailProvider entity.
+func (c *EmailProviderClient) Create() *EmailProviderCreate {
+	mutation := newEmailProviderMutation(c.config, OpCreate)
+	return &EmailProviderCreate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// CreateBulk returns a builder for creating a bulk of EmailProvider entities.
+func (c *EmailProviderClient) CreateBulk(builders ...*EmailProviderCreate) *EmailProviderCreateBulk {
+	return &EmailProviderCreateBulk{config: c.config, builders: builders}
+}
+
+// Update returns an update builder for EmailProvider.
+func (c *EmailProviderClient) Update() *EmailProviderUpdate {
+	mutation := newEmailProviderMutation(c.config, OpUpdate)
+	return &EmailProviderUpdate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOne returns an update builder for the given entity.
+func (c *EmailProviderClient) UpdateOne(ep *EmailProvider) *EmailProviderUpdateOne {
+	mutation := newEmailProviderMutation(c.config, OpUpdateOne, withEmailProvider(ep))
+	return &EmailProviderUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOneID returns an update builder for the given id.
+func (c *EmailProviderClient) UpdateOneID(id uint64) *EmailProviderUpdateOne {
+	mutation := newEmailProviderMutation(c.config, OpUpdateOne, withEmailProviderID(id))
+	return &EmailProviderUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// Delete returns a delete builder for EmailProvider.
+func (c *EmailProviderClient) Delete() *EmailProviderDelete {
+	mutation := newEmailProviderMutation(c.config, OpDelete)
+	return &EmailProviderDelete{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// DeleteOne returns a builder for deleting the given entity.
+func (c *EmailProviderClient) DeleteOne(ep *EmailProvider) *EmailProviderDeleteOne {
+	return c.DeleteOneID(ep.ID)
+}
+
+// DeleteOneID returns a builder for deleting the given entity by its id.
+func (c *EmailProviderClient) DeleteOneID(id uint64) *EmailProviderDeleteOne {
+	builder := c.Delete().Where(emailprovider.ID(id))
+	builder.mutation.id = &id
+	builder.mutation.op = OpDeleteOne
+	return &EmailProviderDeleteOne{builder}
+}
+
+// Query returns a query builder for EmailProvider.
+func (c *EmailProviderClient) Query() *EmailProviderQuery {
+	return &EmailProviderQuery{
+		config: c.config,
+		ctx:    &QueryContext{Type: TypeEmailProvider},
+		inters: c.Interceptors(),
+	}
+}
+
+// Get returns a EmailProvider entity by its id.
+func (c *EmailProviderClient) Get(ctx context.Context, id uint64) (*EmailProvider, error) {
+	return c.Query().Where(emailprovider.ID(id)).Only(ctx)
+}
+
+// GetX is like Get, but panics if an error occurs.
+func (c *EmailProviderClient) GetX(ctx context.Context, id uint64) *EmailProvider {
+	obj, err := c.Get(ctx, id)
+	if err != nil {
+		panic(err)
+	}
+	return obj
+}
+
+// Hooks returns the client hooks.
+func (c *EmailProviderClient) Hooks() []Hook {
+	return c.hooks.EmailProvider
+}
+
+// Interceptors returns the client interceptors.
+func (c *EmailProviderClient) Interceptors() []Interceptor {
+	return c.inters.EmailProvider
+}
+
+func (c *EmailProviderClient) mutate(ctx context.Context, m *EmailProviderMutation) (Value, error) {
+	switch m.Op() {
+	case OpCreate:
+		return (&EmailProviderCreate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdate:
+		return (&EmailProviderUpdate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdateOne:
+		return (&EmailProviderUpdateOne{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpDelete, OpDeleteOne:
+		return (&EmailProviderDelete{config: c.config, hooks: c.Hooks(), mutation: m}).Exec(ctx)
+	default:
+		return nil, fmt.Errorf("ent: unknown EmailProvider mutation op: %q", m.Op())
+	}
+}
+
 // SmsLogClient is a client for the SmsLog schema.
 type SmsLogClient struct {
 	config
@@ -436,13 +574,131 @@ func (c *SmsLogClient) mutate(ctx context.Context, m *SmsLogMutation) (Value, er
 	}
 }
 
+// SmsProviderClient is a client for the SmsProvider schema.
+type SmsProviderClient struct {
+	config
+}
+
+// NewSmsProviderClient returns a client for the SmsProvider from the given config.
+func NewSmsProviderClient(c config) *SmsProviderClient {
+	return &SmsProviderClient{config: c}
+}
+
+// Use adds a list of mutation hooks to the hooks stack.
+// A call to `Use(f, g, h)` equals to `smsprovider.Hooks(f(g(h())))`.
+func (c *SmsProviderClient) Use(hooks ...Hook) {
+	c.hooks.SmsProvider = append(c.hooks.SmsProvider, hooks...)
+}
+
+// Intercept adds a list of query interceptors to the interceptors stack.
+// A call to `Intercept(f, g, h)` equals to `smsprovider.Intercept(f(g(h())))`.
+func (c *SmsProviderClient) Intercept(interceptors ...Interceptor) {
+	c.inters.SmsProvider = append(c.inters.SmsProvider, interceptors...)
+}
+
+// Create returns a builder for creating a SmsProvider entity.
+func (c *SmsProviderClient) Create() *SmsProviderCreate {
+	mutation := newSmsProviderMutation(c.config, OpCreate)
+	return &SmsProviderCreate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// CreateBulk returns a builder for creating a bulk of SmsProvider entities.
+func (c *SmsProviderClient) CreateBulk(builders ...*SmsProviderCreate) *SmsProviderCreateBulk {
+	return &SmsProviderCreateBulk{config: c.config, builders: builders}
+}
+
+// Update returns an update builder for SmsProvider.
+func (c *SmsProviderClient) Update() *SmsProviderUpdate {
+	mutation := newSmsProviderMutation(c.config, OpUpdate)
+	return &SmsProviderUpdate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOne returns an update builder for the given entity.
+func (c *SmsProviderClient) UpdateOne(sp *SmsProvider) *SmsProviderUpdateOne {
+	mutation := newSmsProviderMutation(c.config, OpUpdateOne, withSmsProvider(sp))
+	return &SmsProviderUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOneID returns an update builder for the given id.
+func (c *SmsProviderClient) UpdateOneID(id uint64) *SmsProviderUpdateOne {
+	mutation := newSmsProviderMutation(c.config, OpUpdateOne, withSmsProviderID(id))
+	return &SmsProviderUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// Delete returns a delete builder for SmsProvider.
+func (c *SmsProviderClient) Delete() *SmsProviderDelete {
+	mutation := newSmsProviderMutation(c.config, OpDelete)
+	return &SmsProviderDelete{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// DeleteOne returns a builder for deleting the given entity.
+func (c *SmsProviderClient) DeleteOne(sp *SmsProvider) *SmsProviderDeleteOne {
+	return c.DeleteOneID(sp.ID)
+}
+
+// DeleteOneID returns a builder for deleting the given entity by its id.
+func (c *SmsProviderClient) DeleteOneID(id uint64) *SmsProviderDeleteOne {
+	builder := c.Delete().Where(smsprovider.ID(id))
+	builder.mutation.id = &id
+	builder.mutation.op = OpDeleteOne
+	return &SmsProviderDeleteOne{builder}
+}
+
+// Query returns a query builder for SmsProvider.
+func (c *SmsProviderClient) Query() *SmsProviderQuery {
+	return &SmsProviderQuery{
+		config: c.config,
+		ctx:    &QueryContext{Type: TypeSmsProvider},
+		inters: c.Interceptors(),
+	}
+}
+
+// Get returns a SmsProvider entity by its id.
+func (c *SmsProviderClient) Get(ctx context.Context, id uint64) (*SmsProvider, error) {
+	return c.Query().Where(smsprovider.ID(id)).Only(ctx)
+}
+
+// GetX is like Get, but panics if an error occurs.
+func (c *SmsProviderClient) GetX(ctx context.Context, id uint64) *SmsProvider {
+	obj, err := c.Get(ctx, id)
+	if err != nil {
+		panic(err)
+	}
+	return obj
+}
+
+// Hooks returns the client hooks.
+func (c *SmsProviderClient) Hooks() []Hook {
+	return c.hooks.SmsProvider
+}
+
+// Interceptors returns the client interceptors.
+func (c *SmsProviderClient) Interceptors() []Interceptor {
+	return c.inters.SmsProvider
+}
+
+func (c *SmsProviderClient) mutate(ctx context.Context, m *SmsProviderMutation) (Value, error) {
+	switch m.Op() {
+	case OpCreate:
+		return (&SmsProviderCreate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdate:
+		return (&SmsProviderUpdate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdateOne:
+		return (&SmsProviderUpdateOne{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpDelete, OpDeleteOne:
+		return (&SmsProviderDelete{config: c.config, hooks: c.Hooks(), mutation: m}).Exec(ctx)
+	default:
+		return nil, fmt.Errorf("ent: unknown SmsProvider mutation op: %q", m.Op())
+	}
+}
+
 // hooks and interceptors per client, for fast access.
 type (
 	hooks struct {
-		EmailLog, SmsLog []ent.Hook
+		EmailLog, EmailProvider, SmsLog, SmsProvider []ent.Hook
 	}
 	inters struct {
-		EmailLog, SmsLog []ent.Interceptor
+		EmailLog, EmailProvider, SmsLog, SmsProvider []ent.Interceptor
 	}
 )
 

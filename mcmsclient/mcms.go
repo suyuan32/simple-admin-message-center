@@ -13,23 +13,29 @@ import (
 )
 
 type (
-	BaseIDResp       = mcms.BaseIDResp
-	BaseResp         = mcms.BaseResp
-	BaseUUIDResp     = mcms.BaseUUIDResp
-	EmailInfo        = mcms.EmailInfo
-	EmailLogInfo     = mcms.EmailLogInfo
-	EmailLogListReq  = mcms.EmailLogListReq
-	EmailLogListResp = mcms.EmailLogListResp
-	Empty            = mcms.Empty
-	IDReq            = mcms.IDReq
-	IDsReq           = mcms.IDsReq
-	PageInfoReq      = mcms.PageInfoReq
-	SmsInfo          = mcms.SmsInfo
-	SmsLogInfo       = mcms.SmsLogInfo
-	SmsLogListReq    = mcms.SmsLogListReq
-	SmsLogListResp   = mcms.SmsLogListResp
-	UUIDReq          = mcms.UUIDReq
-	UUIDsReq         = mcms.UUIDsReq
+	BaseIDResp            = mcms.BaseIDResp
+	BaseResp              = mcms.BaseResp
+	BaseUUIDResp          = mcms.BaseUUIDResp
+	EmailInfo             = mcms.EmailInfo
+	EmailLogInfo          = mcms.EmailLogInfo
+	EmailLogListReq       = mcms.EmailLogListReq
+	EmailLogListResp      = mcms.EmailLogListResp
+	EmailProviderInfo     = mcms.EmailProviderInfo
+	EmailProviderListReq  = mcms.EmailProviderListReq
+	EmailProviderListResp = mcms.EmailProviderListResp
+	Empty                 = mcms.Empty
+	IDReq                 = mcms.IDReq
+	IDsReq                = mcms.IDsReq
+	PageInfoReq           = mcms.PageInfoReq
+	SmsInfo               = mcms.SmsInfo
+	SmsLogInfo            = mcms.SmsLogInfo
+	SmsLogListReq         = mcms.SmsLogListReq
+	SmsLogListResp        = mcms.SmsLogListResp
+	SmsProviderInfo       = mcms.SmsProviderInfo
+	SmsProviderListReq    = mcms.SmsProviderListReq
+	SmsProviderListResp   = mcms.SmsProviderListResp
+	UUIDReq               = mcms.UUIDReq
+	UUIDsReq              = mcms.UUIDsReq
 
 	Mcms interface {
 		InitDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error)
@@ -40,6 +46,12 @@ type (
 		GetEmailLogList(ctx context.Context, in *EmailLogListReq, opts ...grpc.CallOption) (*EmailLogListResp, error)
 		GetEmailLogById(ctx context.Context, in *UUIDReq, opts ...grpc.CallOption) (*EmailLogInfo, error)
 		DeleteEmailLog(ctx context.Context, in *UUIDsReq, opts ...grpc.CallOption) (*BaseResp, error)
+		// EmailProvider management
+		CreateEmailProvider(ctx context.Context, in *EmailProviderInfo, opts ...grpc.CallOption) (*BaseIDResp, error)
+		UpdateEmailProvider(ctx context.Context, in *EmailProviderInfo, opts ...grpc.CallOption) (*BaseResp, error)
+		GetEmailProviderList(ctx context.Context, in *EmailProviderListReq, opts ...grpc.CallOption) (*EmailProviderListResp, error)
+		GetEmailProviderById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*EmailProviderInfo, error)
+		DeleteEmailProvider(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error)
 		SendSms(ctx context.Context, in *SmsInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error)
 		// SmsLog management
 		CreateSmsLog(ctx context.Context, in *SmsLogInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error)
@@ -47,6 +59,12 @@ type (
 		GetSmsLogList(ctx context.Context, in *SmsLogListReq, opts ...grpc.CallOption) (*SmsLogListResp, error)
 		GetSmsLogById(ctx context.Context, in *UUIDReq, opts ...grpc.CallOption) (*SmsLogInfo, error)
 		DeleteSmsLog(ctx context.Context, in *UUIDsReq, opts ...grpc.CallOption) (*BaseResp, error)
+		// SmsProvider management
+		CreateSmsProvider(ctx context.Context, in *SmsProviderInfo, opts ...grpc.CallOption) (*BaseIDResp, error)
+		UpdateSmsProvider(ctx context.Context, in *SmsProviderInfo, opts ...grpc.CallOption) (*BaseResp, error)
+		GetSmsProviderList(ctx context.Context, in *SmsProviderListReq, opts ...grpc.CallOption) (*SmsProviderListResp, error)
+		GetSmsProviderById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*SmsProviderInfo, error)
+		DeleteSmsProvider(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error)
 	}
 
 	defaultMcms struct {
@@ -96,6 +114,32 @@ func (m *defaultMcms) DeleteEmailLog(ctx context.Context, in *UUIDsReq, opts ...
 	return client.DeleteEmailLog(ctx, in, opts...)
 }
 
+// EmailProvider management
+func (m *defaultMcms) CreateEmailProvider(ctx context.Context, in *EmailProviderInfo, opts ...grpc.CallOption) (*BaseIDResp, error) {
+	client := mcms.NewMcmsClient(m.cli.Conn())
+	return client.CreateEmailProvider(ctx, in, opts...)
+}
+
+func (m *defaultMcms) UpdateEmailProvider(ctx context.Context, in *EmailProviderInfo, opts ...grpc.CallOption) (*BaseResp, error) {
+	client := mcms.NewMcmsClient(m.cli.Conn())
+	return client.UpdateEmailProvider(ctx, in, opts...)
+}
+
+func (m *defaultMcms) GetEmailProviderList(ctx context.Context, in *EmailProviderListReq, opts ...grpc.CallOption) (*EmailProviderListResp, error) {
+	client := mcms.NewMcmsClient(m.cli.Conn())
+	return client.GetEmailProviderList(ctx, in, opts...)
+}
+
+func (m *defaultMcms) GetEmailProviderById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*EmailProviderInfo, error) {
+	client := mcms.NewMcmsClient(m.cli.Conn())
+	return client.GetEmailProviderById(ctx, in, opts...)
+}
+
+func (m *defaultMcms) DeleteEmailProvider(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error) {
+	client := mcms.NewMcmsClient(m.cli.Conn())
+	return client.DeleteEmailProvider(ctx, in, opts...)
+}
+
 func (m *defaultMcms) SendSms(ctx context.Context, in *SmsInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error) {
 	client := mcms.NewMcmsClient(m.cli.Conn())
 	return client.SendSms(ctx, in, opts...)
@@ -125,4 +169,30 @@ func (m *defaultMcms) GetSmsLogById(ctx context.Context, in *UUIDReq, opts ...gr
 func (m *defaultMcms) DeleteSmsLog(ctx context.Context, in *UUIDsReq, opts ...grpc.CallOption) (*BaseResp, error) {
 	client := mcms.NewMcmsClient(m.cli.Conn())
 	return client.DeleteSmsLog(ctx, in, opts...)
+}
+
+// SmsProvider management
+func (m *defaultMcms) CreateSmsProvider(ctx context.Context, in *SmsProviderInfo, opts ...grpc.CallOption) (*BaseIDResp, error) {
+	client := mcms.NewMcmsClient(m.cli.Conn())
+	return client.CreateSmsProvider(ctx, in, opts...)
+}
+
+func (m *defaultMcms) UpdateSmsProvider(ctx context.Context, in *SmsProviderInfo, opts ...grpc.CallOption) (*BaseResp, error) {
+	client := mcms.NewMcmsClient(m.cli.Conn())
+	return client.UpdateSmsProvider(ctx, in, opts...)
+}
+
+func (m *defaultMcms) GetSmsProviderList(ctx context.Context, in *SmsProviderListReq, opts ...grpc.CallOption) (*SmsProviderListResp, error) {
+	client := mcms.NewMcmsClient(m.cli.Conn())
+	return client.GetSmsProviderList(ctx, in, opts...)
+}
+
+func (m *defaultMcms) GetSmsProviderById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*SmsProviderInfo, error) {
+	client := mcms.NewMcmsClient(m.cli.Conn())
+	return client.GetSmsProviderById(ctx, in, opts...)
+}
+
+func (m *defaultMcms) DeleteSmsProvider(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error) {
+	client := mcms.NewMcmsClient(m.cli.Conn())
+	return client.DeleteSmsProvider(ctx, in, opts...)
 }

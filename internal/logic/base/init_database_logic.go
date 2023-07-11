@@ -6,6 +6,9 @@ import (
 	"github.com/suyuan32/simple-admin-common/enum/errorcode"
 	"github.com/suyuan32/simple-admin-common/i18n"
 	"github.com/suyuan32/simple-admin-common/msg/logmsg"
+	"github.com/suyuan32/simple-admin-message-center/ent"
+	"github.com/suyuan32/simple-admin-message-center/internal/enum/emailauthtype"
+	"github.com/suyuan32/simple-admin-message-center/internal/utils/dberrorhandler"
 	"github.com/zeromicro/go-zero/core/errorx"
 
 	"github.com/suyuan32/simple-admin-message-center/internal/svc"
@@ -35,4 +38,43 @@ func (l *InitDatabaseLogic) InitDatabase(in *mcms.Empty) (*mcms.BaseResp, error)
 	}
 
 	return &mcms.BaseResp{Msg: i18n.Success}, nil
+}
+
+func (l *InitDatabaseLogic) InsertEmailProviderData() error {
+	var emailProviders []*ent.EmailProviderCreate
+
+	// tencent
+	emailProviders = append(emailProviders, l.svcCtx.DB.EmailProvider.Create().
+		SetName("tencent").
+		SetAuthType(emailauthtype.Plain).
+		SetEmailAddr("input your email address").
+		SetPassword("input your password").
+		SetPort(465).
+		SetHostName("smtp.qq.com").
+		SetTLS(true))
+
+	err := l.svcCtx.DB.EmailProvider.CreateBulk(emailProviders...).Exec(l.ctx)
+	if err != nil {
+		return dberrorhandler.DefaultEntError(logx.WithContext(nil), err, nil)
+	}
+
+	return nil
+}
+
+func (l *InitDatabaseLogic) InsertSmsProviderData() error {
+	var smsProviders []*ent.SmsProviderCreate
+
+	// tencent
+	smsProviders = append(smsProviders, l.svcCtx.DB.SmsProvider.Create().
+		SetName("tencent").
+		SetSecretID("input your secret ID").
+		SetSecretKey("input your secret key").
+		SetRegion("ap-nanjing"))
+
+	err := l.svcCtx.DB.SmsProvider.CreateBulk(smsProviders...).Exec(l.ctx)
+	if err != nil {
+		return dberrorhandler.DefaultEntError(logx.WithContext(nil), err, nil)
+	}
+
+	return nil
 }

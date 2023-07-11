@@ -10,6 +10,7 @@ message EmailLogInfo {
   optional string subject = 5;
   optional string content = 6;
   optional uint32 send_status = 7;
+  optional string provider = 8;
 }
 
 message EmailLogListResp {
@@ -22,7 +23,7 @@ message EmailLogListReq {
   uint64 page_size = 2;
   optional string target = 3;
   optional string subject = 4;
-  optional string content = 5;
+  optional string provider = 5;
 }
 
 

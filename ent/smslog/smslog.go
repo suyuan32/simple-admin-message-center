@@ -27,7 +27,7 @@ const (
 	// FieldProvider holds the string denoting the provider field in the database.
 	FieldProvider = "provider"
 	// Table holds the table name of the smslog in the database.
-	Table = "mcms_sms_log"
+	Table = "mcms_sms_logs"
 )
 
 // Columns holds all SQL columns for smslog fields.

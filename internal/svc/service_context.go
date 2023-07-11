@@ -12,11 +12,12 @@ import (
 )
 
 type ServiceContext struct {
-	Config    config.Config
-	DB        *ent.Client
-	Redis     *redis.Redis
-	EmailAuth *smtp.Auth
-	SmsGroup  *smssdk.SmsGroup
+	Config           config.Config
+	DB               *ent.Client
+	Redis            *redis.Redis
+	EmailAuth        *smtp.Auth
+	SmsGroup         *smssdk.SmsGroup
+	EmailClientGroup map[string]*smtp.Client
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
@@ -35,10 +36,11 @@ func NewServiceContext(c config.Config) *ServiceContext {
 	}
 
 	return &ServiceContext{
-		Config:    c,
-		DB:        db,
-		Redis:     redis.MustNewRedis(c.RedisConf),
-		EmailAuth: c.EmailConf.NewAuth(),
-		SmsGroup:  smsGroup,
+		Config:           c,
+		DB:               db,
+		Redis:            redis.MustNewRedis(c.RedisConf),
+		EmailAuth:        c.EmailConf.NewAuth(),
+		SmsGroup:         smsGroup,
+		EmailClientGroup: map[string]*smtp.Client{},
 	}
 }

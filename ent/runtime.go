@@ -7,8 +7,10 @@ import (
 
 	uuid "github.com/gofrs/uuid/v5"
 	"github.com/suyuan32/simple-admin-message-center/ent/emaillog"
+	"github.com/suyuan32/simple-admin-message-center/ent/emailprovider"
 	"github.com/suyuan32/simple-admin-message-center/ent/schema"
 	"github.com/suyuan32/simple-admin-message-center/ent/smslog"
+	"github.com/suyuan32/simple-admin-message-center/ent/smsprovider"
 )
 
 // The init function reads all schema descriptors with runtime code
@@ -34,6 +36,29 @@ func init() {
 	emaillogDescID := emaillogMixinFields0[0].Descriptor()
 	// emaillog.DefaultID holds the default value on creation for the id field.
 	emaillog.DefaultID = emaillogDescID.Default.(func() uuid.UUID)
+	emailproviderMixin := schema.EmailProvider{}.Mixin()
+	emailproviderMixinFields0 := emailproviderMixin[0].Fields()
+	_ = emailproviderMixinFields0
+	emailproviderFields := schema.EmailProvider{}.Fields()
+	_ = emailproviderFields
+	// emailproviderDescCreatedAt is the schema descriptor for created_at field.
+	emailproviderDescCreatedAt := emailproviderMixinFields0[1].Descriptor()
+	// emailprovider.DefaultCreatedAt holds the default value on creation for the created_at field.
+	emailprovider.DefaultCreatedAt = emailproviderDescCreatedAt.Default.(func() time.Time)
+	// emailproviderDescUpdatedAt is the schema descriptor for updated_at field.
+	emailproviderDescUpdatedAt := emailproviderMixinFields0[2].Descriptor()
+	// emailprovider.DefaultUpdatedAt holds the default value on creation for the updated_at field.
+	emailprovider.DefaultUpdatedAt = emailproviderDescUpdatedAt.Default.(func() time.Time)
+	// emailprovider.UpdateDefaultUpdatedAt holds the default value on update for the updated_at field.
+	emailprovider.UpdateDefaultUpdatedAt = emailproviderDescUpdatedAt.UpdateDefault.(func() time.Time)
+	// emailproviderDescTLS is the schema descriptor for tls field.
+	emailproviderDescTLS := emailproviderFields[8].Descriptor()
+	// emailprovider.DefaultTLS holds the default value on creation for the tls field.
+	emailprovider.DefaultTLS = emailproviderDescTLS.Default.(bool)
+	// emailproviderDescIsDefault is the schema descriptor for is_default field.
+	emailproviderDescIsDefault := emailproviderFields[9].Descriptor()
+	// emailprovider.DefaultIsDefault holds the default value on creation for the is_default field.
+	emailprovider.DefaultIsDefault = emailproviderDescIsDefault.Default.(bool)
 	smslogMixin := schema.SmsLog{}.Mixin()
 	smslogMixinFields0 := smslogMixin[0].Fields()
 	_ = smslogMixinFields0
@@ -53,4 +78,23 @@ func init() {
 	smslogDescID := smslogMixinFields0[0].Descriptor()
 	// smslog.DefaultID holds the default value on creation for the id field.
 	smslog.DefaultID = smslogDescID.Default.(func() uuid.UUID)
+	smsproviderMixin := schema.SmsProvider{}.Mixin()
+	smsproviderMixinFields0 := smsproviderMixin[0].Fields()
+	_ = smsproviderMixinFields0
+	smsproviderFields := schema.SmsProvider{}.Fields()
+	_ = smsproviderFields
+	// smsproviderDescCreatedAt is the schema descriptor for created_at field.
+	smsproviderDescCreatedAt := smsproviderMixinFields0[1].Descriptor()
+	// smsprovider.DefaultCreatedAt holds the default value on creation for the created_at field.
+	smsprovider.DefaultCreatedAt = smsproviderDescCreatedAt.Default.(func() time.Time)
+	// smsproviderDescUpdatedAt is the schema descriptor for updated_at field.
+	smsproviderDescUpdatedAt := smsproviderMixinFields0[2].Descriptor()
+	// smsprovider.DefaultUpdatedAt holds the default value on creation for the updated_at field.
+	smsprovider.DefaultUpdatedAt = smsproviderDescUpdatedAt.Default.(func() time.Time)
+	// smsprovider.UpdateDefaultUpdatedAt holds the default value on update for the updated_at field.
+	smsprovider.UpdateDefaultUpdatedAt = smsproviderDescUpdatedAt.UpdateDefault.(func() time.Time)
+	// smsproviderDescIsDefault is the schema descriptor for is_default field.
+	smsproviderDescIsDefault := smsproviderFields[4].Descriptor()
+	// smsprovider.DefaultIsDefault holds the default value on creation for the is_default field.
+	smsprovider.DefaultIsDefault = smsproviderDescIsDefault.Default.(bool)
 }
