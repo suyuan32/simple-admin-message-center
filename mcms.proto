@@ -11,65 +11,8 @@ message IDsReq {
   repeated uint64 ids = 1;
 }
 
-message EmailLogListReq {
-  uint64 page = 1;
-  uint64 page_size = 2;
-  optional string target = 3;
-  optional string subject = 4;
-  optional string provider = 5;
-}
-
-message EmailProviderListResp {
-  uint64 total = 1;
-  repeated EmailProviderInfo data = 2;
-}
-
-message SmsInfo {
-  repeated string phone_number = 1;
-  repeated string params = 2;
-  optional string template_id = 4;
-  optional string app_id = 5;
-  optional string sign_name = 6;
-}
-
-message SmsLogListResp {
-  uint64 total = 1;
-  repeated SmsLogInfo data = 2;
-}
-
-message EmailLogListResp {
-  uint64 total = 1;
-  repeated EmailLogInfo data = 2;
-}
-
-message EmailProviderListReq {
-  uint64 page = 1;
-  uint64 page_size = 2;
-  optional string name = 3;
-  optional string email_addr = 4;
-}
-
-//  base message
-message Empty {}
-
 message UUIDsReq {
   repeated string ids = 1;
-}
-
-message BaseResp {
-  string msg = 1;
-}
-
-message BaseIDResp {
-  uint64 id = 1;
-  string msg = 2;
-}
-
-message EmailInfo {
-  repeated string target = 1;
-  string subject = 2;
-  string content = 3;
-  string provider = 4;
 }
 
 message EmailLogInfo {
@@ -89,18 +32,21 @@ message SmsProviderListReq {
   optional string name = 3;
 }
 
-message UUIDReq {
-  string id = 1;
+//  base message
+message Empty {}
+
+message EmailProviderListResp {
+  uint64 total = 1;
+  repeated EmailProviderInfo data = 2;
 }
 
-message PageInfoReq {
-  uint64 page = 1;
-  uint64 page_size = 2;
-}
-
-message BaseUUIDResp {
-  string id = 1;
-  string msg = 2;
+message SmsInfo {
+  repeated string phone_number = 1;
+  repeated string params = 2;
+  optional string template_id = 4;
+  optional string app_id = 5;
+  optional string sign_name = 6;
+  string provider = 7;
 }
 
 message SmsLogInfo {
@@ -124,9 +70,68 @@ message SmsProviderInfo {
   optional bool is_default = 8;
 }
 
+message PageInfoReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+}
+
+message EmailInfo {
+  repeated string target = 1;
+  string subject = 2;
+  string content = 3;
+  string provider = 4;
+}
+
+message EmailLogListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string target = 3;
+  optional string subject = 4;
+  optional string provider = 5;
+}
+
+message EmailProviderListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string name = 3;
+  optional string email_addr = 4;
+}
+
+message SmsLogListResp {
+  uint64 total = 1;
+  repeated SmsLogInfo data = 2;
+}
+
+message SmsLogListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string phone_number = 3;
+  optional string content = 4;
+  optional string provider = 5;
+}
+
 message SmsProviderListResp {
   uint64 total = 1;
   repeated SmsProviderInfo data = 2;
+}
+
+message UUIDReq {
+  string id = 1;
+}
+
+message BaseIDResp {
+  uint64 id = 1;
+  string msg = 2;
+}
+
+message BaseUUIDResp {
+  string id = 1;
+  string msg = 2;
+}
+
+message EmailLogListResp {
+  uint64 total = 1;
+  repeated EmailLogInfo data = 2;
 }
 
 message EmailProviderInfo {
@@ -145,12 +150,8 @@ message EmailProviderInfo {
   optional bool is_default = 13;
 }
 
-message SmsLogListReq {
-  uint64 page = 1;
-  uint64 page_size = 2;
-  optional string phone_number = 3;
-  optional string content = 4;
-  optional string provider = 5;
+message BaseResp {
+  string msg = 1;
 }
 
 service Mcms {

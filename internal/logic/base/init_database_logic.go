@@ -37,6 +37,16 @@ func (l *InitDatabaseLogic) InitDatabase(in *mcms.Empty) (*mcms.BaseResp, error)
 		return nil, errorx.NewCodeError(errorcode.Internal, err.Error())
 	}
 
+	err := l.InsertEmailProviderData()
+	if err != nil {
+		return nil, err
+	}
+
+	err = l.InsertSmsProviderData()
+	if err != nil {
+		return nil, err
+	}
+
 	return &mcms.BaseResp{Msg: i18n.Success}, nil
 }
 
@@ -51,7 +61,8 @@ func (l *InitDatabaseLogic) InsertEmailProviderData() error {
 		SetPassword("input your password").
 		SetPort(465).
 		SetHostName("smtp.qq.com").
-		SetTLS(true))
+		SetTLS(true).
+		SetIsDefault(true))
 
 	err := l.svcCtx.DB.EmailProvider.CreateBulk(emailProviders...).Exec(l.ctx)
 	if err != nil {

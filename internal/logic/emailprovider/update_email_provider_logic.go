@@ -2,6 +2,7 @@ package emailprovider
 
 import (
 	"context"
+	"net/smtp"
 
 	"github.com/suyuan32/simple-admin-message-center/internal/svc"
 	"github.com/suyuan32/simple-admin-message-center/internal/utils/dberrorhandler"
@@ -49,5 +50,8 @@ func (l *UpdateEmailProviderLogic) UpdateEmailProvider(in *mcms.EmailProviderInf
 		return nil, dberrorhandler.DefaultEntError(l.Logger, err, in)
 	}
 
-	return &mcms.BaseResp{Msg: i18n.CreateSuccess}, nil
+	l.svcCtx.EmailAddrGroup = map[string]string{}
+	l.svcCtx.EmailClientGroup = map[string]*smtp.Client{}
+
+	return &mcms.BaseResp{Msg: i18n.UpdateSuccess}, nil
 }

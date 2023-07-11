@@ -3,7 +3,6 @@ package svc
 import (
 	"github.com/suyuan32/simple-admin-message-center/ent"
 	"github.com/suyuan32/simple-admin-message-center/internal/config"
-	"github.com/suyuan32/simple-admin-message-center/internal/enum/smsprovider"
 	"github.com/suyuan32/simple-admin-message-center/internal/utils/smssdk"
 	"net/smtp"
 
@@ -18,6 +17,7 @@ type ServiceContext struct {
 	EmailAuth        *smtp.Auth
 	SmsGroup         *smssdk.SmsGroup
 	EmailClientGroup map[string]*smtp.Client
+	EmailAddrGroup   map[string]string
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
@@ -27,20 +27,12 @@ func NewServiceContext(c config.Config) *ServiceContext {
 		ent.Debug(), // debug mode
 	)
 
-	smsGroup := &smssdk.SmsGroup{}
-	switch c.SmsConf.Provider {
-	case smsprovider.Tencent:
-		smsGroup.TencentSmsClient = c.SmsConf.NewTencentClient()
-	default:
-		smsGroup.TencentSmsClient = c.SmsConf.NewTencentClient()
-	}
-
 	return &ServiceContext{
 		Config:           c,
 		DB:               db,
 		Redis:            redis.MustNewRedis(c.RedisConf),
-		EmailAuth:        c.EmailConf.NewAuth(),
-		SmsGroup:         smsGroup,
+		SmsGroup:         &smssdk.SmsGroup{},
+		EmailAddrGroup:   map[string]string{},
 		EmailClientGroup: map[string]*smtp.Client{},
 	}
 }

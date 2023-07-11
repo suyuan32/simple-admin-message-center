@@ -2,6 +2,7 @@ package emailprovider
 
 import (
 	"context"
+	"net/smtp"
 
 	"github.com/suyuan32/simple-admin-message-center/ent/emailprovider"
 	"github.com/suyuan32/simple-admin-message-center/internal/svc"
@@ -32,6 +33,9 @@ func (l *DeleteEmailProviderLogic) DeleteEmailProvider(in *mcms.IDsReq) (*mcms.B
 	if err != nil {
 		return nil, dberrorhandler.DefaultEntError(l.Logger, err, in)
 	}
+
+	l.svcCtx.EmailAddrGroup = map[string]string{}
+	l.svcCtx.EmailClientGroup = map[string]*smtp.Client{}
 
 	return &mcms.BaseResp{Msg: i18n.DeleteSuccess}, nil
 }
