@@ -34,12 +34,21 @@ func NewSendEmailLogic(ctx context.Context, svcCtx *svc.ServiceContext) *SendEma
 }
 
 func (l *SendEmailLogic) SendEmail(in *mcms.EmailInfo) (*mcms.BaseUUIDResp, error) {
+	// If the provider is nil, use default
+	if in.Provider == nil {
+		defaultProvider, err := l.svcCtx.DB.EmailProvider.Query().Where(emailprovider2.IsDefaultEQ(true)).First(l.ctx)
+		if err != nil {
+			return nil, dberrorhandler.DefaultEntError(l.Logger, err, in)
+		}
+		*in.Provider = defaultProvider.Name
+	}
+
 	var client *smtp.Client
 	var ok bool
 
 	// client cache
-	if client, ok = l.svcCtx.EmailClientGroup[in.Provider]; !ok {
-		providerData, err := l.svcCtx.DB.EmailProvider.Query().Where(emailprovider2.NameEQ(in.Provider)).First(l.ctx)
+	if client, ok = l.svcCtx.EmailClientGroup[*in.Provider]; !ok {
+		providerData, err := l.svcCtx.DB.EmailProvider.Query().Where(emailprovider2.NameEQ(*in.Provider)).First(l.ctx)
 		if err != nil {
 			return nil, dberrorhandler.DefaultEntError(l.Logger, err, in)
 		}
@@ -52,10 +61,10 @@ func (l *SendEmailLogic) SendEmail(in *mcms.EmailInfo) (*mcms.BaseUUIDResp, erro
 			Port:      int(providerData.Port),
 			TLS:       providerData.TLS,
 		}
-		l.svcCtx.EmailClientGroup[in.Provider] = emailProviderConfig.NewClient()
-		l.svcCtx.EmailAddrGroup[in.Provider] = emailProviderConfig.EmailAddr
+		l.svcCtx.EmailClientGroup[*in.Provider] = emailProviderConfig.NewClient()
+		l.svcCtx.EmailAddrGroup[*in.Provider] = emailProviderConfig.EmailAddr
 
-		client = l.svcCtx.EmailClientGroup[in.Provider]
+		client = l.svcCtx.EmailClientGroup[*in.Provider]
 	}
 
 	// error handler
@@ -67,7 +76,7 @@ func (l *SendEmailLogic) SendEmail(in *mcms.EmailInfo) (*mcms.BaseUUIDResp, erro
 			SetContent(in.Content).
 			SetSubject(in.Subject).
 			SetSendStatus(2).
-			SetProvider(in.Provider).
+			SetProvider(*in.Provider).
 			Exec(context.Background())
 
 		if dberr != nil {
@@ -77,7 +86,7 @@ func (l *SendEmailLogic) SendEmail(in *mcms.EmailInfo) (*mcms.BaseUUIDResp, erro
 		return nil, errorx.NewInternalError(i18n.Failed)
 	}
 
-	fromEmailAddress := l.svcCtx.EmailAddrGroup[in.Provider]
+	fromEmailAddress := l.svcCtx.EmailAddrGroup[*in.Provider]
 
 	// Setup headers
 	headers := make(map[string]string)
@@ -129,7 +138,7 @@ func (l *SendEmailLogic) SendEmail(in *mcms.EmailInfo) (*mcms.BaseUUIDResp, erro
 		SetContent(in.Content).
 		SetSubject(in.Subject).
 		SetSendStatus(1).
-		SetProvider(in.Provider).
+		SetProvider(*in.Provider).
 		Save(context.Background())
 
 	if dberr != nil {

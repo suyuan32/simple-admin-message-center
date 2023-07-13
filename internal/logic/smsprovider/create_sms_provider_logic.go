@@ -2,6 +2,7 @@ package smsprovider
 
 import (
 	"context"
+	smsprovider2 "github.com/suyuan32/simple-admin-message-center/ent/smsprovider"
 
 	"github.com/suyuan32/simple-admin-message-center/internal/svc"
 	"github.com/suyuan32/simple-admin-message-center/internal/utils/dberrorhandler"
@@ -37,6 +38,17 @@ func (l *CreateSmsProviderLogic) CreateSmsProvider(in *mcms.SmsProviderInfo) (*m
 
 	if err != nil {
 		return nil, dberrorhandler.DefaultEntError(l.Logger, err, in)
+	}
+
+	// If it is default, set other default to false
+	if in.IsDefault != nil && *in.IsDefault == true {
+		err = l.svcCtx.DB.SmsProvider.Update().
+			Where(smsprovider2.Not(smsprovider2.IDEQ(*in.Id))).
+			SetIsDefault(false).
+			Exec(l.ctx)
+		if err != nil {
+			return nil, dberrorhandler.DefaultEntError(l.Logger, err, in)
+		}
 	}
 
 	return &mcms.BaseIDResp{Id: result.ID, Msg: i18n.CreateSuccess}, nil

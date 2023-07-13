@@ -2,6 +2,7 @@ package emailprovider
 
 import (
 	"context"
+	emailprovider2 "github.com/suyuan32/simple-admin-message-center/ent/emailprovider"
 	"net/smtp"
 
 	"github.com/suyuan32/simple-admin-message-center/internal/svc"
@@ -48,6 +49,17 @@ func (l *UpdateEmailProviderLogic) UpdateEmailProvider(in *mcms.EmailProviderInf
 
 	if err != nil {
 		return nil, dberrorhandler.DefaultEntError(l.Logger, err, in)
+	}
+
+	// If it is default, set other default to false
+	if in.IsDefault != nil && *in.IsDefault == true {
+		err = l.svcCtx.DB.EmailProvider.Update().
+			Where(emailprovider2.Not(emailprovider2.IDEQ(*in.Id))).
+			SetIsDefault(false).
+			Exec(l.ctx)
+		if err != nil {
+			return nil, dberrorhandler.DefaultEntError(l.Logger, err, in)
+		}
 	}
 
 	l.svcCtx.EmailAddrGroup = map[string]string{}

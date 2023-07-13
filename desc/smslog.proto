@@ -23,6 +23,7 @@ message SmsLogListReq {
   optional string phone_number = 3;
   optional string content = 4;
   optional string provider = 5;
+  optional uint32 send_status = 6;
 }
 
 

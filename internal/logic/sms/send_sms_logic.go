@@ -33,17 +33,26 @@ func NewSendSmsLogic(ctx context.Context, svcCtx *svc.ServiceContext) *SendSmsLo
 }
 
 func (l *SendSmsLogic) SendSms(in *mcms.SmsInfo) (*mcms.BaseUUIDResp, error) {
-	switch in.Provider {
+	// If the provider is nil, use default
+	if in.Provider == nil {
+		defaultProvider, err := l.svcCtx.DB.SmsProvider.Query().Where(smsprovider2.IsDefaultEQ(true)).First(l.ctx)
+		if err != nil {
+			return nil, dberrorhandler.DefaultEntError(l.Logger, err, in)
+		}
+		*in.Provider = defaultProvider.Name
+	}
+
+	switch *in.Provider {
 	case smsprovider.Tencent:
 		if l.svcCtx.SmsGroup.TencentSmsClient == nil {
-			data, err := l.svcCtx.DB.SmsProvider.Query().Where(smsprovider2.NameEQ(in.Provider)).First(l.ctx)
+			data, err := l.svcCtx.DB.SmsProvider.Query().Where(smsprovider2.NameEQ(*in.Provider)).First(l.ctx)
 			if err != nil {
 				return nil, dberrorhandler.DefaultEntError(l.Logger, err, in)
 			}
 			clientConf := &smssdk.SmsConf{
 				SecretId:  data.SecretID,
 				SecretKey: data.SecretKey,
-				Provider:  in.Provider,
+				Provider:  *in.Provider,
 				Region:    data.Region,
 			}
 			l.svcCtx.SmsGroup.TencentSmsClient = clientConf.NewTencentClient()
@@ -52,7 +61,7 @@ func (l *SendSmsLogic) SendSms(in *mcms.SmsInfo) (*mcms.BaseUUIDResp, error) {
 		return nil, errorx.NewInvalidArgumentError("provider not found")
 	}
 
-	switch in.Provider {
+	switch *in.Provider {
 	case smsprovider.Tencent:
 		request := sms.NewSendSmsRequest()
 		request.TemplateId = in.TemplateId
@@ -68,7 +77,7 @@ func (l *SendSmsLogic) SendSms(in *mcms.SmsInfo) (*mcms.BaseUUIDResp, error) {
 				SetSendStatus(2).
 				SetContent(strings.Join(in.Params, ",")).
 				SetPhoneNumber(strings.Join(in.PhoneNumber, ",")).
-				SetProvider(in.Provider).
+				SetProvider(*in.Provider).
 				Exec(context.Background())
 
 			if err != nil {
@@ -84,7 +93,7 @@ func (l *SendSmsLogic) SendSms(in *mcms.SmsInfo) (*mcms.BaseUUIDResp, error) {
 		SetSendStatus(1).
 		SetContent(strings.Join(in.Params, ",")).
 		SetPhoneNumber(strings.Join(in.PhoneNumber, ",")).
-		SetProvider(in.Provider).
+		SetProvider(*in.Provider).
 		Save(context.Background())
 
 	if err != nil {
