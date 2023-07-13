@@ -37,7 +37,7 @@ func (l *GetSmsLogListLogic) GetSmsLogList(in *mcms.SmsLogListReq) (*mcms.SmsLog
 	if in.Provider != nil {
 		predicates = append(predicates, smslog.ProviderContains(*in.Provider))
 	}
-	if in.SendStatus != nil {
+	if in.SendStatus != nil && *in.SendStatus != 0 {
 		predicates = append(predicates, smslog.SendStatusEQ(uint8(*in.SendStatus)))
 	}
 	result, err := l.svcCtx.DB.SmsLog.Query().Where(predicates...).Page(l.ctx, in.Page, in.PageSize)
