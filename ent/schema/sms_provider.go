@@ -18,6 +18,7 @@ func (SmsProvider) Fields() []ent.Field {
 	return []ent.Field{
 		field.String("name").
 			Comment("The SMS provider name | 短信服务的提供商").
+			Unique().
 			Annotations(entsql.WithComments(true)),
 		field.String("secret_id").
 			Comment("The secret ID | 密钥 ID").

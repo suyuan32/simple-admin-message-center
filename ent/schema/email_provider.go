@@ -16,11 +16,15 @@ type EmailProvider struct {
 // Fields of the EmailProvider.
 func (EmailProvider) Fields() []ent.Field {
 	return []ent.Field{
-		field.String("name").Comment("The email provider name | 电子邮件服务的提供商").
+		field.String("name").
+			Comment("The email provider name | 电子邮件服务的提供商").
+			Unique().
 			Annotations(entsql.WithComments(true)),
-		field.Uint8("auth_type").Comment("The auth type, supported plain, CRAMMD5 | 鉴权类型, 支持 plain, CRAMMD5").
+		field.Uint8("auth_type").
+			Comment("The auth type, supported plain, CRAMMD5 | 鉴权类型, 支持 plain, CRAMMD5").
 			Annotations(entsql.WithComments(true)),
-		field.String("email_addr").Comment("The email address | 邮箱地址").
+		field.String("email_addr").
+			Comment("The email address | 邮箱地址").
 			Annotations(entsql.WithComments(true)),
 		field.String("password").
 			Optional().

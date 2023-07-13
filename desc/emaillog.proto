@@ -24,6 +24,7 @@ message EmailLogListReq {
   optional string target = 3;
   optional string subject = 4;
   optional string provider = 5;
+  optional uint32 send_status = 6;
 }
 
 

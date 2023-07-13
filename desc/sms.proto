@@ -8,7 +8,7 @@ message SmsInfo {
   optional string template_id = 4;
   optional string app_id = 5;
   optional string sign_name = 6;
-  string provider = 7;
+  optional string provider = 7;
 }
 
 

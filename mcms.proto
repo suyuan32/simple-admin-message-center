@@ -3,60 +3,9 @@ syntax = "proto3";
 package mcms;
 option go_package="./mcms";
 
-message IDReq {
-  uint64 id = 1;
-}
-
-message IDsReq {
-  repeated uint64 ids = 1;
-}
-
-message UUIDsReq {
-  repeated string ids = 1;
-}
-
-message EmailLogInfo {
-  optional string id = 1;
-  optional int64 created_at = 2;
-  optional int64 updated_at = 3;
-  optional string target = 4;
-  optional string subject = 5;
-  optional string content = 6;
-  optional uint32 send_status = 7;
-  optional string provider = 8;
-}
-
-message SmsProviderListReq {
-  uint64 page = 1;
-  uint64 page_size = 2;
-  optional string name = 3;
-}
-
-//  base message
-message Empty {}
-
-message EmailProviderListResp {
+message SmsLogListResp {
   uint64 total = 1;
-  repeated EmailProviderInfo data = 2;
-}
-
-message SmsInfo {
-  repeated string phone_number = 1;
-  repeated string params = 2;
-  optional string template_id = 4;
-  optional string app_id = 5;
-  optional string sign_name = 6;
-  string provider = 7;
-}
-
-message SmsLogInfo {
-  optional string id = 1;
-  optional int64 created_at = 2;
-  optional int64 updated_at = 3;
-  optional string phone_number = 4;
-  optional string content = 5;
-  optional uint32 send_status = 6;
-  optional string provider = 7;
+  repeated SmsLogInfo data = 2;
 }
 
 message SmsProviderInfo {
@@ -70,53 +19,13 @@ message SmsProviderInfo {
   optional bool is_default = 8;
 }
 
+message UUIDsReq {
+  repeated string ids = 1;
+}
+
 message PageInfoReq {
   uint64 page = 1;
   uint64 page_size = 2;
-}
-
-message EmailInfo {
-  repeated string target = 1;
-  string subject = 2;
-  string content = 3;
-  string provider = 4;
-}
-
-message EmailLogListReq {
-  uint64 page = 1;
-  uint64 page_size = 2;
-  optional string target = 3;
-  optional string subject = 4;
-  optional string provider = 5;
-}
-
-message EmailProviderListReq {
-  uint64 page = 1;
-  uint64 page_size = 2;
-  optional string name = 3;
-  optional string email_addr = 4;
-}
-
-message SmsLogListResp {
-  uint64 total = 1;
-  repeated SmsLogInfo data = 2;
-}
-
-message SmsLogListReq {
-  uint64 page = 1;
-  uint64 page_size = 2;
-  optional string phone_number = 3;
-  optional string content = 4;
-  optional string provider = 5;
-}
-
-message SmsProviderListResp {
-  uint64 total = 1;
-  repeated SmsProviderInfo data = 2;
-}
-
-message UUIDReq {
-  string id = 1;
 }
 
 message BaseIDResp {
@@ -124,14 +33,15 @@ message BaseIDResp {
   string msg = 2;
 }
 
-message BaseUUIDResp {
-  string id = 1;
-  string msg = 2;
-}
-
-message EmailLogListResp {
-  uint64 total = 1;
-  repeated EmailLogInfo data = 2;
+message EmailLogInfo {
+  optional string id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional string target = 4;
+  optional string subject = 5;
+  optional string content = 6;
+  optional uint32 send_status = 7;
+  optional string provider = 8;
 }
 
 message EmailProviderInfo {
@@ -150,8 +60,100 @@ message EmailProviderInfo {
   optional bool is_default = 13;
 }
 
+message SmsProviderListResp {
+  uint64 total = 1;
+  repeated SmsProviderInfo data = 2;
+}
+
+message IDReq {
+  uint64 id = 1;
+}
+
+message UUIDReq {
+  string id = 1;
+}
+
+message BaseUUIDResp {
+  string id = 1;
+  string msg = 2;
+}
+
+message EmailProviderListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string name = 3;
+  optional string email_addr = 4;
+}
+
+message SmsInfo {
+  repeated string phone_number = 1;
+  repeated string params = 2;
+  optional string template_id = 4;
+  optional string app_id = 5;
+  optional string sign_name = 6;
+  optional string provider = 7;
+}
+
+message SmsLogListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string phone_number = 3;
+  optional string content = 4;
+  optional string provider = 5;
+  optional uint32 send_status = 6;
+}
+
+message EmailProviderListResp {
+  uint64 total = 1;
+  repeated EmailProviderInfo data = 2;
+}
+
+message SmsLogInfo {
+  optional string id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional string phone_number = 4;
+  optional string content = 5;
+  optional uint32 send_status = 6;
+  optional string provider = 7;
+}
+
+//  base message
+message Empty {}
+
+message IDsReq {
+  repeated uint64 ids = 1;
+}
+
 message BaseResp {
   string msg = 1;
+}
+
+message EmailInfo {
+  repeated string target = 1;
+  string subject = 2;
+  string content = 3;
+  optional string provider = 4;
+}
+
+message EmailLogListResp {
+  uint64 total = 1;
+  repeated EmailLogInfo data = 2;
+}
+
+message EmailLogListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string target = 3;
+  optional string subject = 4;
+  optional string provider = 5;
+  optional uint32 send_status = 6;
+}
+
+message SmsProviderListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string name = 3;
 }
 
 service Mcms {
