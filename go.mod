@@ -2,13 +2,13 @@ module github.com/suyuan32/simple-admin-message-center
 
 go 1.20
 
-replace github.com/zeromicro/go-zero v1.5.3 => github.com/suyuan32/simple-admin-tools v1.5.12
+replace github.com/zeromicro/go-zero v1.5.3 => github.com/suyuan32/simple-admin-tools v1.5.13
 
 require (
 	entgo.io/ent v0.12.3
 	github.com/gofrs/uuid/v5 v5.0.0
 	github.com/pkg/errors v0.9.1
-	github.com/suyuan32/simple-admin-common v1.0.13
+	github.com/suyuan32/simple-admin-common v1.0.14
 	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.695
 	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/sms v1.0.695
 	github.com/zeromicro/go-zero v1.5.3
