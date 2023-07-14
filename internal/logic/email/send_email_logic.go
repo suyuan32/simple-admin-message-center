@@ -40,7 +40,7 @@ func (l *SendEmailLogic) SendEmail(in *mcms.EmailInfo) (*mcms.BaseUUIDResp, erro
 		if err != nil {
 			return nil, dberrorhandler.DefaultEntError(l.Logger, err, in)
 		}
-		*in.Provider = defaultProvider.Name
+		in.Provider = &defaultProvider.Name
 	}
 
 	var client *smtp.Client
