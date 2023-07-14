@@ -39,7 +39,7 @@ func (l *SendSmsLogic) SendSms(in *mcms.SmsInfo) (*mcms.BaseUUIDResp, error) {
 		if err != nil {
 			return nil, dberrorhandler.DefaultEntError(l.Logger, err, in)
 		}
-		*in.Provider = defaultProvider.Name
+		in.Provider = &defaultProvider.Name
 	}
 
 	switch *in.Provider {
