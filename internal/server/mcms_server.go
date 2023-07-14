@@ -9,8 +9,10 @@ import (
 	"github.com/suyuan32/simple-admin-message-center/internal/logic/base"
 	"github.com/suyuan32/simple-admin-message-center/internal/logic/email"
 	"github.com/suyuan32/simple-admin-message-center/internal/logic/emaillog"
+	"github.com/suyuan32/simple-admin-message-center/internal/logic/emailprovider"
 	"github.com/suyuan32/simple-admin-message-center/internal/logic/sms"
 	"github.com/suyuan32/simple-admin-message-center/internal/logic/smslog"
+	"github.com/suyuan32/simple-admin-message-center/internal/logic/smsprovider"
 	"github.com/suyuan32/simple-admin-message-center/internal/svc"
 	"github.com/suyuan32/simple-admin-message-center/types/mcms"
 )
@@ -62,6 +64,32 @@ func (s *McmsServer) DeleteEmailLog(ctx context.Context, in *mcms.UUIDsReq) (*mc
 	return l.DeleteEmailLog(in)
 }
 
+// EmailProvider management
+func (s *McmsServer) CreateEmailProvider(ctx context.Context, in *mcms.EmailProviderInfo) (*mcms.BaseIDResp, error) {
+	l := emailprovider.NewCreateEmailProviderLogic(ctx, s.svcCtx)
+	return l.CreateEmailProvider(in)
+}
+
+func (s *McmsServer) UpdateEmailProvider(ctx context.Context, in *mcms.EmailProviderInfo) (*mcms.BaseResp, error) {
+	l := emailprovider.NewUpdateEmailProviderLogic(ctx, s.svcCtx)
+	return l.UpdateEmailProvider(in)
+}
+
+func (s *McmsServer) GetEmailProviderList(ctx context.Context, in *mcms.EmailProviderListReq) (*mcms.EmailProviderListResp, error) {
+	l := emailprovider.NewGetEmailProviderListLogic(ctx, s.svcCtx)
+	return l.GetEmailProviderList(in)
+}
+
+func (s *McmsServer) GetEmailProviderById(ctx context.Context, in *mcms.IDReq) (*mcms.EmailProviderInfo, error) {
+	l := emailprovider.NewGetEmailProviderByIdLogic(ctx, s.svcCtx)
+	return l.GetEmailProviderById(in)
+}
+
+func (s *McmsServer) DeleteEmailProvider(ctx context.Context, in *mcms.IDsReq) (*mcms.BaseResp, error) {
+	l := emailprovider.NewDeleteEmailProviderLogic(ctx, s.svcCtx)
+	return l.DeleteEmailProvider(in)
+}
+
 func (s *McmsServer) SendSms(ctx context.Context, in *mcms.SmsInfo) (*mcms.BaseUUIDResp, error) {
 	l := sms.NewSendSmsLogic(ctx, s.svcCtx)
 	return l.SendSms(in)
@@ -91,4 +119,30 @@ func (s *McmsServer) GetSmsLogById(ctx context.Context, in *mcms.UUIDReq) (*mcms
 func (s *McmsServer) DeleteSmsLog(ctx context.Context, in *mcms.UUIDsReq) (*mcms.BaseResp, error) {
 	l := smslog.NewDeleteSmsLogLogic(ctx, s.svcCtx)
 	return l.DeleteSmsLog(in)
+}
+
+// SmsProvider management
+func (s *McmsServer) CreateSmsProvider(ctx context.Context, in *mcms.SmsProviderInfo) (*mcms.BaseIDResp, error) {
+	l := smsprovider.NewCreateSmsProviderLogic(ctx, s.svcCtx)
+	return l.CreateSmsProvider(in)
+}
+
+func (s *McmsServer) UpdateSmsProvider(ctx context.Context, in *mcms.SmsProviderInfo) (*mcms.BaseResp, error) {
+	l := smsprovider.NewUpdateSmsProviderLogic(ctx, s.svcCtx)
+	return l.UpdateSmsProvider(in)
+}
+
+func (s *McmsServer) GetSmsProviderList(ctx context.Context, in *mcms.SmsProviderListReq) (*mcms.SmsProviderListResp, error) {
+	l := smsprovider.NewGetSmsProviderListLogic(ctx, s.svcCtx)
+	return l.GetSmsProviderList(in)
+}
+
+func (s *McmsServer) GetSmsProviderById(ctx context.Context, in *mcms.IDReq) (*mcms.SmsProviderInfo, error) {
+	l := smsprovider.NewGetSmsProviderByIdLogic(ctx, s.svcCtx)
+	return l.GetSmsProviderById(in)
+}
+
+func (s *McmsServer) DeleteSmsProvider(ctx context.Context, in *mcms.IDsReq) (*mcms.BaseResp, error) {
+	l := smsprovider.NewDeleteSmsProviderLogic(ctx, s.svcCtx)
+	return l.DeleteSmsProvider(in)
 }

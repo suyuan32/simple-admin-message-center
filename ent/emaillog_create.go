@@ -73,6 +73,12 @@ func (elc *EmailLogCreate) SetSendStatus(u uint8) *EmailLogCreate {
 	return elc
 }
 
+// SetProvider sets the "provider" field.
+func (elc *EmailLogCreate) SetProvider(s string) *EmailLogCreate {
+	elc.mutation.SetProvider(s)
+	return elc
+}
+
 // SetID sets the "id" field.
 func (elc *EmailLogCreate) SetID(u uuid.UUID) *EmailLogCreate {
 	elc.mutation.SetID(u)
@@ -156,6 +162,9 @@ func (elc *EmailLogCreate) check() error {
 	if _, ok := elc.mutation.SendStatus(); !ok {
 		return &ValidationError{Name: "send_status", err: errors.New(`ent: missing required field "EmailLog.send_status"`)}
 	}
+	if _, ok := elc.mutation.Provider(); !ok {
+		return &ValidationError{Name: "provider", err: errors.New(`ent: missing required field "EmailLog.provider"`)}
+	}
 	return nil
 }
 
@@ -214,6 +223,10 @@ func (elc *EmailLogCreate) createSpec() (*EmailLog, *sqlgraph.CreateSpec) {
 	if value, ok := elc.mutation.SendStatus(); ok {
 		_spec.SetField(emaillog.FieldSendStatus, field.TypeUint8, value)
 		_node.SendStatus = value
+	}
+	if value, ok := elc.mutation.Provider(); ok {
+		_spec.SetField(emaillog.FieldProvider, field.TypeString, value)
+		_node.Provider = value
 	}
 	return _node, _spec
 }

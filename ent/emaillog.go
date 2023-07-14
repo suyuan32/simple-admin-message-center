@@ -30,7 +30,9 @@ type EmailLog struct {
 	// The content | 发送的内容
 	Content string `json:"content,omitempty"`
 	// The send status, 0 unknown 1 success 2 failed | 发送的状态, 0 未知， 1 成功， 2 失败
-	SendStatus   uint8 `json:"send_status,omitempty"`
+	SendStatus uint8 `json:"send_status,omitempty"`
+	// The sms service provider | 短信服务提供商
+	Provider     string `json:"provider,omitempty"`
 	selectValues sql.SelectValues
 }
 
@@ -41,7 +43,7 @@ func (*EmailLog) scanValues(columns []string) ([]any, error) {
 		switch columns[i] {
 		case emaillog.FieldSendStatus:
 			values[i] = new(sql.NullInt64)
-		case emaillog.FieldTarget, emaillog.FieldSubject, emaillog.FieldContent:
+		case emaillog.FieldTarget, emaillog.FieldSubject, emaillog.FieldContent, emaillog.FieldProvider:
 			values[i] = new(sql.NullString)
 		case emaillog.FieldCreatedAt, emaillog.FieldUpdatedAt:
 			values[i] = new(sql.NullTime)
@@ -104,6 +106,12 @@ func (el *EmailLog) assignValues(columns []string, values []any) error {
 			} else if value.Valid {
 				el.SendStatus = uint8(value.Int64)
 			}
+		case emaillog.FieldProvider:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field provider", values[i])
+			} else if value.Valid {
+				el.Provider = value.String
+			}
 		default:
 			el.selectValues.Set(columns[i], values[i])
 		}
@@ -157,6 +165,9 @@ func (el *EmailLog) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("send_status=")
 	builder.WriteString(fmt.Sprintf("%v", el.SendStatus))
+	builder.WriteString(", ")
+	builder.WriteString("provider=")
+	builder.WriteString(el.Provider)
 	builder.WriteByte(')')
 	return builder.String()
 }

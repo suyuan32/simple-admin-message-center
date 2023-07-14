@@ -9,8 +9,8 @@ import (
 )
 
 var (
-	// McmsEmailLogColumns holds the columns for the "mcms_email_log" table.
-	McmsEmailLogColumns = []*schema.Column{
+	// McmsEmailLogsColumns holds the columns for the "mcms_email_logs" table.
+	McmsEmailLogsColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeUUID},
 		{Name: "created_at", Type: field.TypeTime},
 		{Name: "updated_at", Type: field.TypeTime},
@@ -18,15 +18,38 @@ var (
 		{Name: "subject", Type: field.TypeString, Comment: "The subject | 发送的标题"},
 		{Name: "content", Type: field.TypeString, Comment: "The content | 发送的内容"},
 		{Name: "send_status", Type: field.TypeUint8, Comment: "The send status, 0 unknown 1 success 2 failed | 发送的状态, 0 未知， 1 成功， 2 失败"},
+		{Name: "provider", Type: field.TypeString, Comment: "The sms service provider | 短信服务提供商"},
 	}
-	// McmsEmailLogTable holds the schema information for the "mcms_email_log" table.
-	McmsEmailLogTable = &schema.Table{
-		Name:       "mcms_email_log",
-		Columns:    McmsEmailLogColumns,
-		PrimaryKey: []*schema.Column{McmsEmailLogColumns[0]},
+	// McmsEmailLogsTable holds the schema information for the "mcms_email_logs" table.
+	McmsEmailLogsTable = &schema.Table{
+		Name:       "mcms_email_logs",
+		Columns:    McmsEmailLogsColumns,
+		PrimaryKey: []*schema.Column{McmsEmailLogsColumns[0]},
 	}
-	// McmsSmsLogColumns holds the columns for the "mcms_sms_log" table.
-	McmsSmsLogColumns = []*schema.Column{
+	// McmsEmailProvidersColumns holds the columns for the "mcms_email_providers" table.
+	McmsEmailProvidersColumns = []*schema.Column{
+		{Name: "id", Type: field.TypeUint64, Increment: true},
+		{Name: "created_at", Type: field.TypeTime},
+		{Name: "updated_at", Type: field.TypeTime},
+		{Name: "name", Type: field.TypeString, Unique: true, Comment: "The email provider name | 电子邮件服务的提供商"},
+		{Name: "auth_type", Type: field.TypeUint8, Comment: "The auth type, supported plain, CRAMMD5 | 鉴权类型, 支持 plain, CRAMMD5"},
+		{Name: "email_addr", Type: field.TypeString, Comment: "The email address | 邮箱地址"},
+		{Name: "password", Type: field.TypeString, Nullable: true, Comment: "The email's password | 电子邮件的密码"},
+		{Name: "host_name", Type: field.TypeString, Comment: "The host name is the email service's host address | 电子邮箱服务的服务器地址"},
+		{Name: "identify", Type: field.TypeString, Nullable: true, Comment: "The identify info, for CRAMMD5 | 身份信息, 支持 CRAMMD5"},
+		{Name: "secret", Type: field.TypeString, Nullable: true, Comment: "The secret, for CRAMMD5 | 邮箱密钥, 用于 CRAMMD5"},
+		{Name: "port", Type: field.TypeUint32, Nullable: true, Comment: "The port of the host | 服务器端口"},
+		{Name: "tls", Type: field.TypeBool, Comment: "Whether to use TLS | 是否采用 tls 加密", Default: false},
+		{Name: "is_default", Type: field.TypeBool, Comment: "Is it the default provider | 是否为默认提供商", Default: false},
+	}
+	// McmsEmailProvidersTable holds the schema information for the "mcms_email_providers" table.
+	McmsEmailProvidersTable = &schema.Table{
+		Name:       "mcms_email_providers",
+		Columns:    McmsEmailProvidersColumns,
+		PrimaryKey: []*schema.Column{McmsEmailProvidersColumns[0]},
+	}
+	// McmsSmsLogsColumns holds the columns for the "mcms_sms_logs" table.
+	McmsSmsLogsColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeUUID},
 		{Name: "created_at", Type: field.TypeTime},
 		{Name: "updated_at", Type: field.TypeTime},
@@ -35,24 +58,49 @@ var (
 		{Name: "send_status", Type: field.TypeUint8, Comment: "The send status, 0 unknown 1 success 2 failed | 发送的状态, 0 未知， 1 成功， 2 失败"},
 		{Name: "provider", Type: field.TypeString, Comment: "The sms service provider | 短信服务提供商"},
 	}
-	// McmsSmsLogTable holds the schema information for the "mcms_sms_log" table.
-	McmsSmsLogTable = &schema.Table{
-		Name:       "mcms_sms_log",
-		Columns:    McmsSmsLogColumns,
-		PrimaryKey: []*schema.Column{McmsSmsLogColumns[0]},
+	// McmsSmsLogsTable holds the schema information for the "mcms_sms_logs" table.
+	McmsSmsLogsTable = &schema.Table{
+		Name:       "mcms_sms_logs",
+		Columns:    McmsSmsLogsColumns,
+		PrimaryKey: []*schema.Column{McmsSmsLogsColumns[0]},
+	}
+	// McmsSmsProvidersColumns holds the columns for the "mcms_sms_providers" table.
+	McmsSmsProvidersColumns = []*schema.Column{
+		{Name: "id", Type: field.TypeUint64, Increment: true},
+		{Name: "created_at", Type: field.TypeTime},
+		{Name: "updated_at", Type: field.TypeTime},
+		{Name: "name", Type: field.TypeString, Unique: true, Comment: "The SMS provider name | 短信服务的提供商"},
+		{Name: "secret_id", Type: field.TypeString, Comment: "The secret ID | 密钥 ID"},
+		{Name: "secret_key", Type: field.TypeString, Comment: "The secret key | 密钥 Key"},
+		{Name: "region", Type: field.TypeString, Comment: "The service region | 服务器所在地区"},
+		{Name: "is_default", Type: field.TypeBool, Comment: "Is it the default provider | 是否为默认提供商", Default: false},
+	}
+	// McmsSmsProvidersTable holds the schema information for the "mcms_sms_providers" table.
+	McmsSmsProvidersTable = &schema.Table{
+		Name:       "mcms_sms_providers",
+		Columns:    McmsSmsProvidersColumns,
+		PrimaryKey: []*schema.Column{McmsSmsProvidersColumns[0]},
 	}
 	// Tables holds all the tables in the schema.
 	Tables = []*schema.Table{
-		McmsEmailLogTable,
-		McmsSmsLogTable,
+		McmsEmailLogsTable,
+		McmsEmailProvidersTable,
+		McmsSmsLogsTable,
+		McmsSmsProvidersTable,
 	}
 )
 
 func init() {
-	McmsEmailLogTable.Annotation = &entsql.Annotation{
-		Table: "mcms_email_log",
+	McmsEmailLogsTable.Annotation = &entsql.Annotation{
+		Table: "mcms_email_logs",
 	}
-	McmsSmsLogTable.Annotation = &entsql.Annotation{
-		Table: "mcms_sms_log",
+	McmsEmailProvidersTable.Annotation = &entsql.Annotation{
+		Table: "mcms_email_providers",
+	}
+	McmsSmsLogsTable.Annotation = &entsql.Annotation{
+		Table: "mcms_sms_logs",
+	}
+	McmsSmsProvidersTable.Annotation = &entsql.Annotation{
+		Table: "mcms_sms_providers",
 	}
 }

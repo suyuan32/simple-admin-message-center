@@ -65,6 +65,12 @@ func (elu *EmailLogUpdate) AddSendStatus(u int8) *EmailLogUpdate {
 	return elu
 }
 
+// SetProvider sets the "provider" field.
+func (elu *EmailLogUpdate) SetProvider(s string) *EmailLogUpdate {
+	elu.mutation.SetProvider(s)
+	return elu
+}
+
 // Mutation returns the EmailLogMutation object of the builder.
 func (elu *EmailLogUpdate) Mutation() *EmailLogMutation {
 	return elu.mutation
@@ -133,6 +139,9 @@ func (elu *EmailLogUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if value, ok := elu.mutation.AddedSendStatus(); ok {
 		_spec.AddField(emaillog.FieldSendStatus, field.TypeUint8, value)
 	}
+	if value, ok := elu.mutation.Provider(); ok {
+		_spec.SetField(emaillog.FieldProvider, field.TypeString, value)
+	}
 	if n, err = sqlgraph.UpdateNodes(ctx, elu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{emaillog.Label}
@@ -187,6 +196,12 @@ func (eluo *EmailLogUpdateOne) SetSendStatus(u uint8) *EmailLogUpdateOne {
 // AddSendStatus adds u to the "send_status" field.
 func (eluo *EmailLogUpdateOne) AddSendStatus(u int8) *EmailLogUpdateOne {
 	eluo.mutation.AddSendStatus(u)
+	return eluo
+}
+
+// SetProvider sets the "provider" field.
+func (eluo *EmailLogUpdateOne) SetProvider(s string) *EmailLogUpdateOne {
+	eluo.mutation.SetProvider(s)
 	return eluo
 }
 
@@ -287,6 +302,9 @@ func (eluo *EmailLogUpdateOne) sqlSave(ctx context.Context) (_node *EmailLog, er
 	}
 	if value, ok := eluo.mutation.AddedSendStatus(); ok {
 		_spec.AddField(emaillog.FieldSendStatus, field.TypeUint8, value)
+	}
+	if value, ok := eluo.mutation.Provider(); ok {
+		_spec.SetField(emaillog.FieldProvider, field.TypeString, value)
 	}
 	_node = &EmailLog{config: eluo.config}
 	_spec.Assign = _node.assignValues
