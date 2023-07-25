@@ -2,6 +2,9 @@ package sms
 
 import (
 	"context"
+	aliyun "github.com/alibabacloud-go/dysmsapi-20170525/v3/client"
+	util "github.com/alibabacloud-go/tea-utils/v2/service"
+	"github.com/pkg/errors"
 	"github.com/suyuan32/simple-admin-common/i18n"
 	"github.com/suyuan32/simple-admin-common/utils/pointy"
 	smsprovider2 "github.com/suyuan32/simple-admin-message-center/ent/smsprovider"
@@ -42,6 +45,7 @@ func (l *SendSmsLogic) SendSms(in *mcms.SmsInfo) (*mcms.BaseUUIDResp, error) {
 		in.Provider = &defaultProvider.Name
 	}
 
+	// init group
 	switch *in.Provider {
 	case smsprovider.Tencent:
 		if l.svcCtx.SmsGroup.TencentSmsClient == nil {
@@ -57,10 +61,28 @@ func (l *SendSmsLogic) SendSms(in *mcms.SmsInfo) (*mcms.BaseUUIDResp, error) {
 			}
 			l.svcCtx.SmsGroup.TencentSmsClient = clientConf.NewTencentClient()
 		}
+	case smsprovider.Aliyun:
+		if l.svcCtx.SmsGroup.AliyunSmsClient == nil {
+			data, err := l.svcCtx.DB.SmsProvider.Query().Where(smsprovider2.NameEQ(*in.Provider)).First(l.ctx)
+			if err != nil {
+				return nil, dberrorhandler.DefaultEntError(l.Logger, err, in)
+			}
+			clientConf := &smssdk.SmsConf{
+				SecretId:  data.SecretID,
+				SecretKey: data.SecretKey,
+				Provider:  *in.Provider,
+				Region:    data.Region,
+			}
+			l.svcCtx.SmsGroup.AliyunSmsClient, err = clientConf.NewAliyunClient()
+			if err != nil {
+				return nil, errors.Wrap(err, "failed to initialize Aliyun SMS client")
+			}
+		}
 	default:
 		return nil, errorx.NewInvalidArgumentError("provider not found")
 	}
 
+	// send message
 	switch *in.Provider {
 	case smsprovider.Tencent:
 		request := sms.NewSendSmsRequest()
@@ -71,7 +93,7 @@ func (l *SendSmsLogic) SendSms(in *mcms.SmsInfo) (*mcms.BaseUUIDResp, error) {
 		request.SignName = in.SignName
 		resp, err := l.svcCtx.SmsGroup.TencentSmsClient.SendSms(request)
 		if err != nil {
-			logx.Errorw("failed to send sms", logx.Field("detail", err), logx.Field("data", in))
+			logx.Errorw("failed to send SMS", logx.Field("detail", err), logx.Field("data", in))
 
 			err = l.svcCtx.DB.SmsLog.Create().
 				SetSendStatus(2).
@@ -86,7 +108,34 @@ func (l *SendSmsLogic) SendSms(in *mcms.SmsInfo) (*mcms.BaseUUIDResp, error) {
 
 			return nil, errorx.NewInternalError(i18n.Failed)
 		}
-		logx.Infow("send sms by tencent", logx.Field("response", resp), logx.Field("phoneNumber", in.PhoneNumber))
+		logx.Infow("send SMS by Tencent", logx.Field("response", resp), logx.Field("phoneNumber", in.PhoneNumber))
+	case smsprovider.Aliyun:
+		request := aliyun.SendSmsRequest{}
+		request.SignName = in.SignName
+		request.TemplateCode = in.TemplateId
+		request.PhoneNumbers = pointy.GetPointer(strings.Join(in.PhoneNumber, ","))
+		if in.Params != nil {
+			request.TemplateParam = pointy.GetPointer(strings.Join(in.Params, ""))
+		}
+		options := &util.RuntimeOptions{}
+		resp, err := l.svcCtx.SmsGroup.AliyunSmsClient.SendSmsWithOptions(&request, options)
+		if err != nil {
+			logx.Errorw("failed to send SMS", logx.Field("detail", err), logx.Field("data", in))
+
+			err = l.svcCtx.DB.SmsLog.Create().
+				SetSendStatus(2).
+				SetContent(strings.Join(in.Params, ",")).
+				SetPhoneNumber(strings.Join(in.PhoneNumber, ",")).
+				SetProvider(*in.Provider).
+				Exec(context.Background())
+
+			if err != nil {
+				return nil, dberrorhandler.DefaultEntError(l.Logger, err, in)
+			}
+
+			return nil, errorx.NewInternalError(i18n.Failed)
+		}
+		logx.Infow("send SMS by Aliyun", logx.Field("response", resp), logx.Field("phoneNumber", in.PhoneNumber))
 	}
 
 	logData, err := l.svcCtx.DB.SmsLog.Create().
