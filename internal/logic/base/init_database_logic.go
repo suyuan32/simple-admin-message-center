@@ -80,7 +80,8 @@ func (l *InitDatabaseLogic) InsertSmsProviderData() error {
 		SetName("tencent").
 		SetSecretID("input your secret ID").
 		SetSecretKey("input your secret key").
-		SetRegion("ap-nanjing"))
+		SetRegion("ap-nanjing").
+		SetIsDefault(true))
 
 	err := l.svcCtx.DB.SmsProvider.CreateBulk(smsProviders...).Exec(l.ctx)
 	if err != nil {
