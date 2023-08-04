@@ -12,8 +12,8 @@ var (
 	// McmsEmailLogsColumns holds the columns for the "mcms_email_logs" table.
 	McmsEmailLogsColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeUUID},
-		{Name: "created_at", Type: field.TypeTime},
-		{Name: "updated_at", Type: field.TypeTime},
+		{Name: "created_at", Type: field.TypeTime, Comment: "Create Time | 创建日期"},
+		{Name: "updated_at", Type: field.TypeTime, Comment: "Update Time | 修改日期"},
 		{Name: "target", Type: field.TypeString, Comment: "The target email address | 目标邮箱地址"},
 		{Name: "subject", Type: field.TypeString, Comment: "The subject | 发送的标题"},
 		{Name: "content", Type: field.TypeString, Comment: "The content | 发送的内容"},
@@ -29,8 +29,8 @@ var (
 	// McmsEmailProvidersColumns holds the columns for the "mcms_email_providers" table.
 	McmsEmailProvidersColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeUint64, Increment: true},
-		{Name: "created_at", Type: field.TypeTime},
-		{Name: "updated_at", Type: field.TypeTime},
+		{Name: "created_at", Type: field.TypeTime, Comment: "Create Time | 创建日期"},
+		{Name: "updated_at", Type: field.TypeTime, Comment: "Update Time | 修改日期"},
 		{Name: "name", Type: field.TypeString, Unique: true, Comment: "The email provider name | 电子邮件服务的提供商"},
 		{Name: "auth_type", Type: field.TypeUint8, Comment: "The auth type, supported plain, CRAMMD5 | 鉴权类型, 支持 plain, CRAMMD5"},
 		{Name: "email_addr", Type: field.TypeString, Comment: "The email address | 邮箱地址"},
@@ -51,8 +51,8 @@ var (
 	// McmsSmsLogsColumns holds the columns for the "mcms_sms_logs" table.
 	McmsSmsLogsColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeUUID},
-		{Name: "created_at", Type: field.TypeTime},
-		{Name: "updated_at", Type: field.TypeTime},
+		{Name: "created_at", Type: field.TypeTime, Comment: "Create Time | 创建日期"},
+		{Name: "updated_at", Type: field.TypeTime, Comment: "Update Time | 修改日期"},
 		{Name: "phone_number", Type: field.TypeString, Comment: "The target phone number | 目标电话"},
 		{Name: "content", Type: field.TypeString, Comment: "The content | 发送的内容"},
 		{Name: "send_status", Type: field.TypeUint8, Comment: "The send status, 0 unknown 1 success 2 failed | 发送的状态, 0 未知， 1 成功， 2 失败"},
@@ -67,8 +67,8 @@ var (
 	// McmsSmsProvidersColumns holds the columns for the "mcms_sms_providers" table.
 	McmsSmsProvidersColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeUint64, Increment: true},
-		{Name: "created_at", Type: field.TypeTime},
-		{Name: "updated_at", Type: field.TypeTime},
+		{Name: "created_at", Type: field.TypeTime, Comment: "Create Time | 创建日期"},
+		{Name: "updated_at", Type: field.TypeTime, Comment: "Update Time | 修改日期"},
 		{Name: "name", Type: field.TypeString, Unique: true, Comment: "The SMS provider name | 短信服务的提供商"},
 		{Name: "secret_id", Type: field.TypeString, Comment: "The secret ID | 密钥 ID"},
 		{Name: "secret_key", Type: field.TypeString, Comment: "The secret key | 密钥 Key"},
