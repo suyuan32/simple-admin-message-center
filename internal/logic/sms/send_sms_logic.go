@@ -4,13 +4,11 @@ import (
 	"context"
 	aliyun "github.com/alibabacloud-go/dysmsapi-20170525/v3/client"
 	util "github.com/alibabacloud-go/tea-utils/v2/service"
-	"github.com/pkg/errors"
 	"github.com/suyuan32/simple-admin-common/i18n"
 	"github.com/suyuan32/simple-admin-common/utils/pointy"
 	smsprovider2 "github.com/suyuan32/simple-admin-message-center/ent/smsprovider"
 	"github.com/suyuan32/simple-admin-message-center/internal/enum/smsprovider"
 	"github.com/suyuan32/simple-admin-message-center/internal/utils/dberrorhandler"
-	"github.com/suyuan32/simple-admin-message-center/internal/utils/smssdk"
 	sms "github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/sms/v20210111"
 	"github.com/zeromicro/go-zero/core/errorx"
 	"strings"
@@ -46,40 +44,9 @@ func (l *SendSmsLogic) SendSms(in *mcms.SmsInfo) (*mcms.BaseUUIDResp, error) {
 	}
 
 	// init group
-	switch *in.Provider {
-	case smsprovider.Tencent:
-		if l.svcCtx.SmsGroup.TencentSmsClient == nil {
-			data, err := l.svcCtx.DB.SmsProvider.Query().Where(smsprovider2.NameEQ(*in.Provider)).First(l.ctx)
-			if err != nil {
-				return nil, dberrorhandler.DefaultEntError(l.Logger, err, in)
-			}
-			clientConf := &smssdk.SmsConf{
-				SecretId:  data.SecretID,
-				SecretKey: data.SecretKey,
-				Provider:  *in.Provider,
-				Region:    data.Region,
-			}
-			l.svcCtx.SmsGroup.TencentSmsClient = clientConf.NewTencentClient()
-		}
-	case smsprovider.Aliyun:
-		if l.svcCtx.SmsGroup.AliyunSmsClient == nil {
-			data, err := l.svcCtx.DB.SmsProvider.Query().Where(smsprovider2.NameEQ(*in.Provider)).First(l.ctx)
-			if err != nil {
-				return nil, dberrorhandler.DefaultEntError(l.Logger, err, in)
-			}
-			clientConf := &smssdk.SmsConf{
-				SecretId:  data.SecretID,
-				SecretKey: data.SecretKey,
-				Provider:  *in.Provider,
-				Region:    data.Region,
-			}
-			l.svcCtx.SmsGroup.AliyunSmsClient, err = clientConf.NewAliyunClient()
-			if err != nil {
-				return nil, errors.Wrap(err, "failed to initialize Aliyun SMS client")
-			}
-		}
-	default:
-		return nil, errorx.NewInvalidArgumentError("provider not found")
+	err := l.initProvider(in)
+	if err != nil {
+		return nil, err
 	}
 
 	// send message
