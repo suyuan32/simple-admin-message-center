@@ -4,6 +4,7 @@ import (
 	"context"
 	aliyun "github.com/alibabacloud-go/dysmsapi-20170525/v3/client"
 	util "github.com/alibabacloud-go/tea-utils/v2/service"
+	unisms "github.com/apistd/uni-go-sdk/sms"
 	"github.com/suyuan32/simple-admin-common/i18n"
 	"github.com/suyuan32/simple-admin-common/utils/pointy"
 	smsprovider2 "github.com/suyuan32/simple-admin-message-center/ent/smsprovider"
@@ -103,6 +104,42 @@ func (l *SendSmsLogic) SendSms(in *mcms.SmsInfo) (*mcms.BaseUUIDResp, error) {
 			return nil, errorx.NewInternalError(i18n.Failed)
 		}
 		logx.Infow("send SMS by Aliyun", logx.Field("response", resp), logx.Field("phoneNumber", in.PhoneNumber))
+	case smsprovider.Uni:
+		request := unisms.BuildMessage()
+		request.SetSignature(*in.SignName)
+		request.SetTemplateId(*in.TemplateId)
+		request.SetTo(in.PhoneNumber...)
+		if in.Params != nil {
+			paramsData := map[string]string{}
+			for _, v := range in.Params {
+				p := strings.Split(v, ":")
+				if len(p) != 2 {
+					logx.Errorw("wrong parameters in Uni SMS Request", logx.Field("param", in.Params))
+					return nil, errorx.NewInvalidArgumentError(i18n.Failed)
+				}
+				paramsData[p[0]] = p[1]
+			}
+			request.SetTemplateData(paramsData)
+		}
+
+		resp, err := l.svcCtx.SmsGroup.UniSmsClient.Send(request)
+		if err != nil {
+			logx.Errorw("failed to send SMS", logx.Field("detail", err), logx.Field("data", in))
+
+			err = l.svcCtx.DB.SmsLog.Create().
+				SetSendStatus(2).
+				SetContent(strings.Join(in.Params, ",")).
+				SetPhoneNumber(strings.Join(in.PhoneNumber, ",")).
+				SetProvider(*in.Provider).
+				Exec(context.Background())
+
+			if err != nil {
+				return nil, dberrorhandler.DefaultEntError(l.Logger, err, in)
+			}
+
+			return nil, errorx.NewInternalError(i18n.Failed)
+		}
+		logx.Infow("send SMS by Uni SMS", logx.Field("response", resp), logx.Field("phoneNumber", in.PhoneNumber))
 	}
 
 	logData, err := l.svcCtx.DB.SmsLog.Create().
