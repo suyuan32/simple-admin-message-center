@@ -43,6 +43,23 @@ func (l *SendSmsLogic) initProvider(in *mcms.SmsInfo) error {
 				return errors.Wrap(err, "failed to initialize Aliyun SMS client")
 			}
 		}
+	case smsprovider.Uni:
+		if l.svcCtx.SmsGroup.UniSmsClient == nil {
+			data, err := l.svcCtx.DB.SmsProvider.Query().Where(smsprovider2.NameEQ(*in.Provider)).First(l.ctx)
+			if err != nil {
+				return dberrorhandler.DefaultEntError(l.Logger, err, in)
+			}
+			clientConf := &smssdk.SmsConf{
+				SecretId:  data.SecretID,
+				SecretKey: data.SecretKey,
+				Provider:  *in.Provider,
+				Region:    data.Region,
+			}
+			l.svcCtx.SmsGroup.UniSmsClient, err = clientConf.NewUniClient()
+			if err != nil {
+				return errors.Wrap(err, "failed to initialize Uni SMS client")
+			}
+		}
 	default:
 		return errorx.NewInvalidArgumentError("provider not found")
 	}

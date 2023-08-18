@@ -78,6 +78,8 @@ github.com/alicebob/miniredis/v2 v2.30.3 h1:hrqDB4cHFSHQf4gO3xu6YKQg8PqJpNjLYsQA
 github.com/aliyun/credentials-go v1.1.2 h1:qU1vwGIBb3UJ8BwunHDRFtAhS6jnQLnde/yk0+Ih2GY=
 github.com/aliyun/credentials-go v1.1.2/go.mod h1:ozcZaMR5kLM7pwtCMEpVmQ242suV6qTJya2bDq4X1Tw=
 github.com/antihax/optional v1.0.0/go.mod h1:uupD/76wgC+ih3iEmQUL+0Ugr19nfwCT1kdvxnR2qWY=
+github.com/apistd/uni-go-sdk v0.0.2 h1:7kqETCOz/rz8AQU55XGzxDFGoFeMgeZL5fGwvxKBZrc=
+github.com/apistd/uni-go-sdk v0.0.2/go.mod h1:eIqYos4IbHgE/rB75r05ypNLahooEMJCrbjXq322b74=
 github.com/apparentlymart/go-textseg/v13 v13.0.0 h1:Y+KvPE1NYz0xl601PVImeQfFyEy6iT90AvPUL1NNfNw=
 github.com/apparentlymart/go-textseg/v13 v13.0.0/go.mod h1:ZK2fH7c4NqDTLtiYLvIkEghdlcqw7yxLeM89kiTRPUo=
 github.com/benbjohnson/clock v1.1.0 h1:Q92kusRqC1XV2MjkWETPvjJVqKetz1OzxZB7mHJLju8=

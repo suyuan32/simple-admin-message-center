@@ -10,6 +10,7 @@ require (
 	github.com/alibabacloud-go/dysmsapi-20170525/v3 v3.0.6
 	github.com/alibabacloud-go/tea v1.2.1
 	github.com/alibabacloud-go/tea-utils/v2 v2.0.3
+	github.com/apistd/uni-go-sdk v0.0.2
 	github.com/gofrs/uuid/v5 v5.0.0
 	github.com/pkg/errors v0.9.1
 	github.com/suyuan32/simple-admin-common v1.1.1
