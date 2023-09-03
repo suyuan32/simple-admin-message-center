@@ -2,7 +2,7 @@ module github.com/suyuan32/simple-admin-message-center
 
 go 1.20
 
-replace github.com/zeromicro/go-zero v1.5.4 => github.com/suyuan32/simple-admin-tools v1.5.15
+replace github.com/zeromicro/go-zero v1.5.5 => github.com/suyuan32/simple-admin-tools v1.5.16
 
 require (
 	entgo.io/ent v0.12.3
@@ -13,10 +13,10 @@ require (
 	github.com/apistd/uni-go-sdk v0.0.2
 	github.com/gofrs/uuid/v5 v5.0.0
 	github.com/pkg/errors v0.9.1
-	github.com/suyuan32/simple-admin-common v1.1.2
+	github.com/suyuan32/simple-admin-common v1.1.3
 	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.695
 	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/sms v1.0.695
-	github.com/zeromicro/go-zero v1.5.4
+	github.com/zeromicro/go-zero v1.5.5
 	google.golang.org/grpc v1.57.0
 	google.golang.org/protobuf v1.31.0
 )
@@ -58,7 +58,7 @@ require (
 	github.com/google/gnostic v0.5.7-v3refs // indirect
 	github.com/google/go-cmp v0.5.9 // indirect
 	github.com/google/gofuzz v1.2.0 // indirect
-	github.com/google/uuid v1.3.0 // indirect
+	github.com/google/uuid v1.3.1 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.15.0 // indirect
 	github.com/hashicorp/hcl/v2 v2.13.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
@@ -76,7 +76,7 @@ require (
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
 	github.com/nicksnyder/go-i18n/v2 v2.2.1 // indirect
 	github.com/openzipkin/zipkin-go v0.4.1 // indirect
-	github.com/pelletier/go-toml/v2 v2.0.9 // indirect
+	github.com/pelletier/go-toml/v2 v2.1.0 // indirect
 	github.com/prometheus/client_golang v1.16.0 // indirect
 	github.com/prometheus/client_model v0.3.0 // indirect
 	github.com/prometheus/common v0.42.0 // indirect
@@ -108,7 +108,7 @@ require (
 	golang.org/x/oauth2 v0.7.0 // indirect
 	golang.org/x/sys v0.11.0 // indirect
 	golang.org/x/term v0.11.0 // indirect
-	golang.org/x/text v0.12.0 // indirect
+	golang.org/x/text v0.13.0 // indirect
 	golang.org/x/time v0.3.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/genproto v0.0.0-20230526161137-0005af68ea54 // indirect
