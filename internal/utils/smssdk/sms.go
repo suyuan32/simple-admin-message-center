@@ -1,3 +1,4 @@
+// Package smssdk defines all the sdk integrated for simple admin mms service
 package smssdk
 
 import (

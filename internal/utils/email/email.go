@@ -1,3 +1,4 @@
+// Package email implements utility routines for email convert
 package email
 
 import "github.com/suyuan32/simple-admin-message-center/internal/enum/emailauthtype"
