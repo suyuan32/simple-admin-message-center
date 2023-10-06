@@ -234,11 +234,15 @@ func (elc *EmailLogCreate) createSpec() (*EmailLog, *sqlgraph.CreateSpec) {
 // EmailLogCreateBulk is the builder for creating many EmailLog entities in bulk.
 type EmailLogCreateBulk struct {
 	config
+	err      error
 	builders []*EmailLogCreate
 }
 
 // Save creates the EmailLog entities in the database.
 func (elcb *EmailLogCreateBulk) Save(ctx context.Context) ([]*EmailLog, error) {
+	if elcb.err != nil {
+		return nil, elcb.err
+	}
 	specs := make([]*sqlgraph.CreateSpec, len(elcb.builders))
 	nodes := make([]*EmailLog, len(elcb.builders))
 	mutators := make([]Mutator, len(elcb.builders))

@@ -327,11 +327,15 @@ func (epc *EmailProviderCreate) createSpec() (*EmailProvider, *sqlgraph.CreateSp
 // EmailProviderCreateBulk is the builder for creating many EmailProvider entities in bulk.
 type EmailProviderCreateBulk struct {
 	config
+	err      error
 	builders []*EmailProviderCreate
 }
 
 // Save creates the EmailProvider entities in the database.
 func (epcb *EmailProviderCreateBulk) Save(ctx context.Context) ([]*EmailProvider, error) {
+	if epcb.err != nil {
+		return nil, epcb.err
+	}
 	specs := make([]*sqlgraph.CreateSpec, len(epcb.builders))
 	nodes := make([]*EmailProvider, len(epcb.builders))
 	mutators := make([]Mutator, len(epcb.builders))

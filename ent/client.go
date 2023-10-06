@@ -7,6 +7,7 @@ import (
 	"errors"
 	"fmt"
 	"log"
+	"reflect"
 
 	uuid "github.com/gofrs/uuid/v5"
 	"github.com/suyuan32/simple-admin-message-center/ent/migrate"
@@ -119,11 +120,14 @@ func Open(driverName, dataSourceName string, options ...Option) (*Client, error)
 	}
 }
 
+// ErrTxStarted is returned when trying to start a new transaction from a transactional client.
+var ErrTxStarted = errors.New("ent: cannot start a transaction within a transaction")
+
 // Tx returns a new transactional client. The provided context
 // is used until the transaction is committed or rolled back.
 func (c *Client) Tx(ctx context.Context) (*Tx, error) {
 	if _, ok := c.driver.(*txDriver); ok {
-		return nil, errors.New("ent: cannot start a transaction within a transaction")
+		return nil, ErrTxStarted
 	}
 	tx, err := newTx(ctx, c.driver)
 	if err != nil {
@@ -253,6 +257,21 @@ func (c *EmailLogClient) CreateBulk(builders ...*EmailLogCreate) *EmailLogCreate
 	return &EmailLogCreateBulk{config: c.config, builders: builders}
 }
 
+// MapCreateBulk creates a bulk creation builder from the given slice. For each item in the slice, the function creates
+// a builder and applies setFunc on it.
+func (c *EmailLogClient) MapCreateBulk(slice any, setFunc func(*EmailLogCreate, int)) *EmailLogCreateBulk {
+	rv := reflect.ValueOf(slice)
+	if rv.Kind() != reflect.Slice {
+		return &EmailLogCreateBulk{err: fmt.Errorf("calling to EmailLogClient.MapCreateBulk with wrong type %T, need slice", slice)}
+	}
+	builders := make([]*EmailLogCreate, rv.Len())
+	for i := 0; i < rv.Len(); i++ {
+		builders[i] = c.Create()
+		setFunc(builders[i], i)
+	}
+	return &EmailLogCreateBulk{config: c.config, builders: builders}
+}
+
 // Update returns an update builder for EmailLog.
 func (c *EmailLogClient) Update() *EmailLogUpdate {
 	mutation := newEmailLogMutation(c.config, OpUpdate)
@@ -368,6 +387,21 @@ func (c *EmailProviderClient) Create() *EmailProviderCreate {
 
 // CreateBulk returns a builder for creating a bulk of EmailProvider entities.
 func (c *EmailProviderClient) CreateBulk(builders ...*EmailProviderCreate) *EmailProviderCreateBulk {
+	return &EmailProviderCreateBulk{config: c.config, builders: builders}
+}
+
+// MapCreateBulk creates a bulk creation builder from the given slice. For each item in the slice, the function creates
+// a builder and applies setFunc on it.
+func (c *EmailProviderClient) MapCreateBulk(slice any, setFunc func(*EmailProviderCreate, int)) *EmailProviderCreateBulk {
+	rv := reflect.ValueOf(slice)
+	if rv.Kind() != reflect.Slice {
+		return &EmailProviderCreateBulk{err: fmt.Errorf("calling to EmailProviderClient.MapCreateBulk with wrong type %T, need slice", slice)}
+	}
+	builders := make([]*EmailProviderCreate, rv.Len())
+	for i := 0; i < rv.Len(); i++ {
+		builders[i] = c.Create()
+		setFunc(builders[i], i)
+	}
 	return &EmailProviderCreateBulk{config: c.config, builders: builders}
 }
 
@@ -489,6 +523,21 @@ func (c *SmsLogClient) CreateBulk(builders ...*SmsLogCreate) *SmsLogCreateBulk {
 	return &SmsLogCreateBulk{config: c.config, builders: builders}
 }
 
+// MapCreateBulk creates a bulk creation builder from the given slice. For each item in the slice, the function creates
+// a builder and applies setFunc on it.
+func (c *SmsLogClient) MapCreateBulk(slice any, setFunc func(*SmsLogCreate, int)) *SmsLogCreateBulk {
+	rv := reflect.ValueOf(slice)
+	if rv.Kind() != reflect.Slice {
+		return &SmsLogCreateBulk{err: fmt.Errorf("calling to SmsLogClient.MapCreateBulk with wrong type %T, need slice", slice)}
+	}
+	builders := make([]*SmsLogCreate, rv.Len())
+	for i := 0; i < rv.Len(); i++ {
+		builders[i] = c.Create()
+		setFunc(builders[i], i)
+	}
+	return &SmsLogCreateBulk{config: c.config, builders: builders}
+}
+
 // Update returns an update builder for SmsLog.
 func (c *SmsLogClient) Update() *SmsLogUpdate {
 	mutation := newSmsLogMutation(c.config, OpUpdate)
@@ -604,6 +653,21 @@ func (c *SmsProviderClient) Create() *SmsProviderCreate {
 
 // CreateBulk returns a builder for creating a bulk of SmsProvider entities.
 func (c *SmsProviderClient) CreateBulk(builders ...*SmsProviderCreate) *SmsProviderCreateBulk {
+	return &SmsProviderCreateBulk{config: c.config, builders: builders}
+}
+
+// MapCreateBulk creates a bulk creation builder from the given slice. For each item in the slice, the function creates
+// a builder and applies setFunc on it.
+func (c *SmsProviderClient) MapCreateBulk(slice any, setFunc func(*SmsProviderCreate, int)) *SmsProviderCreateBulk {
+	rv := reflect.ValueOf(slice)
+	if rv.Kind() != reflect.Slice {
+		return &SmsProviderCreateBulk{err: fmt.Errorf("calling to SmsProviderClient.MapCreateBulk with wrong type %T, need slice", slice)}
+	}
+	builders := make([]*SmsProviderCreate, rv.Len())
+	for i := 0; i < rv.Len(); i++ {
+		builders[i] = c.Create()
+		setFunc(builders[i], i)
+	}
 	return &SmsProviderCreateBulk{config: c.config, builders: builders}
 }
 
