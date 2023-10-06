@@ -230,11 +230,15 @@ func (spc *SmsProviderCreate) createSpec() (*SmsProvider, *sqlgraph.CreateSpec) 
 // SmsProviderCreateBulk is the builder for creating many SmsProvider entities in bulk.
 type SmsProviderCreateBulk struct {
 	config
+	err      error
 	builders []*SmsProviderCreate
 }
 
 // Save creates the SmsProvider entities in the database.
 func (spcb *SmsProviderCreateBulk) Save(ctx context.Context) ([]*SmsProvider, error) {
+	if spcb.err != nil {
+		return nil, spcb.err
+	}
 	specs := make([]*sqlgraph.CreateSpec, len(spcb.builders))
 	nodes := make([]*SmsProvider, len(spcb.builders))
 	mutators := make([]Mutator, len(spcb.builders))

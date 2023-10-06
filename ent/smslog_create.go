@@ -221,11 +221,15 @@ func (slc *SmsLogCreate) createSpec() (*SmsLog, *sqlgraph.CreateSpec) {
 // SmsLogCreateBulk is the builder for creating many SmsLog entities in bulk.
 type SmsLogCreateBulk struct {
 	config
+	err      error
 	builders []*SmsLogCreate
 }
 
 // Save creates the SmsLog entities in the database.
 func (slcb *SmsLogCreateBulk) Save(ctx context.Context) ([]*SmsLog, error) {
+	if slcb.err != nil {
+		return nil, slcb.err
+	}
 	specs := make([]*sqlgraph.CreateSpec, len(slcb.builders))
 	nodes := make([]*SmsLog, len(slcb.builders))
 	mutators := make([]Mutator, len(slcb.builders))

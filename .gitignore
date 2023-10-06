@@ -23,3 +23,5 @@ go.work
 .idea/
 
 *_dev.yaml
+
+*_rpc
