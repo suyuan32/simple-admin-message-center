@@ -5,7 +5,7 @@ ARG PROJECT=mcms
 # Define the config file name | 定义配置文件名
 ARG CONFIG_FILE=mcms.yaml
 # Define the author | 定义作者
-ARG AUTHOR="example@example.com"
+ARG AUTHOR="yuansu.china.work@gmail.com"
 
 LABEL org.opencontainers.image.authors=${AUTHOR}
 
