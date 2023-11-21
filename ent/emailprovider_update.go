@@ -40,10 +40,26 @@ func (epu *EmailProviderUpdate) SetName(s string) *EmailProviderUpdate {
 	return epu
 }
 
+// SetNillableName sets the "name" field if the given value is not nil.
+func (epu *EmailProviderUpdate) SetNillableName(s *string) *EmailProviderUpdate {
+	if s != nil {
+		epu.SetName(*s)
+	}
+	return epu
+}
+
 // SetAuthType sets the "auth_type" field.
 func (epu *EmailProviderUpdate) SetAuthType(u uint8) *EmailProviderUpdate {
 	epu.mutation.ResetAuthType()
 	epu.mutation.SetAuthType(u)
+	return epu
+}
+
+// SetNillableAuthType sets the "auth_type" field if the given value is not nil.
+func (epu *EmailProviderUpdate) SetNillableAuthType(u *uint8) *EmailProviderUpdate {
+	if u != nil {
+		epu.SetAuthType(*u)
+	}
 	return epu
 }
 
@@ -56,6 +72,14 @@ func (epu *EmailProviderUpdate) AddAuthType(u int8) *EmailProviderUpdate {
 // SetEmailAddr sets the "email_addr" field.
 func (epu *EmailProviderUpdate) SetEmailAddr(s string) *EmailProviderUpdate {
 	epu.mutation.SetEmailAddr(s)
+	return epu
+}
+
+// SetNillableEmailAddr sets the "email_addr" field if the given value is not nil.
+func (epu *EmailProviderUpdate) SetNillableEmailAddr(s *string) *EmailProviderUpdate {
+	if s != nil {
+		epu.SetEmailAddr(*s)
+	}
 	return epu
 }
 
@@ -82,6 +106,14 @@ func (epu *EmailProviderUpdate) ClearPassword() *EmailProviderUpdate {
 // SetHostName sets the "host_name" field.
 func (epu *EmailProviderUpdate) SetHostName(s string) *EmailProviderUpdate {
 	epu.mutation.SetHostName(s)
+	return epu
+}
+
+// SetNillableHostName sets the "host_name" field if the given value is not nil.
+func (epu *EmailProviderUpdate) SetNillableHostName(s *string) *EmailProviderUpdate {
+	if s != nil {
+		epu.SetHostName(*s)
+	}
 	return epu
 }
 
@@ -313,10 +345,26 @@ func (epuo *EmailProviderUpdateOne) SetName(s string) *EmailProviderUpdateOne {
 	return epuo
 }
 
+// SetNillableName sets the "name" field if the given value is not nil.
+func (epuo *EmailProviderUpdateOne) SetNillableName(s *string) *EmailProviderUpdateOne {
+	if s != nil {
+		epuo.SetName(*s)
+	}
+	return epuo
+}
+
 // SetAuthType sets the "auth_type" field.
 func (epuo *EmailProviderUpdateOne) SetAuthType(u uint8) *EmailProviderUpdateOne {
 	epuo.mutation.ResetAuthType()
 	epuo.mutation.SetAuthType(u)
+	return epuo
+}
+
+// SetNillableAuthType sets the "auth_type" field if the given value is not nil.
+func (epuo *EmailProviderUpdateOne) SetNillableAuthType(u *uint8) *EmailProviderUpdateOne {
+	if u != nil {
+		epuo.SetAuthType(*u)
+	}
 	return epuo
 }
 
@@ -329,6 +377,14 @@ func (epuo *EmailProviderUpdateOne) AddAuthType(u int8) *EmailProviderUpdateOne 
 // SetEmailAddr sets the "email_addr" field.
 func (epuo *EmailProviderUpdateOne) SetEmailAddr(s string) *EmailProviderUpdateOne {
 	epuo.mutation.SetEmailAddr(s)
+	return epuo
+}
+
+// SetNillableEmailAddr sets the "email_addr" field if the given value is not nil.
+func (epuo *EmailProviderUpdateOne) SetNillableEmailAddr(s *string) *EmailProviderUpdateOne {
+	if s != nil {
+		epuo.SetEmailAddr(*s)
+	}
 	return epuo
 }
 
@@ -355,6 +411,14 @@ func (epuo *EmailProviderUpdateOne) ClearPassword() *EmailProviderUpdateOne {
 // SetHostName sets the "host_name" field.
 func (epuo *EmailProviderUpdateOne) SetHostName(s string) *EmailProviderUpdateOne {
 	epuo.mutation.SetHostName(s)
+	return epuo
+}
+
+// SetNillableHostName sets the "host_name" field if the given value is not nil.
+func (epuo *EmailProviderUpdateOne) SetNillableHostName(s *string) *EmailProviderUpdateOne {
+	if s != nil {
+		epuo.SetHostName(*s)
+	}
 	return epuo
 }
 
