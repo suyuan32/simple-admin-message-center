@@ -40,9 +40,25 @@ func (elu *EmailLogUpdate) SetTarget(s string) *EmailLogUpdate {
 	return elu
 }
 
+// SetNillableTarget sets the "target" field if the given value is not nil.
+func (elu *EmailLogUpdate) SetNillableTarget(s *string) *EmailLogUpdate {
+	if s != nil {
+		elu.SetTarget(*s)
+	}
+	return elu
+}
+
 // SetSubject sets the "subject" field.
 func (elu *EmailLogUpdate) SetSubject(s string) *EmailLogUpdate {
 	elu.mutation.SetSubject(s)
+	return elu
+}
+
+// SetNillableSubject sets the "subject" field if the given value is not nil.
+func (elu *EmailLogUpdate) SetNillableSubject(s *string) *EmailLogUpdate {
+	if s != nil {
+		elu.SetSubject(*s)
+	}
 	return elu
 }
 
@@ -52,10 +68,26 @@ func (elu *EmailLogUpdate) SetContent(s string) *EmailLogUpdate {
 	return elu
 }
 
+// SetNillableContent sets the "content" field if the given value is not nil.
+func (elu *EmailLogUpdate) SetNillableContent(s *string) *EmailLogUpdate {
+	if s != nil {
+		elu.SetContent(*s)
+	}
+	return elu
+}
+
 // SetSendStatus sets the "send_status" field.
 func (elu *EmailLogUpdate) SetSendStatus(u uint8) *EmailLogUpdate {
 	elu.mutation.ResetSendStatus()
 	elu.mutation.SetSendStatus(u)
+	return elu
+}
+
+// SetNillableSendStatus sets the "send_status" field if the given value is not nil.
+func (elu *EmailLogUpdate) SetNillableSendStatus(u *uint8) *EmailLogUpdate {
+	if u != nil {
+		elu.SetSendStatus(*u)
+	}
 	return elu
 }
 
@@ -68,6 +100,14 @@ func (elu *EmailLogUpdate) AddSendStatus(u int8) *EmailLogUpdate {
 // SetProvider sets the "provider" field.
 func (elu *EmailLogUpdate) SetProvider(s string) *EmailLogUpdate {
 	elu.mutation.SetProvider(s)
+	return elu
+}
+
+// SetNillableProvider sets the "provider" field if the given value is not nil.
+func (elu *EmailLogUpdate) SetNillableProvider(s *string) *EmailLogUpdate {
+	if s != nil {
+		elu.SetProvider(*s)
+	}
 	return elu
 }
 
@@ -174,9 +214,25 @@ func (eluo *EmailLogUpdateOne) SetTarget(s string) *EmailLogUpdateOne {
 	return eluo
 }
 
+// SetNillableTarget sets the "target" field if the given value is not nil.
+func (eluo *EmailLogUpdateOne) SetNillableTarget(s *string) *EmailLogUpdateOne {
+	if s != nil {
+		eluo.SetTarget(*s)
+	}
+	return eluo
+}
+
 // SetSubject sets the "subject" field.
 func (eluo *EmailLogUpdateOne) SetSubject(s string) *EmailLogUpdateOne {
 	eluo.mutation.SetSubject(s)
+	return eluo
+}
+
+// SetNillableSubject sets the "subject" field if the given value is not nil.
+func (eluo *EmailLogUpdateOne) SetNillableSubject(s *string) *EmailLogUpdateOne {
+	if s != nil {
+		eluo.SetSubject(*s)
+	}
 	return eluo
 }
 
@@ -186,10 +242,26 @@ func (eluo *EmailLogUpdateOne) SetContent(s string) *EmailLogUpdateOne {
 	return eluo
 }
 
+// SetNillableContent sets the "content" field if the given value is not nil.
+func (eluo *EmailLogUpdateOne) SetNillableContent(s *string) *EmailLogUpdateOne {
+	if s != nil {
+		eluo.SetContent(*s)
+	}
+	return eluo
+}
+
 // SetSendStatus sets the "send_status" field.
 func (eluo *EmailLogUpdateOne) SetSendStatus(u uint8) *EmailLogUpdateOne {
 	eluo.mutation.ResetSendStatus()
 	eluo.mutation.SetSendStatus(u)
+	return eluo
+}
+
+// SetNillableSendStatus sets the "send_status" field if the given value is not nil.
+func (eluo *EmailLogUpdateOne) SetNillableSendStatus(u *uint8) *EmailLogUpdateOne {
+	if u != nil {
+		eluo.SetSendStatus(*u)
+	}
 	return eluo
 }
 
@@ -202,6 +274,14 @@ func (eluo *EmailLogUpdateOne) AddSendStatus(u int8) *EmailLogUpdateOne {
 // SetProvider sets the "provider" field.
 func (eluo *EmailLogUpdateOne) SetProvider(s string) *EmailLogUpdateOne {
 	eluo.mutation.SetProvider(s)
+	return eluo
+}
+
+// SetNillableProvider sets the "provider" field if the given value is not nil.
+func (eluo *EmailLogUpdateOne) SetNillableProvider(s *string) *EmailLogUpdateOne {
+	if s != nil {
+		eluo.SetProvider(*s)
+	}
 	return eluo
 }
 

@@ -40,9 +40,25 @@ func (spu *SmsProviderUpdate) SetName(s string) *SmsProviderUpdate {
 	return spu
 }
 
+// SetNillableName sets the "name" field if the given value is not nil.
+func (spu *SmsProviderUpdate) SetNillableName(s *string) *SmsProviderUpdate {
+	if s != nil {
+		spu.SetName(*s)
+	}
+	return spu
+}
+
 // SetSecretID sets the "secret_id" field.
 func (spu *SmsProviderUpdate) SetSecretID(s string) *SmsProviderUpdate {
 	spu.mutation.SetSecretID(s)
+	return spu
+}
+
+// SetNillableSecretID sets the "secret_id" field if the given value is not nil.
+func (spu *SmsProviderUpdate) SetNillableSecretID(s *string) *SmsProviderUpdate {
+	if s != nil {
+		spu.SetSecretID(*s)
+	}
 	return spu
 }
 
@@ -52,9 +68,25 @@ func (spu *SmsProviderUpdate) SetSecretKey(s string) *SmsProviderUpdate {
 	return spu
 }
 
+// SetNillableSecretKey sets the "secret_key" field if the given value is not nil.
+func (spu *SmsProviderUpdate) SetNillableSecretKey(s *string) *SmsProviderUpdate {
+	if s != nil {
+		spu.SetSecretKey(*s)
+	}
+	return spu
+}
+
 // SetRegion sets the "region" field.
 func (spu *SmsProviderUpdate) SetRegion(s string) *SmsProviderUpdate {
 	spu.mutation.SetRegion(s)
+	return spu
+}
+
+// SetNillableRegion sets the "region" field if the given value is not nil.
+func (spu *SmsProviderUpdate) SetNillableRegion(s *string) *SmsProviderUpdate {
+	if s != nil {
+		spu.SetRegion(*s)
+	}
 	return spu
 }
 
@@ -172,9 +204,25 @@ func (spuo *SmsProviderUpdateOne) SetName(s string) *SmsProviderUpdateOne {
 	return spuo
 }
 
+// SetNillableName sets the "name" field if the given value is not nil.
+func (spuo *SmsProviderUpdateOne) SetNillableName(s *string) *SmsProviderUpdateOne {
+	if s != nil {
+		spuo.SetName(*s)
+	}
+	return spuo
+}
+
 // SetSecretID sets the "secret_id" field.
 func (spuo *SmsProviderUpdateOne) SetSecretID(s string) *SmsProviderUpdateOne {
 	spuo.mutation.SetSecretID(s)
+	return spuo
+}
+
+// SetNillableSecretID sets the "secret_id" field if the given value is not nil.
+func (spuo *SmsProviderUpdateOne) SetNillableSecretID(s *string) *SmsProviderUpdateOne {
+	if s != nil {
+		spuo.SetSecretID(*s)
+	}
 	return spuo
 }
 
@@ -184,9 +232,25 @@ func (spuo *SmsProviderUpdateOne) SetSecretKey(s string) *SmsProviderUpdateOne {
 	return spuo
 }
 
+// SetNillableSecretKey sets the "secret_key" field if the given value is not nil.
+func (spuo *SmsProviderUpdateOne) SetNillableSecretKey(s *string) *SmsProviderUpdateOne {
+	if s != nil {
+		spuo.SetSecretKey(*s)
+	}
+	return spuo
+}
+
 // SetRegion sets the "region" field.
 func (spuo *SmsProviderUpdateOne) SetRegion(s string) *SmsProviderUpdateOne {
 	spuo.mutation.SetRegion(s)
+	return spuo
+}
+
+// SetNillableRegion sets the "region" field if the given value is not nil.
+func (spuo *SmsProviderUpdateOne) SetNillableRegion(s *string) *SmsProviderUpdateOne {
+	if s != nil {
+		spuo.SetRegion(*s)
+	}
 	return spuo
 }
 

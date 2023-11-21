@@ -5,7 +5,7 @@ go 1.20
 replace github.com/zeromicro/go-zero v1.6.0 => github.com/suyuan32/simple-admin-tools v1.6.0
 
 require (
-	entgo.io/ent v0.12.4
+	entgo.io/ent v0.12.5
 	github.com/alibabacloud-go/darabonba-openapi/v2 v2.0.4
 	github.com/alibabacloud-go/dysmsapi-20170525/v3 v3.0.6
 	github.com/alibabacloud-go/tea v1.2.1
@@ -13,9 +13,9 @@ require (
 	github.com/apistd/uni-go-sdk v0.0.2
 	github.com/gofrs/uuid/v5 v5.0.0
 	github.com/pkg/errors v0.9.1
-	github.com/suyuan32/simple-admin-common v1.2.2
-	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.782
-	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/sms v1.0.782
+	github.com/suyuan32/simple-admin-common v1.2.3
+	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.799
+	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/sms v1.0.799
 	github.com/zeromicro/go-zero v1.6.0
 	google.golang.org/grpc v1.59.0
 	google.golang.org/protobuf v1.31.0
@@ -104,7 +104,7 @@ require (
 	golang.org/x/mod v0.12.0 // indirect
 	golang.org/x/net v0.17.0 // indirect
 	golang.org/x/oauth2 v0.12.0 // indirect
-	golang.org/x/sys v0.13.0 // indirect
+	golang.org/x/sys v0.14.0 // indirect
 	golang.org/x/term v0.13.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 	golang.org/x/time v0.3.0 // indirect
