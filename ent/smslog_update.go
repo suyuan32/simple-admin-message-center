@@ -40,9 +40,25 @@ func (slu *SmsLogUpdate) SetPhoneNumber(s string) *SmsLogUpdate {
 	return slu
 }
 
+// SetNillablePhoneNumber sets the "phone_number" field if the given value is not nil.
+func (slu *SmsLogUpdate) SetNillablePhoneNumber(s *string) *SmsLogUpdate {
+	if s != nil {
+		slu.SetPhoneNumber(*s)
+	}
+	return slu
+}
+
 // SetContent sets the "content" field.
 func (slu *SmsLogUpdate) SetContent(s string) *SmsLogUpdate {
 	slu.mutation.SetContent(s)
+	return slu
+}
+
+// SetNillableContent sets the "content" field if the given value is not nil.
+func (slu *SmsLogUpdate) SetNillableContent(s *string) *SmsLogUpdate {
+	if s != nil {
+		slu.SetContent(*s)
+	}
 	return slu
 }
 
@@ -50,6 +66,14 @@ func (slu *SmsLogUpdate) SetContent(s string) *SmsLogUpdate {
 func (slu *SmsLogUpdate) SetSendStatus(u uint8) *SmsLogUpdate {
 	slu.mutation.ResetSendStatus()
 	slu.mutation.SetSendStatus(u)
+	return slu
+}
+
+// SetNillableSendStatus sets the "send_status" field if the given value is not nil.
+func (slu *SmsLogUpdate) SetNillableSendStatus(u *uint8) *SmsLogUpdate {
+	if u != nil {
+		slu.SetSendStatus(*u)
+	}
 	return slu
 }
 
@@ -62,6 +86,14 @@ func (slu *SmsLogUpdate) AddSendStatus(u int8) *SmsLogUpdate {
 // SetProvider sets the "provider" field.
 func (slu *SmsLogUpdate) SetProvider(s string) *SmsLogUpdate {
 	slu.mutation.SetProvider(s)
+	return slu
+}
+
+// SetNillableProvider sets the "provider" field if the given value is not nil.
+func (slu *SmsLogUpdate) SetNillableProvider(s *string) *SmsLogUpdate {
+	if s != nil {
+		slu.SetProvider(*s)
+	}
 	return slu
 }
 
@@ -165,9 +197,25 @@ func (sluo *SmsLogUpdateOne) SetPhoneNumber(s string) *SmsLogUpdateOne {
 	return sluo
 }
 
+// SetNillablePhoneNumber sets the "phone_number" field if the given value is not nil.
+func (sluo *SmsLogUpdateOne) SetNillablePhoneNumber(s *string) *SmsLogUpdateOne {
+	if s != nil {
+		sluo.SetPhoneNumber(*s)
+	}
+	return sluo
+}
+
 // SetContent sets the "content" field.
 func (sluo *SmsLogUpdateOne) SetContent(s string) *SmsLogUpdateOne {
 	sluo.mutation.SetContent(s)
+	return sluo
+}
+
+// SetNillableContent sets the "content" field if the given value is not nil.
+func (sluo *SmsLogUpdateOne) SetNillableContent(s *string) *SmsLogUpdateOne {
+	if s != nil {
+		sluo.SetContent(*s)
+	}
 	return sluo
 }
 
@@ -175,6 +223,14 @@ func (sluo *SmsLogUpdateOne) SetContent(s string) *SmsLogUpdateOne {
 func (sluo *SmsLogUpdateOne) SetSendStatus(u uint8) *SmsLogUpdateOne {
 	sluo.mutation.ResetSendStatus()
 	sluo.mutation.SetSendStatus(u)
+	return sluo
+}
+
+// SetNillableSendStatus sets the "send_status" field if the given value is not nil.
+func (sluo *SmsLogUpdateOne) SetNillableSendStatus(u *uint8) *SmsLogUpdateOne {
+	if u != nil {
+		sluo.SetSendStatus(*u)
+	}
 	return sluo
 }
 
@@ -187,6 +243,14 @@ func (sluo *SmsLogUpdateOne) AddSendStatus(u int8) *SmsLogUpdateOne {
 // SetProvider sets the "provider" field.
 func (sluo *SmsLogUpdateOne) SetProvider(s string) *SmsLogUpdateOne {
 	sluo.mutation.SetProvider(s)
+	return sluo
+}
+
+// SetNillableProvider sets the "provider" field if the given value is not nil.
+func (sluo *SmsLogUpdateOne) SetNillableProvider(s *string) *SmsLogUpdateOne {
+	if s != nil {
+		sluo.SetProvider(*s)
+	}
 	return sluo
 }
 
