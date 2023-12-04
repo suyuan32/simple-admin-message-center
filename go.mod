@@ -13,7 +13,7 @@ require (
 	github.com/apistd/uni-go-sdk v0.0.2
 	github.com/gofrs/uuid/v5 v5.0.0
 	github.com/pkg/errors v0.9.1
-	github.com/suyuan32/simple-admin-common v1.2.3
+	github.com/suyuan32/simple-admin-common v1.2.4
 	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.799
 	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/sms v1.0.799
 	github.com/zeromicro/go-zero v1.6.0
@@ -104,7 +104,7 @@ require (
 	golang.org/x/mod v0.12.0 // indirect
 	golang.org/x/net v0.17.0 // indirect
 	golang.org/x/oauth2 v0.12.0 // indirect
-	golang.org/x/sys v0.14.0 // indirect
+	golang.org/x/sys v0.15.0 // indirect
 	golang.org/x/term v0.13.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 	golang.org/x/time v0.3.0 // indirect
