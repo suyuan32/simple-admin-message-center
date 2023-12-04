@@ -223,10 +223,10 @@ github.com/suyuan32/simple-admin-common v1.2.4 h1:X/bO+gHXejzto06tD5Qo86NDd5Uwxj
 github.com/suyuan32/simple-admin-common v1.2.4/go.mod h1:vGv2FUtVQllTBP4MpRoCuVAYUFWTJ5MLdbD30PGT8as=
 github.com/suyuan32/simple-admin-tools v1.6.0 h1:10Dw2oJCEHYnfd6KUMWPsRAlJReQ1dBlE2MLjIVJwhM=
 github.com/suyuan32/simple-admin-tools v1.6.0/go.mod h1:m1qiRoEUmM7jwq8Do2/WGRVFUDjYkdUXFQcRiBZT+tg=
-github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.799 h1:jAMelFh7c+sBrR2kzdNB2zfmkhsEXLIR9YFQcBuTnzI=
-github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.799/go.mod h1:r5r4xbfxSaeR04b166HGsBa/R4U3SueirEUpXGuw+Q0=
-github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/sms v1.0.799 h1:QlrSdesmHVcVhCdsjHcaDwNx0H0J8hOaJ9FO+dhzYxA=
-github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/sms v1.0.799/go.mod h1:c9HkoKkvpXH4eMRNTDmQGBfBfhXxYA4mNe8Ty2bJpJ4=
+github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.810 h1:Cj5eyNp3K3gMlrrsDhX+fqX5lpTJItKHeLf8qRHoe/4=
+github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.810/go.mod h1:r5r4xbfxSaeR04b166HGsBa/R4U3SueirEUpXGuw+Q0=
+github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/sms v1.0.810 h1:07HJi7lq2MY1AR2r6DY/CbuchALrqowvMbfAjvDML9o=
+github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/sms v1.0.810/go.mod h1:Ntigroxs/mQNRcqd2SXBOu3TCaa2BIje/oYX7SZRmGs=
 github.com/tjfoc/gmsm v1.3.2 h1:7JVkAn5bvUJ7HtU08iW6UiD+UTmJTIToHCfeFzkcCxM=
 github.com/tjfoc/gmsm v1.3.2/go.mod h1:HaUcFuY0auTiaHB9MHFGCPx5IaLhTUd2atbCFBQXn9w=
 github.com/vmihailenco/msgpack/v4 v4.3.12/go.mod h1:gborTTJjAo/GWTqqRjrLCn9pgNN+NXzzngzBKDPIqw4=

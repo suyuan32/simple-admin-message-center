@@ -14,8 +14,8 @@ require (
 	github.com/gofrs/uuid/v5 v5.0.0
 	github.com/pkg/errors v0.9.1
 	github.com/suyuan32/simple-admin-common v1.2.4
-	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.799
-	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/sms v1.0.799
+	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.810
+	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/sms v1.0.810
 	github.com/zeromicro/go-zero v1.6.0
 	google.golang.org/grpc v1.59.0
 	google.golang.org/protobuf v1.31.0
