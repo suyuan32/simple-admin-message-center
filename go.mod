@@ -2,7 +2,7 @@ module github.com/suyuan32/simple-admin-message-center
 
 go 1.21.0
 
-replace github.com/zeromicro/go-zero v1.6.0 => github.com/suyuan32/simple-admin-tools v1.6.2
+replace github.com/zeromicro/go-zero v1.6.1 => github.com/suyuan32/simple-admin-tools v1.6.3
 
 require (
 	entgo.io/ent v0.12.5
@@ -13,17 +13,17 @@ require (
 	github.com/apistd/uni-go-sdk v0.0.2
 	github.com/gofrs/uuid/v5 v5.0.0
 	github.com/pkg/errors v0.9.1
-	github.com/suyuan32/simple-admin-common v1.2.5
-	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.819
-	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/sms v1.0.819
-	github.com/zeromicro/go-zero v1.6.0
-	google.golang.org/grpc v1.60.0
+	github.com/redis/go-redis/v9 v9.3.1
+	github.com/suyuan32/simple-admin-common v1.2.7
+	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.821
+	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/sms v1.0.821
+	github.com/zeromicro/go-zero v1.6.1
+	google.golang.org/grpc v1.60.1
 	google.golang.org/protobuf v1.31.1-0.20231027082548-f4a6c1f6e5c1
 )
 
 require (
 	ariga.io/atlas v0.14.1-0.20230918065911-83ad451a4935 // indirect
-	ariga.io/entcache v0.1.1-0.20230414114609-164fed2e1c70 // indirect
 	github.com/agext/levenshtein v1.2.1 // indirect
 	github.com/alibabacloud-go/alibabacloud-gateway-spi v0.0.4 // indirect
 	github.com/alibabacloud-go/debug v0.0.0-20190504072949-9472017b5c68 // indirect
@@ -52,7 +52,6 @@ require (
 	github.com/go-redis/redis/v8 v8.11.5 // indirect
 	github.com/go-sql-driver/mysql v1.7.1 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
-	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/mock v1.6.0 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/google/gnostic-models v0.6.8 // indirect
@@ -67,10 +66,9 @@ require (
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
-	github.com/mattn/go-sqlite3 v1.14.18 // indirect
+	github.com/mattn/go-sqlite3 v1.14.19 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.4 // indirect
 	github.com/mitchellh/go-wordwrap v0.0.0-20150314170334-ad45545899c7 // indirect
-	github.com/mitchellh/hashstructure/v2 v2.0.2 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
