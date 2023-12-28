@@ -13,7 +13,7 @@ import (
 type ServiceContext struct {
 	Config           config.Config
 	DB               *ent.Client
-	Redis            *redis.Client
+	Redis            redis.UniversalClient
 	EmailAuth        *smtp.Auth
 	SmsGroup         *smssdk.SmsGroup
 	EmailClientGroup map[string]*smtp.Client
@@ -30,7 +30,7 @@ func NewServiceContext(c config.Config) *ServiceContext {
 	return &ServiceContext{
 		Config:           c,
 		DB:               db,
-		Redis:            c.RedisConf.MustNewRedis(),
+		Redis:            c.RedisConf.MustNewUniversalRedis(),
 		SmsGroup:         &smssdk.SmsGroup{},
 		EmailAddrGroup:   map[string]string{},
 		EmailClientGroup: map[string]*smtp.Client{},
