@@ -34,8 +34,8 @@ func (l *GetEmailLogByIdLogic) GetEmailLogById(in *mcms.UUIDReq) (*mcms.EmailLog
 
 	return &mcms.EmailLogInfo{
 		Id:         pointy.GetPointer(result.ID.String()),
-		CreatedAt:  pointy.GetPointer(result.CreatedAt.Unix()),
-		UpdatedAt:  pointy.GetPointer(result.UpdatedAt.Unix()),
+		CreatedAt:  pointy.GetPointer(result.CreatedAt.UnixMilli()),
+		UpdatedAt:  pointy.GetPointer(result.UpdatedAt.UnixMilli()),
 		Target:     &result.Target,
 		Subject:    &result.Subject,
 		Content:    &result.Content,

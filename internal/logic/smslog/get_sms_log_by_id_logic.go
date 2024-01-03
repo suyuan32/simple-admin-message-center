@@ -34,8 +34,8 @@ func (l *GetSmsLogByIdLogic) GetSmsLogById(in *mcms.UUIDReq) (*mcms.SmsLogInfo, 
 
 	return &mcms.SmsLogInfo{
 		Id:          pointy.GetPointer(result.ID.String()),
-		CreatedAt:   pointy.GetPointer(result.CreatedAt.Unix()),
-		UpdatedAt:   pointy.GetPointer(result.UpdatedAt.Unix()),
+		CreatedAt:   pointy.GetPointer(result.CreatedAt.UnixMilli()),
+		UpdatedAt:   pointy.GetPointer(result.UpdatedAt.UnixMilli()),
 		PhoneNumber: &result.PhoneNumber,
 		Content:     &result.Content,
 		SendStatus:  pointy.GetPointer(uint32(result.SendStatus)),
