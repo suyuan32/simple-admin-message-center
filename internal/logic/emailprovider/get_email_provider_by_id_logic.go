@@ -33,8 +33,8 @@ func (l *GetEmailProviderByIdLogic) GetEmailProviderById(in *mcms.IDReq) (*mcms.
 
 	return &mcms.EmailProviderInfo{
 		Id:        &result.ID,
-		CreatedAt: pointy.GetPointer(result.CreatedAt.Unix()),
-		UpdatedAt: pointy.GetPointer(result.UpdatedAt.Unix()),
+		CreatedAt: pointy.GetPointer(result.CreatedAt.UnixMilli()),
+		UpdatedAt: pointy.GetPointer(result.UpdatedAt.UnixMilli()),
 		Name:      &result.Name,
 		AuthType:  pointy.GetPointer(uint32(result.AuthType)),
 		EmailAddr: &result.EmailAddr,
