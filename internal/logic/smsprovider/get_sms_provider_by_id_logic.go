@@ -33,8 +33,8 @@ func (l *GetSmsProviderByIdLogic) GetSmsProviderById(in *mcms.IDReq) (*mcms.SmsP
 
 	return &mcms.SmsProviderInfo{
 		Id:        &result.ID,
-		CreatedAt: pointy.GetPointer(result.CreatedAt.Unix()),
-		UpdatedAt: pointy.GetPointer(result.UpdatedAt.Unix()),
+		CreatedAt: pointy.GetPointer(result.CreatedAt.UnixMilli()),
+		UpdatedAt: pointy.GetPointer(result.UpdatedAt.UnixMilli()),
 		Name:      &result.Name,
 		SecretId:  &result.SecretID,
 		SecretKey: &result.SecretKey,
