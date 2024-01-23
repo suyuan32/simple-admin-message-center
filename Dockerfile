@@ -20,4 +20,6 @@ RUN apk update --no-cache && apk add --no-cache tzdata
 COPY ./${PROJECT}_rpc ./
 COPY ./etc/${CONFIG_FILE} ./etc/
 
+EXPOSE 9106
+
 ENTRYPOINT ./${PROJECT}_rpc -f etc/${CONFIG_FILE}
