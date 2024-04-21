@@ -113,7 +113,9 @@ func (el *EmailLogQuery) Page(
 		Size: pageSize,
 	}
 
-	count, err := el.Clone().Count(ctx)
+	query := el.Clone()
+	query.ctx.Fields = nil
+	count, err := query.Count(ctx)
 
 	if err != nil {
 		return nil, err
@@ -192,7 +194,9 @@ func (ep *EmailProviderQuery) Page(
 		Size: pageSize,
 	}
 
-	count, err := ep.Clone().Count(ctx)
+	query := ep.Clone()
+	query.ctx.Fields = nil
+	count, err := query.Count(ctx)
 
 	if err != nil {
 		return nil, err
@@ -271,7 +275,9 @@ func (sl *SmsLogQuery) Page(
 		Size: pageSize,
 	}
 
-	count, err := sl.Clone().Count(ctx)
+	query := sl.Clone()
+	query.ctx.Fields = nil
+	count, err := query.Count(ctx)
 
 	if err != nil {
 		return nil, err
@@ -350,7 +356,9 @@ func (sp *SmsProviderQuery) Page(
 		Size: pageSize,
 	}
 
-	count, err := sp.Clone().Count(ctx)
+	query := sp.Clone()
+	query.ctx.Fields = nil
+	count, err := query.Count(ctx)
 
 	if err != nil {
 		return nil, err
