@@ -13,10 +13,10 @@ require (
 	github.com/apistd/uni-go-sdk v0.0.2
 	github.com/gofrs/uuid/v5 v5.2.0
 	github.com/pkg/errors v0.9.1
-	github.com/redis/go-redis/v9 v9.5.2
-	github.com/suyuan32/simple-admin-common v1.4.4
-	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.936
-	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/sms v1.0.936
+	github.com/redis/go-redis/v9 v9.5.3
+	github.com/suyuan32/simple-admin-common v1.4.5
+	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.938
+	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/sms v1.0.938
 	github.com/zeromicro/go-zero v1.6.5
 	google.golang.org/grpc v1.64.0
 	google.golang.org/protobuf v1.34.1
