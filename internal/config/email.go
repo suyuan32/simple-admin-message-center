@@ -3,6 +3,7 @@ package config
 import (
 	"crypto/tls"
 	"fmt"
+	"github.com/zeromicro/go-zero/core/errorx"
 	"github.com/zeromicro/go-zero/core/logx"
 	"net/smtp"
 )
@@ -30,7 +31,7 @@ func (e EmailConf) NewAuth() *smtp.Auth {
 	return &auth
 }
 
-func (e EmailConf) NewClient() *smtp.Client {
+func (e EmailConf) NewClient() (*smtp.Client, error) {
 	hostAddress := fmt.Sprintf("%s:%d", e.HostName, e.Port)
 	if e.TLS == true {
 		tlsconfig := &tls.Config{
@@ -40,24 +41,39 @@ func (e EmailConf) NewClient() *smtp.Client {
 
 		// initialize connection
 		conn, err := tls.Dial("tcp", hostAddress, tlsconfig)
-		logx.Must(err)
+		if err != nil {
+			logx.Error("failed to dial connection to email server, please check the host and tls config", logx.Field("config", e), logx.Field("detail", err))
+			return nil, errorx.NewInvalidArgumentError("failed to connect email server, please check the host and tls config")
+		}
 
 		// get client
 		c, err := smtp.NewClient(conn, e.HostName)
-		logx.Must(err)
+		if err != nil {
+			logx.Error("failed to create smtp client, please check the host and tls config", logx.Field("config", e), logx.Field("detail", err))
+			return nil, errorx.NewInvalidArgumentError("failed to connect email server, please check the host and tls config")
+		}
 
 		err = c.Auth(*e.NewAuth())
-		logx.Must(err)
+		if err != nil {
+			logx.Error("failed to get the auth of smtp server, please check the identify and secret", logx.Field("config", e), logx.Field("detail", err))
+			return nil, errorx.NewInvalidArgumentError("failed to authorize the server, please check the identify and secret")
+		}
 
-		return c
+		return c, nil
 	} else {
 		// initialize connection
 		c, err := smtp.Dial(hostAddress)
-		logx.Must(err)
+		if err != nil {
+			logx.Error("failed to dial connection to email server, please check the host and tls config", logx.Field("config", e), logx.Field("detail", err))
+			return nil, errorx.NewInvalidArgumentError("failed to connect email server, please check the host and tls config")
+		}
 
 		err = c.Auth(*e.NewAuth())
-		logx.Must(err)
+		if err != nil {
+			logx.Error("failed to get the auth of smtp server, please check the identify and secret", logx.Field("config", e), logx.Field("detail", err))
+			return nil, errorx.NewInvalidArgumentError("failed to authorize the server, please check the identify and secret")
+		}
 
-		return c
+		return c, nil
 	}
 }
