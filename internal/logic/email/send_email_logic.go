@@ -61,7 +61,12 @@ func (l *SendEmailLogic) SendEmail(in *mcms.EmailInfo) (*mcms.BaseUUIDResp, erro
 			Port:      int(providerData.Port),
 			TLS:       providerData.TLS,
 		}
-		l.svcCtx.EmailClientGroup[*in.Provider] = emailProviderConfig.NewClient()
+
+		if smtpClient, err := emailProviderConfig.NewClient(); err != nil {
+			return nil, err
+		} else {
+			l.svcCtx.EmailClientGroup[*in.Provider] = smtpClient
+		}
 		l.svcCtx.EmailAddrGroup[*in.Provider] = emailProviderConfig.EmailAddr
 
 		client = l.svcCtx.EmailClientGroup[*in.Provider]

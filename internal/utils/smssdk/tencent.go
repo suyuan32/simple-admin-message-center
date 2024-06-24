@@ -6,13 +6,13 @@ import (
 	sms "github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/sms/v20210111"
 )
 
-func (t SmsConf) NewTencentClient() *sms.Client {
+func (t SmsConf) NewTencentClient() (*sms.Client, error) {
 	credential := common.NewCredential(
 		t.SecretId,
 		t.SecretKey,
 	)
 	cpf := profile.NewClientProfile()
 	cpf.HttpProfile.Endpoint = "sms.tencentcloudapi.com"
-	client, _ := sms.NewClient(credential, t.Region, cpf)
-	return client
+	client, err := sms.NewClient(credential, t.Region, cpf)
+	return client, err
 }

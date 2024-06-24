@@ -1,13 +1,13 @@
 package sms
 
 import (
-	"github.com/pkg/errors"
 	smsprovider2 "github.com/suyuan32/simple-admin-message-center/ent/smsprovider"
 	"github.com/suyuan32/simple-admin-message-center/internal/enum/smsprovider"
 	"github.com/suyuan32/simple-admin-message-center/internal/utils/dberrorhandler"
 	"github.com/suyuan32/simple-admin-message-center/internal/utils/smssdk"
 	"github.com/suyuan32/simple-admin-message-center/types/mcms"
 	"github.com/zeromicro/go-zero/core/errorx"
+	"github.com/zeromicro/go-zero/core/logx"
 )
 
 func (l *SendSmsLogic) initProvider(in *mcms.SmsInfo) error {
@@ -24,7 +24,11 @@ func (l *SendSmsLogic) initProvider(in *mcms.SmsInfo) error {
 				Provider:  *in.Provider,
 				Region:    data.Region,
 			}
-			l.svcCtx.SmsGroup.TencentSmsClient = clientConf.NewTencentClient()
+			l.svcCtx.SmsGroup.TencentSmsClient, err = clientConf.NewTencentClient()
+			if err != nil {
+				logx.Error("failed to initialize Tencent SMS client, please check the configuration", logx.Field("detail", err))
+				return errorx.NewInvalidArgumentError("failed to initialize Tencent SMS client, please check the configuration")
+			}
 		}
 	case smsprovider.Aliyun:
 		if l.svcCtx.SmsGroup.AliyunSmsClient == nil {
@@ -40,7 +44,8 @@ func (l *SendSmsLogic) initProvider(in *mcms.SmsInfo) error {
 			}
 			l.svcCtx.SmsGroup.AliyunSmsClient, err = clientConf.NewAliyunClient()
 			if err != nil {
-				return errors.Wrap(err, "failed to initialize Aliyun SMS client")
+				logx.Error("failed to initialize Aliyun SMS client, please check the configuration", logx.Field("detail", err))
+				return errorx.NewInvalidArgumentError("failed to initialize Aliyun SMS client, please check the configuration")
 			}
 		}
 	case smsprovider.Uni:
@@ -57,7 +62,8 @@ func (l *SendSmsLogic) initProvider(in *mcms.SmsInfo) error {
 			}
 			l.svcCtx.SmsGroup.UniSmsClient, err = clientConf.NewUniClient()
 			if err != nil {
-				return errors.Wrap(err, "failed to initialize Uni SMS client")
+				logx.Error("failed to initialize Uni SMS client, please check the configuration", logx.Field("detail", err))
+				return errorx.NewInvalidArgumentError("failed to initialize Uni SMS client, please check the configuration")
 			}
 		}
 	default:
