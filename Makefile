@@ -22,10 +22,8 @@ PROJECT_I18N=true
 # The suffix after build or compile | 构建后缀
 PROJECT_BUILD_SUFFIX=rpc
 
-
 # Ent enabled features | Ent 启用的官方特性
 ENT_FEATURE=sql/execquery
-
 
 # The arch of the build | 构建的架构
 GOARCH=amd64
@@ -55,13 +53,12 @@ tools: # Install the necessary tools | 安装必要的工具
 
 .PHONY: docker
 docker: # Build the docker image | 构建 docker 镜像
-	docker build -f Dockerfile -t ${DOCKER_USERNAME}/$(SERVICE_DASH)-$(PROJECT_BUILD_SUFFIX):${VERSION} .
+	docker build -f Dockerfile -t ${DOCKER_USERNAME}/$(SERVICE_DASH)-$(PROJECT_BUILD_SUFFIX):$(VERSION) .
 	@echo "Build docker successfully"
 
 .PHONY: publish-docker
 publish-docker: # Publish docker image | 发布 docker 镜像
-	echo "${DOCKER_PASSWORD}" | docker login --username ${DOCKER_USERNAME} --password-stdin https://${REPO}
-	docker push ${DOCKER_USERNAME}/$(SERVICE_DASH)-$(PROJECT_BUILD_SUFFIX):${VERSION}
+	docker push ${DOCKER_USERNAME}/$(SERVICE_DASH)-$(PROJECT_BUILD_SUFFIX):$(VERSION)
 	@echo "Publish docker successfully"
 
 .PHONY: gen-rpc
