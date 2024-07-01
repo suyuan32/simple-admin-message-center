@@ -16,16 +16,11 @@ type EmailLog struct {
 // Fields of the EmailLog.
 func (EmailLog) Fields() []ent.Field {
 	return []ent.Field{
-		field.String("target").Comment("The target email address | 目标邮箱地址").
-			Annotations(entsql.WithComments(true)),
-		field.String("subject").Comment("The subject | 发送的标题").
-			Annotations(entsql.WithComments(true)),
-		field.String("content").Comment("The content | 发送的内容").
-			Annotations(entsql.WithComments(true)),
-		field.Uint8("send_status").Comment("The send status, 0 unknown 1 success 2 failed | 发送的状态, 0 未知， 1 成功， 2 失败").
-			Annotations(entsql.WithComments(true)),
-		field.String("provider").Comment("The sms service provider | 短信服务提供商").
-			Annotations(entsql.WithComments(true)),
+		field.String("target").Comment("The target email address | 目标邮箱地址"),
+		field.String("subject").Comment("The subject | 发送的标题"),
+		field.String("content").Comment("The content | 发送的内容"),
+		field.Uint8("send_status").Comment("The send status, 0 unknown 1 success 2 failed | 发送的状态, 0 未知， 1 成功， 2 失败"),
+		field.String("provider").Comment("The sms service provider | 短信服务提供商"),
 	}
 }
 
@@ -42,6 +37,7 @@ func (EmailLog) Edges() []ent.Edge {
 
 func (EmailLog) Annotations() []schema.Annotation {
 	return []schema.Annotation{
+		entsql.WithComments(true),
 		entsql.Annotation{Table: "mcms_email_logs"},
 	}
 }
