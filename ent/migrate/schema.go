@@ -11,7 +11,7 @@ import (
 var (
 	// McmsEmailLogsColumns holds the columns for the "mcms_email_logs" table.
 	McmsEmailLogsColumns = []*schema.Column{
-		{Name: "id", Type: field.TypeUUID},
+		{Name: "id", Type: field.TypeUUID, Comment: "UUID"},
 		{Name: "created_at", Type: field.TypeTime, Comment: "Create Time | 创建日期"},
 		{Name: "updated_at", Type: field.TypeTime, Comment: "Update Time | 修改日期"},
 		{Name: "target", Type: field.TypeString, Comment: "The target email address | 目标邮箱地址"},
@@ -50,7 +50,7 @@ var (
 	}
 	// McmsSmsLogsColumns holds the columns for the "mcms_sms_logs" table.
 	McmsSmsLogsColumns = []*schema.Column{
-		{Name: "id", Type: field.TypeUUID},
+		{Name: "id", Type: field.TypeUUID, Comment: "UUID"},
 		{Name: "created_at", Type: field.TypeTime, Comment: "Create Time | 创建日期"},
 		{Name: "updated_at", Type: field.TypeTime, Comment: "Update Time | 修改日期"},
 		{Name: "phone_number", Type: field.TypeString, Comment: "The target phone number | 目标电话"},

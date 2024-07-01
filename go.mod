@@ -6,7 +6,7 @@ replace github.com/zeromicro/go-zero v1.6.6 => github.com/suyuan32/simple-admin-
 
 require (
 	entgo.io/ent v0.13.1
-	github.com/alibabacloud-go/darabonba-openapi/v2 v2.0.7
+	github.com/alibabacloud-go/darabonba-openapi/v2 v2.0.8
 	github.com/alibabacloud-go/dysmsapi-20170525/v3 v3.0.6
 	github.com/alibabacloud-go/tea v1.2.2
 	github.com/alibabacloud-go/tea-utils/v2 v2.0.5
@@ -14,9 +14,9 @@ require (
 	github.com/gofrs/uuid/v5 v5.2.0
 	github.com/pkg/errors v0.9.1
 	github.com/redis/go-redis/v9 v9.5.3
-	github.com/suyuan32/simple-admin-common v1.4.8
-	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.948
-	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/sms v1.0.948
+	github.com/suyuan32/simple-admin-common v1.4.9
+	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.953
+	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/sms v1.0.953
 	github.com/zeromicro/go-zero v1.6.6
 	google.golang.org/grpc v1.64.0
 	google.golang.org/protobuf v1.34.2
@@ -76,7 +76,7 @@ require (
 	github.com/pelletier/go-toml/v2 v2.2.2 // indirect
 	github.com/prometheus/client_golang v1.19.1 // indirect
 	github.com/prometheus/client_model v0.6.1 // indirect
-	github.com/prometheus/common v0.54.0 // indirect
+	github.com/prometheus/common v0.55.0 // indirect
 	github.com/prometheus/procfs v0.15.1 // indirect
 	github.com/spaolacci/murmur3 v1.1.0 // indirect
 	github.com/tjfoc/gmsm v1.4.1 // indirect
