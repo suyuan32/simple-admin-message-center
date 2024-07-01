@@ -18,20 +18,15 @@ func (SmsProvider) Fields() []ent.Field {
 	return []ent.Field{
 		field.String("name").
 			Comment("The SMS provider name | 短信服务的提供商").
-			Unique().
-			Annotations(entsql.WithComments(true)),
+			Unique(),
 		field.String("secret_id").
-			Comment("The secret ID | 密钥 ID").
-			Annotations(entsql.WithComments(true)),
+			Comment("The secret ID | 密钥 ID"),
 		field.String("secret_key").
-			Comment("The secret key | 密钥 Key").
-			Annotations(entsql.WithComments(true)),
+			Comment("The secret key | 密钥 Key"),
 		field.String("region").
-			Comment("The service region | 服务器所在地区").
-			Annotations(entsql.WithComments(true)),
+			Comment("The service region | 服务器所在地区"),
 		field.Bool("is_default").Default(false).
-			Comment("Is it the default provider | 是否为默认提供商").
-			Annotations(entsql.WithComments(true)),
+			Comment("Is it the default provider | 是否为默认提供商"),
 	}
 }
 
@@ -48,6 +43,7 @@ func (SmsProvider) Edges() []ent.Edge {
 
 func (SmsProvider) Annotations() []schema.Annotation {
 	return []schema.Annotation{
+		entsql.WithComments(true),
 		entsql.Annotation{Table: "mcms_sms_providers"},
 	}
 }
