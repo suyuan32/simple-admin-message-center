@@ -13,8 +13,8 @@ require (
 	github.com/apistd/uni-go-sdk v0.0.2
 	github.com/gofrs/uuid/v5 v5.2.0
 	github.com/pkg/errors v0.9.1
-	github.com/redis/go-redis/v9 v9.5.3
-	github.com/suyuan32/simple-admin-common v1.4.10
+	github.com/redis/go-redis/v9 v9.5.4
+	github.com/suyuan32/simple-admin-common v1.5.0
 	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.958
 	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/sms v1.0.958
 	github.com/zeromicro/go-zero v1.6.6
@@ -107,7 +107,7 @@ require (
 	golang.org/x/time v0.5.0 // indirect
 	golang.org/x/tools v0.23.0 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20240701130421-f6361c86f094 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20240708141625-4ad9e859172b // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20240711142825-46eb208f015d // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
