@@ -3,6 +3,9 @@ package email
 import (
 	"context"
 	"fmt"
+	"net/smtp"
+	"strings"
+
 	"github.com/pkg/errors"
 	"github.com/suyuan32/simple-admin-common/i18n"
 	emailprovider2 "github.com/suyuan32/simple-admin-message-center/ent/emailprovider"
@@ -10,8 +13,6 @@ import (
 	"github.com/suyuan32/simple-admin-message-center/internal/utils/dberrorhandler"
 	"github.com/suyuan32/simple-admin-message-center/internal/utils/email"
 	"github.com/zeromicro/go-zero/core/errorx"
-	"net/smtp"
-	"strings"
 
 	"github.com/suyuan32/simple-admin-message-center/internal/svc"
 	"github.com/suyuan32/simple-admin-message-center/types/mcms"
@@ -109,6 +110,9 @@ func (l *SendEmailLogic) SendEmail(in *mcms.EmailInfo) (*mcms.BaseUUIDResp, erro
 	err := client.Mail(fromEmailAddress)
 	if err != nil {
 		l.Logger.Errorw("failed to set the from address in email", logx.Field("detail", err), logx.Field("data", in))
+		if strings.Contains(err.Error(), "broken pipe") {
+			delete(l.svcCtx.EmailClientGroup, *in.Provider)
+		}
 		return emailErrHandler(errors.Wrap(err, "failed to set the from address in email"))
 	}
 
