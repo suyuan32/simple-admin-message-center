@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"math"
 
+	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
@@ -61,7 +62,7 @@ func (slq *SmsLogQuery) Order(o ...smslog.OrderOption) *SmsLogQuery {
 // First returns the first SmsLog entity from the query.
 // Returns a *NotFoundError when no SmsLog was found.
 func (slq *SmsLogQuery) First(ctx context.Context) (*SmsLog, error) {
-	nodes, err := slq.Limit(1).All(setContextOp(ctx, slq.ctx, "First"))
+	nodes, err := slq.Limit(1).All(setContextOp(ctx, slq.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -84,7 +85,7 @@ func (slq *SmsLogQuery) FirstX(ctx context.Context) *SmsLog {
 // Returns a *NotFoundError when no SmsLog ID was found.
 func (slq *SmsLogQuery) FirstID(ctx context.Context) (id uuid.UUID, err error) {
 	var ids []uuid.UUID
-	if ids, err = slq.Limit(1).IDs(setContextOp(ctx, slq.ctx, "FirstID")); err != nil {
+	if ids, err = slq.Limit(1).IDs(setContextOp(ctx, slq.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -107,7 +108,7 @@ func (slq *SmsLogQuery) FirstIDX(ctx context.Context) uuid.UUID {
 // Returns a *NotSingularError when more than one SmsLog entity is found.
 // Returns a *NotFoundError when no SmsLog entities are found.
 func (slq *SmsLogQuery) Only(ctx context.Context) (*SmsLog, error) {
-	nodes, err := slq.Limit(2).All(setContextOp(ctx, slq.ctx, "Only"))
+	nodes, err := slq.Limit(2).All(setContextOp(ctx, slq.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -135,7 +136,7 @@ func (slq *SmsLogQuery) OnlyX(ctx context.Context) *SmsLog {
 // Returns a *NotFoundError when no entities are found.
 func (slq *SmsLogQuery) OnlyID(ctx context.Context) (id uuid.UUID, err error) {
 	var ids []uuid.UUID
-	if ids, err = slq.Limit(2).IDs(setContextOp(ctx, slq.ctx, "OnlyID")); err != nil {
+	if ids, err = slq.Limit(2).IDs(setContextOp(ctx, slq.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -160,7 +161,7 @@ func (slq *SmsLogQuery) OnlyIDX(ctx context.Context) uuid.UUID {
 
 // All executes the query and returns a list of SmsLogs.
 func (slq *SmsLogQuery) All(ctx context.Context) ([]*SmsLog, error) {
-	ctx = setContextOp(ctx, slq.ctx, "All")
+	ctx = setContextOp(ctx, slq.ctx, ent.OpQueryAll)
 	if err := slq.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
@@ -182,7 +183,7 @@ func (slq *SmsLogQuery) IDs(ctx context.Context) (ids []uuid.UUID, err error) {
 	if slq.ctx.Unique == nil && slq.path != nil {
 		slq.Unique(true)
 	}
-	ctx = setContextOp(ctx, slq.ctx, "IDs")
+	ctx = setContextOp(ctx, slq.ctx, ent.OpQueryIDs)
 	if err = slq.Select(smslog.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
@@ -200,7 +201,7 @@ func (slq *SmsLogQuery) IDsX(ctx context.Context) []uuid.UUID {
 
 // Count returns the count of the given query.
 func (slq *SmsLogQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, slq.ctx, "Count")
+	ctx = setContextOp(ctx, slq.ctx, ent.OpQueryCount)
 	if err := slq.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
@@ -218,7 +219,7 @@ func (slq *SmsLogQuery) CountX(ctx context.Context) int {
 
 // Exist returns true if the query has elements in the graph.
 func (slq *SmsLogQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, slq.ctx, "Exist")
+	ctx = setContextOp(ctx, slq.ctx, ent.OpQueryExist)
 	switch _, err := slq.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
@@ -450,7 +451,7 @@ func (slgb *SmsLogGroupBy) Aggregate(fns ...AggregateFunc) *SmsLogGroupBy {
 
 // Scan applies the selector query and scans the result into the given value.
 func (slgb *SmsLogGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, slgb.build.ctx, "GroupBy")
+	ctx = setContextOp(ctx, slgb.build.ctx, ent.OpQueryGroupBy)
 	if err := slgb.build.prepareQuery(ctx); err != nil {
 		return err
 	}
@@ -498,7 +499,7 @@ func (sls *SmsLogSelect) Aggregate(fns ...AggregateFunc) *SmsLogSelect {
 
 // Scan applies the selector query and scans the result into the given value.
 func (sls *SmsLogSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, sls.ctx, "Select")
+	ctx = setContextOp(ctx, sls.ctx, ent.OpQuerySelect)
 	if err := sls.prepareQuery(ctx); err != nil {
 		return err
 	}

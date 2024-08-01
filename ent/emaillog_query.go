@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"math"
 
+	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
@@ -61,7 +62,7 @@ func (elq *EmailLogQuery) Order(o ...emaillog.OrderOption) *EmailLogQuery {
 // First returns the first EmailLog entity from the query.
 // Returns a *NotFoundError when no EmailLog was found.
 func (elq *EmailLogQuery) First(ctx context.Context) (*EmailLog, error) {
-	nodes, err := elq.Limit(1).All(setContextOp(ctx, elq.ctx, "First"))
+	nodes, err := elq.Limit(1).All(setContextOp(ctx, elq.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -84,7 +85,7 @@ func (elq *EmailLogQuery) FirstX(ctx context.Context) *EmailLog {
 // Returns a *NotFoundError when no EmailLog ID was found.
 func (elq *EmailLogQuery) FirstID(ctx context.Context) (id uuid.UUID, err error) {
 	var ids []uuid.UUID
-	if ids, err = elq.Limit(1).IDs(setContextOp(ctx, elq.ctx, "FirstID")); err != nil {
+	if ids, err = elq.Limit(1).IDs(setContextOp(ctx, elq.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -107,7 +108,7 @@ func (elq *EmailLogQuery) FirstIDX(ctx context.Context) uuid.UUID {
 // Returns a *NotSingularError when more than one EmailLog entity is found.
 // Returns a *NotFoundError when no EmailLog entities are found.
 func (elq *EmailLogQuery) Only(ctx context.Context) (*EmailLog, error) {
-	nodes, err := elq.Limit(2).All(setContextOp(ctx, elq.ctx, "Only"))
+	nodes, err := elq.Limit(2).All(setContextOp(ctx, elq.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -135,7 +136,7 @@ func (elq *EmailLogQuery) OnlyX(ctx context.Context) *EmailLog {
 // Returns a *NotFoundError when no entities are found.
 func (elq *EmailLogQuery) OnlyID(ctx context.Context) (id uuid.UUID, err error) {
 	var ids []uuid.UUID
-	if ids, err = elq.Limit(2).IDs(setContextOp(ctx, elq.ctx, "OnlyID")); err != nil {
+	if ids, err = elq.Limit(2).IDs(setContextOp(ctx, elq.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -160,7 +161,7 @@ func (elq *EmailLogQuery) OnlyIDX(ctx context.Context) uuid.UUID {
 
 // All executes the query and returns a list of EmailLogs.
 func (elq *EmailLogQuery) All(ctx context.Context) ([]*EmailLog, error) {
-	ctx = setContextOp(ctx, elq.ctx, "All")
+	ctx = setContextOp(ctx, elq.ctx, ent.OpQueryAll)
 	if err := elq.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
@@ -182,7 +183,7 @@ func (elq *EmailLogQuery) IDs(ctx context.Context) (ids []uuid.UUID, err error) 
 	if elq.ctx.Unique == nil && elq.path != nil {
 		elq.Unique(true)
 	}
-	ctx = setContextOp(ctx, elq.ctx, "IDs")
+	ctx = setContextOp(ctx, elq.ctx, ent.OpQueryIDs)
 	if err = elq.Select(emaillog.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
@@ -200,7 +201,7 @@ func (elq *EmailLogQuery) IDsX(ctx context.Context) []uuid.UUID {
 
 // Count returns the count of the given query.
 func (elq *EmailLogQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, elq.ctx, "Count")
+	ctx = setContextOp(ctx, elq.ctx, ent.OpQueryCount)
 	if err := elq.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
@@ -218,7 +219,7 @@ func (elq *EmailLogQuery) CountX(ctx context.Context) int {
 
 // Exist returns true if the query has elements in the graph.
 func (elq *EmailLogQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, elq.ctx, "Exist")
+	ctx = setContextOp(ctx, elq.ctx, ent.OpQueryExist)
 	switch _, err := elq.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
@@ -450,7 +451,7 @@ func (elgb *EmailLogGroupBy) Aggregate(fns ...AggregateFunc) *EmailLogGroupBy {
 
 // Scan applies the selector query and scans the result into the given value.
 func (elgb *EmailLogGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, elgb.build.ctx, "GroupBy")
+	ctx = setContextOp(ctx, elgb.build.ctx, ent.OpQueryGroupBy)
 	if err := elgb.build.prepareQuery(ctx); err != nil {
 		return err
 	}
@@ -498,7 +499,7 @@ func (els *EmailLogSelect) Aggregate(fns ...AggregateFunc) *EmailLogSelect {
 
 // Scan applies the selector query and scans the result into the given value.
 func (els *EmailLogSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, els.ctx, "Select")
+	ctx = setContextOp(ctx, els.ctx, ent.OpQuerySelect)
 	if err := els.prepareQuery(ctx); err != nil {
 		return err
 	}
