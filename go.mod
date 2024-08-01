@@ -5,7 +5,7 @@ go 1.22.5
 replace github.com/zeromicro/go-zero v1.7.0 => github.com/suyuan32/simple-admin-tools v1.7.0
 
 require (
-	entgo.io/ent v0.13.1
+	entgo.io/ent v0.14.0
 	github.com/alibabacloud-go/darabonba-openapi/v2 v2.0.8
 	github.com/alibabacloud-go/dysmsapi-20170525/v3 v3.0.6
 	github.com/alibabacloud-go/tea v1.2.2
@@ -14,7 +14,7 @@ require (
 	github.com/gofrs/uuid/v5 v5.2.0
 	github.com/pkg/errors v0.9.1
 	github.com/redis/go-redis/v9 v9.6.1
-	github.com/suyuan32/simple-admin-common v1.5.2
+	github.com/suyuan32/simple-admin-common v1.5.3
 	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.972
 	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/sms v1.0.972
 	github.com/zeromicro/go-zero v1.7.0

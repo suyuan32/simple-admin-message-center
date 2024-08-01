@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"math"
 
+	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
@@ -60,7 +61,7 @@ func (spq *SmsProviderQuery) Order(o ...smsprovider.OrderOption) *SmsProviderQue
 // First returns the first SmsProvider entity from the query.
 // Returns a *NotFoundError when no SmsProvider was found.
 func (spq *SmsProviderQuery) First(ctx context.Context) (*SmsProvider, error) {
-	nodes, err := spq.Limit(1).All(setContextOp(ctx, spq.ctx, "First"))
+	nodes, err := spq.Limit(1).All(setContextOp(ctx, spq.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -83,7 +84,7 @@ func (spq *SmsProviderQuery) FirstX(ctx context.Context) *SmsProvider {
 // Returns a *NotFoundError when no SmsProvider ID was found.
 func (spq *SmsProviderQuery) FirstID(ctx context.Context) (id uint64, err error) {
 	var ids []uint64
-	if ids, err = spq.Limit(1).IDs(setContextOp(ctx, spq.ctx, "FirstID")); err != nil {
+	if ids, err = spq.Limit(1).IDs(setContextOp(ctx, spq.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -106,7 +107,7 @@ func (spq *SmsProviderQuery) FirstIDX(ctx context.Context) uint64 {
 // Returns a *NotSingularError when more than one SmsProvider entity is found.
 // Returns a *NotFoundError when no SmsProvider entities are found.
 func (spq *SmsProviderQuery) Only(ctx context.Context) (*SmsProvider, error) {
-	nodes, err := spq.Limit(2).All(setContextOp(ctx, spq.ctx, "Only"))
+	nodes, err := spq.Limit(2).All(setContextOp(ctx, spq.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -134,7 +135,7 @@ func (spq *SmsProviderQuery) OnlyX(ctx context.Context) *SmsProvider {
 // Returns a *NotFoundError when no entities are found.
 func (spq *SmsProviderQuery) OnlyID(ctx context.Context) (id uint64, err error) {
 	var ids []uint64
-	if ids, err = spq.Limit(2).IDs(setContextOp(ctx, spq.ctx, "OnlyID")); err != nil {
+	if ids, err = spq.Limit(2).IDs(setContextOp(ctx, spq.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -159,7 +160,7 @@ func (spq *SmsProviderQuery) OnlyIDX(ctx context.Context) uint64 {
 
 // All executes the query and returns a list of SmsProviders.
 func (spq *SmsProviderQuery) All(ctx context.Context) ([]*SmsProvider, error) {
-	ctx = setContextOp(ctx, spq.ctx, "All")
+	ctx = setContextOp(ctx, spq.ctx, ent.OpQueryAll)
 	if err := spq.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
@@ -181,7 +182,7 @@ func (spq *SmsProviderQuery) IDs(ctx context.Context) (ids []uint64, err error) 
 	if spq.ctx.Unique == nil && spq.path != nil {
 		spq.Unique(true)
 	}
-	ctx = setContextOp(ctx, spq.ctx, "IDs")
+	ctx = setContextOp(ctx, spq.ctx, ent.OpQueryIDs)
 	if err = spq.Select(smsprovider.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
@@ -199,7 +200,7 @@ func (spq *SmsProviderQuery) IDsX(ctx context.Context) []uint64 {
 
 // Count returns the count of the given query.
 func (spq *SmsProviderQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, spq.ctx, "Count")
+	ctx = setContextOp(ctx, spq.ctx, ent.OpQueryCount)
 	if err := spq.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
@@ -217,7 +218,7 @@ func (spq *SmsProviderQuery) CountX(ctx context.Context) int {
 
 // Exist returns true if the query has elements in the graph.
 func (spq *SmsProviderQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, spq.ctx, "Exist")
+	ctx = setContextOp(ctx, spq.ctx, ent.OpQueryExist)
 	switch _, err := spq.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
@@ -449,7 +450,7 @@ func (spgb *SmsProviderGroupBy) Aggregate(fns ...AggregateFunc) *SmsProviderGrou
 
 // Scan applies the selector query and scans the result into the given value.
 func (spgb *SmsProviderGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, spgb.build.ctx, "GroupBy")
+	ctx = setContextOp(ctx, spgb.build.ctx, ent.OpQueryGroupBy)
 	if err := spgb.build.prepareQuery(ctx); err != nil {
 		return err
 	}
@@ -497,7 +498,7 @@ func (sps *SmsProviderSelect) Aggregate(fns ...AggregateFunc) *SmsProviderSelect
 
 // Scan applies the selector query and scans the result into the given value.
 func (sps *SmsProviderSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, sps.ctx, "Select")
+	ctx = setContextOp(ctx, sps.ctx, ent.OpQuerySelect)
 	if err := sps.prepareQuery(ctx); err != nil {
 		return err
 	}
