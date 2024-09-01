@@ -2,8 +2,9 @@ package emailprovider
 
 import (
 	"context"
-	emailprovider2 "github.com/suyuan32/simple-admin-message-center/ent/emailprovider"
 	"net/smtp"
+
+	emailprovider2 "github.com/suyuan32/simple-admin-message-center/ent/emailprovider"
 
 	"github.com/suyuan32/simple-admin-message-center/internal/svc"
 	"github.com/suyuan32/simple-admin-message-center/internal/utils/dberrorhandler"

@@ -2,14 +2,16 @@ package base
 
 import (
 	"context"
+
 	"entgo.io/ent/dialect/sql/schema"
 	"github.com/suyuan32/simple-admin-common/enum/errorcode"
 	"github.com/suyuan32/simple-admin-common/i18n"
 	"github.com/suyuan32/simple-admin-common/msg/logmsg"
+	"github.com/zeromicro/go-zero/core/errorx"
+
 	"github.com/suyuan32/simple-admin-message-center/ent"
 	"github.com/suyuan32/simple-admin-message-center/internal/enum/emailauthtype"
 	"github.com/suyuan32/simple-admin-message-center/internal/utils/dberrorhandler"
-	"github.com/zeromicro/go-zero/core/errorx"
 
 	"github.com/suyuan32/simple-admin-message-center/internal/svc"
 	"github.com/suyuan32/simple-admin-message-center/types/mcms"
