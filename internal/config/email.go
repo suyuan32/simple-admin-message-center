@@ -3,9 +3,10 @@ package config
 import (
 	"crypto/tls"
 	"fmt"
+	"net/smtp"
+
 	"github.com/zeromicro/go-zero/core/errorx"
 	"github.com/zeromicro/go-zero/core/logx"
-	"net/smtp"
 )
 
 type EmailConf struct {

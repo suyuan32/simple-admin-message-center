@@ -8,11 +8,12 @@ import (
 
 	"github.com/pkg/errors"
 	"github.com/suyuan32/simple-admin-common/i18n"
+	"github.com/zeromicro/go-zero/core/errorx"
+
 	emailprovider2 "github.com/suyuan32/simple-admin-message-center/ent/emailprovider"
 	"github.com/suyuan32/simple-admin-message-center/internal/config"
 	"github.com/suyuan32/simple-admin-message-center/internal/utils/dberrorhandler"
 	"github.com/suyuan32/simple-admin-message-center/internal/utils/email"
-	"github.com/zeromicro/go-zero/core/errorx"
 
 	"github.com/suyuan32/simple-admin-message-center/internal/svc"
 	"github.com/suyuan32/simple-admin-message-center/types/mcms"
