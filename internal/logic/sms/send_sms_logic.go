@@ -2,6 +2,7 @@ package sms
 
 import (
 	"context"
+	"fmt"
 	"strings"
 
 	aliyun "github.com/alibabacloud-go/dysmsapi-20170525/v3/client"
@@ -19,6 +20,7 @@ import (
 	"github.com/suyuan32/simple-admin-message-center/internal/svc"
 	"github.com/suyuan32/simple-admin-message-center/types/mcms"
 
+	"github.com/go-resty/resty/v2"
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
@@ -142,6 +144,42 @@ func (l *SendSmsLogic) SendSms(in *mcms.SmsInfo) (*mcms.BaseUUIDResp, error) {
 			return nil, errorx.NewInternalError(i18n.Failed)
 		}
 		logx.Infow("send SMS by Uni SMS", logx.Field("response", resp), logx.Field("phoneNumber", in.PhoneNumber))
+	case smsprovider.SmsBao:
+		const smsbao = "https://api.smsbao.com/sms"
+		info, err := l.svcCtx.DB.SmsProvider.Query().Where(smsprovider2.Name(smsprovider.SmsBao)).First(l.ctx)
+		if err != nil {
+			return nil, dberrorhandler.DefaultEntError(l.Logger, err, in)
+		}
+		var msg string
+		if *in.TemplateId == "captcha" {
+			msg = "【" + *in.SignName + "】您的验证码为：" + in.Params[0] + "，请在尽快完成验证。"
+		} else {
+			msg = "【" + *in.SignName + "】" + in.Params[0]
+		}
+		phoneNumberStr := strings.Join(in.PhoneNumber, ",")
+		client := resty.New()
+		resp, err := client.R().
+			SetQueryParam("u", info.SecretID).
+			SetQueryParam("p", info.SecretKey).
+			SetQueryParam("m", phoneNumberStr).
+			SetQueryParam("c", msg).
+			Get(smsbao)
+		if err != nil {
+			logx.Errorw("failed to send SMS", logx.Field("detail", err), logx.Field("data", in))
+			fmt.Printf("错误: %v，回应: %v，数据信息：%v", err, resp, info)
+			err = l.svcCtx.DB.SmsLog.Create().
+				SetSendStatus(2).
+				SetContent(strings.Join(in.Params, ",")).
+				SetPhoneNumber(strings.Join(in.PhoneNumber, ",")).
+				SetProvider(*in.Provider).
+				Exec(context.Background())
+			if err != nil {
+				return nil, dberrorhandler.DefaultEntError(l.Logger, err, in)
+			}
+
+			return nil, errorx.NewInternalError(i18n.Failed)
+		}
+		logx.Infow("send SMS by SMS Bao", logx.Field("response", resp), logx.Field("phoneNumber", in.PhoneNumber))
 	}
 
 	logData, err := l.svcCtx.DB.SmsLog.Create().
