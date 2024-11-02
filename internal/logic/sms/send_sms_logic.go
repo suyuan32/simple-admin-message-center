@@ -164,7 +164,7 @@ func (l *SendSmsLogic) SendSms(in *mcms.SmsInfo) (*mcms.BaseUUIDResp, error) {
 			SetQueryParam("m", phoneNumberStr).
 			SetQueryParam("c", msg).
 			Get(smsbao)
-		if err != nil {
+		if err != nil || string(resp.Body()) != "0" {
 			logx.Errorw("failed to send SMS", logx.Field("detail", err), logx.Field("data", in))
 			fmt.Printf("错误: %v，回应: %v，数据信息：%v", err, resp, info)
 			err = l.svcCtx.DB.SmsLog.Create().
