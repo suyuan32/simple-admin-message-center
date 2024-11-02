@@ -18,4 +18,4 @@ Simple Admin Message Center module. Simple Admin Message Center module, responsi
 
 Any SMTP mailbox
 
-SMS service: Alibaba Cloud, Tencent Cloud, Heyi SMS
+SMS service: Alibaba Cloud, Tencent Cloud, Heyi SMS,SMSBao
