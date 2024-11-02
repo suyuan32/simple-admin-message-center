@@ -152,7 +152,7 @@ func (l *SendSmsLogic) SendSms(in *mcms.SmsInfo) (*mcms.BaseUUIDResp, error) {
 		}
 		var msg string
 		if *in.TemplateId == "captcha" {
-			msg = "【" + *in.SignName + "】您的验证码为：" + in.Params[0] + "，请在尽快完成验证。"
+			msg = "【" + *in.SignName + "】您的验证码为：" + in.Params[0] + "，请尽快完成验证。"
 		} else {
 			msg = "【" + *in.SignName + "】" + in.Params[0]
 		}
