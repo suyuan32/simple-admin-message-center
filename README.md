@@ -10,6 +10,7 @@ Simple Admin Message Center module. Simple Admin消息中心模块，负责短�
 
 短信服务： 阿里云，腾讯云， 合一短信，短信宝
 
+使用短信宝作为服务方时，coreAPI的配置文件中短信验证的SmsTemplateId的值需为captcha
 ---
 
 Simple Admin Message Center module. Simple Admin Message Center module, responsible for SMS, internal announcements, email sending, etc.
@@ -18,4 +19,6 @@ Simple Admin Message Center module. Simple Admin Message Center module, responsi
 
 Any SMTP mailbox
 
-SMS service: Alibaba Cloud, Tencent Cloud, Heyi SMS,SMSBao
+SMS service: Alibaba Cloud, Tencent Cloud,ID Heyi SMS,SMSBao
+
+When using SMSBao as a service provider, the SmsTemplateId for SMS verification in the coreAPI configuration file should be captcha
