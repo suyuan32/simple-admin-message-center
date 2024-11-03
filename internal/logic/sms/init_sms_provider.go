@@ -67,6 +67,8 @@ func (l *SendSmsLogic) initProvider(in *mcms.SmsInfo) error {
 				return errorx.NewInvalidArgumentError("failed to initialize Uni SMS client, please check the configuration")
 			}
 		}
+	case smsprovider.SmsBao:
+
 	default:
 		return errorx.NewInvalidArgumentError("provider not found")
 	}
