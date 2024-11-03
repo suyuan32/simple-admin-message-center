@@ -19,6 +19,6 @@ Simple Admin Message Center module. Simple Admin Message Center module, responsi
 
 Any SMTP mailbox
 
-SMS service: Alibaba Cloud, Tencent Cloud,ID Heyi SMS,SMSBao
+SMS service: Alibaba Cloud, Tencent Cloud, Uni SMS,SMSBao
 
 When using SMSBao as a service provider, the SmsTemplateId for SMS verification in the coreAPI configuration file should be captcha

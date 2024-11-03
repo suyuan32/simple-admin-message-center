@@ -2,7 +2,6 @@ package sms
 
 import (
 	"context"
-	"fmt"
 	"strings"
 
 	aliyun "github.com/alibabacloud-go/dysmsapi-20170525/v3/client"
@@ -166,7 +165,6 @@ func (l *SendSmsLogic) SendSms(in *mcms.SmsInfo) (*mcms.BaseUUIDResp, error) {
 			Get(smsbao)
 		if err != nil || string(resp.Body()) != "0" {
 			logx.Errorw("failed to send SMS", logx.Field("detail", err), logx.Field("data", in))
-			fmt.Printf("错误: %v，回应: %v，数据信息：%v", err, resp, info)
 			err = l.svcCtx.DB.SmsLog.Create().
 				SetSendStatus(2).
 				SetContent(strings.Join(in.Params, ",")).
