@@ -11,13 +11,13 @@ require (
 	github.com/alibabacloud-go/tea v1.2.2
 	github.com/alibabacloud-go/tea-utils/v2 v2.0.7
 	github.com/apistd/uni-go-sdk v0.0.2
-	github.com/go-resty/resty/v2 v2.15.3
+	github.com/go-resty/resty/v2 v2.16.2
 	github.com/gofrs/uuid/v5 v5.3.0
 	github.com/pkg/errors v0.9.1
 	github.com/redis/go-redis/v9 v9.7.0
 	github.com/suyuan32/simple-admin-common v1.6.0
-	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.1033
-	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/sms v1.0.1033
+	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.1046
+	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/sms v1.0.1046
 	github.com/zeromicro/go-zero v1.7.4
 	google.golang.org/grpc v1.68.0
 	google.golang.org/protobuf v1.35.2
