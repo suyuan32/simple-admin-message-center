@@ -126,8 +126,8 @@ github.com/go-openapi/jsonreference v0.21.0 h1:Rs+Y7hSXT83Jacb7kFyjn4ijOuVGSvOdF
 github.com/go-openapi/jsonreference v0.21.0/go.mod h1:LmZmgsrTkVg9LG4EaHeY8cBDslNPMo06cago5JNLkm4=
 github.com/go-openapi/swag v0.23.0 h1:vsEVJDUo2hPJ2tu0/Xc+4noaxyEffXNIs3cOULZ+GrE=
 github.com/go-openapi/swag v0.23.0/go.mod h1:esZ8ITTYEsH1V2trKHjAN8Ai7xHb8RV+YSZ577vPjgQ=
-github.com/go-resty/resty/v2 v2.15.3 h1:bqff+hcqAflpiF591hhJzNdkRsFhlB96CYfBwSFvql8=
-github.com/go-resty/resty/v2 v2.15.3/go.mod h1:0fHAoK7JoBy/Ch36N8VFeMsK7xQOHhvWaC3iOktwmIU=
+github.com/go-resty/resty/v2 v2.16.2 h1:CpRqTjIzq/rweXUt9+GxzzQdlkqMdt8Lm/fuK/CAbAg=
+github.com/go-resty/resty/v2 v2.16.2/go.mod h1:0fHAoK7JoBy/Ch36N8VFeMsK7xQOHhvWaC3iOktwmIU=
 github.com/go-sql-driver/mysql v1.8.1 h1:LedoTUt/eveggdHS9qUFC1EFSa8bU2+1pZjSRpvNJ1Y=
 github.com/go-sql-driver/mysql v1.8.1/go.mod h1:wEBSXgmK//2ZFJyE+qWnIsVGmvmEKlqwuVSjsCm7DZg=
 github.com/go-task/slim-sprig v0.0.0-20230315185526-52ccab3ef572 h1:tfuBGBXKqDEevZMzYi5KSi8KkcZtzBcTgAUUtapy0OI=
@@ -269,10 +269,10 @@ github.com/suyuan32/simple-admin-common v1.6.0 h1:lTjTSQWO/HvGLEcBdewi+WY6Di6aZD
 github.com/suyuan32/simple-admin-common v1.6.0/go.mod h1:ofRX+rp7/KnuW0h3T09ao1HnOOrN4owf3fmzkZcOBuc=
 github.com/suyuan32/simple-admin-tools v1.7.4 h1:uWHLIsm6ecGxJUEWTCrAkWrXlIszPAVDpvFYPz8u+rw=
 github.com/suyuan32/simple-admin-tools v1.7.4/go.mod h1:SWvzB0kgUd1bsWP/qFLSnRBh7YRWBA0YCZqLyKVSsQ8=
-github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.1033 h1:g263/dapUpOAZJa1Y9x07WgfOl7Yy+FM5Mrf4WyttS8=
-github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.1033/go.mod h1:r5r4xbfxSaeR04b166HGsBa/R4U3SueirEUpXGuw+Q0=
-github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/sms v1.0.1033 h1:S0m/hY32K7+DUL6YQRtPlfmkPcyX8Cp4jmhW7tHQz34=
-github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/sms v1.0.1033/go.mod h1:DcKNsiU79HWkNdnVvzqxj2sW9bA7PCBCZwbPI2/aiVg=
+github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.1046 h1:0FvA5Rw9dGqK5CTbWlgyE1HbiND1hLsoIfne4jzWuRI=
+github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.1046/go.mod h1:r5r4xbfxSaeR04b166HGsBa/R4U3SueirEUpXGuw+Q0=
+github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/sms v1.0.1046 h1:EXUQyo+iYvVnBTa7cZT20uKF1+d5flAs19dnrxjzaAI=
+github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/sms v1.0.1046/go.mod h1:KEFNB4xnp7skY1qB5lmF7g3pQ+EalBP9dnq0ieIuT2o=
 github.com/tjfoc/gmsm v1.3.2/go.mod h1:HaUcFuY0auTiaHB9MHFGCPx5IaLhTUd2atbCFBQXn9w=
 github.com/tjfoc/gmsm v1.4.1 h1:aMe1GlZb+0bLjn+cKTPEvvn9oUEBlJitaZiiBwsbgho=
 github.com/tjfoc/gmsm v1.4.1/go.mod h1:j4INPkHWMrhJb38G+J6W4Tw0AbuN8Thu3PbdVYhVcTE=
