@@ -44,7 +44,7 @@ func (l *CreateSmsProviderLogic) CreateSmsProvider(in *mcms.SmsProviderInfo) (*m
 	// If it is default, set other default to false
 	if in.IsDefault != nil && *in.IsDefault == true {
 		err = l.svcCtx.DB.SmsProvider.Update().
-			Where(smsprovider2.Not(smsprovider2.IDEQ(*in.Id))).
+			Where(smsprovider2.Not(smsprovider2.IDEQ(result.ID))).
 			SetIsDefault(false).
 			Exec(l.ctx)
 		if err != nil {

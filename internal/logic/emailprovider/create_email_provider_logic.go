@@ -54,7 +54,7 @@ func (l *CreateEmailProviderLogic) CreateEmailProvider(in *mcms.EmailProviderInf
 	// If it is default, set other default to false
 	if in.IsDefault != nil && *in.IsDefault == true {
 		err = l.svcCtx.DB.EmailProvider.Update().
-			Where(emailprovider2.Not(emailprovider2.IDEQ(*in.Id))).
+			Where(emailprovider2.Not(emailprovider2.IDEQ(result.ID))).
 			SetIsDefault(false).
 			Exec(l.ctx)
 		if err != nil {
