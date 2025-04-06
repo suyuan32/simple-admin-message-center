@@ -12,7 +12,7 @@ import (
 	"github.com/suyuan32/simple-admin-message-center/ent/emailprovider"
 )
 
-// EmailProvider is the model entity for the EmailProvider schema.
+// Email Provider Configuration Table | 邮件服务商配置表
 type EmailProvider struct {
 	config `json:"-"`
 	// ID of the ent.

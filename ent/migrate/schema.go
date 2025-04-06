@@ -23,6 +23,7 @@ var (
 	// McmsEmailLogsTable holds the schema information for the "mcms_email_logs" table.
 	McmsEmailLogsTable = &schema.Table{
 		Name:       "mcms_email_logs",
+		Comment:    "Email Log Table | 邮件日志表",
 		Columns:    McmsEmailLogsColumns,
 		PrimaryKey: []*schema.Column{McmsEmailLogsColumns[0]},
 	}
@@ -45,6 +46,7 @@ var (
 	// McmsEmailProvidersTable holds the schema information for the "mcms_email_providers" table.
 	McmsEmailProvidersTable = &schema.Table{
 		Name:       "mcms_email_providers",
+		Comment:    "Email Provider Configuration Table | 邮件服务商配置表",
 		Columns:    McmsEmailProvidersColumns,
 		PrimaryKey: []*schema.Column{McmsEmailProvidersColumns[0]},
 	}
@@ -61,6 +63,7 @@ var (
 	// McmsSmsLogsTable holds the schema information for the "mcms_sms_logs" table.
 	McmsSmsLogsTable = &schema.Table{
 		Name:       "mcms_sms_logs",
+		Comment:    "SMS Log Table | 短信日志表",
 		Columns:    McmsSmsLogsColumns,
 		PrimaryKey: []*schema.Column{McmsSmsLogsColumns[0]},
 	}
@@ -78,6 +81,7 @@ var (
 	// McmsSmsProvidersTable holds the schema information for the "mcms_sms_providers" table.
 	McmsSmsProvidersTable = &schema.Table{
 		Name:       "mcms_sms_providers",
+		Comment:    "SMS Provider Configuration Table | 短信服务商配置表",
 		Columns:    McmsSmsProvidersColumns,
 		PrimaryKey: []*schema.Column{McmsSmsProvidersColumns[0]},
 	}

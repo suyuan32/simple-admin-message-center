@@ -13,7 +13,7 @@ import (
 	"github.com/suyuan32/simple-admin-message-center/ent/emaillog"
 )
 
-// EmailLog is the model entity for the EmailLog schema.
+// Email Log Table | 邮件日志表
 type EmailLog struct {
 	config `json:"-"`
 	// ID of the ent.

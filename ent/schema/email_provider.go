@@ -58,6 +58,7 @@ func (EmailProvider) Edges() []ent.Edge {
 func (EmailProvider) Annotations() []schema.Annotation {
 	return []schema.Annotation{
 		entsql.WithComments(true),
+		schema.Comment("Email Provider Configuration Table | 邮件服务商配置表"),
 		entsql.Annotation{Table: "mcms_email_providers"},
 	}
 }

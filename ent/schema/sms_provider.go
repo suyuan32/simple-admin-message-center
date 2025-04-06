@@ -44,6 +44,7 @@ func (SmsProvider) Edges() []ent.Edge {
 func (SmsProvider) Annotations() []schema.Annotation {
 	return []schema.Annotation{
 		entsql.WithComments(true),
+		schema.Comment("SMS Provider Configuration Table | 短信服务商配置表"),
 		entsql.Annotation{Table: "mcms_sms_providers"},
 	}
 }
