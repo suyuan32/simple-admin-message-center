@@ -12,7 +12,7 @@ import (
 	"github.com/suyuan32/simple-admin-message-center/ent/smsprovider"
 )
 
-// SmsProvider is the model entity for the SmsProvider schema.
+// SMS Provider Configuration Table | 短信服务商配置表
 type SmsProvider struct {
 	config `json:"-"`
 	// ID of the ent.

@@ -38,6 +38,7 @@ func (EmailLog) Edges() []ent.Edge {
 func (EmailLog) Annotations() []schema.Annotation {
 	return []schema.Annotation{
 		entsql.WithComments(true),
+		schema.Comment("Email Log Table | 邮件日志表"),
 		entsql.Annotation{Table: "mcms_email_logs"},
 	}
 }

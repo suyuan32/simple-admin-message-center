@@ -37,6 +37,7 @@ func (SmsLog) Edges() []ent.Edge {
 func (SmsLog) Annotations() []schema.Annotation {
 	return []schema.Annotation{
 		entsql.WithComments(true),
+		schema.Comment("SMS Log Table | 短信日志表"),
 		entsql.Annotation{Table: "mcms_sms_logs"},
 	}
 }

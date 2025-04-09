@@ -13,7 +13,7 @@ import (
 	"github.com/suyuan32/simple-admin-message-center/ent/smslog"
 )
 
-// SmsLog is the model entity for the SmsLog schema.
+// SMS Log Table | 短信日志表
 type SmsLog struct {
 	config `json:"-"`
 	// ID of the ent.
