@@ -56,7 +56,7 @@ func (*SmsLog) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the SmsLog fields.
-func (sl *SmsLog) assignValues(columns []string, values []any) error {
+func (_m *SmsLog) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -66,46 +66,46 @@ func (sl *SmsLog) assignValues(columns []string, values []any) error {
 			if value, ok := values[i].(*uuid.UUID); !ok {
 				return fmt.Errorf("unexpected type %T for field id", values[i])
 			} else if value != nil {
-				sl.ID = *value
+				_m.ID = *value
 			}
 		case smslog.FieldCreatedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field created_at", values[i])
 			} else if value.Valid {
-				sl.CreatedAt = value.Time
+				_m.CreatedAt = value.Time
 			}
 		case smslog.FieldUpdatedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updated_at", values[i])
 			} else if value.Valid {
-				sl.UpdatedAt = value.Time
+				_m.UpdatedAt = value.Time
 			}
 		case smslog.FieldPhoneNumber:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field phone_number", values[i])
 			} else if value.Valid {
-				sl.PhoneNumber = value.String
+				_m.PhoneNumber = value.String
 			}
 		case smslog.FieldContent:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field content", values[i])
 			} else if value.Valid {
-				sl.Content = value.String
+				_m.Content = value.String
 			}
 		case smslog.FieldSendStatus:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field send_status", values[i])
 			} else if value.Valid {
-				sl.SendStatus = uint8(value.Int64)
+				_m.SendStatus = uint8(value.Int64)
 			}
 		case smslog.FieldProvider:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field provider", values[i])
 			} else if value.Valid {
-				sl.Provider = value.String
+				_m.Provider = value.String
 			}
 		default:
-			sl.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -113,50 +113,50 @@ func (sl *SmsLog) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the SmsLog.
 // This includes values selected through modifiers, order, etc.
-func (sl *SmsLog) Value(name string) (ent.Value, error) {
-	return sl.selectValues.Get(name)
+func (_m *SmsLog) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this SmsLog.
 // Note that you need to call SmsLog.Unwrap() before calling this method if this SmsLog
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (sl *SmsLog) Update() *SmsLogUpdateOne {
-	return NewSmsLogClient(sl.config).UpdateOne(sl)
+func (_m *SmsLog) Update() *SmsLogUpdateOne {
+	return NewSmsLogClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the SmsLog entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (sl *SmsLog) Unwrap() *SmsLog {
-	_tx, ok := sl.config.driver.(*txDriver)
+func (_m *SmsLog) Unwrap() *SmsLog {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: SmsLog is not a transactional entity")
 	}
-	sl.config.driver = _tx.drv
-	return sl
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (sl *SmsLog) String() string {
+func (_m *SmsLog) String() string {
 	var builder strings.Builder
 	builder.WriteString("SmsLog(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", sl.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("created_at=")
-	builder.WriteString(sl.CreatedAt.Format(time.ANSIC))
+	builder.WriteString(_m.CreatedAt.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updated_at=")
-	builder.WriteString(sl.UpdatedAt.Format(time.ANSIC))
+	builder.WriteString(_m.UpdatedAt.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("phone_number=")
-	builder.WriteString(sl.PhoneNumber)
+	builder.WriteString(_m.PhoneNumber)
 	builder.WriteString(", ")
 	builder.WriteString("content=")
-	builder.WriteString(sl.Content)
+	builder.WriteString(_m.Content)
 	builder.WriteString(", ")
 	builder.WriteString("send_status=")
-	builder.WriteString(fmt.Sprintf("%v", sl.SendStatus))
+	builder.WriteString(fmt.Sprintf("%v", _m.SendStatus))
 	builder.WriteString(", ")
 	builder.WriteString("provider=")
-	builder.WriteString(sl.Provider)
+	builder.WriteString(_m.Provider)
 	builder.WriteByte(')')
 	return builder.String()
 }

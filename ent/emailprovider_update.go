@@ -23,209 +23,209 @@ type EmailProviderUpdate struct {
 }
 
 // Where appends a list predicates to the EmailProviderUpdate builder.
-func (epu *EmailProviderUpdate) Where(ps ...predicate.EmailProvider) *EmailProviderUpdate {
-	epu.mutation.Where(ps...)
-	return epu
+func (_u *EmailProviderUpdate) Where(ps ...predicate.EmailProvider) *EmailProviderUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetUpdatedAt sets the "updated_at" field.
-func (epu *EmailProviderUpdate) SetUpdatedAt(t time.Time) *EmailProviderUpdate {
-	epu.mutation.SetUpdatedAt(t)
-	return epu
+func (_u *EmailProviderUpdate) SetUpdatedAt(v time.Time) *EmailProviderUpdate {
+	_u.mutation.SetUpdatedAt(v)
+	return _u
 }
 
 // SetName sets the "name" field.
-func (epu *EmailProviderUpdate) SetName(s string) *EmailProviderUpdate {
-	epu.mutation.SetName(s)
-	return epu
+func (_u *EmailProviderUpdate) SetName(v string) *EmailProviderUpdate {
+	_u.mutation.SetName(v)
+	return _u
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (epu *EmailProviderUpdate) SetNillableName(s *string) *EmailProviderUpdate {
-	if s != nil {
-		epu.SetName(*s)
+func (_u *EmailProviderUpdate) SetNillableName(v *string) *EmailProviderUpdate {
+	if v != nil {
+		_u.SetName(*v)
 	}
-	return epu
+	return _u
 }
 
 // SetAuthType sets the "auth_type" field.
-func (epu *EmailProviderUpdate) SetAuthType(u uint8) *EmailProviderUpdate {
-	epu.mutation.ResetAuthType()
-	epu.mutation.SetAuthType(u)
-	return epu
+func (_u *EmailProviderUpdate) SetAuthType(v uint8) *EmailProviderUpdate {
+	_u.mutation.ResetAuthType()
+	_u.mutation.SetAuthType(v)
+	return _u
 }
 
 // SetNillableAuthType sets the "auth_type" field if the given value is not nil.
-func (epu *EmailProviderUpdate) SetNillableAuthType(u *uint8) *EmailProviderUpdate {
-	if u != nil {
-		epu.SetAuthType(*u)
+func (_u *EmailProviderUpdate) SetNillableAuthType(v *uint8) *EmailProviderUpdate {
+	if v != nil {
+		_u.SetAuthType(*v)
 	}
-	return epu
+	return _u
 }
 
-// AddAuthType adds u to the "auth_type" field.
-func (epu *EmailProviderUpdate) AddAuthType(u int8) *EmailProviderUpdate {
-	epu.mutation.AddAuthType(u)
-	return epu
+// AddAuthType adds value to the "auth_type" field.
+func (_u *EmailProviderUpdate) AddAuthType(v int8) *EmailProviderUpdate {
+	_u.mutation.AddAuthType(v)
+	return _u
 }
 
 // SetEmailAddr sets the "email_addr" field.
-func (epu *EmailProviderUpdate) SetEmailAddr(s string) *EmailProviderUpdate {
-	epu.mutation.SetEmailAddr(s)
-	return epu
+func (_u *EmailProviderUpdate) SetEmailAddr(v string) *EmailProviderUpdate {
+	_u.mutation.SetEmailAddr(v)
+	return _u
 }
 
 // SetNillableEmailAddr sets the "email_addr" field if the given value is not nil.
-func (epu *EmailProviderUpdate) SetNillableEmailAddr(s *string) *EmailProviderUpdate {
-	if s != nil {
-		epu.SetEmailAddr(*s)
+func (_u *EmailProviderUpdate) SetNillableEmailAddr(v *string) *EmailProviderUpdate {
+	if v != nil {
+		_u.SetEmailAddr(*v)
 	}
-	return epu
+	return _u
 }
 
 // SetPassword sets the "password" field.
-func (epu *EmailProviderUpdate) SetPassword(s string) *EmailProviderUpdate {
-	epu.mutation.SetPassword(s)
-	return epu
+func (_u *EmailProviderUpdate) SetPassword(v string) *EmailProviderUpdate {
+	_u.mutation.SetPassword(v)
+	return _u
 }
 
 // SetNillablePassword sets the "password" field if the given value is not nil.
-func (epu *EmailProviderUpdate) SetNillablePassword(s *string) *EmailProviderUpdate {
-	if s != nil {
-		epu.SetPassword(*s)
+func (_u *EmailProviderUpdate) SetNillablePassword(v *string) *EmailProviderUpdate {
+	if v != nil {
+		_u.SetPassword(*v)
 	}
-	return epu
+	return _u
 }
 
 // ClearPassword clears the value of the "password" field.
-func (epu *EmailProviderUpdate) ClearPassword() *EmailProviderUpdate {
-	epu.mutation.ClearPassword()
-	return epu
+func (_u *EmailProviderUpdate) ClearPassword() *EmailProviderUpdate {
+	_u.mutation.ClearPassword()
+	return _u
 }
 
 // SetHostName sets the "host_name" field.
-func (epu *EmailProviderUpdate) SetHostName(s string) *EmailProviderUpdate {
-	epu.mutation.SetHostName(s)
-	return epu
+func (_u *EmailProviderUpdate) SetHostName(v string) *EmailProviderUpdate {
+	_u.mutation.SetHostName(v)
+	return _u
 }
 
 // SetNillableHostName sets the "host_name" field if the given value is not nil.
-func (epu *EmailProviderUpdate) SetNillableHostName(s *string) *EmailProviderUpdate {
-	if s != nil {
-		epu.SetHostName(*s)
+func (_u *EmailProviderUpdate) SetNillableHostName(v *string) *EmailProviderUpdate {
+	if v != nil {
+		_u.SetHostName(*v)
 	}
-	return epu
+	return _u
 }
 
 // SetIdentify sets the "identify" field.
-func (epu *EmailProviderUpdate) SetIdentify(s string) *EmailProviderUpdate {
-	epu.mutation.SetIdentify(s)
-	return epu
+func (_u *EmailProviderUpdate) SetIdentify(v string) *EmailProviderUpdate {
+	_u.mutation.SetIdentify(v)
+	return _u
 }
 
 // SetNillableIdentify sets the "identify" field if the given value is not nil.
-func (epu *EmailProviderUpdate) SetNillableIdentify(s *string) *EmailProviderUpdate {
-	if s != nil {
-		epu.SetIdentify(*s)
+func (_u *EmailProviderUpdate) SetNillableIdentify(v *string) *EmailProviderUpdate {
+	if v != nil {
+		_u.SetIdentify(*v)
 	}
-	return epu
+	return _u
 }
 
 // ClearIdentify clears the value of the "identify" field.
-func (epu *EmailProviderUpdate) ClearIdentify() *EmailProviderUpdate {
-	epu.mutation.ClearIdentify()
-	return epu
+func (_u *EmailProviderUpdate) ClearIdentify() *EmailProviderUpdate {
+	_u.mutation.ClearIdentify()
+	return _u
 }
 
 // SetSecret sets the "secret" field.
-func (epu *EmailProviderUpdate) SetSecret(s string) *EmailProviderUpdate {
-	epu.mutation.SetSecret(s)
-	return epu
+func (_u *EmailProviderUpdate) SetSecret(v string) *EmailProviderUpdate {
+	_u.mutation.SetSecret(v)
+	return _u
 }
 
 // SetNillableSecret sets the "secret" field if the given value is not nil.
-func (epu *EmailProviderUpdate) SetNillableSecret(s *string) *EmailProviderUpdate {
-	if s != nil {
-		epu.SetSecret(*s)
+func (_u *EmailProviderUpdate) SetNillableSecret(v *string) *EmailProviderUpdate {
+	if v != nil {
+		_u.SetSecret(*v)
 	}
-	return epu
+	return _u
 }
 
 // ClearSecret clears the value of the "secret" field.
-func (epu *EmailProviderUpdate) ClearSecret() *EmailProviderUpdate {
-	epu.mutation.ClearSecret()
-	return epu
+func (_u *EmailProviderUpdate) ClearSecret() *EmailProviderUpdate {
+	_u.mutation.ClearSecret()
+	return _u
 }
 
 // SetPort sets the "port" field.
-func (epu *EmailProviderUpdate) SetPort(u uint32) *EmailProviderUpdate {
-	epu.mutation.ResetPort()
-	epu.mutation.SetPort(u)
-	return epu
+func (_u *EmailProviderUpdate) SetPort(v uint32) *EmailProviderUpdate {
+	_u.mutation.ResetPort()
+	_u.mutation.SetPort(v)
+	return _u
 }
 
 // SetNillablePort sets the "port" field if the given value is not nil.
-func (epu *EmailProviderUpdate) SetNillablePort(u *uint32) *EmailProviderUpdate {
-	if u != nil {
-		epu.SetPort(*u)
+func (_u *EmailProviderUpdate) SetNillablePort(v *uint32) *EmailProviderUpdate {
+	if v != nil {
+		_u.SetPort(*v)
 	}
-	return epu
+	return _u
 }
 
-// AddPort adds u to the "port" field.
-func (epu *EmailProviderUpdate) AddPort(u int32) *EmailProviderUpdate {
-	epu.mutation.AddPort(u)
-	return epu
+// AddPort adds value to the "port" field.
+func (_u *EmailProviderUpdate) AddPort(v int32) *EmailProviderUpdate {
+	_u.mutation.AddPort(v)
+	return _u
 }
 
 // ClearPort clears the value of the "port" field.
-func (epu *EmailProviderUpdate) ClearPort() *EmailProviderUpdate {
-	epu.mutation.ClearPort()
-	return epu
+func (_u *EmailProviderUpdate) ClearPort() *EmailProviderUpdate {
+	_u.mutation.ClearPort()
+	return _u
 }
 
 // SetTLS sets the "tls" field.
-func (epu *EmailProviderUpdate) SetTLS(b bool) *EmailProviderUpdate {
-	epu.mutation.SetTLS(b)
-	return epu
+func (_u *EmailProviderUpdate) SetTLS(v bool) *EmailProviderUpdate {
+	_u.mutation.SetTLS(v)
+	return _u
 }
 
 // SetNillableTLS sets the "tls" field if the given value is not nil.
-func (epu *EmailProviderUpdate) SetNillableTLS(b *bool) *EmailProviderUpdate {
-	if b != nil {
-		epu.SetTLS(*b)
+func (_u *EmailProviderUpdate) SetNillableTLS(v *bool) *EmailProviderUpdate {
+	if v != nil {
+		_u.SetTLS(*v)
 	}
-	return epu
+	return _u
 }
 
 // SetIsDefault sets the "is_default" field.
-func (epu *EmailProviderUpdate) SetIsDefault(b bool) *EmailProviderUpdate {
-	epu.mutation.SetIsDefault(b)
-	return epu
+func (_u *EmailProviderUpdate) SetIsDefault(v bool) *EmailProviderUpdate {
+	_u.mutation.SetIsDefault(v)
+	return _u
 }
 
 // SetNillableIsDefault sets the "is_default" field if the given value is not nil.
-func (epu *EmailProviderUpdate) SetNillableIsDefault(b *bool) *EmailProviderUpdate {
-	if b != nil {
-		epu.SetIsDefault(*b)
+func (_u *EmailProviderUpdate) SetNillableIsDefault(v *bool) *EmailProviderUpdate {
+	if v != nil {
+		_u.SetIsDefault(*v)
 	}
-	return epu
+	return _u
 }
 
 // Mutation returns the EmailProviderMutation object of the builder.
-func (epu *EmailProviderUpdate) Mutation() *EmailProviderMutation {
-	return epu.mutation
+func (_u *EmailProviderUpdate) Mutation() *EmailProviderMutation {
+	return _u.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (epu *EmailProviderUpdate) Save(ctx context.Context) (int, error) {
-	epu.defaults()
-	return withHooks(ctx, epu.sqlSave, epu.mutation, epu.hooks)
+func (_u *EmailProviderUpdate) Save(ctx context.Context) (int, error) {
+	_u.defaults()
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (epu *EmailProviderUpdate) SaveX(ctx context.Context) int {
-	affected, err := epu.Save(ctx)
+func (_u *EmailProviderUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -233,87 +233,87 @@ func (epu *EmailProviderUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (epu *EmailProviderUpdate) Exec(ctx context.Context) error {
-	_, err := epu.Save(ctx)
+func (_u *EmailProviderUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (epu *EmailProviderUpdate) ExecX(ctx context.Context) {
-	if err := epu.Exec(ctx); err != nil {
+func (_u *EmailProviderUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (epu *EmailProviderUpdate) defaults() {
-	if _, ok := epu.mutation.UpdatedAt(); !ok {
+func (_u *EmailProviderUpdate) defaults() {
+	if _, ok := _u.mutation.UpdatedAt(); !ok {
 		v := emailprovider.UpdateDefaultUpdatedAt()
-		epu.mutation.SetUpdatedAt(v)
+		_u.mutation.SetUpdatedAt(v)
 	}
 }
 
-func (epu *EmailProviderUpdate) sqlSave(ctx context.Context) (n int, err error) {
+func (_u *EmailProviderUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(emailprovider.Table, emailprovider.Columns, sqlgraph.NewFieldSpec(emailprovider.FieldID, field.TypeUint64))
-	if ps := epu.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := epu.mutation.UpdatedAt(); ok {
+	if value, ok := _u.mutation.UpdatedAt(); ok {
 		_spec.SetField(emailprovider.FieldUpdatedAt, field.TypeTime, value)
 	}
-	if value, ok := epu.mutation.Name(); ok {
+	if value, ok := _u.mutation.Name(); ok {
 		_spec.SetField(emailprovider.FieldName, field.TypeString, value)
 	}
-	if value, ok := epu.mutation.AuthType(); ok {
+	if value, ok := _u.mutation.AuthType(); ok {
 		_spec.SetField(emailprovider.FieldAuthType, field.TypeUint8, value)
 	}
-	if value, ok := epu.mutation.AddedAuthType(); ok {
+	if value, ok := _u.mutation.AddedAuthType(); ok {
 		_spec.AddField(emailprovider.FieldAuthType, field.TypeUint8, value)
 	}
-	if value, ok := epu.mutation.EmailAddr(); ok {
+	if value, ok := _u.mutation.EmailAddr(); ok {
 		_spec.SetField(emailprovider.FieldEmailAddr, field.TypeString, value)
 	}
-	if value, ok := epu.mutation.Password(); ok {
+	if value, ok := _u.mutation.Password(); ok {
 		_spec.SetField(emailprovider.FieldPassword, field.TypeString, value)
 	}
-	if epu.mutation.PasswordCleared() {
+	if _u.mutation.PasswordCleared() {
 		_spec.ClearField(emailprovider.FieldPassword, field.TypeString)
 	}
-	if value, ok := epu.mutation.HostName(); ok {
+	if value, ok := _u.mutation.HostName(); ok {
 		_spec.SetField(emailprovider.FieldHostName, field.TypeString, value)
 	}
-	if value, ok := epu.mutation.Identify(); ok {
+	if value, ok := _u.mutation.Identify(); ok {
 		_spec.SetField(emailprovider.FieldIdentify, field.TypeString, value)
 	}
-	if epu.mutation.IdentifyCleared() {
+	if _u.mutation.IdentifyCleared() {
 		_spec.ClearField(emailprovider.FieldIdentify, field.TypeString)
 	}
-	if value, ok := epu.mutation.Secret(); ok {
+	if value, ok := _u.mutation.Secret(); ok {
 		_spec.SetField(emailprovider.FieldSecret, field.TypeString, value)
 	}
-	if epu.mutation.SecretCleared() {
+	if _u.mutation.SecretCleared() {
 		_spec.ClearField(emailprovider.FieldSecret, field.TypeString)
 	}
-	if value, ok := epu.mutation.Port(); ok {
+	if value, ok := _u.mutation.Port(); ok {
 		_spec.SetField(emailprovider.FieldPort, field.TypeUint32, value)
 	}
-	if value, ok := epu.mutation.AddedPort(); ok {
+	if value, ok := _u.mutation.AddedPort(); ok {
 		_spec.AddField(emailprovider.FieldPort, field.TypeUint32, value)
 	}
-	if epu.mutation.PortCleared() {
+	if _u.mutation.PortCleared() {
 		_spec.ClearField(emailprovider.FieldPort, field.TypeUint32)
 	}
-	if value, ok := epu.mutation.TLS(); ok {
+	if value, ok := _u.mutation.TLS(); ok {
 		_spec.SetField(emailprovider.FieldTLS, field.TypeBool, value)
 	}
-	if value, ok := epu.mutation.IsDefault(); ok {
+	if value, ok := _u.mutation.IsDefault(); ok {
 		_spec.SetField(emailprovider.FieldIsDefault, field.TypeBool, value)
 	}
-	if n, err = sqlgraph.UpdateNodes(ctx, epu.driver, _spec); err != nil {
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{emailprovider.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -321,8 +321,8 @@ func (epu *EmailProviderUpdate) sqlSave(ctx context.Context) (n int, err error) 
 		}
 		return 0, err
 	}
-	epu.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // EmailProviderUpdateOne is the builder for updating a single EmailProvider entity.
@@ -334,216 +334,216 @@ type EmailProviderUpdateOne struct {
 }
 
 // SetUpdatedAt sets the "updated_at" field.
-func (epuo *EmailProviderUpdateOne) SetUpdatedAt(t time.Time) *EmailProviderUpdateOne {
-	epuo.mutation.SetUpdatedAt(t)
-	return epuo
+func (_u *EmailProviderUpdateOne) SetUpdatedAt(v time.Time) *EmailProviderUpdateOne {
+	_u.mutation.SetUpdatedAt(v)
+	return _u
 }
 
 // SetName sets the "name" field.
-func (epuo *EmailProviderUpdateOne) SetName(s string) *EmailProviderUpdateOne {
-	epuo.mutation.SetName(s)
-	return epuo
+func (_u *EmailProviderUpdateOne) SetName(v string) *EmailProviderUpdateOne {
+	_u.mutation.SetName(v)
+	return _u
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (epuo *EmailProviderUpdateOne) SetNillableName(s *string) *EmailProviderUpdateOne {
-	if s != nil {
-		epuo.SetName(*s)
+func (_u *EmailProviderUpdateOne) SetNillableName(v *string) *EmailProviderUpdateOne {
+	if v != nil {
+		_u.SetName(*v)
 	}
-	return epuo
+	return _u
 }
 
 // SetAuthType sets the "auth_type" field.
-func (epuo *EmailProviderUpdateOne) SetAuthType(u uint8) *EmailProviderUpdateOne {
-	epuo.mutation.ResetAuthType()
-	epuo.mutation.SetAuthType(u)
-	return epuo
+func (_u *EmailProviderUpdateOne) SetAuthType(v uint8) *EmailProviderUpdateOne {
+	_u.mutation.ResetAuthType()
+	_u.mutation.SetAuthType(v)
+	return _u
 }
 
 // SetNillableAuthType sets the "auth_type" field if the given value is not nil.
-func (epuo *EmailProviderUpdateOne) SetNillableAuthType(u *uint8) *EmailProviderUpdateOne {
-	if u != nil {
-		epuo.SetAuthType(*u)
+func (_u *EmailProviderUpdateOne) SetNillableAuthType(v *uint8) *EmailProviderUpdateOne {
+	if v != nil {
+		_u.SetAuthType(*v)
 	}
-	return epuo
+	return _u
 }
 
-// AddAuthType adds u to the "auth_type" field.
-func (epuo *EmailProviderUpdateOne) AddAuthType(u int8) *EmailProviderUpdateOne {
-	epuo.mutation.AddAuthType(u)
-	return epuo
+// AddAuthType adds value to the "auth_type" field.
+func (_u *EmailProviderUpdateOne) AddAuthType(v int8) *EmailProviderUpdateOne {
+	_u.mutation.AddAuthType(v)
+	return _u
 }
 
 // SetEmailAddr sets the "email_addr" field.
-func (epuo *EmailProviderUpdateOne) SetEmailAddr(s string) *EmailProviderUpdateOne {
-	epuo.mutation.SetEmailAddr(s)
-	return epuo
+func (_u *EmailProviderUpdateOne) SetEmailAddr(v string) *EmailProviderUpdateOne {
+	_u.mutation.SetEmailAddr(v)
+	return _u
 }
 
 // SetNillableEmailAddr sets the "email_addr" field if the given value is not nil.
-func (epuo *EmailProviderUpdateOne) SetNillableEmailAddr(s *string) *EmailProviderUpdateOne {
-	if s != nil {
-		epuo.SetEmailAddr(*s)
+func (_u *EmailProviderUpdateOne) SetNillableEmailAddr(v *string) *EmailProviderUpdateOne {
+	if v != nil {
+		_u.SetEmailAddr(*v)
 	}
-	return epuo
+	return _u
 }
 
 // SetPassword sets the "password" field.
-func (epuo *EmailProviderUpdateOne) SetPassword(s string) *EmailProviderUpdateOne {
-	epuo.mutation.SetPassword(s)
-	return epuo
+func (_u *EmailProviderUpdateOne) SetPassword(v string) *EmailProviderUpdateOne {
+	_u.mutation.SetPassword(v)
+	return _u
 }
 
 // SetNillablePassword sets the "password" field if the given value is not nil.
-func (epuo *EmailProviderUpdateOne) SetNillablePassword(s *string) *EmailProviderUpdateOne {
-	if s != nil {
-		epuo.SetPassword(*s)
+func (_u *EmailProviderUpdateOne) SetNillablePassword(v *string) *EmailProviderUpdateOne {
+	if v != nil {
+		_u.SetPassword(*v)
 	}
-	return epuo
+	return _u
 }
 
 // ClearPassword clears the value of the "password" field.
-func (epuo *EmailProviderUpdateOne) ClearPassword() *EmailProviderUpdateOne {
-	epuo.mutation.ClearPassword()
-	return epuo
+func (_u *EmailProviderUpdateOne) ClearPassword() *EmailProviderUpdateOne {
+	_u.mutation.ClearPassword()
+	return _u
 }
 
 // SetHostName sets the "host_name" field.
-func (epuo *EmailProviderUpdateOne) SetHostName(s string) *EmailProviderUpdateOne {
-	epuo.mutation.SetHostName(s)
-	return epuo
+func (_u *EmailProviderUpdateOne) SetHostName(v string) *EmailProviderUpdateOne {
+	_u.mutation.SetHostName(v)
+	return _u
 }
 
 // SetNillableHostName sets the "host_name" field if the given value is not nil.
-func (epuo *EmailProviderUpdateOne) SetNillableHostName(s *string) *EmailProviderUpdateOne {
-	if s != nil {
-		epuo.SetHostName(*s)
+func (_u *EmailProviderUpdateOne) SetNillableHostName(v *string) *EmailProviderUpdateOne {
+	if v != nil {
+		_u.SetHostName(*v)
 	}
-	return epuo
+	return _u
 }
 
 // SetIdentify sets the "identify" field.
-func (epuo *EmailProviderUpdateOne) SetIdentify(s string) *EmailProviderUpdateOne {
-	epuo.mutation.SetIdentify(s)
-	return epuo
+func (_u *EmailProviderUpdateOne) SetIdentify(v string) *EmailProviderUpdateOne {
+	_u.mutation.SetIdentify(v)
+	return _u
 }
 
 // SetNillableIdentify sets the "identify" field if the given value is not nil.
-func (epuo *EmailProviderUpdateOne) SetNillableIdentify(s *string) *EmailProviderUpdateOne {
-	if s != nil {
-		epuo.SetIdentify(*s)
+func (_u *EmailProviderUpdateOne) SetNillableIdentify(v *string) *EmailProviderUpdateOne {
+	if v != nil {
+		_u.SetIdentify(*v)
 	}
-	return epuo
+	return _u
 }
 
 // ClearIdentify clears the value of the "identify" field.
-func (epuo *EmailProviderUpdateOne) ClearIdentify() *EmailProviderUpdateOne {
-	epuo.mutation.ClearIdentify()
-	return epuo
+func (_u *EmailProviderUpdateOne) ClearIdentify() *EmailProviderUpdateOne {
+	_u.mutation.ClearIdentify()
+	return _u
 }
 
 // SetSecret sets the "secret" field.
-func (epuo *EmailProviderUpdateOne) SetSecret(s string) *EmailProviderUpdateOne {
-	epuo.mutation.SetSecret(s)
-	return epuo
+func (_u *EmailProviderUpdateOne) SetSecret(v string) *EmailProviderUpdateOne {
+	_u.mutation.SetSecret(v)
+	return _u
 }
 
 // SetNillableSecret sets the "secret" field if the given value is not nil.
-func (epuo *EmailProviderUpdateOne) SetNillableSecret(s *string) *EmailProviderUpdateOne {
-	if s != nil {
-		epuo.SetSecret(*s)
+func (_u *EmailProviderUpdateOne) SetNillableSecret(v *string) *EmailProviderUpdateOne {
+	if v != nil {
+		_u.SetSecret(*v)
 	}
-	return epuo
+	return _u
 }
 
 // ClearSecret clears the value of the "secret" field.
-func (epuo *EmailProviderUpdateOne) ClearSecret() *EmailProviderUpdateOne {
-	epuo.mutation.ClearSecret()
-	return epuo
+func (_u *EmailProviderUpdateOne) ClearSecret() *EmailProviderUpdateOne {
+	_u.mutation.ClearSecret()
+	return _u
 }
 
 // SetPort sets the "port" field.
-func (epuo *EmailProviderUpdateOne) SetPort(u uint32) *EmailProviderUpdateOne {
-	epuo.mutation.ResetPort()
-	epuo.mutation.SetPort(u)
-	return epuo
+func (_u *EmailProviderUpdateOne) SetPort(v uint32) *EmailProviderUpdateOne {
+	_u.mutation.ResetPort()
+	_u.mutation.SetPort(v)
+	return _u
 }
 
 // SetNillablePort sets the "port" field if the given value is not nil.
-func (epuo *EmailProviderUpdateOne) SetNillablePort(u *uint32) *EmailProviderUpdateOne {
-	if u != nil {
-		epuo.SetPort(*u)
+func (_u *EmailProviderUpdateOne) SetNillablePort(v *uint32) *EmailProviderUpdateOne {
+	if v != nil {
+		_u.SetPort(*v)
 	}
-	return epuo
+	return _u
 }
 
-// AddPort adds u to the "port" field.
-func (epuo *EmailProviderUpdateOne) AddPort(u int32) *EmailProviderUpdateOne {
-	epuo.mutation.AddPort(u)
-	return epuo
+// AddPort adds value to the "port" field.
+func (_u *EmailProviderUpdateOne) AddPort(v int32) *EmailProviderUpdateOne {
+	_u.mutation.AddPort(v)
+	return _u
 }
 
 // ClearPort clears the value of the "port" field.
-func (epuo *EmailProviderUpdateOne) ClearPort() *EmailProviderUpdateOne {
-	epuo.mutation.ClearPort()
-	return epuo
+func (_u *EmailProviderUpdateOne) ClearPort() *EmailProviderUpdateOne {
+	_u.mutation.ClearPort()
+	return _u
 }
 
 // SetTLS sets the "tls" field.
-func (epuo *EmailProviderUpdateOne) SetTLS(b bool) *EmailProviderUpdateOne {
-	epuo.mutation.SetTLS(b)
-	return epuo
+func (_u *EmailProviderUpdateOne) SetTLS(v bool) *EmailProviderUpdateOne {
+	_u.mutation.SetTLS(v)
+	return _u
 }
 
 // SetNillableTLS sets the "tls" field if the given value is not nil.
-func (epuo *EmailProviderUpdateOne) SetNillableTLS(b *bool) *EmailProviderUpdateOne {
-	if b != nil {
-		epuo.SetTLS(*b)
+func (_u *EmailProviderUpdateOne) SetNillableTLS(v *bool) *EmailProviderUpdateOne {
+	if v != nil {
+		_u.SetTLS(*v)
 	}
-	return epuo
+	return _u
 }
 
 // SetIsDefault sets the "is_default" field.
-func (epuo *EmailProviderUpdateOne) SetIsDefault(b bool) *EmailProviderUpdateOne {
-	epuo.mutation.SetIsDefault(b)
-	return epuo
+func (_u *EmailProviderUpdateOne) SetIsDefault(v bool) *EmailProviderUpdateOne {
+	_u.mutation.SetIsDefault(v)
+	return _u
 }
 
 // SetNillableIsDefault sets the "is_default" field if the given value is not nil.
-func (epuo *EmailProviderUpdateOne) SetNillableIsDefault(b *bool) *EmailProviderUpdateOne {
-	if b != nil {
-		epuo.SetIsDefault(*b)
+func (_u *EmailProviderUpdateOne) SetNillableIsDefault(v *bool) *EmailProviderUpdateOne {
+	if v != nil {
+		_u.SetIsDefault(*v)
 	}
-	return epuo
+	return _u
 }
 
 // Mutation returns the EmailProviderMutation object of the builder.
-func (epuo *EmailProviderUpdateOne) Mutation() *EmailProviderMutation {
-	return epuo.mutation
+func (_u *EmailProviderUpdateOne) Mutation() *EmailProviderMutation {
+	return _u.mutation
 }
 
 // Where appends a list predicates to the EmailProviderUpdate builder.
-func (epuo *EmailProviderUpdateOne) Where(ps ...predicate.EmailProvider) *EmailProviderUpdateOne {
-	epuo.mutation.Where(ps...)
-	return epuo
+func (_u *EmailProviderUpdateOne) Where(ps ...predicate.EmailProvider) *EmailProviderUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (epuo *EmailProviderUpdateOne) Select(field string, fields ...string) *EmailProviderUpdateOne {
-	epuo.fields = append([]string{field}, fields...)
-	return epuo
+func (_u *EmailProviderUpdateOne) Select(field string, fields ...string) *EmailProviderUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated EmailProvider entity.
-func (epuo *EmailProviderUpdateOne) Save(ctx context.Context) (*EmailProvider, error) {
-	epuo.defaults()
-	return withHooks(ctx, epuo.sqlSave, epuo.mutation, epuo.hooks)
+func (_u *EmailProviderUpdateOne) Save(ctx context.Context) (*EmailProvider, error) {
+	_u.defaults()
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (epuo *EmailProviderUpdateOne) SaveX(ctx context.Context) *EmailProvider {
-	node, err := epuo.Save(ctx)
+func (_u *EmailProviderUpdateOne) SaveX(ctx context.Context) *EmailProvider {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -551,34 +551,34 @@ func (epuo *EmailProviderUpdateOne) SaveX(ctx context.Context) *EmailProvider {
 }
 
 // Exec executes the query on the entity.
-func (epuo *EmailProviderUpdateOne) Exec(ctx context.Context) error {
-	_, err := epuo.Save(ctx)
+func (_u *EmailProviderUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (epuo *EmailProviderUpdateOne) ExecX(ctx context.Context) {
-	if err := epuo.Exec(ctx); err != nil {
+func (_u *EmailProviderUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (epuo *EmailProviderUpdateOne) defaults() {
-	if _, ok := epuo.mutation.UpdatedAt(); !ok {
+func (_u *EmailProviderUpdateOne) defaults() {
+	if _, ok := _u.mutation.UpdatedAt(); !ok {
 		v := emailprovider.UpdateDefaultUpdatedAt()
-		epuo.mutation.SetUpdatedAt(v)
+		_u.mutation.SetUpdatedAt(v)
 	}
 }
 
-func (epuo *EmailProviderUpdateOne) sqlSave(ctx context.Context) (_node *EmailProvider, err error) {
+func (_u *EmailProviderUpdateOne) sqlSave(ctx context.Context) (_node *EmailProvider, err error) {
 	_spec := sqlgraph.NewUpdateSpec(emailprovider.Table, emailprovider.Columns, sqlgraph.NewFieldSpec(emailprovider.FieldID, field.TypeUint64))
-	id, ok := epuo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "EmailProvider.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := epuo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, emailprovider.FieldID)
 		for _, f := range fields {
@@ -590,68 +590,68 @@ func (epuo *EmailProviderUpdateOne) sqlSave(ctx context.Context) (_node *EmailPr
 			}
 		}
 	}
-	if ps := epuo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := epuo.mutation.UpdatedAt(); ok {
+	if value, ok := _u.mutation.UpdatedAt(); ok {
 		_spec.SetField(emailprovider.FieldUpdatedAt, field.TypeTime, value)
 	}
-	if value, ok := epuo.mutation.Name(); ok {
+	if value, ok := _u.mutation.Name(); ok {
 		_spec.SetField(emailprovider.FieldName, field.TypeString, value)
 	}
-	if value, ok := epuo.mutation.AuthType(); ok {
+	if value, ok := _u.mutation.AuthType(); ok {
 		_spec.SetField(emailprovider.FieldAuthType, field.TypeUint8, value)
 	}
-	if value, ok := epuo.mutation.AddedAuthType(); ok {
+	if value, ok := _u.mutation.AddedAuthType(); ok {
 		_spec.AddField(emailprovider.FieldAuthType, field.TypeUint8, value)
 	}
-	if value, ok := epuo.mutation.EmailAddr(); ok {
+	if value, ok := _u.mutation.EmailAddr(); ok {
 		_spec.SetField(emailprovider.FieldEmailAddr, field.TypeString, value)
 	}
-	if value, ok := epuo.mutation.Password(); ok {
+	if value, ok := _u.mutation.Password(); ok {
 		_spec.SetField(emailprovider.FieldPassword, field.TypeString, value)
 	}
-	if epuo.mutation.PasswordCleared() {
+	if _u.mutation.PasswordCleared() {
 		_spec.ClearField(emailprovider.FieldPassword, field.TypeString)
 	}
-	if value, ok := epuo.mutation.HostName(); ok {
+	if value, ok := _u.mutation.HostName(); ok {
 		_spec.SetField(emailprovider.FieldHostName, field.TypeString, value)
 	}
-	if value, ok := epuo.mutation.Identify(); ok {
+	if value, ok := _u.mutation.Identify(); ok {
 		_spec.SetField(emailprovider.FieldIdentify, field.TypeString, value)
 	}
-	if epuo.mutation.IdentifyCleared() {
+	if _u.mutation.IdentifyCleared() {
 		_spec.ClearField(emailprovider.FieldIdentify, field.TypeString)
 	}
-	if value, ok := epuo.mutation.Secret(); ok {
+	if value, ok := _u.mutation.Secret(); ok {
 		_spec.SetField(emailprovider.FieldSecret, field.TypeString, value)
 	}
-	if epuo.mutation.SecretCleared() {
+	if _u.mutation.SecretCleared() {
 		_spec.ClearField(emailprovider.FieldSecret, field.TypeString)
 	}
-	if value, ok := epuo.mutation.Port(); ok {
+	if value, ok := _u.mutation.Port(); ok {
 		_spec.SetField(emailprovider.FieldPort, field.TypeUint32, value)
 	}
-	if value, ok := epuo.mutation.AddedPort(); ok {
+	if value, ok := _u.mutation.AddedPort(); ok {
 		_spec.AddField(emailprovider.FieldPort, field.TypeUint32, value)
 	}
-	if epuo.mutation.PortCleared() {
+	if _u.mutation.PortCleared() {
 		_spec.ClearField(emailprovider.FieldPort, field.TypeUint32)
 	}
-	if value, ok := epuo.mutation.TLS(); ok {
+	if value, ok := _u.mutation.TLS(); ok {
 		_spec.SetField(emailprovider.FieldTLS, field.TypeBool, value)
 	}
-	if value, ok := epuo.mutation.IsDefault(); ok {
+	if value, ok := _u.mutation.IsDefault(); ok {
 		_spec.SetField(emailprovider.FieldIsDefault, field.TypeBool, value)
 	}
-	_node = &EmailProvider{config: epuo.config}
+	_node = &EmailProvider{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, epuo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{emailprovider.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -659,6 +659,6 @@ func (epuo *EmailProviderUpdateOne) sqlSave(ctx context.Context) (_node *EmailPr
 		}
 		return nil, err
 	}
-	epuo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

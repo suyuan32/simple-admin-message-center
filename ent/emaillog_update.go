@@ -23,108 +23,108 @@ type EmailLogUpdate struct {
 }
 
 // Where appends a list predicates to the EmailLogUpdate builder.
-func (elu *EmailLogUpdate) Where(ps ...predicate.EmailLog) *EmailLogUpdate {
-	elu.mutation.Where(ps...)
-	return elu
+func (_u *EmailLogUpdate) Where(ps ...predicate.EmailLog) *EmailLogUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetUpdatedAt sets the "updated_at" field.
-func (elu *EmailLogUpdate) SetUpdatedAt(t time.Time) *EmailLogUpdate {
-	elu.mutation.SetUpdatedAt(t)
-	return elu
+func (_u *EmailLogUpdate) SetUpdatedAt(v time.Time) *EmailLogUpdate {
+	_u.mutation.SetUpdatedAt(v)
+	return _u
 }
 
 // SetTarget sets the "target" field.
-func (elu *EmailLogUpdate) SetTarget(s string) *EmailLogUpdate {
-	elu.mutation.SetTarget(s)
-	return elu
+func (_u *EmailLogUpdate) SetTarget(v string) *EmailLogUpdate {
+	_u.mutation.SetTarget(v)
+	return _u
 }
 
 // SetNillableTarget sets the "target" field if the given value is not nil.
-func (elu *EmailLogUpdate) SetNillableTarget(s *string) *EmailLogUpdate {
-	if s != nil {
-		elu.SetTarget(*s)
+func (_u *EmailLogUpdate) SetNillableTarget(v *string) *EmailLogUpdate {
+	if v != nil {
+		_u.SetTarget(*v)
 	}
-	return elu
+	return _u
 }
 
 // SetSubject sets the "subject" field.
-func (elu *EmailLogUpdate) SetSubject(s string) *EmailLogUpdate {
-	elu.mutation.SetSubject(s)
-	return elu
+func (_u *EmailLogUpdate) SetSubject(v string) *EmailLogUpdate {
+	_u.mutation.SetSubject(v)
+	return _u
 }
 
 // SetNillableSubject sets the "subject" field if the given value is not nil.
-func (elu *EmailLogUpdate) SetNillableSubject(s *string) *EmailLogUpdate {
-	if s != nil {
-		elu.SetSubject(*s)
+func (_u *EmailLogUpdate) SetNillableSubject(v *string) *EmailLogUpdate {
+	if v != nil {
+		_u.SetSubject(*v)
 	}
-	return elu
+	return _u
 }
 
 // SetContent sets the "content" field.
-func (elu *EmailLogUpdate) SetContent(s string) *EmailLogUpdate {
-	elu.mutation.SetContent(s)
-	return elu
+func (_u *EmailLogUpdate) SetContent(v string) *EmailLogUpdate {
+	_u.mutation.SetContent(v)
+	return _u
 }
 
 // SetNillableContent sets the "content" field if the given value is not nil.
-func (elu *EmailLogUpdate) SetNillableContent(s *string) *EmailLogUpdate {
-	if s != nil {
-		elu.SetContent(*s)
+func (_u *EmailLogUpdate) SetNillableContent(v *string) *EmailLogUpdate {
+	if v != nil {
+		_u.SetContent(*v)
 	}
-	return elu
+	return _u
 }
 
 // SetSendStatus sets the "send_status" field.
-func (elu *EmailLogUpdate) SetSendStatus(u uint8) *EmailLogUpdate {
-	elu.mutation.ResetSendStatus()
-	elu.mutation.SetSendStatus(u)
-	return elu
+func (_u *EmailLogUpdate) SetSendStatus(v uint8) *EmailLogUpdate {
+	_u.mutation.ResetSendStatus()
+	_u.mutation.SetSendStatus(v)
+	return _u
 }
 
 // SetNillableSendStatus sets the "send_status" field if the given value is not nil.
-func (elu *EmailLogUpdate) SetNillableSendStatus(u *uint8) *EmailLogUpdate {
-	if u != nil {
-		elu.SetSendStatus(*u)
+func (_u *EmailLogUpdate) SetNillableSendStatus(v *uint8) *EmailLogUpdate {
+	if v != nil {
+		_u.SetSendStatus(*v)
 	}
-	return elu
+	return _u
 }
 
-// AddSendStatus adds u to the "send_status" field.
-func (elu *EmailLogUpdate) AddSendStatus(u int8) *EmailLogUpdate {
-	elu.mutation.AddSendStatus(u)
-	return elu
+// AddSendStatus adds value to the "send_status" field.
+func (_u *EmailLogUpdate) AddSendStatus(v int8) *EmailLogUpdate {
+	_u.mutation.AddSendStatus(v)
+	return _u
 }
 
 // SetProvider sets the "provider" field.
-func (elu *EmailLogUpdate) SetProvider(s string) *EmailLogUpdate {
-	elu.mutation.SetProvider(s)
-	return elu
+func (_u *EmailLogUpdate) SetProvider(v string) *EmailLogUpdate {
+	_u.mutation.SetProvider(v)
+	return _u
 }
 
 // SetNillableProvider sets the "provider" field if the given value is not nil.
-func (elu *EmailLogUpdate) SetNillableProvider(s *string) *EmailLogUpdate {
-	if s != nil {
-		elu.SetProvider(*s)
+func (_u *EmailLogUpdate) SetNillableProvider(v *string) *EmailLogUpdate {
+	if v != nil {
+		_u.SetProvider(*v)
 	}
-	return elu
+	return _u
 }
 
 // Mutation returns the EmailLogMutation object of the builder.
-func (elu *EmailLogUpdate) Mutation() *EmailLogMutation {
-	return elu.mutation
+func (_u *EmailLogUpdate) Mutation() *EmailLogMutation {
+	return _u.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (elu *EmailLogUpdate) Save(ctx context.Context) (int, error) {
-	elu.defaults()
-	return withHooks(ctx, elu.sqlSave, elu.mutation, elu.hooks)
+func (_u *EmailLogUpdate) Save(ctx context.Context) (int, error) {
+	_u.defaults()
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (elu *EmailLogUpdate) SaveX(ctx context.Context) int {
-	affected, err := elu.Save(ctx)
+func (_u *EmailLogUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -132,57 +132,57 @@ func (elu *EmailLogUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (elu *EmailLogUpdate) Exec(ctx context.Context) error {
-	_, err := elu.Save(ctx)
+func (_u *EmailLogUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (elu *EmailLogUpdate) ExecX(ctx context.Context) {
-	if err := elu.Exec(ctx); err != nil {
+func (_u *EmailLogUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (elu *EmailLogUpdate) defaults() {
-	if _, ok := elu.mutation.UpdatedAt(); !ok {
+func (_u *EmailLogUpdate) defaults() {
+	if _, ok := _u.mutation.UpdatedAt(); !ok {
 		v := emaillog.UpdateDefaultUpdatedAt()
-		elu.mutation.SetUpdatedAt(v)
+		_u.mutation.SetUpdatedAt(v)
 	}
 }
 
-func (elu *EmailLogUpdate) sqlSave(ctx context.Context) (n int, err error) {
+func (_u *EmailLogUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(emaillog.Table, emaillog.Columns, sqlgraph.NewFieldSpec(emaillog.FieldID, field.TypeUUID))
-	if ps := elu.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := elu.mutation.UpdatedAt(); ok {
+	if value, ok := _u.mutation.UpdatedAt(); ok {
 		_spec.SetField(emaillog.FieldUpdatedAt, field.TypeTime, value)
 	}
-	if value, ok := elu.mutation.Target(); ok {
+	if value, ok := _u.mutation.Target(); ok {
 		_spec.SetField(emaillog.FieldTarget, field.TypeString, value)
 	}
-	if value, ok := elu.mutation.Subject(); ok {
+	if value, ok := _u.mutation.Subject(); ok {
 		_spec.SetField(emaillog.FieldSubject, field.TypeString, value)
 	}
-	if value, ok := elu.mutation.Content(); ok {
+	if value, ok := _u.mutation.Content(); ok {
 		_spec.SetField(emaillog.FieldContent, field.TypeString, value)
 	}
-	if value, ok := elu.mutation.SendStatus(); ok {
+	if value, ok := _u.mutation.SendStatus(); ok {
 		_spec.SetField(emaillog.FieldSendStatus, field.TypeUint8, value)
 	}
-	if value, ok := elu.mutation.AddedSendStatus(); ok {
+	if value, ok := _u.mutation.AddedSendStatus(); ok {
 		_spec.AddField(emaillog.FieldSendStatus, field.TypeUint8, value)
 	}
-	if value, ok := elu.mutation.Provider(); ok {
+	if value, ok := _u.mutation.Provider(); ok {
 		_spec.SetField(emaillog.FieldProvider, field.TypeString, value)
 	}
-	if n, err = sqlgraph.UpdateNodes(ctx, elu.driver, _spec); err != nil {
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{emaillog.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -190,8 +190,8 @@ func (elu *EmailLogUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	elu.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // EmailLogUpdateOne is the builder for updating a single EmailLog entity.
@@ -203,115 +203,115 @@ type EmailLogUpdateOne struct {
 }
 
 // SetUpdatedAt sets the "updated_at" field.
-func (eluo *EmailLogUpdateOne) SetUpdatedAt(t time.Time) *EmailLogUpdateOne {
-	eluo.mutation.SetUpdatedAt(t)
-	return eluo
+func (_u *EmailLogUpdateOne) SetUpdatedAt(v time.Time) *EmailLogUpdateOne {
+	_u.mutation.SetUpdatedAt(v)
+	return _u
 }
 
 // SetTarget sets the "target" field.
-func (eluo *EmailLogUpdateOne) SetTarget(s string) *EmailLogUpdateOne {
-	eluo.mutation.SetTarget(s)
-	return eluo
+func (_u *EmailLogUpdateOne) SetTarget(v string) *EmailLogUpdateOne {
+	_u.mutation.SetTarget(v)
+	return _u
 }
 
 // SetNillableTarget sets the "target" field if the given value is not nil.
-func (eluo *EmailLogUpdateOne) SetNillableTarget(s *string) *EmailLogUpdateOne {
-	if s != nil {
-		eluo.SetTarget(*s)
+func (_u *EmailLogUpdateOne) SetNillableTarget(v *string) *EmailLogUpdateOne {
+	if v != nil {
+		_u.SetTarget(*v)
 	}
-	return eluo
+	return _u
 }
 
 // SetSubject sets the "subject" field.
-func (eluo *EmailLogUpdateOne) SetSubject(s string) *EmailLogUpdateOne {
-	eluo.mutation.SetSubject(s)
-	return eluo
+func (_u *EmailLogUpdateOne) SetSubject(v string) *EmailLogUpdateOne {
+	_u.mutation.SetSubject(v)
+	return _u
 }
 
 // SetNillableSubject sets the "subject" field if the given value is not nil.
-func (eluo *EmailLogUpdateOne) SetNillableSubject(s *string) *EmailLogUpdateOne {
-	if s != nil {
-		eluo.SetSubject(*s)
+func (_u *EmailLogUpdateOne) SetNillableSubject(v *string) *EmailLogUpdateOne {
+	if v != nil {
+		_u.SetSubject(*v)
 	}
-	return eluo
+	return _u
 }
 
 // SetContent sets the "content" field.
-func (eluo *EmailLogUpdateOne) SetContent(s string) *EmailLogUpdateOne {
-	eluo.mutation.SetContent(s)
-	return eluo
+func (_u *EmailLogUpdateOne) SetContent(v string) *EmailLogUpdateOne {
+	_u.mutation.SetContent(v)
+	return _u
 }
 
 // SetNillableContent sets the "content" field if the given value is not nil.
-func (eluo *EmailLogUpdateOne) SetNillableContent(s *string) *EmailLogUpdateOne {
-	if s != nil {
-		eluo.SetContent(*s)
+func (_u *EmailLogUpdateOne) SetNillableContent(v *string) *EmailLogUpdateOne {
+	if v != nil {
+		_u.SetContent(*v)
 	}
-	return eluo
+	return _u
 }
 
 // SetSendStatus sets the "send_status" field.
-func (eluo *EmailLogUpdateOne) SetSendStatus(u uint8) *EmailLogUpdateOne {
-	eluo.mutation.ResetSendStatus()
-	eluo.mutation.SetSendStatus(u)
-	return eluo
+func (_u *EmailLogUpdateOne) SetSendStatus(v uint8) *EmailLogUpdateOne {
+	_u.mutation.ResetSendStatus()
+	_u.mutation.SetSendStatus(v)
+	return _u
 }
 
 // SetNillableSendStatus sets the "send_status" field if the given value is not nil.
-func (eluo *EmailLogUpdateOne) SetNillableSendStatus(u *uint8) *EmailLogUpdateOne {
-	if u != nil {
-		eluo.SetSendStatus(*u)
+func (_u *EmailLogUpdateOne) SetNillableSendStatus(v *uint8) *EmailLogUpdateOne {
+	if v != nil {
+		_u.SetSendStatus(*v)
 	}
-	return eluo
+	return _u
 }
 
-// AddSendStatus adds u to the "send_status" field.
-func (eluo *EmailLogUpdateOne) AddSendStatus(u int8) *EmailLogUpdateOne {
-	eluo.mutation.AddSendStatus(u)
-	return eluo
+// AddSendStatus adds value to the "send_status" field.
+func (_u *EmailLogUpdateOne) AddSendStatus(v int8) *EmailLogUpdateOne {
+	_u.mutation.AddSendStatus(v)
+	return _u
 }
 
 // SetProvider sets the "provider" field.
-func (eluo *EmailLogUpdateOne) SetProvider(s string) *EmailLogUpdateOne {
-	eluo.mutation.SetProvider(s)
-	return eluo
+func (_u *EmailLogUpdateOne) SetProvider(v string) *EmailLogUpdateOne {
+	_u.mutation.SetProvider(v)
+	return _u
 }
 
 // SetNillableProvider sets the "provider" field if the given value is not nil.
-func (eluo *EmailLogUpdateOne) SetNillableProvider(s *string) *EmailLogUpdateOne {
-	if s != nil {
-		eluo.SetProvider(*s)
+func (_u *EmailLogUpdateOne) SetNillableProvider(v *string) *EmailLogUpdateOne {
+	if v != nil {
+		_u.SetProvider(*v)
 	}
-	return eluo
+	return _u
 }
 
 // Mutation returns the EmailLogMutation object of the builder.
-func (eluo *EmailLogUpdateOne) Mutation() *EmailLogMutation {
-	return eluo.mutation
+func (_u *EmailLogUpdateOne) Mutation() *EmailLogMutation {
+	return _u.mutation
 }
 
 // Where appends a list predicates to the EmailLogUpdate builder.
-func (eluo *EmailLogUpdateOne) Where(ps ...predicate.EmailLog) *EmailLogUpdateOne {
-	eluo.mutation.Where(ps...)
-	return eluo
+func (_u *EmailLogUpdateOne) Where(ps ...predicate.EmailLog) *EmailLogUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (eluo *EmailLogUpdateOne) Select(field string, fields ...string) *EmailLogUpdateOne {
-	eluo.fields = append([]string{field}, fields...)
-	return eluo
+func (_u *EmailLogUpdateOne) Select(field string, fields ...string) *EmailLogUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated EmailLog entity.
-func (eluo *EmailLogUpdateOne) Save(ctx context.Context) (*EmailLog, error) {
-	eluo.defaults()
-	return withHooks(ctx, eluo.sqlSave, eluo.mutation, eluo.hooks)
+func (_u *EmailLogUpdateOne) Save(ctx context.Context) (*EmailLog, error) {
+	_u.defaults()
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (eluo *EmailLogUpdateOne) SaveX(ctx context.Context) *EmailLog {
-	node, err := eluo.Save(ctx)
+func (_u *EmailLogUpdateOne) SaveX(ctx context.Context) *EmailLog {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -319,34 +319,34 @@ func (eluo *EmailLogUpdateOne) SaveX(ctx context.Context) *EmailLog {
 }
 
 // Exec executes the query on the entity.
-func (eluo *EmailLogUpdateOne) Exec(ctx context.Context) error {
-	_, err := eluo.Save(ctx)
+func (_u *EmailLogUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (eluo *EmailLogUpdateOne) ExecX(ctx context.Context) {
-	if err := eluo.Exec(ctx); err != nil {
+func (_u *EmailLogUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (eluo *EmailLogUpdateOne) defaults() {
-	if _, ok := eluo.mutation.UpdatedAt(); !ok {
+func (_u *EmailLogUpdateOne) defaults() {
+	if _, ok := _u.mutation.UpdatedAt(); !ok {
 		v := emaillog.UpdateDefaultUpdatedAt()
-		eluo.mutation.SetUpdatedAt(v)
+		_u.mutation.SetUpdatedAt(v)
 	}
 }
 
-func (eluo *EmailLogUpdateOne) sqlSave(ctx context.Context) (_node *EmailLog, err error) {
+func (_u *EmailLogUpdateOne) sqlSave(ctx context.Context) (_node *EmailLog, err error) {
 	_spec := sqlgraph.NewUpdateSpec(emaillog.Table, emaillog.Columns, sqlgraph.NewFieldSpec(emaillog.FieldID, field.TypeUUID))
-	id, ok := eluo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "EmailLog.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := eluo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, emaillog.FieldID)
 		for _, f := range fields {
@@ -358,38 +358,38 @@ func (eluo *EmailLogUpdateOne) sqlSave(ctx context.Context) (_node *EmailLog, er
 			}
 		}
 	}
-	if ps := eluo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := eluo.mutation.UpdatedAt(); ok {
+	if value, ok := _u.mutation.UpdatedAt(); ok {
 		_spec.SetField(emaillog.FieldUpdatedAt, field.TypeTime, value)
 	}
-	if value, ok := eluo.mutation.Target(); ok {
+	if value, ok := _u.mutation.Target(); ok {
 		_spec.SetField(emaillog.FieldTarget, field.TypeString, value)
 	}
-	if value, ok := eluo.mutation.Subject(); ok {
+	if value, ok := _u.mutation.Subject(); ok {
 		_spec.SetField(emaillog.FieldSubject, field.TypeString, value)
 	}
-	if value, ok := eluo.mutation.Content(); ok {
+	if value, ok := _u.mutation.Content(); ok {
 		_spec.SetField(emaillog.FieldContent, field.TypeString, value)
 	}
-	if value, ok := eluo.mutation.SendStatus(); ok {
+	if value, ok := _u.mutation.SendStatus(); ok {
 		_spec.SetField(emaillog.FieldSendStatus, field.TypeUint8, value)
 	}
-	if value, ok := eluo.mutation.AddedSendStatus(); ok {
+	if value, ok := _u.mutation.AddedSendStatus(); ok {
 		_spec.AddField(emaillog.FieldSendStatus, field.TypeUint8, value)
 	}
-	if value, ok := eluo.mutation.Provider(); ok {
+	if value, ok := _u.mutation.Provider(); ok {
 		_spec.SetField(emaillog.FieldProvider, field.TypeString, value)
 	}
-	_node = &EmailLog{config: eluo.config}
+	_node = &EmailLog{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, eluo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{emaillog.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -397,6 +397,6 @@ func (eluo *EmailLogUpdateOne) sqlSave(ctx context.Context) (_node *EmailLog, er
 		}
 		return nil, err
 	}
-	eluo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

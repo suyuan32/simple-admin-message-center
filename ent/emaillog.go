@@ -58,7 +58,7 @@ func (*EmailLog) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the EmailLog fields.
-func (el *EmailLog) assignValues(columns []string, values []any) error {
+func (_m *EmailLog) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -68,52 +68,52 @@ func (el *EmailLog) assignValues(columns []string, values []any) error {
 			if value, ok := values[i].(*uuid.UUID); !ok {
 				return fmt.Errorf("unexpected type %T for field id", values[i])
 			} else if value != nil {
-				el.ID = *value
+				_m.ID = *value
 			}
 		case emaillog.FieldCreatedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field created_at", values[i])
 			} else if value.Valid {
-				el.CreatedAt = value.Time
+				_m.CreatedAt = value.Time
 			}
 		case emaillog.FieldUpdatedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updated_at", values[i])
 			} else if value.Valid {
-				el.UpdatedAt = value.Time
+				_m.UpdatedAt = value.Time
 			}
 		case emaillog.FieldTarget:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field target", values[i])
 			} else if value.Valid {
-				el.Target = value.String
+				_m.Target = value.String
 			}
 		case emaillog.FieldSubject:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field subject", values[i])
 			} else if value.Valid {
-				el.Subject = value.String
+				_m.Subject = value.String
 			}
 		case emaillog.FieldContent:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field content", values[i])
 			} else if value.Valid {
-				el.Content = value.String
+				_m.Content = value.String
 			}
 		case emaillog.FieldSendStatus:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field send_status", values[i])
 			} else if value.Valid {
-				el.SendStatus = uint8(value.Int64)
+				_m.SendStatus = uint8(value.Int64)
 			}
 		case emaillog.FieldProvider:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field provider", values[i])
 			} else if value.Valid {
-				el.Provider = value.String
+				_m.Provider = value.String
 			}
 		default:
-			el.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -121,53 +121,53 @@ func (el *EmailLog) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the EmailLog.
 // This includes values selected through modifiers, order, etc.
-func (el *EmailLog) Value(name string) (ent.Value, error) {
-	return el.selectValues.Get(name)
+func (_m *EmailLog) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this EmailLog.
 // Note that you need to call EmailLog.Unwrap() before calling this method if this EmailLog
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (el *EmailLog) Update() *EmailLogUpdateOne {
-	return NewEmailLogClient(el.config).UpdateOne(el)
+func (_m *EmailLog) Update() *EmailLogUpdateOne {
+	return NewEmailLogClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the EmailLog entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (el *EmailLog) Unwrap() *EmailLog {
-	_tx, ok := el.config.driver.(*txDriver)
+func (_m *EmailLog) Unwrap() *EmailLog {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: EmailLog is not a transactional entity")
 	}
-	el.config.driver = _tx.drv
-	return el
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (el *EmailLog) String() string {
+func (_m *EmailLog) String() string {
 	var builder strings.Builder
 	builder.WriteString("EmailLog(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", el.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("created_at=")
-	builder.WriteString(el.CreatedAt.Format(time.ANSIC))
+	builder.WriteString(_m.CreatedAt.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updated_at=")
-	builder.WriteString(el.UpdatedAt.Format(time.ANSIC))
+	builder.WriteString(_m.UpdatedAt.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("target=")
-	builder.WriteString(el.Target)
+	builder.WriteString(_m.Target)
 	builder.WriteString(", ")
 	builder.WriteString("subject=")
-	builder.WriteString(el.Subject)
+	builder.WriteString(_m.Subject)
 	builder.WriteString(", ")
 	builder.WriteString("content=")
-	builder.WriteString(el.Content)
+	builder.WriteString(_m.Content)
 	builder.WriteString(", ")
 	builder.WriteString("send_status=")
-	builder.WriteString(fmt.Sprintf("%v", el.SendStatus))
+	builder.WriteString(fmt.Sprintf("%v", _m.SendStatus))
 	builder.WriteString(", ")
 	builder.WriteString("provider=")
-	builder.WriteString(el.Provider)
+	builder.WriteString(_m.Provider)
 	builder.WriteByte(')')
 	return builder.String()
 }

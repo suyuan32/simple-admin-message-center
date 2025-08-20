@@ -22,91 +22,91 @@ type EmailLogCreate struct {
 }
 
 // SetCreatedAt sets the "created_at" field.
-func (elc *EmailLogCreate) SetCreatedAt(t time.Time) *EmailLogCreate {
-	elc.mutation.SetCreatedAt(t)
-	return elc
+func (_c *EmailLogCreate) SetCreatedAt(v time.Time) *EmailLogCreate {
+	_c.mutation.SetCreatedAt(v)
+	return _c
 }
 
 // SetNillableCreatedAt sets the "created_at" field if the given value is not nil.
-func (elc *EmailLogCreate) SetNillableCreatedAt(t *time.Time) *EmailLogCreate {
-	if t != nil {
-		elc.SetCreatedAt(*t)
+func (_c *EmailLogCreate) SetNillableCreatedAt(v *time.Time) *EmailLogCreate {
+	if v != nil {
+		_c.SetCreatedAt(*v)
 	}
-	return elc
+	return _c
 }
 
 // SetUpdatedAt sets the "updated_at" field.
-func (elc *EmailLogCreate) SetUpdatedAt(t time.Time) *EmailLogCreate {
-	elc.mutation.SetUpdatedAt(t)
-	return elc
+func (_c *EmailLogCreate) SetUpdatedAt(v time.Time) *EmailLogCreate {
+	_c.mutation.SetUpdatedAt(v)
+	return _c
 }
 
 // SetNillableUpdatedAt sets the "updated_at" field if the given value is not nil.
-func (elc *EmailLogCreate) SetNillableUpdatedAt(t *time.Time) *EmailLogCreate {
-	if t != nil {
-		elc.SetUpdatedAt(*t)
+func (_c *EmailLogCreate) SetNillableUpdatedAt(v *time.Time) *EmailLogCreate {
+	if v != nil {
+		_c.SetUpdatedAt(*v)
 	}
-	return elc
+	return _c
 }
 
 // SetTarget sets the "target" field.
-func (elc *EmailLogCreate) SetTarget(s string) *EmailLogCreate {
-	elc.mutation.SetTarget(s)
-	return elc
+func (_c *EmailLogCreate) SetTarget(v string) *EmailLogCreate {
+	_c.mutation.SetTarget(v)
+	return _c
 }
 
 // SetSubject sets the "subject" field.
-func (elc *EmailLogCreate) SetSubject(s string) *EmailLogCreate {
-	elc.mutation.SetSubject(s)
-	return elc
+func (_c *EmailLogCreate) SetSubject(v string) *EmailLogCreate {
+	_c.mutation.SetSubject(v)
+	return _c
 }
 
 // SetContent sets the "content" field.
-func (elc *EmailLogCreate) SetContent(s string) *EmailLogCreate {
-	elc.mutation.SetContent(s)
-	return elc
+func (_c *EmailLogCreate) SetContent(v string) *EmailLogCreate {
+	_c.mutation.SetContent(v)
+	return _c
 }
 
 // SetSendStatus sets the "send_status" field.
-func (elc *EmailLogCreate) SetSendStatus(u uint8) *EmailLogCreate {
-	elc.mutation.SetSendStatus(u)
-	return elc
+func (_c *EmailLogCreate) SetSendStatus(v uint8) *EmailLogCreate {
+	_c.mutation.SetSendStatus(v)
+	return _c
 }
 
 // SetProvider sets the "provider" field.
-func (elc *EmailLogCreate) SetProvider(s string) *EmailLogCreate {
-	elc.mutation.SetProvider(s)
-	return elc
+func (_c *EmailLogCreate) SetProvider(v string) *EmailLogCreate {
+	_c.mutation.SetProvider(v)
+	return _c
 }
 
 // SetID sets the "id" field.
-func (elc *EmailLogCreate) SetID(u uuid.UUID) *EmailLogCreate {
-	elc.mutation.SetID(u)
-	return elc
+func (_c *EmailLogCreate) SetID(v uuid.UUID) *EmailLogCreate {
+	_c.mutation.SetID(v)
+	return _c
 }
 
 // SetNillableID sets the "id" field if the given value is not nil.
-func (elc *EmailLogCreate) SetNillableID(u *uuid.UUID) *EmailLogCreate {
-	if u != nil {
-		elc.SetID(*u)
+func (_c *EmailLogCreate) SetNillableID(v *uuid.UUID) *EmailLogCreate {
+	if v != nil {
+		_c.SetID(*v)
 	}
-	return elc
+	return _c
 }
 
 // Mutation returns the EmailLogMutation object of the builder.
-func (elc *EmailLogCreate) Mutation() *EmailLogMutation {
-	return elc.mutation
+func (_c *EmailLogCreate) Mutation() *EmailLogMutation {
+	return _c.mutation
 }
 
 // Save creates the EmailLog in the database.
-func (elc *EmailLogCreate) Save(ctx context.Context) (*EmailLog, error) {
-	elc.defaults()
-	return withHooks(ctx, elc.sqlSave, elc.mutation, elc.hooks)
+func (_c *EmailLogCreate) Save(ctx context.Context) (*EmailLog, error) {
+	_c.defaults()
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (elc *EmailLogCreate) SaveX(ctx context.Context) *EmailLog {
-	v, err := elc.Save(ctx)
+func (_c *EmailLogCreate) SaveX(ctx context.Context) *EmailLog {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -114,66 +114,66 @@ func (elc *EmailLogCreate) SaveX(ctx context.Context) *EmailLog {
 }
 
 // Exec executes the query.
-func (elc *EmailLogCreate) Exec(ctx context.Context) error {
-	_, err := elc.Save(ctx)
+func (_c *EmailLogCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (elc *EmailLogCreate) ExecX(ctx context.Context) {
-	if err := elc.Exec(ctx); err != nil {
+func (_c *EmailLogCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (elc *EmailLogCreate) defaults() {
-	if _, ok := elc.mutation.CreatedAt(); !ok {
+func (_c *EmailLogCreate) defaults() {
+	if _, ok := _c.mutation.CreatedAt(); !ok {
 		v := emaillog.DefaultCreatedAt()
-		elc.mutation.SetCreatedAt(v)
+		_c.mutation.SetCreatedAt(v)
 	}
-	if _, ok := elc.mutation.UpdatedAt(); !ok {
+	if _, ok := _c.mutation.UpdatedAt(); !ok {
 		v := emaillog.DefaultUpdatedAt()
-		elc.mutation.SetUpdatedAt(v)
+		_c.mutation.SetUpdatedAt(v)
 	}
-	if _, ok := elc.mutation.ID(); !ok {
+	if _, ok := _c.mutation.ID(); !ok {
 		v := emaillog.DefaultID()
-		elc.mutation.SetID(v)
+		_c.mutation.SetID(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (elc *EmailLogCreate) check() error {
-	if _, ok := elc.mutation.CreatedAt(); !ok {
+func (_c *EmailLogCreate) check() error {
+	if _, ok := _c.mutation.CreatedAt(); !ok {
 		return &ValidationError{Name: "created_at", err: errors.New(`ent: missing required field "EmailLog.created_at"`)}
 	}
-	if _, ok := elc.mutation.UpdatedAt(); !ok {
+	if _, ok := _c.mutation.UpdatedAt(); !ok {
 		return &ValidationError{Name: "updated_at", err: errors.New(`ent: missing required field "EmailLog.updated_at"`)}
 	}
-	if _, ok := elc.mutation.Target(); !ok {
+	if _, ok := _c.mutation.Target(); !ok {
 		return &ValidationError{Name: "target", err: errors.New(`ent: missing required field "EmailLog.target"`)}
 	}
-	if _, ok := elc.mutation.Subject(); !ok {
+	if _, ok := _c.mutation.Subject(); !ok {
 		return &ValidationError{Name: "subject", err: errors.New(`ent: missing required field "EmailLog.subject"`)}
 	}
-	if _, ok := elc.mutation.Content(); !ok {
+	if _, ok := _c.mutation.Content(); !ok {
 		return &ValidationError{Name: "content", err: errors.New(`ent: missing required field "EmailLog.content"`)}
 	}
-	if _, ok := elc.mutation.SendStatus(); !ok {
+	if _, ok := _c.mutation.SendStatus(); !ok {
 		return &ValidationError{Name: "send_status", err: errors.New(`ent: missing required field "EmailLog.send_status"`)}
 	}
-	if _, ok := elc.mutation.Provider(); !ok {
+	if _, ok := _c.mutation.Provider(); !ok {
 		return &ValidationError{Name: "provider", err: errors.New(`ent: missing required field "EmailLog.provider"`)}
 	}
 	return nil
 }
 
-func (elc *EmailLogCreate) sqlSave(ctx context.Context) (*EmailLog, error) {
-	if err := elc.check(); err != nil {
+func (_c *EmailLogCreate) sqlSave(ctx context.Context) (*EmailLog, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := elc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, elc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -186,45 +186,45 @@ func (elc *EmailLogCreate) sqlSave(ctx context.Context) (*EmailLog, error) {
 			return nil, err
 		}
 	}
-	elc.mutation.id = &_node.ID
-	elc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (elc *EmailLogCreate) createSpec() (*EmailLog, *sqlgraph.CreateSpec) {
+func (_c *EmailLogCreate) createSpec() (*EmailLog, *sqlgraph.CreateSpec) {
 	var (
-		_node = &EmailLog{config: elc.config}
+		_node = &EmailLog{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(emaillog.Table, sqlgraph.NewFieldSpec(emaillog.FieldID, field.TypeUUID))
 	)
-	if id, ok := elc.mutation.ID(); ok {
+	if id, ok := _c.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = &id
 	}
-	if value, ok := elc.mutation.CreatedAt(); ok {
+	if value, ok := _c.mutation.CreatedAt(); ok {
 		_spec.SetField(emaillog.FieldCreatedAt, field.TypeTime, value)
 		_node.CreatedAt = value
 	}
-	if value, ok := elc.mutation.UpdatedAt(); ok {
+	if value, ok := _c.mutation.UpdatedAt(); ok {
 		_spec.SetField(emaillog.FieldUpdatedAt, field.TypeTime, value)
 		_node.UpdatedAt = value
 	}
-	if value, ok := elc.mutation.Target(); ok {
+	if value, ok := _c.mutation.Target(); ok {
 		_spec.SetField(emaillog.FieldTarget, field.TypeString, value)
 		_node.Target = value
 	}
-	if value, ok := elc.mutation.Subject(); ok {
+	if value, ok := _c.mutation.Subject(); ok {
 		_spec.SetField(emaillog.FieldSubject, field.TypeString, value)
 		_node.Subject = value
 	}
-	if value, ok := elc.mutation.Content(); ok {
+	if value, ok := _c.mutation.Content(); ok {
 		_spec.SetField(emaillog.FieldContent, field.TypeString, value)
 		_node.Content = value
 	}
-	if value, ok := elc.mutation.SendStatus(); ok {
+	if value, ok := _c.mutation.SendStatus(); ok {
 		_spec.SetField(emaillog.FieldSendStatus, field.TypeUint8, value)
 		_node.SendStatus = value
 	}
-	if value, ok := elc.mutation.Provider(); ok {
+	if value, ok := _c.mutation.Provider(); ok {
 		_spec.SetField(emaillog.FieldProvider, field.TypeString, value)
 		_node.Provider = value
 	}
@@ -239,16 +239,16 @@ type EmailLogCreateBulk struct {
 }
 
 // Save creates the EmailLog entities in the database.
-func (elcb *EmailLogCreateBulk) Save(ctx context.Context) ([]*EmailLog, error) {
-	if elcb.err != nil {
-		return nil, elcb.err
+func (_c *EmailLogCreateBulk) Save(ctx context.Context) ([]*EmailLog, error) {
+	if _c.err != nil {
+		return nil, _c.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(elcb.builders))
-	nodes := make([]*EmailLog, len(elcb.builders))
-	mutators := make([]Mutator, len(elcb.builders))
-	for i := range elcb.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*EmailLog, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := elcb.builders[i]
+			builder := _c.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*EmailLogMutation)
@@ -262,11 +262,11 @@ func (elcb *EmailLogCreateBulk) Save(ctx context.Context) ([]*EmailLog, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, elcb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, elcb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -286,7 +286,7 @@ func (elcb *EmailLogCreateBulk) Save(ctx context.Context) ([]*EmailLog, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, elcb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -294,8 +294,8 @@ func (elcb *EmailLogCreateBulk) Save(ctx context.Context) ([]*EmailLog, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (elcb *EmailLogCreateBulk) SaveX(ctx context.Context) []*EmailLog {
-	v, err := elcb.Save(ctx)
+func (_c *EmailLogCreateBulk) SaveX(ctx context.Context) []*EmailLog {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -303,14 +303,14 @@ func (elcb *EmailLogCreateBulk) SaveX(ctx context.Context) []*EmailLog {
 }
 
 // Exec executes the query.
-func (elcb *EmailLogCreateBulk) Exec(ctx context.Context) error {
-	_, err := elcb.Save(ctx)
+func (_c *EmailLogCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (elcb *EmailLogCreateBulk) ExecX(ctx context.Context) {
-	if err := elcb.Exec(ctx); err != nil {
+func (_c *EmailLogCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

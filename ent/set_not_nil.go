@@ -5,673 +5,673 @@ package ent
 import "time"
 
 // set field if value's pointer is not nil.
-func (el *EmailLogUpdate) SetNotNilUpdatedAt(value *time.Time) *EmailLogUpdate {
+func (_m *EmailLogUpdate) SetNotNilUpdatedAt(value *time.Time) *EmailLogUpdate {
 	if value != nil {
-		return el.SetUpdatedAt(*value)
+		return _m.SetUpdatedAt(*value)
 	}
-	return el
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (el *EmailLogUpdateOne) SetNotNilUpdatedAt(value *time.Time) *EmailLogUpdateOne {
+func (_m *EmailLogUpdateOne) SetNotNilUpdatedAt(value *time.Time) *EmailLogUpdateOne {
 	if value != nil {
-		return el.SetUpdatedAt(*value)
+		return _m.SetUpdatedAt(*value)
 	}
-	return el
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (el *EmailLogCreate) SetNotNilUpdatedAt(value *time.Time) *EmailLogCreate {
+func (_m *EmailLogCreate) SetNotNilUpdatedAt(value *time.Time) *EmailLogCreate {
 	if value != nil {
-		return el.SetUpdatedAt(*value)
+		return _m.SetUpdatedAt(*value)
 	}
-	return el
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (el *EmailLogUpdate) SetNotNilTarget(value *string) *EmailLogUpdate {
+func (_m *EmailLogUpdate) SetNotNilTarget(value *string) *EmailLogUpdate {
 	if value != nil {
-		return el.SetTarget(*value)
+		return _m.SetTarget(*value)
 	}
-	return el
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (el *EmailLogUpdateOne) SetNotNilTarget(value *string) *EmailLogUpdateOne {
+func (_m *EmailLogUpdateOne) SetNotNilTarget(value *string) *EmailLogUpdateOne {
 	if value != nil {
-		return el.SetTarget(*value)
+		return _m.SetTarget(*value)
 	}
-	return el
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (el *EmailLogCreate) SetNotNilTarget(value *string) *EmailLogCreate {
+func (_m *EmailLogCreate) SetNotNilTarget(value *string) *EmailLogCreate {
 	if value != nil {
-		return el.SetTarget(*value)
+		return _m.SetTarget(*value)
 	}
-	return el
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (el *EmailLogUpdate) SetNotNilSubject(value *string) *EmailLogUpdate {
+func (_m *EmailLogUpdate) SetNotNilSubject(value *string) *EmailLogUpdate {
 	if value != nil {
-		return el.SetSubject(*value)
+		return _m.SetSubject(*value)
 	}
-	return el
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (el *EmailLogUpdateOne) SetNotNilSubject(value *string) *EmailLogUpdateOne {
+func (_m *EmailLogUpdateOne) SetNotNilSubject(value *string) *EmailLogUpdateOne {
 	if value != nil {
-		return el.SetSubject(*value)
+		return _m.SetSubject(*value)
 	}
-	return el
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (el *EmailLogCreate) SetNotNilSubject(value *string) *EmailLogCreate {
+func (_m *EmailLogCreate) SetNotNilSubject(value *string) *EmailLogCreate {
 	if value != nil {
-		return el.SetSubject(*value)
+		return _m.SetSubject(*value)
 	}
-	return el
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (el *EmailLogUpdate) SetNotNilContent(value *string) *EmailLogUpdate {
+func (_m *EmailLogUpdate) SetNotNilContent(value *string) *EmailLogUpdate {
 	if value != nil {
-		return el.SetContent(*value)
+		return _m.SetContent(*value)
 	}
-	return el
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (el *EmailLogUpdateOne) SetNotNilContent(value *string) *EmailLogUpdateOne {
+func (_m *EmailLogUpdateOne) SetNotNilContent(value *string) *EmailLogUpdateOne {
 	if value != nil {
-		return el.SetContent(*value)
+		return _m.SetContent(*value)
 	}
-	return el
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (el *EmailLogCreate) SetNotNilContent(value *string) *EmailLogCreate {
+func (_m *EmailLogCreate) SetNotNilContent(value *string) *EmailLogCreate {
 	if value != nil {
-		return el.SetContent(*value)
+		return _m.SetContent(*value)
 	}
-	return el
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (el *EmailLogUpdate) SetNotNilSendStatus(value *uint8) *EmailLogUpdate {
+func (_m *EmailLogUpdate) SetNotNilSendStatus(value *uint8) *EmailLogUpdate {
 	if value != nil {
-		return el.SetSendStatus(*value)
+		return _m.SetSendStatus(*value)
 	}
-	return el
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (el *EmailLogUpdateOne) SetNotNilSendStatus(value *uint8) *EmailLogUpdateOne {
+func (_m *EmailLogUpdateOne) SetNotNilSendStatus(value *uint8) *EmailLogUpdateOne {
 	if value != nil {
-		return el.SetSendStatus(*value)
+		return _m.SetSendStatus(*value)
 	}
-	return el
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (el *EmailLogCreate) SetNotNilSendStatus(value *uint8) *EmailLogCreate {
+func (_m *EmailLogCreate) SetNotNilSendStatus(value *uint8) *EmailLogCreate {
 	if value != nil {
-		return el.SetSendStatus(*value)
+		return _m.SetSendStatus(*value)
 	}
-	return el
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (el *EmailLogUpdate) SetNotNilProvider(value *string) *EmailLogUpdate {
+func (_m *EmailLogUpdate) SetNotNilProvider(value *string) *EmailLogUpdate {
 	if value != nil {
-		return el.SetProvider(*value)
+		return _m.SetProvider(*value)
 	}
-	return el
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (el *EmailLogUpdateOne) SetNotNilProvider(value *string) *EmailLogUpdateOne {
+func (_m *EmailLogUpdateOne) SetNotNilProvider(value *string) *EmailLogUpdateOne {
 	if value != nil {
-		return el.SetProvider(*value)
+		return _m.SetProvider(*value)
 	}
-	return el
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (el *EmailLogCreate) SetNotNilProvider(value *string) *EmailLogCreate {
+func (_m *EmailLogCreate) SetNotNilProvider(value *string) *EmailLogCreate {
 	if value != nil {
-		return el.SetProvider(*value)
+		return _m.SetProvider(*value)
 	}
-	return el
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderUpdate) SetNotNilUpdatedAt(value *time.Time) *EmailProviderUpdate {
+func (_m *EmailProviderUpdate) SetNotNilUpdatedAt(value *time.Time) *EmailProviderUpdate {
 	if value != nil {
-		return ep.SetUpdatedAt(*value)
+		return _m.SetUpdatedAt(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderUpdateOne) SetNotNilUpdatedAt(value *time.Time) *EmailProviderUpdateOne {
+func (_m *EmailProviderUpdateOne) SetNotNilUpdatedAt(value *time.Time) *EmailProviderUpdateOne {
 	if value != nil {
-		return ep.SetUpdatedAt(*value)
+		return _m.SetUpdatedAt(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderCreate) SetNotNilUpdatedAt(value *time.Time) *EmailProviderCreate {
+func (_m *EmailProviderCreate) SetNotNilUpdatedAt(value *time.Time) *EmailProviderCreate {
 	if value != nil {
-		return ep.SetUpdatedAt(*value)
+		return _m.SetUpdatedAt(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderUpdate) SetNotNilName(value *string) *EmailProviderUpdate {
+func (_m *EmailProviderUpdate) SetNotNilName(value *string) *EmailProviderUpdate {
 	if value != nil {
-		return ep.SetName(*value)
+		return _m.SetName(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderUpdateOne) SetNotNilName(value *string) *EmailProviderUpdateOne {
+func (_m *EmailProviderUpdateOne) SetNotNilName(value *string) *EmailProviderUpdateOne {
 	if value != nil {
-		return ep.SetName(*value)
+		return _m.SetName(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderCreate) SetNotNilName(value *string) *EmailProviderCreate {
+func (_m *EmailProviderCreate) SetNotNilName(value *string) *EmailProviderCreate {
 	if value != nil {
-		return ep.SetName(*value)
+		return _m.SetName(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderUpdate) SetNotNilAuthType(value *uint8) *EmailProviderUpdate {
+func (_m *EmailProviderUpdate) SetNotNilAuthType(value *uint8) *EmailProviderUpdate {
 	if value != nil {
-		return ep.SetAuthType(*value)
+		return _m.SetAuthType(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderUpdateOne) SetNotNilAuthType(value *uint8) *EmailProviderUpdateOne {
+func (_m *EmailProviderUpdateOne) SetNotNilAuthType(value *uint8) *EmailProviderUpdateOne {
 	if value != nil {
-		return ep.SetAuthType(*value)
+		return _m.SetAuthType(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderCreate) SetNotNilAuthType(value *uint8) *EmailProviderCreate {
+func (_m *EmailProviderCreate) SetNotNilAuthType(value *uint8) *EmailProviderCreate {
 	if value != nil {
-		return ep.SetAuthType(*value)
+		return _m.SetAuthType(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderUpdate) SetNotNilEmailAddr(value *string) *EmailProviderUpdate {
+func (_m *EmailProviderUpdate) SetNotNilEmailAddr(value *string) *EmailProviderUpdate {
 	if value != nil {
-		return ep.SetEmailAddr(*value)
+		return _m.SetEmailAddr(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderUpdateOne) SetNotNilEmailAddr(value *string) *EmailProviderUpdateOne {
+func (_m *EmailProviderUpdateOne) SetNotNilEmailAddr(value *string) *EmailProviderUpdateOne {
 	if value != nil {
-		return ep.SetEmailAddr(*value)
+		return _m.SetEmailAddr(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderCreate) SetNotNilEmailAddr(value *string) *EmailProviderCreate {
+func (_m *EmailProviderCreate) SetNotNilEmailAddr(value *string) *EmailProviderCreate {
 	if value != nil {
-		return ep.SetEmailAddr(*value)
+		return _m.SetEmailAddr(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderUpdate) SetNotNilPassword(value *string) *EmailProviderUpdate {
+func (_m *EmailProviderUpdate) SetNotNilPassword(value *string) *EmailProviderUpdate {
 	if value != nil {
-		return ep.SetPassword(*value)
+		return _m.SetPassword(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderUpdateOne) SetNotNilPassword(value *string) *EmailProviderUpdateOne {
+func (_m *EmailProviderUpdateOne) SetNotNilPassword(value *string) *EmailProviderUpdateOne {
 	if value != nil {
-		return ep.SetPassword(*value)
+		return _m.SetPassword(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderCreate) SetNotNilPassword(value *string) *EmailProviderCreate {
+func (_m *EmailProviderCreate) SetNotNilPassword(value *string) *EmailProviderCreate {
 	if value != nil {
-		return ep.SetPassword(*value)
+		return _m.SetPassword(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderUpdate) SetNotNilHostName(value *string) *EmailProviderUpdate {
+func (_m *EmailProviderUpdate) SetNotNilHostName(value *string) *EmailProviderUpdate {
 	if value != nil {
-		return ep.SetHostName(*value)
+		return _m.SetHostName(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderUpdateOne) SetNotNilHostName(value *string) *EmailProviderUpdateOne {
+func (_m *EmailProviderUpdateOne) SetNotNilHostName(value *string) *EmailProviderUpdateOne {
 	if value != nil {
-		return ep.SetHostName(*value)
+		return _m.SetHostName(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderCreate) SetNotNilHostName(value *string) *EmailProviderCreate {
+func (_m *EmailProviderCreate) SetNotNilHostName(value *string) *EmailProviderCreate {
 	if value != nil {
-		return ep.SetHostName(*value)
+		return _m.SetHostName(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderUpdate) SetNotNilIdentify(value *string) *EmailProviderUpdate {
+func (_m *EmailProviderUpdate) SetNotNilIdentify(value *string) *EmailProviderUpdate {
 	if value != nil {
-		return ep.SetIdentify(*value)
+		return _m.SetIdentify(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderUpdateOne) SetNotNilIdentify(value *string) *EmailProviderUpdateOne {
+func (_m *EmailProviderUpdateOne) SetNotNilIdentify(value *string) *EmailProviderUpdateOne {
 	if value != nil {
-		return ep.SetIdentify(*value)
+		return _m.SetIdentify(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderCreate) SetNotNilIdentify(value *string) *EmailProviderCreate {
+func (_m *EmailProviderCreate) SetNotNilIdentify(value *string) *EmailProviderCreate {
 	if value != nil {
-		return ep.SetIdentify(*value)
+		return _m.SetIdentify(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderUpdate) SetNotNilSecret(value *string) *EmailProviderUpdate {
+func (_m *EmailProviderUpdate) SetNotNilSecret(value *string) *EmailProviderUpdate {
 	if value != nil {
-		return ep.SetSecret(*value)
+		return _m.SetSecret(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderUpdateOne) SetNotNilSecret(value *string) *EmailProviderUpdateOne {
+func (_m *EmailProviderUpdateOne) SetNotNilSecret(value *string) *EmailProviderUpdateOne {
 	if value != nil {
-		return ep.SetSecret(*value)
+		return _m.SetSecret(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderCreate) SetNotNilSecret(value *string) *EmailProviderCreate {
+func (_m *EmailProviderCreate) SetNotNilSecret(value *string) *EmailProviderCreate {
 	if value != nil {
-		return ep.SetSecret(*value)
+		return _m.SetSecret(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderUpdate) SetNotNilPort(value *uint32) *EmailProviderUpdate {
+func (_m *EmailProviderUpdate) SetNotNilPort(value *uint32) *EmailProviderUpdate {
 	if value != nil {
-		return ep.SetPort(*value)
+		return _m.SetPort(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderUpdateOne) SetNotNilPort(value *uint32) *EmailProviderUpdateOne {
+func (_m *EmailProviderUpdateOne) SetNotNilPort(value *uint32) *EmailProviderUpdateOne {
 	if value != nil {
-		return ep.SetPort(*value)
+		return _m.SetPort(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderCreate) SetNotNilPort(value *uint32) *EmailProviderCreate {
+func (_m *EmailProviderCreate) SetNotNilPort(value *uint32) *EmailProviderCreate {
 	if value != nil {
-		return ep.SetPort(*value)
+		return _m.SetPort(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderUpdate) SetNotNilTLS(value *bool) *EmailProviderUpdate {
+func (_m *EmailProviderUpdate) SetNotNilTLS(value *bool) *EmailProviderUpdate {
 	if value != nil {
-		return ep.SetTLS(*value)
+		return _m.SetTLS(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderUpdateOne) SetNotNilTLS(value *bool) *EmailProviderUpdateOne {
+func (_m *EmailProviderUpdateOne) SetNotNilTLS(value *bool) *EmailProviderUpdateOne {
 	if value != nil {
-		return ep.SetTLS(*value)
+		return _m.SetTLS(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderCreate) SetNotNilTLS(value *bool) *EmailProviderCreate {
+func (_m *EmailProviderCreate) SetNotNilTLS(value *bool) *EmailProviderCreate {
 	if value != nil {
-		return ep.SetTLS(*value)
+		return _m.SetTLS(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderUpdate) SetNotNilIsDefault(value *bool) *EmailProviderUpdate {
+func (_m *EmailProviderUpdate) SetNotNilIsDefault(value *bool) *EmailProviderUpdate {
 	if value != nil {
-		return ep.SetIsDefault(*value)
+		return _m.SetIsDefault(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderUpdateOne) SetNotNilIsDefault(value *bool) *EmailProviderUpdateOne {
+func (_m *EmailProviderUpdateOne) SetNotNilIsDefault(value *bool) *EmailProviderUpdateOne {
 	if value != nil {
-		return ep.SetIsDefault(*value)
+		return _m.SetIsDefault(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (ep *EmailProviderCreate) SetNotNilIsDefault(value *bool) *EmailProviderCreate {
+func (_m *EmailProviderCreate) SetNotNilIsDefault(value *bool) *EmailProviderCreate {
 	if value != nil {
-		return ep.SetIsDefault(*value)
+		return _m.SetIsDefault(*value)
 	}
-	return ep
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sl *SmsLogUpdate) SetNotNilUpdatedAt(value *time.Time) *SmsLogUpdate {
+func (_m *SmsLogUpdate) SetNotNilUpdatedAt(value *time.Time) *SmsLogUpdate {
 	if value != nil {
-		return sl.SetUpdatedAt(*value)
+		return _m.SetUpdatedAt(*value)
 	}
-	return sl
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sl *SmsLogUpdateOne) SetNotNilUpdatedAt(value *time.Time) *SmsLogUpdateOne {
+func (_m *SmsLogUpdateOne) SetNotNilUpdatedAt(value *time.Time) *SmsLogUpdateOne {
 	if value != nil {
-		return sl.SetUpdatedAt(*value)
+		return _m.SetUpdatedAt(*value)
 	}
-	return sl
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sl *SmsLogCreate) SetNotNilUpdatedAt(value *time.Time) *SmsLogCreate {
+func (_m *SmsLogCreate) SetNotNilUpdatedAt(value *time.Time) *SmsLogCreate {
 	if value != nil {
-		return sl.SetUpdatedAt(*value)
+		return _m.SetUpdatedAt(*value)
 	}
-	return sl
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sl *SmsLogUpdate) SetNotNilPhoneNumber(value *string) *SmsLogUpdate {
+func (_m *SmsLogUpdate) SetNotNilPhoneNumber(value *string) *SmsLogUpdate {
 	if value != nil {
-		return sl.SetPhoneNumber(*value)
+		return _m.SetPhoneNumber(*value)
 	}
-	return sl
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sl *SmsLogUpdateOne) SetNotNilPhoneNumber(value *string) *SmsLogUpdateOne {
+func (_m *SmsLogUpdateOne) SetNotNilPhoneNumber(value *string) *SmsLogUpdateOne {
 	if value != nil {
-		return sl.SetPhoneNumber(*value)
+		return _m.SetPhoneNumber(*value)
 	}
-	return sl
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sl *SmsLogCreate) SetNotNilPhoneNumber(value *string) *SmsLogCreate {
+func (_m *SmsLogCreate) SetNotNilPhoneNumber(value *string) *SmsLogCreate {
 	if value != nil {
-		return sl.SetPhoneNumber(*value)
+		return _m.SetPhoneNumber(*value)
 	}
-	return sl
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sl *SmsLogUpdate) SetNotNilContent(value *string) *SmsLogUpdate {
+func (_m *SmsLogUpdate) SetNotNilContent(value *string) *SmsLogUpdate {
 	if value != nil {
-		return sl.SetContent(*value)
+		return _m.SetContent(*value)
 	}
-	return sl
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sl *SmsLogUpdateOne) SetNotNilContent(value *string) *SmsLogUpdateOne {
+func (_m *SmsLogUpdateOne) SetNotNilContent(value *string) *SmsLogUpdateOne {
 	if value != nil {
-		return sl.SetContent(*value)
+		return _m.SetContent(*value)
 	}
-	return sl
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sl *SmsLogCreate) SetNotNilContent(value *string) *SmsLogCreate {
+func (_m *SmsLogCreate) SetNotNilContent(value *string) *SmsLogCreate {
 	if value != nil {
-		return sl.SetContent(*value)
+		return _m.SetContent(*value)
 	}
-	return sl
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sl *SmsLogUpdate) SetNotNilSendStatus(value *uint8) *SmsLogUpdate {
+func (_m *SmsLogUpdate) SetNotNilSendStatus(value *uint8) *SmsLogUpdate {
 	if value != nil {
-		return sl.SetSendStatus(*value)
+		return _m.SetSendStatus(*value)
 	}
-	return sl
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sl *SmsLogUpdateOne) SetNotNilSendStatus(value *uint8) *SmsLogUpdateOne {
+func (_m *SmsLogUpdateOne) SetNotNilSendStatus(value *uint8) *SmsLogUpdateOne {
 	if value != nil {
-		return sl.SetSendStatus(*value)
+		return _m.SetSendStatus(*value)
 	}
-	return sl
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sl *SmsLogCreate) SetNotNilSendStatus(value *uint8) *SmsLogCreate {
+func (_m *SmsLogCreate) SetNotNilSendStatus(value *uint8) *SmsLogCreate {
 	if value != nil {
-		return sl.SetSendStatus(*value)
+		return _m.SetSendStatus(*value)
 	}
-	return sl
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sl *SmsLogUpdate) SetNotNilProvider(value *string) *SmsLogUpdate {
+func (_m *SmsLogUpdate) SetNotNilProvider(value *string) *SmsLogUpdate {
 	if value != nil {
-		return sl.SetProvider(*value)
+		return _m.SetProvider(*value)
 	}
-	return sl
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sl *SmsLogUpdateOne) SetNotNilProvider(value *string) *SmsLogUpdateOne {
+func (_m *SmsLogUpdateOne) SetNotNilProvider(value *string) *SmsLogUpdateOne {
 	if value != nil {
-		return sl.SetProvider(*value)
+		return _m.SetProvider(*value)
 	}
-	return sl
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sl *SmsLogCreate) SetNotNilProvider(value *string) *SmsLogCreate {
+func (_m *SmsLogCreate) SetNotNilProvider(value *string) *SmsLogCreate {
 	if value != nil {
-		return sl.SetProvider(*value)
+		return _m.SetProvider(*value)
 	}
-	return sl
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sp *SmsProviderUpdate) SetNotNilUpdatedAt(value *time.Time) *SmsProviderUpdate {
+func (_m *SmsProviderUpdate) SetNotNilUpdatedAt(value *time.Time) *SmsProviderUpdate {
 	if value != nil {
-		return sp.SetUpdatedAt(*value)
+		return _m.SetUpdatedAt(*value)
 	}
-	return sp
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sp *SmsProviderUpdateOne) SetNotNilUpdatedAt(value *time.Time) *SmsProviderUpdateOne {
+func (_m *SmsProviderUpdateOne) SetNotNilUpdatedAt(value *time.Time) *SmsProviderUpdateOne {
 	if value != nil {
-		return sp.SetUpdatedAt(*value)
+		return _m.SetUpdatedAt(*value)
 	}
-	return sp
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sp *SmsProviderCreate) SetNotNilUpdatedAt(value *time.Time) *SmsProviderCreate {
+func (_m *SmsProviderCreate) SetNotNilUpdatedAt(value *time.Time) *SmsProviderCreate {
 	if value != nil {
-		return sp.SetUpdatedAt(*value)
+		return _m.SetUpdatedAt(*value)
 	}
-	return sp
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sp *SmsProviderUpdate) SetNotNilName(value *string) *SmsProviderUpdate {
+func (_m *SmsProviderUpdate) SetNotNilName(value *string) *SmsProviderUpdate {
 	if value != nil {
-		return sp.SetName(*value)
+		return _m.SetName(*value)
 	}
-	return sp
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sp *SmsProviderUpdateOne) SetNotNilName(value *string) *SmsProviderUpdateOne {
+func (_m *SmsProviderUpdateOne) SetNotNilName(value *string) *SmsProviderUpdateOne {
 	if value != nil {
-		return sp.SetName(*value)
+		return _m.SetName(*value)
 	}
-	return sp
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sp *SmsProviderCreate) SetNotNilName(value *string) *SmsProviderCreate {
+func (_m *SmsProviderCreate) SetNotNilName(value *string) *SmsProviderCreate {
 	if value != nil {
-		return sp.SetName(*value)
+		return _m.SetName(*value)
 	}
-	return sp
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sp *SmsProviderUpdate) SetNotNilSecretID(value *string) *SmsProviderUpdate {
+func (_m *SmsProviderUpdate) SetNotNilSecretID(value *string) *SmsProviderUpdate {
 	if value != nil {
-		return sp.SetSecretID(*value)
+		return _m.SetSecretID(*value)
 	}
-	return sp
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sp *SmsProviderUpdateOne) SetNotNilSecretID(value *string) *SmsProviderUpdateOne {
+func (_m *SmsProviderUpdateOne) SetNotNilSecretID(value *string) *SmsProviderUpdateOne {
 	if value != nil {
-		return sp.SetSecretID(*value)
+		return _m.SetSecretID(*value)
 	}
-	return sp
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sp *SmsProviderCreate) SetNotNilSecretID(value *string) *SmsProviderCreate {
+func (_m *SmsProviderCreate) SetNotNilSecretID(value *string) *SmsProviderCreate {
 	if value != nil {
-		return sp.SetSecretID(*value)
+		return _m.SetSecretID(*value)
 	}
-	return sp
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sp *SmsProviderUpdate) SetNotNilSecretKey(value *string) *SmsProviderUpdate {
+func (_m *SmsProviderUpdate) SetNotNilSecretKey(value *string) *SmsProviderUpdate {
 	if value != nil {
-		return sp.SetSecretKey(*value)
+		return _m.SetSecretKey(*value)
 	}
-	return sp
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sp *SmsProviderUpdateOne) SetNotNilSecretKey(value *string) *SmsProviderUpdateOne {
+func (_m *SmsProviderUpdateOne) SetNotNilSecretKey(value *string) *SmsProviderUpdateOne {
 	if value != nil {
-		return sp.SetSecretKey(*value)
+		return _m.SetSecretKey(*value)
 	}
-	return sp
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sp *SmsProviderCreate) SetNotNilSecretKey(value *string) *SmsProviderCreate {
+func (_m *SmsProviderCreate) SetNotNilSecretKey(value *string) *SmsProviderCreate {
 	if value != nil {
-		return sp.SetSecretKey(*value)
+		return _m.SetSecretKey(*value)
 	}
-	return sp
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sp *SmsProviderUpdate) SetNotNilRegion(value *string) *SmsProviderUpdate {
+func (_m *SmsProviderUpdate) SetNotNilRegion(value *string) *SmsProviderUpdate {
 	if value != nil {
-		return sp.SetRegion(*value)
+		return _m.SetRegion(*value)
 	}
-	return sp
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sp *SmsProviderUpdateOne) SetNotNilRegion(value *string) *SmsProviderUpdateOne {
+func (_m *SmsProviderUpdateOne) SetNotNilRegion(value *string) *SmsProviderUpdateOne {
 	if value != nil {
-		return sp.SetRegion(*value)
+		return _m.SetRegion(*value)
 	}
-	return sp
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sp *SmsProviderCreate) SetNotNilRegion(value *string) *SmsProviderCreate {
+func (_m *SmsProviderCreate) SetNotNilRegion(value *string) *SmsProviderCreate {
 	if value != nil {
-		return sp.SetRegion(*value)
+		return _m.SetRegion(*value)
 	}
-	return sp
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sp *SmsProviderUpdate) SetNotNilIsDefault(value *bool) *SmsProviderUpdate {
+func (_m *SmsProviderUpdate) SetNotNilIsDefault(value *bool) *SmsProviderUpdate {
 	if value != nil {
-		return sp.SetIsDefault(*value)
+		return _m.SetIsDefault(*value)
 	}
-	return sp
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sp *SmsProviderUpdateOne) SetNotNilIsDefault(value *bool) *SmsProviderUpdateOne {
+func (_m *SmsProviderUpdateOne) SetNotNilIsDefault(value *bool) *SmsProviderUpdateOne {
 	if value != nil {
-		return sp.SetIsDefault(*value)
+		return _m.SetIsDefault(*value)
 	}
-	return sp
+	return _m
 }
 
 // set field if value's pointer is not nil.
-func (sp *SmsProviderCreate) SetNotNilIsDefault(value *bool) *SmsProviderCreate {
+func (_m *SmsProviderCreate) SetNotNilIsDefault(value *bool) *SmsProviderCreate {
 	if value != nil {
-		return sp.SetIsDefault(*value)
+		return _m.SetIsDefault(*value)
 	}
-	return sp
+	return _m
 }

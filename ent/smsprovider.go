@@ -56,7 +56,7 @@ func (*SmsProvider) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the SmsProvider fields.
-func (sp *SmsProvider) assignValues(columns []string, values []any) error {
+func (_m *SmsProvider) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -67,51 +67,51 @@ func (sp *SmsProvider) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			sp.ID = uint64(value.Int64)
+			_m.ID = uint64(value.Int64)
 		case smsprovider.FieldCreatedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field created_at", values[i])
 			} else if value.Valid {
-				sp.CreatedAt = value.Time
+				_m.CreatedAt = value.Time
 			}
 		case smsprovider.FieldUpdatedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updated_at", values[i])
 			} else if value.Valid {
-				sp.UpdatedAt = value.Time
+				_m.UpdatedAt = value.Time
 			}
 		case smsprovider.FieldName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field name", values[i])
 			} else if value.Valid {
-				sp.Name = value.String
+				_m.Name = value.String
 			}
 		case smsprovider.FieldSecretID:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field secret_id", values[i])
 			} else if value.Valid {
-				sp.SecretID = value.String
+				_m.SecretID = value.String
 			}
 		case smsprovider.FieldSecretKey:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field secret_key", values[i])
 			} else if value.Valid {
-				sp.SecretKey = value.String
+				_m.SecretKey = value.String
 			}
 		case smsprovider.FieldRegion:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field region", values[i])
 			} else if value.Valid {
-				sp.Region = value.String
+				_m.Region = value.String
 			}
 		case smsprovider.FieldIsDefault:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field is_default", values[i])
 			} else if value.Valid {
-				sp.IsDefault = value.Bool
+				_m.IsDefault = value.Bool
 			}
 		default:
-			sp.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -119,53 +119,53 @@ func (sp *SmsProvider) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the SmsProvider.
 // This includes values selected through modifiers, order, etc.
-func (sp *SmsProvider) Value(name string) (ent.Value, error) {
-	return sp.selectValues.Get(name)
+func (_m *SmsProvider) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this SmsProvider.
 // Note that you need to call SmsProvider.Unwrap() before calling this method if this SmsProvider
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (sp *SmsProvider) Update() *SmsProviderUpdateOne {
-	return NewSmsProviderClient(sp.config).UpdateOne(sp)
+func (_m *SmsProvider) Update() *SmsProviderUpdateOne {
+	return NewSmsProviderClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the SmsProvider entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (sp *SmsProvider) Unwrap() *SmsProvider {
-	_tx, ok := sp.config.driver.(*txDriver)
+func (_m *SmsProvider) Unwrap() *SmsProvider {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: SmsProvider is not a transactional entity")
 	}
-	sp.config.driver = _tx.drv
-	return sp
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (sp *SmsProvider) String() string {
+func (_m *SmsProvider) String() string {
 	var builder strings.Builder
 	builder.WriteString("SmsProvider(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", sp.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("created_at=")
-	builder.WriteString(sp.CreatedAt.Format(time.ANSIC))
+	builder.WriteString(_m.CreatedAt.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updated_at=")
-	builder.WriteString(sp.UpdatedAt.Format(time.ANSIC))
+	builder.WriteString(_m.UpdatedAt.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("name=")
-	builder.WriteString(sp.Name)
+	builder.WriteString(_m.Name)
 	builder.WriteString(", ")
 	builder.WriteString("secret_id=")
-	builder.WriteString(sp.SecretID)
+	builder.WriteString(_m.SecretID)
 	builder.WriteString(", ")
 	builder.WriteString("secret_key=")
-	builder.WriteString(sp.SecretKey)
+	builder.WriteString(_m.SecretKey)
 	builder.WriteString(", ")
 	builder.WriteString("region=")
-	builder.WriteString(sp.Region)
+	builder.WriteString(_m.Region)
 	builder.WriteString(", ")
 	builder.WriteString("is_default=")
-	builder.WriteString(fmt.Sprintf("%v", sp.IsDefault))
+	builder.WriteString(fmt.Sprintf("%v", _m.IsDefault))
 	builder.WriteByte(')')
 	return builder.String()
 }

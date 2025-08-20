@@ -21,161 +21,161 @@ type EmailProviderCreate struct {
 }
 
 // SetCreatedAt sets the "created_at" field.
-func (epc *EmailProviderCreate) SetCreatedAt(t time.Time) *EmailProviderCreate {
-	epc.mutation.SetCreatedAt(t)
-	return epc
+func (_c *EmailProviderCreate) SetCreatedAt(v time.Time) *EmailProviderCreate {
+	_c.mutation.SetCreatedAt(v)
+	return _c
 }
 
 // SetNillableCreatedAt sets the "created_at" field if the given value is not nil.
-func (epc *EmailProviderCreate) SetNillableCreatedAt(t *time.Time) *EmailProviderCreate {
-	if t != nil {
-		epc.SetCreatedAt(*t)
+func (_c *EmailProviderCreate) SetNillableCreatedAt(v *time.Time) *EmailProviderCreate {
+	if v != nil {
+		_c.SetCreatedAt(*v)
 	}
-	return epc
+	return _c
 }
 
 // SetUpdatedAt sets the "updated_at" field.
-func (epc *EmailProviderCreate) SetUpdatedAt(t time.Time) *EmailProviderCreate {
-	epc.mutation.SetUpdatedAt(t)
-	return epc
+func (_c *EmailProviderCreate) SetUpdatedAt(v time.Time) *EmailProviderCreate {
+	_c.mutation.SetUpdatedAt(v)
+	return _c
 }
 
 // SetNillableUpdatedAt sets the "updated_at" field if the given value is not nil.
-func (epc *EmailProviderCreate) SetNillableUpdatedAt(t *time.Time) *EmailProviderCreate {
-	if t != nil {
-		epc.SetUpdatedAt(*t)
+func (_c *EmailProviderCreate) SetNillableUpdatedAt(v *time.Time) *EmailProviderCreate {
+	if v != nil {
+		_c.SetUpdatedAt(*v)
 	}
-	return epc
+	return _c
 }
 
 // SetName sets the "name" field.
-func (epc *EmailProviderCreate) SetName(s string) *EmailProviderCreate {
-	epc.mutation.SetName(s)
-	return epc
+func (_c *EmailProviderCreate) SetName(v string) *EmailProviderCreate {
+	_c.mutation.SetName(v)
+	return _c
 }
 
 // SetAuthType sets the "auth_type" field.
-func (epc *EmailProviderCreate) SetAuthType(u uint8) *EmailProviderCreate {
-	epc.mutation.SetAuthType(u)
-	return epc
+func (_c *EmailProviderCreate) SetAuthType(v uint8) *EmailProviderCreate {
+	_c.mutation.SetAuthType(v)
+	return _c
 }
 
 // SetEmailAddr sets the "email_addr" field.
-func (epc *EmailProviderCreate) SetEmailAddr(s string) *EmailProviderCreate {
-	epc.mutation.SetEmailAddr(s)
-	return epc
+func (_c *EmailProviderCreate) SetEmailAddr(v string) *EmailProviderCreate {
+	_c.mutation.SetEmailAddr(v)
+	return _c
 }
 
 // SetPassword sets the "password" field.
-func (epc *EmailProviderCreate) SetPassword(s string) *EmailProviderCreate {
-	epc.mutation.SetPassword(s)
-	return epc
+func (_c *EmailProviderCreate) SetPassword(v string) *EmailProviderCreate {
+	_c.mutation.SetPassword(v)
+	return _c
 }
 
 // SetNillablePassword sets the "password" field if the given value is not nil.
-func (epc *EmailProviderCreate) SetNillablePassword(s *string) *EmailProviderCreate {
-	if s != nil {
-		epc.SetPassword(*s)
+func (_c *EmailProviderCreate) SetNillablePassword(v *string) *EmailProviderCreate {
+	if v != nil {
+		_c.SetPassword(*v)
 	}
-	return epc
+	return _c
 }
 
 // SetHostName sets the "host_name" field.
-func (epc *EmailProviderCreate) SetHostName(s string) *EmailProviderCreate {
-	epc.mutation.SetHostName(s)
-	return epc
+func (_c *EmailProviderCreate) SetHostName(v string) *EmailProviderCreate {
+	_c.mutation.SetHostName(v)
+	return _c
 }
 
 // SetIdentify sets the "identify" field.
-func (epc *EmailProviderCreate) SetIdentify(s string) *EmailProviderCreate {
-	epc.mutation.SetIdentify(s)
-	return epc
+func (_c *EmailProviderCreate) SetIdentify(v string) *EmailProviderCreate {
+	_c.mutation.SetIdentify(v)
+	return _c
 }
 
 // SetNillableIdentify sets the "identify" field if the given value is not nil.
-func (epc *EmailProviderCreate) SetNillableIdentify(s *string) *EmailProviderCreate {
-	if s != nil {
-		epc.SetIdentify(*s)
+func (_c *EmailProviderCreate) SetNillableIdentify(v *string) *EmailProviderCreate {
+	if v != nil {
+		_c.SetIdentify(*v)
 	}
-	return epc
+	return _c
 }
 
 // SetSecret sets the "secret" field.
-func (epc *EmailProviderCreate) SetSecret(s string) *EmailProviderCreate {
-	epc.mutation.SetSecret(s)
-	return epc
+func (_c *EmailProviderCreate) SetSecret(v string) *EmailProviderCreate {
+	_c.mutation.SetSecret(v)
+	return _c
 }
 
 // SetNillableSecret sets the "secret" field if the given value is not nil.
-func (epc *EmailProviderCreate) SetNillableSecret(s *string) *EmailProviderCreate {
-	if s != nil {
-		epc.SetSecret(*s)
+func (_c *EmailProviderCreate) SetNillableSecret(v *string) *EmailProviderCreate {
+	if v != nil {
+		_c.SetSecret(*v)
 	}
-	return epc
+	return _c
 }
 
 // SetPort sets the "port" field.
-func (epc *EmailProviderCreate) SetPort(u uint32) *EmailProviderCreate {
-	epc.mutation.SetPort(u)
-	return epc
+func (_c *EmailProviderCreate) SetPort(v uint32) *EmailProviderCreate {
+	_c.mutation.SetPort(v)
+	return _c
 }
 
 // SetNillablePort sets the "port" field if the given value is not nil.
-func (epc *EmailProviderCreate) SetNillablePort(u *uint32) *EmailProviderCreate {
-	if u != nil {
-		epc.SetPort(*u)
+func (_c *EmailProviderCreate) SetNillablePort(v *uint32) *EmailProviderCreate {
+	if v != nil {
+		_c.SetPort(*v)
 	}
-	return epc
+	return _c
 }
 
 // SetTLS sets the "tls" field.
-func (epc *EmailProviderCreate) SetTLS(b bool) *EmailProviderCreate {
-	epc.mutation.SetTLS(b)
-	return epc
+func (_c *EmailProviderCreate) SetTLS(v bool) *EmailProviderCreate {
+	_c.mutation.SetTLS(v)
+	return _c
 }
 
 // SetNillableTLS sets the "tls" field if the given value is not nil.
-func (epc *EmailProviderCreate) SetNillableTLS(b *bool) *EmailProviderCreate {
-	if b != nil {
-		epc.SetTLS(*b)
+func (_c *EmailProviderCreate) SetNillableTLS(v *bool) *EmailProviderCreate {
+	if v != nil {
+		_c.SetTLS(*v)
 	}
-	return epc
+	return _c
 }
 
 // SetIsDefault sets the "is_default" field.
-func (epc *EmailProviderCreate) SetIsDefault(b bool) *EmailProviderCreate {
-	epc.mutation.SetIsDefault(b)
-	return epc
+func (_c *EmailProviderCreate) SetIsDefault(v bool) *EmailProviderCreate {
+	_c.mutation.SetIsDefault(v)
+	return _c
 }
 
 // SetNillableIsDefault sets the "is_default" field if the given value is not nil.
-func (epc *EmailProviderCreate) SetNillableIsDefault(b *bool) *EmailProviderCreate {
-	if b != nil {
-		epc.SetIsDefault(*b)
+func (_c *EmailProviderCreate) SetNillableIsDefault(v *bool) *EmailProviderCreate {
+	if v != nil {
+		_c.SetIsDefault(*v)
 	}
-	return epc
+	return _c
 }
 
 // SetID sets the "id" field.
-func (epc *EmailProviderCreate) SetID(u uint64) *EmailProviderCreate {
-	epc.mutation.SetID(u)
-	return epc
+func (_c *EmailProviderCreate) SetID(v uint64) *EmailProviderCreate {
+	_c.mutation.SetID(v)
+	return _c
 }
 
 // Mutation returns the EmailProviderMutation object of the builder.
-func (epc *EmailProviderCreate) Mutation() *EmailProviderMutation {
-	return epc.mutation
+func (_c *EmailProviderCreate) Mutation() *EmailProviderMutation {
+	return _c.mutation
 }
 
 // Save creates the EmailProvider in the database.
-func (epc *EmailProviderCreate) Save(ctx context.Context) (*EmailProvider, error) {
-	epc.defaults()
-	return withHooks(ctx, epc.sqlSave, epc.mutation, epc.hooks)
+func (_c *EmailProviderCreate) Save(ctx context.Context) (*EmailProvider, error) {
+	_c.defaults()
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (epc *EmailProviderCreate) SaveX(ctx context.Context) *EmailProvider {
-	v, err := epc.Save(ctx)
+func (_c *EmailProviderCreate) SaveX(ctx context.Context) *EmailProvider {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -183,73 +183,73 @@ func (epc *EmailProviderCreate) SaveX(ctx context.Context) *EmailProvider {
 }
 
 // Exec executes the query.
-func (epc *EmailProviderCreate) Exec(ctx context.Context) error {
-	_, err := epc.Save(ctx)
+func (_c *EmailProviderCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (epc *EmailProviderCreate) ExecX(ctx context.Context) {
-	if err := epc.Exec(ctx); err != nil {
+func (_c *EmailProviderCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (epc *EmailProviderCreate) defaults() {
-	if _, ok := epc.mutation.CreatedAt(); !ok {
+func (_c *EmailProviderCreate) defaults() {
+	if _, ok := _c.mutation.CreatedAt(); !ok {
 		v := emailprovider.DefaultCreatedAt()
-		epc.mutation.SetCreatedAt(v)
+		_c.mutation.SetCreatedAt(v)
 	}
-	if _, ok := epc.mutation.UpdatedAt(); !ok {
+	if _, ok := _c.mutation.UpdatedAt(); !ok {
 		v := emailprovider.DefaultUpdatedAt()
-		epc.mutation.SetUpdatedAt(v)
+		_c.mutation.SetUpdatedAt(v)
 	}
-	if _, ok := epc.mutation.TLS(); !ok {
+	if _, ok := _c.mutation.TLS(); !ok {
 		v := emailprovider.DefaultTLS
-		epc.mutation.SetTLS(v)
+		_c.mutation.SetTLS(v)
 	}
-	if _, ok := epc.mutation.IsDefault(); !ok {
+	if _, ok := _c.mutation.IsDefault(); !ok {
 		v := emailprovider.DefaultIsDefault
-		epc.mutation.SetIsDefault(v)
+		_c.mutation.SetIsDefault(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (epc *EmailProviderCreate) check() error {
-	if _, ok := epc.mutation.CreatedAt(); !ok {
+func (_c *EmailProviderCreate) check() error {
+	if _, ok := _c.mutation.CreatedAt(); !ok {
 		return &ValidationError{Name: "created_at", err: errors.New(`ent: missing required field "EmailProvider.created_at"`)}
 	}
-	if _, ok := epc.mutation.UpdatedAt(); !ok {
+	if _, ok := _c.mutation.UpdatedAt(); !ok {
 		return &ValidationError{Name: "updated_at", err: errors.New(`ent: missing required field "EmailProvider.updated_at"`)}
 	}
-	if _, ok := epc.mutation.Name(); !ok {
+	if _, ok := _c.mutation.Name(); !ok {
 		return &ValidationError{Name: "name", err: errors.New(`ent: missing required field "EmailProvider.name"`)}
 	}
-	if _, ok := epc.mutation.AuthType(); !ok {
+	if _, ok := _c.mutation.AuthType(); !ok {
 		return &ValidationError{Name: "auth_type", err: errors.New(`ent: missing required field "EmailProvider.auth_type"`)}
 	}
-	if _, ok := epc.mutation.EmailAddr(); !ok {
+	if _, ok := _c.mutation.EmailAddr(); !ok {
 		return &ValidationError{Name: "email_addr", err: errors.New(`ent: missing required field "EmailProvider.email_addr"`)}
 	}
-	if _, ok := epc.mutation.HostName(); !ok {
+	if _, ok := _c.mutation.HostName(); !ok {
 		return &ValidationError{Name: "host_name", err: errors.New(`ent: missing required field "EmailProvider.host_name"`)}
 	}
-	if _, ok := epc.mutation.TLS(); !ok {
+	if _, ok := _c.mutation.TLS(); !ok {
 		return &ValidationError{Name: "tls", err: errors.New(`ent: missing required field "EmailProvider.tls"`)}
 	}
-	if _, ok := epc.mutation.IsDefault(); !ok {
+	if _, ok := _c.mutation.IsDefault(); !ok {
 		return &ValidationError{Name: "is_default", err: errors.New(`ent: missing required field "EmailProvider.is_default"`)}
 	}
 	return nil
 }
 
-func (epc *EmailProviderCreate) sqlSave(ctx context.Context) (*EmailProvider, error) {
-	if err := epc.check(); err != nil {
+func (_c *EmailProviderCreate) sqlSave(ctx context.Context) (*EmailProvider, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := epc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, epc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -259,65 +259,65 @@ func (epc *EmailProviderCreate) sqlSave(ctx context.Context) (*EmailProvider, er
 		id := _spec.ID.Value.(int64)
 		_node.ID = uint64(id)
 	}
-	epc.mutation.id = &_node.ID
-	epc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (epc *EmailProviderCreate) createSpec() (*EmailProvider, *sqlgraph.CreateSpec) {
+func (_c *EmailProviderCreate) createSpec() (*EmailProvider, *sqlgraph.CreateSpec) {
 	var (
-		_node = &EmailProvider{config: epc.config}
+		_node = &EmailProvider{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(emailprovider.Table, sqlgraph.NewFieldSpec(emailprovider.FieldID, field.TypeUint64))
 	)
-	if id, ok := epc.mutation.ID(); ok {
+	if id, ok := _c.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := epc.mutation.CreatedAt(); ok {
+	if value, ok := _c.mutation.CreatedAt(); ok {
 		_spec.SetField(emailprovider.FieldCreatedAt, field.TypeTime, value)
 		_node.CreatedAt = value
 	}
-	if value, ok := epc.mutation.UpdatedAt(); ok {
+	if value, ok := _c.mutation.UpdatedAt(); ok {
 		_spec.SetField(emailprovider.FieldUpdatedAt, field.TypeTime, value)
 		_node.UpdatedAt = value
 	}
-	if value, ok := epc.mutation.Name(); ok {
+	if value, ok := _c.mutation.Name(); ok {
 		_spec.SetField(emailprovider.FieldName, field.TypeString, value)
 		_node.Name = value
 	}
-	if value, ok := epc.mutation.AuthType(); ok {
+	if value, ok := _c.mutation.AuthType(); ok {
 		_spec.SetField(emailprovider.FieldAuthType, field.TypeUint8, value)
 		_node.AuthType = value
 	}
-	if value, ok := epc.mutation.EmailAddr(); ok {
+	if value, ok := _c.mutation.EmailAddr(); ok {
 		_spec.SetField(emailprovider.FieldEmailAddr, field.TypeString, value)
 		_node.EmailAddr = value
 	}
-	if value, ok := epc.mutation.Password(); ok {
+	if value, ok := _c.mutation.Password(); ok {
 		_spec.SetField(emailprovider.FieldPassword, field.TypeString, value)
 		_node.Password = value
 	}
-	if value, ok := epc.mutation.HostName(); ok {
+	if value, ok := _c.mutation.HostName(); ok {
 		_spec.SetField(emailprovider.FieldHostName, field.TypeString, value)
 		_node.HostName = value
 	}
-	if value, ok := epc.mutation.Identify(); ok {
+	if value, ok := _c.mutation.Identify(); ok {
 		_spec.SetField(emailprovider.FieldIdentify, field.TypeString, value)
 		_node.Identify = value
 	}
-	if value, ok := epc.mutation.Secret(); ok {
+	if value, ok := _c.mutation.Secret(); ok {
 		_spec.SetField(emailprovider.FieldSecret, field.TypeString, value)
 		_node.Secret = value
 	}
-	if value, ok := epc.mutation.Port(); ok {
+	if value, ok := _c.mutation.Port(); ok {
 		_spec.SetField(emailprovider.FieldPort, field.TypeUint32, value)
 		_node.Port = value
 	}
-	if value, ok := epc.mutation.TLS(); ok {
+	if value, ok := _c.mutation.TLS(); ok {
 		_spec.SetField(emailprovider.FieldTLS, field.TypeBool, value)
 		_node.TLS = value
 	}
-	if value, ok := epc.mutation.IsDefault(); ok {
+	if value, ok := _c.mutation.IsDefault(); ok {
 		_spec.SetField(emailprovider.FieldIsDefault, field.TypeBool, value)
 		_node.IsDefault = value
 	}
@@ -332,16 +332,16 @@ type EmailProviderCreateBulk struct {
 }
 
 // Save creates the EmailProvider entities in the database.
-func (epcb *EmailProviderCreateBulk) Save(ctx context.Context) ([]*EmailProvider, error) {
-	if epcb.err != nil {
-		return nil, epcb.err
+func (_c *EmailProviderCreateBulk) Save(ctx context.Context) ([]*EmailProvider, error) {
+	if _c.err != nil {
+		return nil, _c.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(epcb.builders))
-	nodes := make([]*EmailProvider, len(epcb.builders))
-	mutators := make([]Mutator, len(epcb.builders))
-	for i := range epcb.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*EmailProvider, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := epcb.builders[i]
+			builder := _c.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*EmailProviderMutation)
@@ -355,11 +355,11 @@ func (epcb *EmailProviderCreateBulk) Save(ctx context.Context) ([]*EmailProvider
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, epcb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, epcb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -383,7 +383,7 @@ func (epcb *EmailProviderCreateBulk) Save(ctx context.Context) ([]*EmailProvider
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, epcb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -391,8 +391,8 @@ func (epcb *EmailProviderCreateBulk) Save(ctx context.Context) ([]*EmailProvider
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (epcb *EmailProviderCreateBulk) SaveX(ctx context.Context) []*EmailProvider {
-	v, err := epcb.Save(ctx)
+func (_c *EmailProviderCreateBulk) SaveX(ctx context.Context) []*EmailProvider {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -400,14 +400,14 @@ func (epcb *EmailProviderCreateBulk) SaveX(ctx context.Context) []*EmailProvider
 }
 
 // Exec executes the query.
-func (epcb *EmailProviderCreateBulk) Exec(ctx context.Context) error {
-	_, err := epcb.Save(ctx)
+func (_c *EmailProviderCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (epcb *EmailProviderCreateBulk) ExecX(ctx context.Context) {
-	if err := epcb.Exec(ctx); err != nil {
+func (_c *EmailProviderCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
