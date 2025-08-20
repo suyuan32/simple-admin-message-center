@@ -22,85 +22,85 @@ type SmsLogCreate struct {
 }
 
 // SetCreatedAt sets the "created_at" field.
-func (slc *SmsLogCreate) SetCreatedAt(t time.Time) *SmsLogCreate {
-	slc.mutation.SetCreatedAt(t)
-	return slc
+func (_c *SmsLogCreate) SetCreatedAt(v time.Time) *SmsLogCreate {
+	_c.mutation.SetCreatedAt(v)
+	return _c
 }
 
 // SetNillableCreatedAt sets the "created_at" field if the given value is not nil.
-func (slc *SmsLogCreate) SetNillableCreatedAt(t *time.Time) *SmsLogCreate {
-	if t != nil {
-		slc.SetCreatedAt(*t)
+func (_c *SmsLogCreate) SetNillableCreatedAt(v *time.Time) *SmsLogCreate {
+	if v != nil {
+		_c.SetCreatedAt(*v)
 	}
-	return slc
+	return _c
 }
 
 // SetUpdatedAt sets the "updated_at" field.
-func (slc *SmsLogCreate) SetUpdatedAt(t time.Time) *SmsLogCreate {
-	slc.mutation.SetUpdatedAt(t)
-	return slc
+func (_c *SmsLogCreate) SetUpdatedAt(v time.Time) *SmsLogCreate {
+	_c.mutation.SetUpdatedAt(v)
+	return _c
 }
 
 // SetNillableUpdatedAt sets the "updated_at" field if the given value is not nil.
-func (slc *SmsLogCreate) SetNillableUpdatedAt(t *time.Time) *SmsLogCreate {
-	if t != nil {
-		slc.SetUpdatedAt(*t)
+func (_c *SmsLogCreate) SetNillableUpdatedAt(v *time.Time) *SmsLogCreate {
+	if v != nil {
+		_c.SetUpdatedAt(*v)
 	}
-	return slc
+	return _c
 }
 
 // SetPhoneNumber sets the "phone_number" field.
-func (slc *SmsLogCreate) SetPhoneNumber(s string) *SmsLogCreate {
-	slc.mutation.SetPhoneNumber(s)
-	return slc
+func (_c *SmsLogCreate) SetPhoneNumber(v string) *SmsLogCreate {
+	_c.mutation.SetPhoneNumber(v)
+	return _c
 }
 
 // SetContent sets the "content" field.
-func (slc *SmsLogCreate) SetContent(s string) *SmsLogCreate {
-	slc.mutation.SetContent(s)
-	return slc
+func (_c *SmsLogCreate) SetContent(v string) *SmsLogCreate {
+	_c.mutation.SetContent(v)
+	return _c
 }
 
 // SetSendStatus sets the "send_status" field.
-func (slc *SmsLogCreate) SetSendStatus(u uint8) *SmsLogCreate {
-	slc.mutation.SetSendStatus(u)
-	return slc
+func (_c *SmsLogCreate) SetSendStatus(v uint8) *SmsLogCreate {
+	_c.mutation.SetSendStatus(v)
+	return _c
 }
 
 // SetProvider sets the "provider" field.
-func (slc *SmsLogCreate) SetProvider(s string) *SmsLogCreate {
-	slc.mutation.SetProvider(s)
-	return slc
+func (_c *SmsLogCreate) SetProvider(v string) *SmsLogCreate {
+	_c.mutation.SetProvider(v)
+	return _c
 }
 
 // SetID sets the "id" field.
-func (slc *SmsLogCreate) SetID(u uuid.UUID) *SmsLogCreate {
-	slc.mutation.SetID(u)
-	return slc
+func (_c *SmsLogCreate) SetID(v uuid.UUID) *SmsLogCreate {
+	_c.mutation.SetID(v)
+	return _c
 }
 
 // SetNillableID sets the "id" field if the given value is not nil.
-func (slc *SmsLogCreate) SetNillableID(u *uuid.UUID) *SmsLogCreate {
-	if u != nil {
-		slc.SetID(*u)
+func (_c *SmsLogCreate) SetNillableID(v *uuid.UUID) *SmsLogCreate {
+	if v != nil {
+		_c.SetID(*v)
 	}
-	return slc
+	return _c
 }
 
 // Mutation returns the SmsLogMutation object of the builder.
-func (slc *SmsLogCreate) Mutation() *SmsLogMutation {
-	return slc.mutation
+func (_c *SmsLogCreate) Mutation() *SmsLogMutation {
+	return _c.mutation
 }
 
 // Save creates the SmsLog in the database.
-func (slc *SmsLogCreate) Save(ctx context.Context) (*SmsLog, error) {
-	slc.defaults()
-	return withHooks(ctx, slc.sqlSave, slc.mutation, slc.hooks)
+func (_c *SmsLogCreate) Save(ctx context.Context) (*SmsLog, error) {
+	_c.defaults()
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (slc *SmsLogCreate) SaveX(ctx context.Context) *SmsLog {
-	v, err := slc.Save(ctx)
+func (_c *SmsLogCreate) SaveX(ctx context.Context) *SmsLog {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -108,63 +108,63 @@ func (slc *SmsLogCreate) SaveX(ctx context.Context) *SmsLog {
 }
 
 // Exec executes the query.
-func (slc *SmsLogCreate) Exec(ctx context.Context) error {
-	_, err := slc.Save(ctx)
+func (_c *SmsLogCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (slc *SmsLogCreate) ExecX(ctx context.Context) {
-	if err := slc.Exec(ctx); err != nil {
+func (_c *SmsLogCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (slc *SmsLogCreate) defaults() {
-	if _, ok := slc.mutation.CreatedAt(); !ok {
+func (_c *SmsLogCreate) defaults() {
+	if _, ok := _c.mutation.CreatedAt(); !ok {
 		v := smslog.DefaultCreatedAt()
-		slc.mutation.SetCreatedAt(v)
+		_c.mutation.SetCreatedAt(v)
 	}
-	if _, ok := slc.mutation.UpdatedAt(); !ok {
+	if _, ok := _c.mutation.UpdatedAt(); !ok {
 		v := smslog.DefaultUpdatedAt()
-		slc.mutation.SetUpdatedAt(v)
+		_c.mutation.SetUpdatedAt(v)
 	}
-	if _, ok := slc.mutation.ID(); !ok {
+	if _, ok := _c.mutation.ID(); !ok {
 		v := smslog.DefaultID()
-		slc.mutation.SetID(v)
+		_c.mutation.SetID(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (slc *SmsLogCreate) check() error {
-	if _, ok := slc.mutation.CreatedAt(); !ok {
+func (_c *SmsLogCreate) check() error {
+	if _, ok := _c.mutation.CreatedAt(); !ok {
 		return &ValidationError{Name: "created_at", err: errors.New(`ent: missing required field "SmsLog.created_at"`)}
 	}
-	if _, ok := slc.mutation.UpdatedAt(); !ok {
+	if _, ok := _c.mutation.UpdatedAt(); !ok {
 		return &ValidationError{Name: "updated_at", err: errors.New(`ent: missing required field "SmsLog.updated_at"`)}
 	}
-	if _, ok := slc.mutation.PhoneNumber(); !ok {
+	if _, ok := _c.mutation.PhoneNumber(); !ok {
 		return &ValidationError{Name: "phone_number", err: errors.New(`ent: missing required field "SmsLog.phone_number"`)}
 	}
-	if _, ok := slc.mutation.Content(); !ok {
+	if _, ok := _c.mutation.Content(); !ok {
 		return &ValidationError{Name: "content", err: errors.New(`ent: missing required field "SmsLog.content"`)}
 	}
-	if _, ok := slc.mutation.SendStatus(); !ok {
+	if _, ok := _c.mutation.SendStatus(); !ok {
 		return &ValidationError{Name: "send_status", err: errors.New(`ent: missing required field "SmsLog.send_status"`)}
 	}
-	if _, ok := slc.mutation.Provider(); !ok {
+	if _, ok := _c.mutation.Provider(); !ok {
 		return &ValidationError{Name: "provider", err: errors.New(`ent: missing required field "SmsLog.provider"`)}
 	}
 	return nil
 }
 
-func (slc *SmsLogCreate) sqlSave(ctx context.Context) (*SmsLog, error) {
-	if err := slc.check(); err != nil {
+func (_c *SmsLogCreate) sqlSave(ctx context.Context) (*SmsLog, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := slc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, slc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -177,41 +177,41 @@ func (slc *SmsLogCreate) sqlSave(ctx context.Context) (*SmsLog, error) {
 			return nil, err
 		}
 	}
-	slc.mutation.id = &_node.ID
-	slc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (slc *SmsLogCreate) createSpec() (*SmsLog, *sqlgraph.CreateSpec) {
+func (_c *SmsLogCreate) createSpec() (*SmsLog, *sqlgraph.CreateSpec) {
 	var (
-		_node = &SmsLog{config: slc.config}
+		_node = &SmsLog{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(smslog.Table, sqlgraph.NewFieldSpec(smslog.FieldID, field.TypeUUID))
 	)
-	if id, ok := slc.mutation.ID(); ok {
+	if id, ok := _c.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = &id
 	}
-	if value, ok := slc.mutation.CreatedAt(); ok {
+	if value, ok := _c.mutation.CreatedAt(); ok {
 		_spec.SetField(smslog.FieldCreatedAt, field.TypeTime, value)
 		_node.CreatedAt = value
 	}
-	if value, ok := slc.mutation.UpdatedAt(); ok {
+	if value, ok := _c.mutation.UpdatedAt(); ok {
 		_spec.SetField(smslog.FieldUpdatedAt, field.TypeTime, value)
 		_node.UpdatedAt = value
 	}
-	if value, ok := slc.mutation.PhoneNumber(); ok {
+	if value, ok := _c.mutation.PhoneNumber(); ok {
 		_spec.SetField(smslog.FieldPhoneNumber, field.TypeString, value)
 		_node.PhoneNumber = value
 	}
-	if value, ok := slc.mutation.Content(); ok {
+	if value, ok := _c.mutation.Content(); ok {
 		_spec.SetField(smslog.FieldContent, field.TypeString, value)
 		_node.Content = value
 	}
-	if value, ok := slc.mutation.SendStatus(); ok {
+	if value, ok := _c.mutation.SendStatus(); ok {
 		_spec.SetField(smslog.FieldSendStatus, field.TypeUint8, value)
 		_node.SendStatus = value
 	}
-	if value, ok := slc.mutation.Provider(); ok {
+	if value, ok := _c.mutation.Provider(); ok {
 		_spec.SetField(smslog.FieldProvider, field.TypeString, value)
 		_node.Provider = value
 	}
@@ -226,16 +226,16 @@ type SmsLogCreateBulk struct {
 }
 
 // Save creates the SmsLog entities in the database.
-func (slcb *SmsLogCreateBulk) Save(ctx context.Context) ([]*SmsLog, error) {
-	if slcb.err != nil {
-		return nil, slcb.err
+func (_c *SmsLogCreateBulk) Save(ctx context.Context) ([]*SmsLog, error) {
+	if _c.err != nil {
+		return nil, _c.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(slcb.builders))
-	nodes := make([]*SmsLog, len(slcb.builders))
-	mutators := make([]Mutator, len(slcb.builders))
-	for i := range slcb.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*SmsLog, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := slcb.builders[i]
+			builder := _c.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*SmsLogMutation)
@@ -249,11 +249,11 @@ func (slcb *SmsLogCreateBulk) Save(ctx context.Context) ([]*SmsLog, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, slcb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, slcb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -273,7 +273,7 @@ func (slcb *SmsLogCreateBulk) Save(ctx context.Context) ([]*SmsLog, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, slcb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -281,8 +281,8 @@ func (slcb *SmsLogCreateBulk) Save(ctx context.Context) ([]*SmsLog, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (slcb *SmsLogCreateBulk) SaveX(ctx context.Context) []*SmsLog {
-	v, err := slcb.Save(ctx)
+func (_c *SmsLogCreateBulk) SaveX(ctx context.Context) []*SmsLog {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -290,14 +290,14 @@ func (slcb *SmsLogCreateBulk) SaveX(ctx context.Context) []*SmsLog {
 }
 
 // Exec executes the query.
-func (slcb *SmsLogCreateBulk) Exec(ctx context.Context) error {
-	_, err := slcb.Save(ctx)
+func (_c *SmsLogCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (slcb *SmsLogCreateBulk) ExecX(ctx context.Context) {
-	if err := slcb.Exec(ctx); err != nil {
+func (_c *SmsLogCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

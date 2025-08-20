@@ -284,8 +284,8 @@ func (c *EmailLogClient) Update() *EmailLogUpdate {
 }
 
 // UpdateOne returns an update builder for the given entity.
-func (c *EmailLogClient) UpdateOne(el *EmailLog) *EmailLogUpdateOne {
-	mutation := newEmailLogMutation(c.config, OpUpdateOne, withEmailLog(el))
+func (c *EmailLogClient) UpdateOne(_m *EmailLog) *EmailLogUpdateOne {
+	mutation := newEmailLogMutation(c.config, OpUpdateOne, withEmailLog(_m))
 	return &EmailLogUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
 }
 
@@ -302,8 +302,8 @@ func (c *EmailLogClient) Delete() *EmailLogDelete {
 }
 
 // DeleteOne returns a builder for deleting the given entity.
-func (c *EmailLogClient) DeleteOne(el *EmailLog) *EmailLogDeleteOne {
-	return c.DeleteOneID(el.ID)
+func (c *EmailLogClient) DeleteOne(_m *EmailLog) *EmailLogDeleteOne {
+	return c.DeleteOneID(_m.ID)
 }
 
 // DeleteOneID returns a builder for deleting the given entity by its id.
@@ -417,8 +417,8 @@ func (c *EmailProviderClient) Update() *EmailProviderUpdate {
 }
 
 // UpdateOne returns an update builder for the given entity.
-func (c *EmailProviderClient) UpdateOne(ep *EmailProvider) *EmailProviderUpdateOne {
-	mutation := newEmailProviderMutation(c.config, OpUpdateOne, withEmailProvider(ep))
+func (c *EmailProviderClient) UpdateOne(_m *EmailProvider) *EmailProviderUpdateOne {
+	mutation := newEmailProviderMutation(c.config, OpUpdateOne, withEmailProvider(_m))
 	return &EmailProviderUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
 }
 
@@ -435,8 +435,8 @@ func (c *EmailProviderClient) Delete() *EmailProviderDelete {
 }
 
 // DeleteOne returns a builder for deleting the given entity.
-func (c *EmailProviderClient) DeleteOne(ep *EmailProvider) *EmailProviderDeleteOne {
-	return c.DeleteOneID(ep.ID)
+func (c *EmailProviderClient) DeleteOne(_m *EmailProvider) *EmailProviderDeleteOne {
+	return c.DeleteOneID(_m.ID)
 }
 
 // DeleteOneID returns a builder for deleting the given entity by its id.
@@ -550,8 +550,8 @@ func (c *SmsLogClient) Update() *SmsLogUpdate {
 }
 
 // UpdateOne returns an update builder for the given entity.
-func (c *SmsLogClient) UpdateOne(sl *SmsLog) *SmsLogUpdateOne {
-	mutation := newSmsLogMutation(c.config, OpUpdateOne, withSmsLog(sl))
+func (c *SmsLogClient) UpdateOne(_m *SmsLog) *SmsLogUpdateOne {
+	mutation := newSmsLogMutation(c.config, OpUpdateOne, withSmsLog(_m))
 	return &SmsLogUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
 }
 
@@ -568,8 +568,8 @@ func (c *SmsLogClient) Delete() *SmsLogDelete {
 }
 
 // DeleteOne returns a builder for deleting the given entity.
-func (c *SmsLogClient) DeleteOne(sl *SmsLog) *SmsLogDeleteOne {
-	return c.DeleteOneID(sl.ID)
+func (c *SmsLogClient) DeleteOne(_m *SmsLog) *SmsLogDeleteOne {
+	return c.DeleteOneID(_m.ID)
 }
 
 // DeleteOneID returns a builder for deleting the given entity by its id.
@@ -683,8 +683,8 @@ func (c *SmsProviderClient) Update() *SmsProviderUpdate {
 }
 
 // UpdateOne returns an update builder for the given entity.
-func (c *SmsProviderClient) UpdateOne(sp *SmsProvider) *SmsProviderUpdateOne {
-	mutation := newSmsProviderMutation(c.config, OpUpdateOne, withSmsProvider(sp))
+func (c *SmsProviderClient) UpdateOne(_m *SmsProvider) *SmsProviderUpdateOne {
+	mutation := newSmsProviderMutation(c.config, OpUpdateOne, withSmsProvider(_m))
 	return &SmsProviderUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
 }
 
@@ -701,8 +701,8 @@ func (c *SmsProviderClient) Delete() *SmsProviderDelete {
 }
 
 // DeleteOne returns a builder for deleting the given entity.
-func (c *SmsProviderClient) DeleteOne(sp *SmsProvider) *SmsProviderDeleteOne {
-	return c.DeleteOneID(sp.ID)
+func (c *SmsProviderClient) DeleteOne(_m *SmsProvider) *SmsProviderDeleteOne {
+	return c.DeleteOneID(_m.ID)
 }
 
 // DeleteOneID returns a builder for deleting the given entity by its id.

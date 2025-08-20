@@ -93,7 +93,7 @@ type EmailLogPageList struct {
 	PageDetails *PageDetails `json:"pageDetails"`
 }
 
-func (el *EmailLogQuery) Page(
+func (_m *EmailLogQuery) Page(
 	ctx context.Context, pageNum uint64, pageSize uint64, opts ...EmailLogPaginateOption,
 ) (*EmailLogPageList, error) {
 
@@ -102,7 +102,7 @@ func (el *EmailLogQuery) Page(
 		return nil, err
 	}
 
-	if el, err = pager.ApplyFilter(el); err != nil {
+	if _m, err = pager.ApplyFilter(_m); err != nil {
 		return nil, err
 	}
 
@@ -113,7 +113,7 @@ func (el *EmailLogQuery) Page(
 		Size: pageSize,
 	}
 
-	query := el.Clone()
+	query := _m.Clone()
 	query.ctx.Fields = nil
 	count, err := query.Count(ctx)
 
@@ -124,13 +124,13 @@ func (el *EmailLogQuery) Page(
 	ret.PageDetails.Total = uint64(count)
 
 	if pager.Order != nil {
-		el = el.Order(pager.Order)
+		_m = _m.Order(pager.Order)
 	} else {
-		el = el.Order(DefaultEmailLogOrder)
+		_m = _m.Order(DefaultEmailLogOrder)
 	}
 
-	el = el.Offset(int((pageNum - 1) * pageSize)).Limit(int(pageSize))
-	list, err := el.All(ctx)
+	_m = _m.Offset(int((pageNum - 1) * pageSize)).Limit(int(pageSize))
+	list, err := _m.All(ctx)
 	if err != nil {
 		return nil, err
 	}
@@ -174,7 +174,7 @@ type EmailProviderPageList struct {
 	PageDetails *PageDetails     `json:"pageDetails"`
 }
 
-func (ep *EmailProviderQuery) Page(
+func (_m *EmailProviderQuery) Page(
 	ctx context.Context, pageNum uint64, pageSize uint64, opts ...EmailProviderPaginateOption,
 ) (*EmailProviderPageList, error) {
 
@@ -183,7 +183,7 @@ func (ep *EmailProviderQuery) Page(
 		return nil, err
 	}
 
-	if ep, err = pager.ApplyFilter(ep); err != nil {
+	if _m, err = pager.ApplyFilter(_m); err != nil {
 		return nil, err
 	}
 
@@ -194,7 +194,7 @@ func (ep *EmailProviderQuery) Page(
 		Size: pageSize,
 	}
 
-	query := ep.Clone()
+	query := _m.Clone()
 	query.ctx.Fields = nil
 	count, err := query.Count(ctx)
 
@@ -205,13 +205,13 @@ func (ep *EmailProviderQuery) Page(
 	ret.PageDetails.Total = uint64(count)
 
 	if pager.Order != nil {
-		ep = ep.Order(pager.Order)
+		_m = _m.Order(pager.Order)
 	} else {
-		ep = ep.Order(DefaultEmailProviderOrder)
+		_m = _m.Order(DefaultEmailProviderOrder)
 	}
 
-	ep = ep.Offset(int((pageNum - 1) * pageSize)).Limit(int(pageSize))
-	list, err := ep.All(ctx)
+	_m = _m.Offset(int((pageNum - 1) * pageSize)).Limit(int(pageSize))
+	list, err := _m.All(ctx)
 	if err != nil {
 		return nil, err
 	}
@@ -255,7 +255,7 @@ type SmsLogPageList struct {
 	PageDetails *PageDetails `json:"pageDetails"`
 }
 
-func (sl *SmsLogQuery) Page(
+func (_m *SmsLogQuery) Page(
 	ctx context.Context, pageNum uint64, pageSize uint64, opts ...SmsLogPaginateOption,
 ) (*SmsLogPageList, error) {
 
@@ -264,7 +264,7 @@ func (sl *SmsLogQuery) Page(
 		return nil, err
 	}
 
-	if sl, err = pager.ApplyFilter(sl); err != nil {
+	if _m, err = pager.ApplyFilter(_m); err != nil {
 		return nil, err
 	}
 
@@ -275,7 +275,7 @@ func (sl *SmsLogQuery) Page(
 		Size: pageSize,
 	}
 
-	query := sl.Clone()
+	query := _m.Clone()
 	query.ctx.Fields = nil
 	count, err := query.Count(ctx)
 
@@ -286,13 +286,13 @@ func (sl *SmsLogQuery) Page(
 	ret.PageDetails.Total = uint64(count)
 
 	if pager.Order != nil {
-		sl = sl.Order(pager.Order)
+		_m = _m.Order(pager.Order)
 	} else {
-		sl = sl.Order(DefaultSmsLogOrder)
+		_m = _m.Order(DefaultSmsLogOrder)
 	}
 
-	sl = sl.Offset(int((pageNum - 1) * pageSize)).Limit(int(pageSize))
-	list, err := sl.All(ctx)
+	_m = _m.Offset(int((pageNum - 1) * pageSize)).Limit(int(pageSize))
+	list, err := _m.All(ctx)
 	if err != nil {
 		return nil, err
 	}
@@ -336,7 +336,7 @@ type SmsProviderPageList struct {
 	PageDetails *PageDetails   `json:"pageDetails"`
 }
 
-func (sp *SmsProviderQuery) Page(
+func (_m *SmsProviderQuery) Page(
 	ctx context.Context, pageNum uint64, pageSize uint64, opts ...SmsProviderPaginateOption,
 ) (*SmsProviderPageList, error) {
 
@@ -345,7 +345,7 @@ func (sp *SmsProviderQuery) Page(
 		return nil, err
 	}
 
-	if sp, err = pager.ApplyFilter(sp); err != nil {
+	if _m, err = pager.ApplyFilter(_m); err != nil {
 		return nil, err
 	}
 
@@ -356,7 +356,7 @@ func (sp *SmsProviderQuery) Page(
 		Size: pageSize,
 	}
 
-	query := sp.Clone()
+	query := _m.Clone()
 	query.ctx.Fields = nil
 	count, err := query.Count(ctx)
 
@@ -367,13 +367,13 @@ func (sp *SmsProviderQuery) Page(
 	ret.PageDetails.Total = uint64(count)
 
 	if pager.Order != nil {
-		sp = sp.Order(pager.Order)
+		_m = _m.Order(pager.Order)
 	} else {
-		sp = sp.Order(DefaultSmsProviderOrder)
+		_m = _m.Order(DefaultSmsProviderOrder)
 	}
 
-	sp = sp.Offset(int((pageNum - 1) * pageSize)).Limit(int(pageSize))
-	list, err := sp.All(ctx)
+	_m = _m.Offset(int((pageNum - 1) * pageSize)).Limit(int(pageSize))
+	list, err := _m.All(ctx)
 	if err != nil {
 		return nil, err
 	}

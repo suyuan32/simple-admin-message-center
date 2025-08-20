@@ -66,7 +66,7 @@ func (*EmailProvider) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the EmailProvider fields.
-func (ep *EmailProvider) assignValues(columns []string, values []any) error {
+func (_m *EmailProvider) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -77,81 +77,81 @@ func (ep *EmailProvider) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			ep.ID = uint64(value.Int64)
+			_m.ID = uint64(value.Int64)
 		case emailprovider.FieldCreatedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field created_at", values[i])
 			} else if value.Valid {
-				ep.CreatedAt = value.Time
+				_m.CreatedAt = value.Time
 			}
 		case emailprovider.FieldUpdatedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updated_at", values[i])
 			} else if value.Valid {
-				ep.UpdatedAt = value.Time
+				_m.UpdatedAt = value.Time
 			}
 		case emailprovider.FieldName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field name", values[i])
 			} else if value.Valid {
-				ep.Name = value.String
+				_m.Name = value.String
 			}
 		case emailprovider.FieldAuthType:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field auth_type", values[i])
 			} else if value.Valid {
-				ep.AuthType = uint8(value.Int64)
+				_m.AuthType = uint8(value.Int64)
 			}
 		case emailprovider.FieldEmailAddr:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field email_addr", values[i])
 			} else if value.Valid {
-				ep.EmailAddr = value.String
+				_m.EmailAddr = value.String
 			}
 		case emailprovider.FieldPassword:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field password", values[i])
 			} else if value.Valid {
-				ep.Password = value.String
+				_m.Password = value.String
 			}
 		case emailprovider.FieldHostName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field host_name", values[i])
 			} else if value.Valid {
-				ep.HostName = value.String
+				_m.HostName = value.String
 			}
 		case emailprovider.FieldIdentify:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field identify", values[i])
 			} else if value.Valid {
-				ep.Identify = value.String
+				_m.Identify = value.String
 			}
 		case emailprovider.FieldSecret:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field secret", values[i])
 			} else if value.Valid {
-				ep.Secret = value.String
+				_m.Secret = value.String
 			}
 		case emailprovider.FieldPort:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field port", values[i])
 			} else if value.Valid {
-				ep.Port = uint32(value.Int64)
+				_m.Port = uint32(value.Int64)
 			}
 		case emailprovider.FieldTLS:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field tls", values[i])
 			} else if value.Valid {
-				ep.TLS = value.Bool
+				_m.TLS = value.Bool
 			}
 		case emailprovider.FieldIsDefault:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field is_default", values[i])
 			} else if value.Valid {
-				ep.IsDefault = value.Bool
+				_m.IsDefault = value.Bool
 			}
 		default:
-			ep.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -159,68 +159,68 @@ func (ep *EmailProvider) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the EmailProvider.
 // This includes values selected through modifiers, order, etc.
-func (ep *EmailProvider) Value(name string) (ent.Value, error) {
-	return ep.selectValues.Get(name)
+func (_m *EmailProvider) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this EmailProvider.
 // Note that you need to call EmailProvider.Unwrap() before calling this method if this EmailProvider
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (ep *EmailProvider) Update() *EmailProviderUpdateOne {
-	return NewEmailProviderClient(ep.config).UpdateOne(ep)
+func (_m *EmailProvider) Update() *EmailProviderUpdateOne {
+	return NewEmailProviderClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the EmailProvider entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (ep *EmailProvider) Unwrap() *EmailProvider {
-	_tx, ok := ep.config.driver.(*txDriver)
+func (_m *EmailProvider) Unwrap() *EmailProvider {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: EmailProvider is not a transactional entity")
 	}
-	ep.config.driver = _tx.drv
-	return ep
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (ep *EmailProvider) String() string {
+func (_m *EmailProvider) String() string {
 	var builder strings.Builder
 	builder.WriteString("EmailProvider(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", ep.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("created_at=")
-	builder.WriteString(ep.CreatedAt.Format(time.ANSIC))
+	builder.WriteString(_m.CreatedAt.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updated_at=")
-	builder.WriteString(ep.UpdatedAt.Format(time.ANSIC))
+	builder.WriteString(_m.UpdatedAt.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("name=")
-	builder.WriteString(ep.Name)
+	builder.WriteString(_m.Name)
 	builder.WriteString(", ")
 	builder.WriteString("auth_type=")
-	builder.WriteString(fmt.Sprintf("%v", ep.AuthType))
+	builder.WriteString(fmt.Sprintf("%v", _m.AuthType))
 	builder.WriteString(", ")
 	builder.WriteString("email_addr=")
-	builder.WriteString(ep.EmailAddr)
+	builder.WriteString(_m.EmailAddr)
 	builder.WriteString(", ")
 	builder.WriteString("password=")
-	builder.WriteString(ep.Password)
+	builder.WriteString(_m.Password)
 	builder.WriteString(", ")
 	builder.WriteString("host_name=")
-	builder.WriteString(ep.HostName)
+	builder.WriteString(_m.HostName)
 	builder.WriteString(", ")
 	builder.WriteString("identify=")
-	builder.WriteString(ep.Identify)
+	builder.WriteString(_m.Identify)
 	builder.WriteString(", ")
 	builder.WriteString("secret=")
-	builder.WriteString(ep.Secret)
+	builder.WriteString(_m.Secret)
 	builder.WriteString(", ")
 	builder.WriteString("port=")
-	builder.WriteString(fmt.Sprintf("%v", ep.Port))
+	builder.WriteString(fmt.Sprintf("%v", _m.Port))
 	builder.WriteString(", ")
 	builder.WriteString("tls=")
-	builder.WriteString(fmt.Sprintf("%v", ep.TLS))
+	builder.WriteString(fmt.Sprintf("%v", _m.TLS))
 	builder.WriteString(", ")
 	builder.WriteString("is_default=")
-	builder.WriteString(fmt.Sprintf("%v", ep.IsDefault))
+	builder.WriteString(fmt.Sprintf("%v", _m.IsDefault))
 	builder.WriteByte(')')
 	return builder.String()
 }

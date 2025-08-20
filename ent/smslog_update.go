@@ -23,94 +23,94 @@ type SmsLogUpdate struct {
 }
 
 // Where appends a list predicates to the SmsLogUpdate builder.
-func (slu *SmsLogUpdate) Where(ps ...predicate.SmsLog) *SmsLogUpdate {
-	slu.mutation.Where(ps...)
-	return slu
+func (_u *SmsLogUpdate) Where(ps ...predicate.SmsLog) *SmsLogUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetUpdatedAt sets the "updated_at" field.
-func (slu *SmsLogUpdate) SetUpdatedAt(t time.Time) *SmsLogUpdate {
-	slu.mutation.SetUpdatedAt(t)
-	return slu
+func (_u *SmsLogUpdate) SetUpdatedAt(v time.Time) *SmsLogUpdate {
+	_u.mutation.SetUpdatedAt(v)
+	return _u
 }
 
 // SetPhoneNumber sets the "phone_number" field.
-func (slu *SmsLogUpdate) SetPhoneNumber(s string) *SmsLogUpdate {
-	slu.mutation.SetPhoneNumber(s)
-	return slu
+func (_u *SmsLogUpdate) SetPhoneNumber(v string) *SmsLogUpdate {
+	_u.mutation.SetPhoneNumber(v)
+	return _u
 }
 
 // SetNillablePhoneNumber sets the "phone_number" field if the given value is not nil.
-func (slu *SmsLogUpdate) SetNillablePhoneNumber(s *string) *SmsLogUpdate {
-	if s != nil {
-		slu.SetPhoneNumber(*s)
+func (_u *SmsLogUpdate) SetNillablePhoneNumber(v *string) *SmsLogUpdate {
+	if v != nil {
+		_u.SetPhoneNumber(*v)
 	}
-	return slu
+	return _u
 }
 
 // SetContent sets the "content" field.
-func (slu *SmsLogUpdate) SetContent(s string) *SmsLogUpdate {
-	slu.mutation.SetContent(s)
-	return slu
+func (_u *SmsLogUpdate) SetContent(v string) *SmsLogUpdate {
+	_u.mutation.SetContent(v)
+	return _u
 }
 
 // SetNillableContent sets the "content" field if the given value is not nil.
-func (slu *SmsLogUpdate) SetNillableContent(s *string) *SmsLogUpdate {
-	if s != nil {
-		slu.SetContent(*s)
+func (_u *SmsLogUpdate) SetNillableContent(v *string) *SmsLogUpdate {
+	if v != nil {
+		_u.SetContent(*v)
 	}
-	return slu
+	return _u
 }
 
 // SetSendStatus sets the "send_status" field.
-func (slu *SmsLogUpdate) SetSendStatus(u uint8) *SmsLogUpdate {
-	slu.mutation.ResetSendStatus()
-	slu.mutation.SetSendStatus(u)
-	return slu
+func (_u *SmsLogUpdate) SetSendStatus(v uint8) *SmsLogUpdate {
+	_u.mutation.ResetSendStatus()
+	_u.mutation.SetSendStatus(v)
+	return _u
 }
 
 // SetNillableSendStatus sets the "send_status" field if the given value is not nil.
-func (slu *SmsLogUpdate) SetNillableSendStatus(u *uint8) *SmsLogUpdate {
-	if u != nil {
-		slu.SetSendStatus(*u)
+func (_u *SmsLogUpdate) SetNillableSendStatus(v *uint8) *SmsLogUpdate {
+	if v != nil {
+		_u.SetSendStatus(*v)
 	}
-	return slu
+	return _u
 }
 
-// AddSendStatus adds u to the "send_status" field.
-func (slu *SmsLogUpdate) AddSendStatus(u int8) *SmsLogUpdate {
-	slu.mutation.AddSendStatus(u)
-	return slu
+// AddSendStatus adds value to the "send_status" field.
+func (_u *SmsLogUpdate) AddSendStatus(v int8) *SmsLogUpdate {
+	_u.mutation.AddSendStatus(v)
+	return _u
 }
 
 // SetProvider sets the "provider" field.
-func (slu *SmsLogUpdate) SetProvider(s string) *SmsLogUpdate {
-	slu.mutation.SetProvider(s)
-	return slu
+func (_u *SmsLogUpdate) SetProvider(v string) *SmsLogUpdate {
+	_u.mutation.SetProvider(v)
+	return _u
 }
 
 // SetNillableProvider sets the "provider" field if the given value is not nil.
-func (slu *SmsLogUpdate) SetNillableProvider(s *string) *SmsLogUpdate {
-	if s != nil {
-		slu.SetProvider(*s)
+func (_u *SmsLogUpdate) SetNillableProvider(v *string) *SmsLogUpdate {
+	if v != nil {
+		_u.SetProvider(*v)
 	}
-	return slu
+	return _u
 }
 
 // Mutation returns the SmsLogMutation object of the builder.
-func (slu *SmsLogUpdate) Mutation() *SmsLogMutation {
-	return slu.mutation
+func (_u *SmsLogUpdate) Mutation() *SmsLogMutation {
+	return _u.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (slu *SmsLogUpdate) Save(ctx context.Context) (int, error) {
-	slu.defaults()
-	return withHooks(ctx, slu.sqlSave, slu.mutation, slu.hooks)
+func (_u *SmsLogUpdate) Save(ctx context.Context) (int, error) {
+	_u.defaults()
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (slu *SmsLogUpdate) SaveX(ctx context.Context) int {
-	affected, err := slu.Save(ctx)
+func (_u *SmsLogUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -118,54 +118,54 @@ func (slu *SmsLogUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (slu *SmsLogUpdate) Exec(ctx context.Context) error {
-	_, err := slu.Save(ctx)
+func (_u *SmsLogUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (slu *SmsLogUpdate) ExecX(ctx context.Context) {
-	if err := slu.Exec(ctx); err != nil {
+func (_u *SmsLogUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (slu *SmsLogUpdate) defaults() {
-	if _, ok := slu.mutation.UpdatedAt(); !ok {
+func (_u *SmsLogUpdate) defaults() {
+	if _, ok := _u.mutation.UpdatedAt(); !ok {
 		v := smslog.UpdateDefaultUpdatedAt()
-		slu.mutation.SetUpdatedAt(v)
+		_u.mutation.SetUpdatedAt(v)
 	}
 }
 
-func (slu *SmsLogUpdate) sqlSave(ctx context.Context) (n int, err error) {
+func (_u *SmsLogUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(smslog.Table, smslog.Columns, sqlgraph.NewFieldSpec(smslog.FieldID, field.TypeUUID))
-	if ps := slu.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := slu.mutation.UpdatedAt(); ok {
+	if value, ok := _u.mutation.UpdatedAt(); ok {
 		_spec.SetField(smslog.FieldUpdatedAt, field.TypeTime, value)
 	}
-	if value, ok := slu.mutation.PhoneNumber(); ok {
+	if value, ok := _u.mutation.PhoneNumber(); ok {
 		_spec.SetField(smslog.FieldPhoneNumber, field.TypeString, value)
 	}
-	if value, ok := slu.mutation.Content(); ok {
+	if value, ok := _u.mutation.Content(); ok {
 		_spec.SetField(smslog.FieldContent, field.TypeString, value)
 	}
-	if value, ok := slu.mutation.SendStatus(); ok {
+	if value, ok := _u.mutation.SendStatus(); ok {
 		_spec.SetField(smslog.FieldSendStatus, field.TypeUint8, value)
 	}
-	if value, ok := slu.mutation.AddedSendStatus(); ok {
+	if value, ok := _u.mutation.AddedSendStatus(); ok {
 		_spec.AddField(smslog.FieldSendStatus, field.TypeUint8, value)
 	}
-	if value, ok := slu.mutation.Provider(); ok {
+	if value, ok := _u.mutation.Provider(); ok {
 		_spec.SetField(smslog.FieldProvider, field.TypeString, value)
 	}
-	if n, err = sqlgraph.UpdateNodes(ctx, slu.driver, _spec); err != nil {
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{smslog.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -173,8 +173,8 @@ func (slu *SmsLogUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	slu.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // SmsLogUpdateOne is the builder for updating a single SmsLog entity.
@@ -186,101 +186,101 @@ type SmsLogUpdateOne struct {
 }
 
 // SetUpdatedAt sets the "updated_at" field.
-func (sluo *SmsLogUpdateOne) SetUpdatedAt(t time.Time) *SmsLogUpdateOne {
-	sluo.mutation.SetUpdatedAt(t)
-	return sluo
+func (_u *SmsLogUpdateOne) SetUpdatedAt(v time.Time) *SmsLogUpdateOne {
+	_u.mutation.SetUpdatedAt(v)
+	return _u
 }
 
 // SetPhoneNumber sets the "phone_number" field.
-func (sluo *SmsLogUpdateOne) SetPhoneNumber(s string) *SmsLogUpdateOne {
-	sluo.mutation.SetPhoneNumber(s)
-	return sluo
+func (_u *SmsLogUpdateOne) SetPhoneNumber(v string) *SmsLogUpdateOne {
+	_u.mutation.SetPhoneNumber(v)
+	return _u
 }
 
 // SetNillablePhoneNumber sets the "phone_number" field if the given value is not nil.
-func (sluo *SmsLogUpdateOne) SetNillablePhoneNumber(s *string) *SmsLogUpdateOne {
-	if s != nil {
-		sluo.SetPhoneNumber(*s)
+func (_u *SmsLogUpdateOne) SetNillablePhoneNumber(v *string) *SmsLogUpdateOne {
+	if v != nil {
+		_u.SetPhoneNumber(*v)
 	}
-	return sluo
+	return _u
 }
 
 // SetContent sets the "content" field.
-func (sluo *SmsLogUpdateOne) SetContent(s string) *SmsLogUpdateOne {
-	sluo.mutation.SetContent(s)
-	return sluo
+func (_u *SmsLogUpdateOne) SetContent(v string) *SmsLogUpdateOne {
+	_u.mutation.SetContent(v)
+	return _u
 }
 
 // SetNillableContent sets the "content" field if the given value is not nil.
-func (sluo *SmsLogUpdateOne) SetNillableContent(s *string) *SmsLogUpdateOne {
-	if s != nil {
-		sluo.SetContent(*s)
+func (_u *SmsLogUpdateOne) SetNillableContent(v *string) *SmsLogUpdateOne {
+	if v != nil {
+		_u.SetContent(*v)
 	}
-	return sluo
+	return _u
 }
 
 // SetSendStatus sets the "send_status" field.
-func (sluo *SmsLogUpdateOne) SetSendStatus(u uint8) *SmsLogUpdateOne {
-	sluo.mutation.ResetSendStatus()
-	sluo.mutation.SetSendStatus(u)
-	return sluo
+func (_u *SmsLogUpdateOne) SetSendStatus(v uint8) *SmsLogUpdateOne {
+	_u.mutation.ResetSendStatus()
+	_u.mutation.SetSendStatus(v)
+	return _u
 }
 
 // SetNillableSendStatus sets the "send_status" field if the given value is not nil.
-func (sluo *SmsLogUpdateOne) SetNillableSendStatus(u *uint8) *SmsLogUpdateOne {
-	if u != nil {
-		sluo.SetSendStatus(*u)
+func (_u *SmsLogUpdateOne) SetNillableSendStatus(v *uint8) *SmsLogUpdateOne {
+	if v != nil {
+		_u.SetSendStatus(*v)
 	}
-	return sluo
+	return _u
 }
 
-// AddSendStatus adds u to the "send_status" field.
-func (sluo *SmsLogUpdateOne) AddSendStatus(u int8) *SmsLogUpdateOne {
-	sluo.mutation.AddSendStatus(u)
-	return sluo
+// AddSendStatus adds value to the "send_status" field.
+func (_u *SmsLogUpdateOne) AddSendStatus(v int8) *SmsLogUpdateOne {
+	_u.mutation.AddSendStatus(v)
+	return _u
 }
 
 // SetProvider sets the "provider" field.
-func (sluo *SmsLogUpdateOne) SetProvider(s string) *SmsLogUpdateOne {
-	sluo.mutation.SetProvider(s)
-	return sluo
+func (_u *SmsLogUpdateOne) SetProvider(v string) *SmsLogUpdateOne {
+	_u.mutation.SetProvider(v)
+	return _u
 }
 
 // SetNillableProvider sets the "provider" field if the given value is not nil.
-func (sluo *SmsLogUpdateOne) SetNillableProvider(s *string) *SmsLogUpdateOne {
-	if s != nil {
-		sluo.SetProvider(*s)
+func (_u *SmsLogUpdateOne) SetNillableProvider(v *string) *SmsLogUpdateOne {
+	if v != nil {
+		_u.SetProvider(*v)
 	}
-	return sluo
+	return _u
 }
 
 // Mutation returns the SmsLogMutation object of the builder.
-func (sluo *SmsLogUpdateOne) Mutation() *SmsLogMutation {
-	return sluo.mutation
+func (_u *SmsLogUpdateOne) Mutation() *SmsLogMutation {
+	return _u.mutation
 }
 
 // Where appends a list predicates to the SmsLogUpdate builder.
-func (sluo *SmsLogUpdateOne) Where(ps ...predicate.SmsLog) *SmsLogUpdateOne {
-	sluo.mutation.Where(ps...)
-	return sluo
+func (_u *SmsLogUpdateOne) Where(ps ...predicate.SmsLog) *SmsLogUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (sluo *SmsLogUpdateOne) Select(field string, fields ...string) *SmsLogUpdateOne {
-	sluo.fields = append([]string{field}, fields...)
-	return sluo
+func (_u *SmsLogUpdateOne) Select(field string, fields ...string) *SmsLogUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated SmsLog entity.
-func (sluo *SmsLogUpdateOne) Save(ctx context.Context) (*SmsLog, error) {
-	sluo.defaults()
-	return withHooks(ctx, sluo.sqlSave, sluo.mutation, sluo.hooks)
+func (_u *SmsLogUpdateOne) Save(ctx context.Context) (*SmsLog, error) {
+	_u.defaults()
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (sluo *SmsLogUpdateOne) SaveX(ctx context.Context) *SmsLog {
-	node, err := sluo.Save(ctx)
+func (_u *SmsLogUpdateOne) SaveX(ctx context.Context) *SmsLog {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -288,34 +288,34 @@ func (sluo *SmsLogUpdateOne) SaveX(ctx context.Context) *SmsLog {
 }
 
 // Exec executes the query on the entity.
-func (sluo *SmsLogUpdateOne) Exec(ctx context.Context) error {
-	_, err := sluo.Save(ctx)
+func (_u *SmsLogUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (sluo *SmsLogUpdateOne) ExecX(ctx context.Context) {
-	if err := sluo.Exec(ctx); err != nil {
+func (_u *SmsLogUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (sluo *SmsLogUpdateOne) defaults() {
-	if _, ok := sluo.mutation.UpdatedAt(); !ok {
+func (_u *SmsLogUpdateOne) defaults() {
+	if _, ok := _u.mutation.UpdatedAt(); !ok {
 		v := smslog.UpdateDefaultUpdatedAt()
-		sluo.mutation.SetUpdatedAt(v)
+		_u.mutation.SetUpdatedAt(v)
 	}
 }
 
-func (sluo *SmsLogUpdateOne) sqlSave(ctx context.Context) (_node *SmsLog, err error) {
+func (_u *SmsLogUpdateOne) sqlSave(ctx context.Context) (_node *SmsLog, err error) {
 	_spec := sqlgraph.NewUpdateSpec(smslog.Table, smslog.Columns, sqlgraph.NewFieldSpec(smslog.FieldID, field.TypeUUID))
-	id, ok := sluo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "SmsLog.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := sluo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, smslog.FieldID)
 		for _, f := range fields {
@@ -327,35 +327,35 @@ func (sluo *SmsLogUpdateOne) sqlSave(ctx context.Context) (_node *SmsLog, err er
 			}
 		}
 	}
-	if ps := sluo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := sluo.mutation.UpdatedAt(); ok {
+	if value, ok := _u.mutation.UpdatedAt(); ok {
 		_spec.SetField(smslog.FieldUpdatedAt, field.TypeTime, value)
 	}
-	if value, ok := sluo.mutation.PhoneNumber(); ok {
+	if value, ok := _u.mutation.PhoneNumber(); ok {
 		_spec.SetField(smslog.FieldPhoneNumber, field.TypeString, value)
 	}
-	if value, ok := sluo.mutation.Content(); ok {
+	if value, ok := _u.mutation.Content(); ok {
 		_spec.SetField(smslog.FieldContent, field.TypeString, value)
 	}
-	if value, ok := sluo.mutation.SendStatus(); ok {
+	if value, ok := _u.mutation.SendStatus(); ok {
 		_spec.SetField(smslog.FieldSendStatus, field.TypeUint8, value)
 	}
-	if value, ok := sluo.mutation.AddedSendStatus(); ok {
+	if value, ok := _u.mutation.AddedSendStatus(); ok {
 		_spec.AddField(smslog.FieldSendStatus, field.TypeUint8, value)
 	}
-	if value, ok := sluo.mutation.Provider(); ok {
+	if value, ok := _u.mutation.Provider(); ok {
 		_spec.SetField(smslog.FieldProvider, field.TypeString, value)
 	}
-	_node = &SmsLog{config: sluo.config}
+	_node = &SmsLog{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, sluo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{smslog.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -363,6 +363,6 @@ func (sluo *SmsLogUpdateOne) sqlSave(ctx context.Context) (_node *SmsLog, err er
 		}
 		return nil, err
 	}
-	sluo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

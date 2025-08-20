@@ -20,56 +20,56 @@ type EmailProviderDelete struct {
 }
 
 // Where appends a list predicates to the EmailProviderDelete builder.
-func (epd *EmailProviderDelete) Where(ps ...predicate.EmailProvider) *EmailProviderDelete {
-	epd.mutation.Where(ps...)
-	return epd
+func (_d *EmailProviderDelete) Where(ps ...predicate.EmailProvider) *EmailProviderDelete {
+	_d.mutation.Where(ps...)
+	return _d
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (epd *EmailProviderDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, epd.sqlExec, epd.mutation, epd.hooks)
+func (_d *EmailProviderDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (epd *EmailProviderDelete) ExecX(ctx context.Context) int {
-	n, err := epd.Exec(ctx)
+func (_d *EmailProviderDelete) ExecX(ctx context.Context) int {
+	n, err := _d.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (epd *EmailProviderDelete) sqlExec(ctx context.Context) (int, error) {
+func (_d *EmailProviderDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(emailprovider.Table, sqlgraph.NewFieldSpec(emailprovider.FieldID, field.TypeUint64))
-	if ps := epd.mutation.predicates; len(ps) > 0 {
+	if ps := _d.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, epd.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	epd.mutation.done = true
+	_d.mutation.done = true
 	return affected, err
 }
 
 // EmailProviderDeleteOne is the builder for deleting a single EmailProvider entity.
 type EmailProviderDeleteOne struct {
-	epd *EmailProviderDelete
+	_d *EmailProviderDelete
 }
 
 // Where appends a list predicates to the EmailProviderDelete builder.
-func (epdo *EmailProviderDeleteOne) Where(ps ...predicate.EmailProvider) *EmailProviderDeleteOne {
-	epdo.epd.mutation.Where(ps...)
-	return epdo
+func (_d *EmailProviderDeleteOne) Where(ps ...predicate.EmailProvider) *EmailProviderDeleteOne {
+	_d._d.mutation.Where(ps...)
+	return _d
 }
 
 // Exec executes the deletion query.
-func (epdo *EmailProviderDeleteOne) Exec(ctx context.Context) error {
-	n, err := epdo.epd.Exec(ctx)
+func (_d *EmailProviderDeleteOne) Exec(ctx context.Context) error {
+	n, err := _d._d.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (epdo *EmailProviderDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (epdo *EmailProviderDeleteOne) ExecX(ctx context.Context) {
-	if err := epdo.Exec(ctx); err != nil {
+func (_d *EmailProviderDeleteOne) ExecX(ctx context.Context) {
+	if err := _d.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

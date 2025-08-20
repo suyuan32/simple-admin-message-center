@@ -23,101 +23,101 @@ type SmsProviderUpdate struct {
 }
 
 // Where appends a list predicates to the SmsProviderUpdate builder.
-func (spu *SmsProviderUpdate) Where(ps ...predicate.SmsProvider) *SmsProviderUpdate {
-	spu.mutation.Where(ps...)
-	return spu
+func (_u *SmsProviderUpdate) Where(ps ...predicate.SmsProvider) *SmsProviderUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetUpdatedAt sets the "updated_at" field.
-func (spu *SmsProviderUpdate) SetUpdatedAt(t time.Time) *SmsProviderUpdate {
-	spu.mutation.SetUpdatedAt(t)
-	return spu
+func (_u *SmsProviderUpdate) SetUpdatedAt(v time.Time) *SmsProviderUpdate {
+	_u.mutation.SetUpdatedAt(v)
+	return _u
 }
 
 // SetName sets the "name" field.
-func (spu *SmsProviderUpdate) SetName(s string) *SmsProviderUpdate {
-	spu.mutation.SetName(s)
-	return spu
+func (_u *SmsProviderUpdate) SetName(v string) *SmsProviderUpdate {
+	_u.mutation.SetName(v)
+	return _u
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (spu *SmsProviderUpdate) SetNillableName(s *string) *SmsProviderUpdate {
-	if s != nil {
-		spu.SetName(*s)
+func (_u *SmsProviderUpdate) SetNillableName(v *string) *SmsProviderUpdate {
+	if v != nil {
+		_u.SetName(*v)
 	}
-	return spu
+	return _u
 }
 
 // SetSecretID sets the "secret_id" field.
-func (spu *SmsProviderUpdate) SetSecretID(s string) *SmsProviderUpdate {
-	spu.mutation.SetSecretID(s)
-	return spu
+func (_u *SmsProviderUpdate) SetSecretID(v string) *SmsProviderUpdate {
+	_u.mutation.SetSecretID(v)
+	return _u
 }
 
 // SetNillableSecretID sets the "secret_id" field if the given value is not nil.
-func (spu *SmsProviderUpdate) SetNillableSecretID(s *string) *SmsProviderUpdate {
-	if s != nil {
-		spu.SetSecretID(*s)
+func (_u *SmsProviderUpdate) SetNillableSecretID(v *string) *SmsProviderUpdate {
+	if v != nil {
+		_u.SetSecretID(*v)
 	}
-	return spu
+	return _u
 }
 
 // SetSecretKey sets the "secret_key" field.
-func (spu *SmsProviderUpdate) SetSecretKey(s string) *SmsProviderUpdate {
-	spu.mutation.SetSecretKey(s)
-	return spu
+func (_u *SmsProviderUpdate) SetSecretKey(v string) *SmsProviderUpdate {
+	_u.mutation.SetSecretKey(v)
+	return _u
 }
 
 // SetNillableSecretKey sets the "secret_key" field if the given value is not nil.
-func (spu *SmsProviderUpdate) SetNillableSecretKey(s *string) *SmsProviderUpdate {
-	if s != nil {
-		spu.SetSecretKey(*s)
+func (_u *SmsProviderUpdate) SetNillableSecretKey(v *string) *SmsProviderUpdate {
+	if v != nil {
+		_u.SetSecretKey(*v)
 	}
-	return spu
+	return _u
 }
 
 // SetRegion sets the "region" field.
-func (spu *SmsProviderUpdate) SetRegion(s string) *SmsProviderUpdate {
-	spu.mutation.SetRegion(s)
-	return spu
+func (_u *SmsProviderUpdate) SetRegion(v string) *SmsProviderUpdate {
+	_u.mutation.SetRegion(v)
+	return _u
 }
 
 // SetNillableRegion sets the "region" field if the given value is not nil.
-func (spu *SmsProviderUpdate) SetNillableRegion(s *string) *SmsProviderUpdate {
-	if s != nil {
-		spu.SetRegion(*s)
+func (_u *SmsProviderUpdate) SetNillableRegion(v *string) *SmsProviderUpdate {
+	if v != nil {
+		_u.SetRegion(*v)
 	}
-	return spu
+	return _u
 }
 
 // SetIsDefault sets the "is_default" field.
-func (spu *SmsProviderUpdate) SetIsDefault(b bool) *SmsProviderUpdate {
-	spu.mutation.SetIsDefault(b)
-	return spu
+func (_u *SmsProviderUpdate) SetIsDefault(v bool) *SmsProviderUpdate {
+	_u.mutation.SetIsDefault(v)
+	return _u
 }
 
 // SetNillableIsDefault sets the "is_default" field if the given value is not nil.
-func (spu *SmsProviderUpdate) SetNillableIsDefault(b *bool) *SmsProviderUpdate {
-	if b != nil {
-		spu.SetIsDefault(*b)
+func (_u *SmsProviderUpdate) SetNillableIsDefault(v *bool) *SmsProviderUpdate {
+	if v != nil {
+		_u.SetIsDefault(*v)
 	}
-	return spu
+	return _u
 }
 
 // Mutation returns the SmsProviderMutation object of the builder.
-func (spu *SmsProviderUpdate) Mutation() *SmsProviderMutation {
-	return spu.mutation
+func (_u *SmsProviderUpdate) Mutation() *SmsProviderMutation {
+	return _u.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (spu *SmsProviderUpdate) Save(ctx context.Context) (int, error) {
-	spu.defaults()
-	return withHooks(ctx, spu.sqlSave, spu.mutation, spu.hooks)
+func (_u *SmsProviderUpdate) Save(ctx context.Context) (int, error) {
+	_u.defaults()
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (spu *SmsProviderUpdate) SaveX(ctx context.Context) int {
-	affected, err := spu.Save(ctx)
+func (_u *SmsProviderUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -125,54 +125,54 @@ func (spu *SmsProviderUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (spu *SmsProviderUpdate) Exec(ctx context.Context) error {
-	_, err := spu.Save(ctx)
+func (_u *SmsProviderUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (spu *SmsProviderUpdate) ExecX(ctx context.Context) {
-	if err := spu.Exec(ctx); err != nil {
+func (_u *SmsProviderUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (spu *SmsProviderUpdate) defaults() {
-	if _, ok := spu.mutation.UpdatedAt(); !ok {
+func (_u *SmsProviderUpdate) defaults() {
+	if _, ok := _u.mutation.UpdatedAt(); !ok {
 		v := smsprovider.UpdateDefaultUpdatedAt()
-		spu.mutation.SetUpdatedAt(v)
+		_u.mutation.SetUpdatedAt(v)
 	}
 }
 
-func (spu *SmsProviderUpdate) sqlSave(ctx context.Context) (n int, err error) {
+func (_u *SmsProviderUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(smsprovider.Table, smsprovider.Columns, sqlgraph.NewFieldSpec(smsprovider.FieldID, field.TypeUint64))
-	if ps := spu.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := spu.mutation.UpdatedAt(); ok {
+	if value, ok := _u.mutation.UpdatedAt(); ok {
 		_spec.SetField(smsprovider.FieldUpdatedAt, field.TypeTime, value)
 	}
-	if value, ok := spu.mutation.Name(); ok {
+	if value, ok := _u.mutation.Name(); ok {
 		_spec.SetField(smsprovider.FieldName, field.TypeString, value)
 	}
-	if value, ok := spu.mutation.SecretID(); ok {
+	if value, ok := _u.mutation.SecretID(); ok {
 		_spec.SetField(smsprovider.FieldSecretID, field.TypeString, value)
 	}
-	if value, ok := spu.mutation.SecretKey(); ok {
+	if value, ok := _u.mutation.SecretKey(); ok {
 		_spec.SetField(smsprovider.FieldSecretKey, field.TypeString, value)
 	}
-	if value, ok := spu.mutation.Region(); ok {
+	if value, ok := _u.mutation.Region(); ok {
 		_spec.SetField(smsprovider.FieldRegion, field.TypeString, value)
 	}
-	if value, ok := spu.mutation.IsDefault(); ok {
+	if value, ok := _u.mutation.IsDefault(); ok {
 		_spec.SetField(smsprovider.FieldIsDefault, field.TypeBool, value)
 	}
-	if n, err = sqlgraph.UpdateNodes(ctx, spu.driver, _spec); err != nil {
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{smsprovider.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -180,8 +180,8 @@ func (spu *SmsProviderUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	spu.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // SmsProviderUpdateOne is the builder for updating a single SmsProvider entity.
@@ -193,108 +193,108 @@ type SmsProviderUpdateOne struct {
 }
 
 // SetUpdatedAt sets the "updated_at" field.
-func (spuo *SmsProviderUpdateOne) SetUpdatedAt(t time.Time) *SmsProviderUpdateOne {
-	spuo.mutation.SetUpdatedAt(t)
-	return spuo
+func (_u *SmsProviderUpdateOne) SetUpdatedAt(v time.Time) *SmsProviderUpdateOne {
+	_u.mutation.SetUpdatedAt(v)
+	return _u
 }
 
 // SetName sets the "name" field.
-func (spuo *SmsProviderUpdateOne) SetName(s string) *SmsProviderUpdateOne {
-	spuo.mutation.SetName(s)
-	return spuo
+func (_u *SmsProviderUpdateOne) SetName(v string) *SmsProviderUpdateOne {
+	_u.mutation.SetName(v)
+	return _u
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (spuo *SmsProviderUpdateOne) SetNillableName(s *string) *SmsProviderUpdateOne {
-	if s != nil {
-		spuo.SetName(*s)
+func (_u *SmsProviderUpdateOne) SetNillableName(v *string) *SmsProviderUpdateOne {
+	if v != nil {
+		_u.SetName(*v)
 	}
-	return spuo
+	return _u
 }
 
 // SetSecretID sets the "secret_id" field.
-func (spuo *SmsProviderUpdateOne) SetSecretID(s string) *SmsProviderUpdateOne {
-	spuo.mutation.SetSecretID(s)
-	return spuo
+func (_u *SmsProviderUpdateOne) SetSecretID(v string) *SmsProviderUpdateOne {
+	_u.mutation.SetSecretID(v)
+	return _u
 }
 
 // SetNillableSecretID sets the "secret_id" field if the given value is not nil.
-func (spuo *SmsProviderUpdateOne) SetNillableSecretID(s *string) *SmsProviderUpdateOne {
-	if s != nil {
-		spuo.SetSecretID(*s)
+func (_u *SmsProviderUpdateOne) SetNillableSecretID(v *string) *SmsProviderUpdateOne {
+	if v != nil {
+		_u.SetSecretID(*v)
 	}
-	return spuo
+	return _u
 }
 
 // SetSecretKey sets the "secret_key" field.
-func (spuo *SmsProviderUpdateOne) SetSecretKey(s string) *SmsProviderUpdateOne {
-	spuo.mutation.SetSecretKey(s)
-	return spuo
+func (_u *SmsProviderUpdateOne) SetSecretKey(v string) *SmsProviderUpdateOne {
+	_u.mutation.SetSecretKey(v)
+	return _u
 }
 
 // SetNillableSecretKey sets the "secret_key" field if the given value is not nil.
-func (spuo *SmsProviderUpdateOne) SetNillableSecretKey(s *string) *SmsProviderUpdateOne {
-	if s != nil {
-		spuo.SetSecretKey(*s)
+func (_u *SmsProviderUpdateOne) SetNillableSecretKey(v *string) *SmsProviderUpdateOne {
+	if v != nil {
+		_u.SetSecretKey(*v)
 	}
-	return spuo
+	return _u
 }
 
 // SetRegion sets the "region" field.
-func (spuo *SmsProviderUpdateOne) SetRegion(s string) *SmsProviderUpdateOne {
-	spuo.mutation.SetRegion(s)
-	return spuo
+func (_u *SmsProviderUpdateOne) SetRegion(v string) *SmsProviderUpdateOne {
+	_u.mutation.SetRegion(v)
+	return _u
 }
 
 // SetNillableRegion sets the "region" field if the given value is not nil.
-func (spuo *SmsProviderUpdateOne) SetNillableRegion(s *string) *SmsProviderUpdateOne {
-	if s != nil {
-		spuo.SetRegion(*s)
+func (_u *SmsProviderUpdateOne) SetNillableRegion(v *string) *SmsProviderUpdateOne {
+	if v != nil {
+		_u.SetRegion(*v)
 	}
-	return spuo
+	return _u
 }
 
 // SetIsDefault sets the "is_default" field.
-func (spuo *SmsProviderUpdateOne) SetIsDefault(b bool) *SmsProviderUpdateOne {
-	spuo.mutation.SetIsDefault(b)
-	return spuo
+func (_u *SmsProviderUpdateOne) SetIsDefault(v bool) *SmsProviderUpdateOne {
+	_u.mutation.SetIsDefault(v)
+	return _u
 }
 
 // SetNillableIsDefault sets the "is_default" field if the given value is not nil.
-func (spuo *SmsProviderUpdateOne) SetNillableIsDefault(b *bool) *SmsProviderUpdateOne {
-	if b != nil {
-		spuo.SetIsDefault(*b)
+func (_u *SmsProviderUpdateOne) SetNillableIsDefault(v *bool) *SmsProviderUpdateOne {
+	if v != nil {
+		_u.SetIsDefault(*v)
 	}
-	return spuo
+	return _u
 }
 
 // Mutation returns the SmsProviderMutation object of the builder.
-func (spuo *SmsProviderUpdateOne) Mutation() *SmsProviderMutation {
-	return spuo.mutation
+func (_u *SmsProviderUpdateOne) Mutation() *SmsProviderMutation {
+	return _u.mutation
 }
 
 // Where appends a list predicates to the SmsProviderUpdate builder.
-func (spuo *SmsProviderUpdateOne) Where(ps ...predicate.SmsProvider) *SmsProviderUpdateOne {
-	spuo.mutation.Where(ps...)
-	return spuo
+func (_u *SmsProviderUpdateOne) Where(ps ...predicate.SmsProvider) *SmsProviderUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (spuo *SmsProviderUpdateOne) Select(field string, fields ...string) *SmsProviderUpdateOne {
-	spuo.fields = append([]string{field}, fields...)
-	return spuo
+func (_u *SmsProviderUpdateOne) Select(field string, fields ...string) *SmsProviderUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated SmsProvider entity.
-func (spuo *SmsProviderUpdateOne) Save(ctx context.Context) (*SmsProvider, error) {
-	spuo.defaults()
-	return withHooks(ctx, spuo.sqlSave, spuo.mutation, spuo.hooks)
+func (_u *SmsProviderUpdateOne) Save(ctx context.Context) (*SmsProvider, error) {
+	_u.defaults()
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (spuo *SmsProviderUpdateOne) SaveX(ctx context.Context) *SmsProvider {
-	node, err := spuo.Save(ctx)
+func (_u *SmsProviderUpdateOne) SaveX(ctx context.Context) *SmsProvider {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -302,34 +302,34 @@ func (spuo *SmsProviderUpdateOne) SaveX(ctx context.Context) *SmsProvider {
 }
 
 // Exec executes the query on the entity.
-func (spuo *SmsProviderUpdateOne) Exec(ctx context.Context) error {
-	_, err := spuo.Save(ctx)
+func (_u *SmsProviderUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (spuo *SmsProviderUpdateOne) ExecX(ctx context.Context) {
-	if err := spuo.Exec(ctx); err != nil {
+func (_u *SmsProviderUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (spuo *SmsProviderUpdateOne) defaults() {
-	if _, ok := spuo.mutation.UpdatedAt(); !ok {
+func (_u *SmsProviderUpdateOne) defaults() {
+	if _, ok := _u.mutation.UpdatedAt(); !ok {
 		v := smsprovider.UpdateDefaultUpdatedAt()
-		spuo.mutation.SetUpdatedAt(v)
+		_u.mutation.SetUpdatedAt(v)
 	}
 }
 
-func (spuo *SmsProviderUpdateOne) sqlSave(ctx context.Context) (_node *SmsProvider, err error) {
+func (_u *SmsProviderUpdateOne) sqlSave(ctx context.Context) (_node *SmsProvider, err error) {
 	_spec := sqlgraph.NewUpdateSpec(smsprovider.Table, smsprovider.Columns, sqlgraph.NewFieldSpec(smsprovider.FieldID, field.TypeUint64))
-	id, ok := spuo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "SmsProvider.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := spuo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, smsprovider.FieldID)
 		for _, f := range fields {
@@ -341,35 +341,35 @@ func (spuo *SmsProviderUpdateOne) sqlSave(ctx context.Context) (_node *SmsProvid
 			}
 		}
 	}
-	if ps := spuo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := spuo.mutation.UpdatedAt(); ok {
+	if value, ok := _u.mutation.UpdatedAt(); ok {
 		_spec.SetField(smsprovider.FieldUpdatedAt, field.TypeTime, value)
 	}
-	if value, ok := spuo.mutation.Name(); ok {
+	if value, ok := _u.mutation.Name(); ok {
 		_spec.SetField(smsprovider.FieldName, field.TypeString, value)
 	}
-	if value, ok := spuo.mutation.SecretID(); ok {
+	if value, ok := _u.mutation.SecretID(); ok {
 		_spec.SetField(smsprovider.FieldSecretID, field.TypeString, value)
 	}
-	if value, ok := spuo.mutation.SecretKey(); ok {
+	if value, ok := _u.mutation.SecretKey(); ok {
 		_spec.SetField(smsprovider.FieldSecretKey, field.TypeString, value)
 	}
-	if value, ok := spuo.mutation.Region(); ok {
+	if value, ok := _u.mutation.Region(); ok {
 		_spec.SetField(smsprovider.FieldRegion, field.TypeString, value)
 	}
-	if value, ok := spuo.mutation.IsDefault(); ok {
+	if value, ok := _u.mutation.IsDefault(); ok {
 		_spec.SetField(smsprovider.FieldIsDefault, field.TypeBool, value)
 	}
-	_node = &SmsProvider{config: spuo.config}
+	_node = &SmsProvider{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, spuo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{smsprovider.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -377,6 +377,6 @@ func (spuo *SmsProviderUpdateOne) sqlSave(ctx context.Context) (_node *SmsProvid
 		}
 		return nil, err
 	}
-	spuo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

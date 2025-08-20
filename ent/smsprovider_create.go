@@ -21,91 +21,91 @@ type SmsProviderCreate struct {
 }
 
 // SetCreatedAt sets the "created_at" field.
-func (spc *SmsProviderCreate) SetCreatedAt(t time.Time) *SmsProviderCreate {
-	spc.mutation.SetCreatedAt(t)
-	return spc
+func (_c *SmsProviderCreate) SetCreatedAt(v time.Time) *SmsProviderCreate {
+	_c.mutation.SetCreatedAt(v)
+	return _c
 }
 
 // SetNillableCreatedAt sets the "created_at" field if the given value is not nil.
-func (spc *SmsProviderCreate) SetNillableCreatedAt(t *time.Time) *SmsProviderCreate {
-	if t != nil {
-		spc.SetCreatedAt(*t)
+func (_c *SmsProviderCreate) SetNillableCreatedAt(v *time.Time) *SmsProviderCreate {
+	if v != nil {
+		_c.SetCreatedAt(*v)
 	}
-	return spc
+	return _c
 }
 
 // SetUpdatedAt sets the "updated_at" field.
-func (spc *SmsProviderCreate) SetUpdatedAt(t time.Time) *SmsProviderCreate {
-	spc.mutation.SetUpdatedAt(t)
-	return spc
+func (_c *SmsProviderCreate) SetUpdatedAt(v time.Time) *SmsProviderCreate {
+	_c.mutation.SetUpdatedAt(v)
+	return _c
 }
 
 // SetNillableUpdatedAt sets the "updated_at" field if the given value is not nil.
-func (spc *SmsProviderCreate) SetNillableUpdatedAt(t *time.Time) *SmsProviderCreate {
-	if t != nil {
-		spc.SetUpdatedAt(*t)
+func (_c *SmsProviderCreate) SetNillableUpdatedAt(v *time.Time) *SmsProviderCreate {
+	if v != nil {
+		_c.SetUpdatedAt(*v)
 	}
-	return spc
+	return _c
 }
 
 // SetName sets the "name" field.
-func (spc *SmsProviderCreate) SetName(s string) *SmsProviderCreate {
-	spc.mutation.SetName(s)
-	return spc
+func (_c *SmsProviderCreate) SetName(v string) *SmsProviderCreate {
+	_c.mutation.SetName(v)
+	return _c
 }
 
 // SetSecretID sets the "secret_id" field.
-func (spc *SmsProviderCreate) SetSecretID(s string) *SmsProviderCreate {
-	spc.mutation.SetSecretID(s)
-	return spc
+func (_c *SmsProviderCreate) SetSecretID(v string) *SmsProviderCreate {
+	_c.mutation.SetSecretID(v)
+	return _c
 }
 
 // SetSecretKey sets the "secret_key" field.
-func (spc *SmsProviderCreate) SetSecretKey(s string) *SmsProviderCreate {
-	spc.mutation.SetSecretKey(s)
-	return spc
+func (_c *SmsProviderCreate) SetSecretKey(v string) *SmsProviderCreate {
+	_c.mutation.SetSecretKey(v)
+	return _c
 }
 
 // SetRegion sets the "region" field.
-func (spc *SmsProviderCreate) SetRegion(s string) *SmsProviderCreate {
-	spc.mutation.SetRegion(s)
-	return spc
+func (_c *SmsProviderCreate) SetRegion(v string) *SmsProviderCreate {
+	_c.mutation.SetRegion(v)
+	return _c
 }
 
 // SetIsDefault sets the "is_default" field.
-func (spc *SmsProviderCreate) SetIsDefault(b bool) *SmsProviderCreate {
-	spc.mutation.SetIsDefault(b)
-	return spc
+func (_c *SmsProviderCreate) SetIsDefault(v bool) *SmsProviderCreate {
+	_c.mutation.SetIsDefault(v)
+	return _c
 }
 
 // SetNillableIsDefault sets the "is_default" field if the given value is not nil.
-func (spc *SmsProviderCreate) SetNillableIsDefault(b *bool) *SmsProviderCreate {
-	if b != nil {
-		spc.SetIsDefault(*b)
+func (_c *SmsProviderCreate) SetNillableIsDefault(v *bool) *SmsProviderCreate {
+	if v != nil {
+		_c.SetIsDefault(*v)
 	}
-	return spc
+	return _c
 }
 
 // SetID sets the "id" field.
-func (spc *SmsProviderCreate) SetID(u uint64) *SmsProviderCreate {
-	spc.mutation.SetID(u)
-	return spc
+func (_c *SmsProviderCreate) SetID(v uint64) *SmsProviderCreate {
+	_c.mutation.SetID(v)
+	return _c
 }
 
 // Mutation returns the SmsProviderMutation object of the builder.
-func (spc *SmsProviderCreate) Mutation() *SmsProviderMutation {
-	return spc.mutation
+func (_c *SmsProviderCreate) Mutation() *SmsProviderMutation {
+	return _c.mutation
 }
 
 // Save creates the SmsProvider in the database.
-func (spc *SmsProviderCreate) Save(ctx context.Context) (*SmsProvider, error) {
-	spc.defaults()
-	return withHooks(ctx, spc.sqlSave, spc.mutation, spc.hooks)
+func (_c *SmsProviderCreate) Save(ctx context.Context) (*SmsProvider, error) {
+	_c.defaults()
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (spc *SmsProviderCreate) SaveX(ctx context.Context) *SmsProvider {
-	v, err := spc.Save(ctx)
+func (_c *SmsProviderCreate) SaveX(ctx context.Context) *SmsProvider {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -113,66 +113,66 @@ func (spc *SmsProviderCreate) SaveX(ctx context.Context) *SmsProvider {
 }
 
 // Exec executes the query.
-func (spc *SmsProviderCreate) Exec(ctx context.Context) error {
-	_, err := spc.Save(ctx)
+func (_c *SmsProviderCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (spc *SmsProviderCreate) ExecX(ctx context.Context) {
-	if err := spc.Exec(ctx); err != nil {
+func (_c *SmsProviderCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (spc *SmsProviderCreate) defaults() {
-	if _, ok := spc.mutation.CreatedAt(); !ok {
+func (_c *SmsProviderCreate) defaults() {
+	if _, ok := _c.mutation.CreatedAt(); !ok {
 		v := smsprovider.DefaultCreatedAt()
-		spc.mutation.SetCreatedAt(v)
+		_c.mutation.SetCreatedAt(v)
 	}
-	if _, ok := spc.mutation.UpdatedAt(); !ok {
+	if _, ok := _c.mutation.UpdatedAt(); !ok {
 		v := smsprovider.DefaultUpdatedAt()
-		spc.mutation.SetUpdatedAt(v)
+		_c.mutation.SetUpdatedAt(v)
 	}
-	if _, ok := spc.mutation.IsDefault(); !ok {
+	if _, ok := _c.mutation.IsDefault(); !ok {
 		v := smsprovider.DefaultIsDefault
-		spc.mutation.SetIsDefault(v)
+		_c.mutation.SetIsDefault(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (spc *SmsProviderCreate) check() error {
-	if _, ok := spc.mutation.CreatedAt(); !ok {
+func (_c *SmsProviderCreate) check() error {
+	if _, ok := _c.mutation.CreatedAt(); !ok {
 		return &ValidationError{Name: "created_at", err: errors.New(`ent: missing required field "SmsProvider.created_at"`)}
 	}
-	if _, ok := spc.mutation.UpdatedAt(); !ok {
+	if _, ok := _c.mutation.UpdatedAt(); !ok {
 		return &ValidationError{Name: "updated_at", err: errors.New(`ent: missing required field "SmsProvider.updated_at"`)}
 	}
-	if _, ok := spc.mutation.Name(); !ok {
+	if _, ok := _c.mutation.Name(); !ok {
 		return &ValidationError{Name: "name", err: errors.New(`ent: missing required field "SmsProvider.name"`)}
 	}
-	if _, ok := spc.mutation.SecretID(); !ok {
+	if _, ok := _c.mutation.SecretID(); !ok {
 		return &ValidationError{Name: "secret_id", err: errors.New(`ent: missing required field "SmsProvider.secret_id"`)}
 	}
-	if _, ok := spc.mutation.SecretKey(); !ok {
+	if _, ok := _c.mutation.SecretKey(); !ok {
 		return &ValidationError{Name: "secret_key", err: errors.New(`ent: missing required field "SmsProvider.secret_key"`)}
 	}
-	if _, ok := spc.mutation.Region(); !ok {
+	if _, ok := _c.mutation.Region(); !ok {
 		return &ValidationError{Name: "region", err: errors.New(`ent: missing required field "SmsProvider.region"`)}
 	}
-	if _, ok := spc.mutation.IsDefault(); !ok {
+	if _, ok := _c.mutation.IsDefault(); !ok {
 		return &ValidationError{Name: "is_default", err: errors.New(`ent: missing required field "SmsProvider.is_default"`)}
 	}
 	return nil
 }
 
-func (spc *SmsProviderCreate) sqlSave(ctx context.Context) (*SmsProvider, error) {
-	if err := spc.check(); err != nil {
+func (_c *SmsProviderCreate) sqlSave(ctx context.Context) (*SmsProvider, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := spc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, spc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -182,45 +182,45 @@ func (spc *SmsProviderCreate) sqlSave(ctx context.Context) (*SmsProvider, error)
 		id := _spec.ID.Value.(int64)
 		_node.ID = uint64(id)
 	}
-	spc.mutation.id = &_node.ID
-	spc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (spc *SmsProviderCreate) createSpec() (*SmsProvider, *sqlgraph.CreateSpec) {
+func (_c *SmsProviderCreate) createSpec() (*SmsProvider, *sqlgraph.CreateSpec) {
 	var (
-		_node = &SmsProvider{config: spc.config}
+		_node = &SmsProvider{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(smsprovider.Table, sqlgraph.NewFieldSpec(smsprovider.FieldID, field.TypeUint64))
 	)
-	if id, ok := spc.mutation.ID(); ok {
+	if id, ok := _c.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := spc.mutation.CreatedAt(); ok {
+	if value, ok := _c.mutation.CreatedAt(); ok {
 		_spec.SetField(smsprovider.FieldCreatedAt, field.TypeTime, value)
 		_node.CreatedAt = value
 	}
-	if value, ok := spc.mutation.UpdatedAt(); ok {
+	if value, ok := _c.mutation.UpdatedAt(); ok {
 		_spec.SetField(smsprovider.FieldUpdatedAt, field.TypeTime, value)
 		_node.UpdatedAt = value
 	}
-	if value, ok := spc.mutation.Name(); ok {
+	if value, ok := _c.mutation.Name(); ok {
 		_spec.SetField(smsprovider.FieldName, field.TypeString, value)
 		_node.Name = value
 	}
-	if value, ok := spc.mutation.SecretID(); ok {
+	if value, ok := _c.mutation.SecretID(); ok {
 		_spec.SetField(smsprovider.FieldSecretID, field.TypeString, value)
 		_node.SecretID = value
 	}
-	if value, ok := spc.mutation.SecretKey(); ok {
+	if value, ok := _c.mutation.SecretKey(); ok {
 		_spec.SetField(smsprovider.FieldSecretKey, field.TypeString, value)
 		_node.SecretKey = value
 	}
-	if value, ok := spc.mutation.Region(); ok {
+	if value, ok := _c.mutation.Region(); ok {
 		_spec.SetField(smsprovider.FieldRegion, field.TypeString, value)
 		_node.Region = value
 	}
-	if value, ok := spc.mutation.IsDefault(); ok {
+	if value, ok := _c.mutation.IsDefault(); ok {
 		_spec.SetField(smsprovider.FieldIsDefault, field.TypeBool, value)
 		_node.IsDefault = value
 	}
@@ -235,16 +235,16 @@ type SmsProviderCreateBulk struct {
 }
 
 // Save creates the SmsProvider entities in the database.
-func (spcb *SmsProviderCreateBulk) Save(ctx context.Context) ([]*SmsProvider, error) {
-	if spcb.err != nil {
-		return nil, spcb.err
+func (_c *SmsProviderCreateBulk) Save(ctx context.Context) ([]*SmsProvider, error) {
+	if _c.err != nil {
+		return nil, _c.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(spcb.builders))
-	nodes := make([]*SmsProvider, len(spcb.builders))
-	mutators := make([]Mutator, len(spcb.builders))
-	for i := range spcb.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*SmsProvider, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := spcb.builders[i]
+			builder := _c.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*SmsProviderMutation)
@@ -258,11 +258,11 @@ func (spcb *SmsProviderCreateBulk) Save(ctx context.Context) ([]*SmsProvider, er
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, spcb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, spcb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -286,7 +286,7 @@ func (spcb *SmsProviderCreateBulk) Save(ctx context.Context) ([]*SmsProvider, er
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, spcb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -294,8 +294,8 @@ func (spcb *SmsProviderCreateBulk) Save(ctx context.Context) ([]*SmsProvider, er
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (spcb *SmsProviderCreateBulk) SaveX(ctx context.Context) []*SmsProvider {
-	v, err := spcb.Save(ctx)
+func (_c *SmsProviderCreateBulk) SaveX(ctx context.Context) []*SmsProvider {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -303,14 +303,14 @@ func (spcb *SmsProviderCreateBulk) SaveX(ctx context.Context) []*SmsProvider {
 }
 
 // Exec executes the query.
-func (spcb *SmsProviderCreateBulk) Exec(ctx context.Context) error {
-	_, err := spcb.Save(ctx)
+func (_c *SmsProviderCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (spcb *SmsProviderCreateBulk) ExecX(ctx context.Context) {
-	if err := spcb.Exec(ctx); err != nil {
+func (_c *SmsProviderCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
